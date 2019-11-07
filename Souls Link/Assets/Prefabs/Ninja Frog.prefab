@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5175769097963390357}
   - component: {fileID: 5867871111454397423}
   - component: {fileID: 364314617423391043}
+  - component: {fileID: 6846615745029439686}
   m_Layer: 8
   m_Name: Ninja Frog
   m_TagString: Untagged
@@ -307,3 +308,35 @@ MonoBehaviour:
   syncTransFormFoldout: 1
   syncAnimatorFoldout: 0
   restoreState: 1
+--- !u!114 &6846615745029439686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5175769097963390348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 202338497, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remoteEvents_:
+  - eventName: move
+    Foldout: 1
+    target: 1
+    remoteEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5175769097963390359}
+          m_MethodName: move
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: SWNetwork.SWRPCEvent, SWNetwork, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null

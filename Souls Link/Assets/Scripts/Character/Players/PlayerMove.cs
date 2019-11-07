@@ -9,7 +9,13 @@ public class PlayerMove : MonoBehaviour
     private float _moveVertical;
     private Vector2 _movement;
     private const float SPEED_BASE = 3;
+
+
     private NetworkID _networkID;
+    private RemoteEventAgent _remoteEventAgent;
+
+    private const string MOVE = "move";
+    
 
     #region para probar todo con teclado
 
@@ -51,24 +57,44 @@ public class PlayerMove : MonoBehaviour
     {
         selectInputs();
         _networkID = GetComponent<NetworkID>();
+        _remoteEventAgent = GetComponent<RemoteEventAgent>();
     }
 
     private void FixedUpdate()
     {
+
         if (_networkID.IsMine)
         {
+            _moveHorizontal = Input.GetAxis(AxisX);
+            _moveVertical = Input.GetAxis(AxisY);
+            _movement = new Vector2(_moveHorizontal, _moveVertical);
+
+            SWNetworkMessage message = new SWNetworkMessage();
+            message.Push(_movement);
+
+            //lo envia a las otras maqunas
+            _remoteEventAgent.Invoke(MOVE, message);
+            //activa el mio
             move();
-            adjustingMotionAnimations();
         }
     }
 
     public void move()
     {
         //movimiento del player
-        _moveHorizontal = Input.GetAxis(AxisX);
-        _moveVertical = Input.GetAxis(AxisY);
-        _movement = new Vector2(_moveHorizontal, _moveVertical);
         GetComponent<Rigidbody2D>().velocity = _movement * SPEED_BASE;
+        adjustingMotionAnimations();
+    }
+
+    public void move(SWNetworkMessage message)
+    {
+        this._movement = message.PopVector3();
+        this._moveHorizontal = _movement.x;
+        this._moveVertical = _movement.y;
+
+        //movimiento del player
+        GetComponent<Rigidbody2D>().velocity = _movement * SPEED_BASE;
+        adjustingMotionAnimations();
     }
 
     public void adjustingMotionAnimations()
