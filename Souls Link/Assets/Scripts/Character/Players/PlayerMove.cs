@@ -1,4 +1,4 @@
-﻿using SWNetwork;
+﻿    using SWNetwork;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,11 @@ public class PlayerMove : MonoBehaviour
     private float _moveHorizontal;
     private float _moveVertical;
     private Vector2 _movement;
+    public Vector2 Movement
+    {
+        get { return _movement; }
+    }
+
     private const float SPEED_BASE = 3;
 
 

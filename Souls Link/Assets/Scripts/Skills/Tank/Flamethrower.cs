@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Flamethrower : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _distanceEffect = 1;
+
+    private AimCursor _aimCursor;
+
+    private void Start()
     {
-        
+        _aimCursor = GetComponent<AimCursor>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Vector2 _origin = transform.position;
+        Vector2 _direction = _aimCursor.AimVector;
+
+        RaycastHit2D hit = Physics2D.Raycast(_origin, _direction, _distanceEffect);
+        Debug.DrawRay(_origin, _direction * _distanceEffect, Color.red);
     }
+
 }

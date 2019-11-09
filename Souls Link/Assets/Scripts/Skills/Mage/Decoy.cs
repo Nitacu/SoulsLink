@@ -40,7 +40,7 @@ public class Decoy : MonoBehaviour
     private void decoyTp()
     {
         Vector2 currentPos = transform.position;
-        Vector2 newPos = (Vector2)transform.position + (_aiming.AimVector * _distance);
+        Vector2 newPos = (Vector2)transform.position - (_aiming.AimVector * _distance);
 
         transform.position = newPos;
         GameObject decoyShadow = Instantiate(_decoyShadow);

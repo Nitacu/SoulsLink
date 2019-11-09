@@ -7,23 +7,63 @@ public class AimCursor : MonoBehaviour
     [SerializeField] private GameObject _crossHair;
     [SerializeField] private float _distanceFactor = 1;
 
-    private GameObject _playerReference;
+    private PlayerMove _playerReference;
 
     private Vector2 _aimVector;
-
     public Vector2 AimVector { get => _aimVector;}
 
+    enum DirectionType
+    {
+        CURSORAIM,
+        MOVEMENTAIM
+    }
 
+    [SerializeField] private DirectionType _directionType;
     // Start is called before the first frame update
     void Start()
     {
-        setcrossHairCursor();
+        _playerReference = GetComponent<PlayerMove>();
+
+        switch (_directionType)
+        {
+            case DirectionType.CURSORAIM:
+                setcrossHairCursor();
+                break;
+            case DirectionType.MOVEMENTAIM:
+                setCrossHairMovementDirection();
+                break;            
+        }        
     }
 
     // Update is called once per frame
     void Update()
     {
-        setcrossHairCursor();
+        switch (_directionType)
+        {
+            case DirectionType.CURSORAIM:
+                setcrossHairCursor();
+                break;
+            case DirectionType.MOVEMENTAIM:
+                setCrossHairMovementDirection();
+                break;
+        }
+    }
+
+    private void setCrossHairMovementDirection()
+    {
+        Vector2 _direction = _playerReference.Movement;
+        _aimVector = _direction.normalized;
+
+        if (AimVector.magnitude > 0)
+        {
+            _aimVector *= _distanceFactor;
+            _crossHair.transform.localPosition = _aimVector;
+            _crossHair.SetActive(true);
+        }
+        else
+        {
+            _crossHair.SetActive(false);
+        }
     }
 
     private void setcrossHairCursor()
