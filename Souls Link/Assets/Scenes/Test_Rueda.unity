@@ -2999,3 +2999,21 @@ MonoBehaviour:
   maxChargedSeconds: 1.5
   maxDashSpeed: 25
   minDashSpeed: 5
+--- !u!114 &1915452299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915452297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498141c73d6a0324c814ee507a452db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 1
+  _stealthTime: 4
+  _mistLifeTime: 6
+  _inputAttack: 97
+  _mist: {fileID: 6691235259582704694, guid: b637f2ee7f5b32d4db4fb813ddeaf651, type: 3}
+  offsetY: -0.2
