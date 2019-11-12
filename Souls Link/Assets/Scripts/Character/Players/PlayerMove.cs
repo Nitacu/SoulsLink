@@ -1,4 +1,4 @@
-﻿    using SWNetwork;
+﻿using SWNetwork;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,13 +14,14 @@ public class PlayerMove : MonoBehaviour
     }
 
     private const float SPEED_BASE = 3;
-
+    private bool isDashing = false;
 
     private NetworkID _networkID;
     private RemoteEventAgent _remoteEventAgent;
 
     private const string MOVE = "move";
-    
+
+    private Vector2 lastDirection = Vector2.zero;
 
     #region para probar todo con teclado
 
@@ -32,6 +33,8 @@ public class PlayerMove : MonoBehaviour
     #region GET Y SET
     public string AxisX { get => _axisX; set => _axisX = value; }
     public string AxisY { get => _axisY; set => _axisY = value; }
+    public bool IsDashing { get => isDashing; set => isDashing = value; }
+    public bool IsDashing1 { get => isDashing; set => isDashing = value; }
     #endregion
 
     private enum player
@@ -67,7 +70,6 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         if (_networkID.IsMine)
         {
             _moveHorizontal = Input.GetAxis(AxisX);
@@ -87,7 +89,20 @@ public class PlayerMove : MonoBehaviour
     public void move()
     {
         //movimiento del player
-        GetComponent<Rigidbody2D>().velocity = _movement * SPEED_BASE;
+        if (!isDashing)
+        {
+            GetComponent<Rigidbody2D>().velocity = _movement * SPEED_BASE;
+            if (_movement != Vector2.zero)
+            {
+                lastDirection = _movement.normalized;
+                GetComponent<AimCursor>().LastVector = lastDirection;
+            }
+        }
+        else
+        {
+            GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.LastVector);
+            
+        }
         adjustingMotionAnimations();
     }
 

@@ -10,8 +10,11 @@ public class AimCursor : MonoBehaviour
     private PlayerMove _playerReference;
 
     private Vector2 _aimVector;
+    private Vector2 _lastVector;
     public Vector2 AimVector { get => _aimVector;}
+    public Vector2 LastVector { get => _lastVector; set => _lastVector = value; }
 
+    
     enum DirectionType
     {
         CURSORAIM,
