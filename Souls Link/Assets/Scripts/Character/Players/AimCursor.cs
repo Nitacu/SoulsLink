@@ -52,10 +52,11 @@ public class AimCursor : MonoBehaviour
         }
     }
 
-    private void setCrossHairMovementDirection()
+    public void setCrossHairMovementDirection()
     {
         Vector2 _direction = _playerReference.Movement;
         _aimVector = _direction.normalized;
+        
 
         if (AimVector.magnitude > 0)
         {

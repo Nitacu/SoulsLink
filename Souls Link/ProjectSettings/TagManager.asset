@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - chargeBar
+  - Enemy
   layers:
   - Default
   - TransparentFX

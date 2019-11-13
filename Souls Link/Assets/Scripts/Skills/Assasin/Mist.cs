@@ -89,6 +89,9 @@ public class Mist : MonoBehaviour
         else
         {
             isStealth = true;
+            Color tmp = GetComponent<SpriteRenderer>().color;
+            tmp.a = 0.1f;
+            GetComponent<SpriteRenderer>().color = tmp;
         }
     }
 
