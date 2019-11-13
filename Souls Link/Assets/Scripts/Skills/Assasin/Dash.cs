@@ -13,8 +13,9 @@ public class Dash : MonoBehaviour
     public float _coolDown = 0;
     public float dashDuration = 0;
     private float durationTracker = 0;
+    public float _damage = 0;
     [SerializeField] private KeyCode _inputAttack;
-
+    private BoxCollider2D _collider;
     [Header("Simple Dash Settings")]
     public float dashSpeed = 0;
 
@@ -40,6 +41,7 @@ public class Dash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _collider = GetComponent<BoxCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _coolDownTracker = _coolDown;
         durationTracker = dashDuration;
@@ -126,6 +128,7 @@ public class Dash : MonoBehaviour
 
             if (Input.GetKeyUp(_inputAttack))
             {
+                _collider.isTrigger = true;
                 captureDirection();
                 findDashSpeed(chargedTime, dashDuration);
                 isDashing = true;
@@ -137,6 +140,7 @@ public class Dash : MonoBehaviour
             if (durationTracker <= 0)
             {
                 isDashing = false;
+                _collider.isTrigger = false;
                 chargedTime = 0;
                 currentDashes = 0;
                 durationTracker = dashDuration;
@@ -167,6 +171,7 @@ public class Dash : MonoBehaviour
                 captureDirection();
                 currentDashes = 0;
                 isDashing = true;
+                _collider.isTrigger = true;
             }
         }
         else
@@ -174,6 +179,7 @@ public class Dash : MonoBehaviour
             if (durationTracker <= 0)
             {
                 isDashing = false;
+                _collider.isTrigger = false;
                 durationTracker = dashDuration;
                 currentDashes = 0;
                 _coolDownTracker = _coolDown;
@@ -210,5 +216,13 @@ public class Dash : MonoBehaviour
         dashDuration = ((pressedTimePercent * durationDifference) / 100) + minDuration;
         durationTracker = dashDuration;
         dashSpeed = ((pressedTimePercent * distanceDifference) / 100) + minDashSpeed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+        }
     }
 }

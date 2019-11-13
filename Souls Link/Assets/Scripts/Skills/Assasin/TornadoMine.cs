@@ -14,7 +14,7 @@ public class TornadoMine : MonoBehaviour
     public GameObject _tornado;
     private float _coolDownTracker = 0;
     [Header("Offset Y of bomb spawn")]
-    public float offsetY = 0;
+    public float offsetY = -0.3f;
 
   
 
@@ -43,7 +43,7 @@ public class TornadoMine : MonoBehaviour
     {
         Vector3 newBombPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
         GameObject temp = Instantiate(_bomb, newBombPosition, Quaternion.identity);
-        temp.GetComponent<MineController>().setBomb(_tornadoDamage, _tornadoDamage, _tornado);
+        temp.GetComponent<MineController>().setBomb(_tornadoLifeTime, _tornadoDamage, _tornado);
         StartCoroutine(destroyBomb(temp, _bombLifeTime));
     }
 

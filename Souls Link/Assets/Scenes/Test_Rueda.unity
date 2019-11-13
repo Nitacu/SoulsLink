@@ -3238,6 +3238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coolDown: 2
   dashDuration: 0.2
+  _damage: 15
   _inputAttack: 115
   dashSpeed: 25
   chargedDash: 1
@@ -3297,154 +3298,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db6cd95b53da5f4aa7c9de974a37895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coolDown: 0
-  _bombLifeTime: 0
-  _tornadoLifeTime: 0
-  _tornadoDamage: 0
-  _inputAttack: 0
-  _bomb: {fileID: 0}
-  _tornado: {fileID: 0}
-  offsetY: 0
---- !u!1001 &1033696519014911062
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1033696519475029628, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_Name
-      value: MineTornado
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.58
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029626, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1033696519475029629, guid: c03b1d8ba6bea204cbf016f459be2d5d,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c03b1d8ba6bea204cbf016f459be2d5d, type: 3}
---- !u!1001 &7108586100305912164
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7108586099890563698, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_Name
-      value: Mine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7108586099890563708, guid: 00d5018f212002242b52b9f5ed293cf6,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 00d5018f212002242b52b9f5ed293cf6, type: 3}
+  _coolDown: 2
+  _bombLifeTime: 20
+  _tornadoLifeTime: 2
+  _tornadoDamage: 15
+  _inputAttack: 102
+  _bomb: {fileID: 7108586099890563698, guid: 00d5018f212002242b52b9f5ed293cf6, type: 3}
+  _tornado: {fileID: 1033696519475029628, guid: c03b1d8ba6bea204cbf016f459be2d5d,
+    type: 3}
+  offsetY: -0.2

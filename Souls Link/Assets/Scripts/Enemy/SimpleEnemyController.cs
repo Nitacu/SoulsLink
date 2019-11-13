@@ -35,6 +35,9 @@ public class SimpleEnemyController : MonoBehaviour
         {
             moveEnemy();
         }
+        else{
+            _rb.velocity = Vector3.zero;
+        }
     }
 
     private void changeDirection()

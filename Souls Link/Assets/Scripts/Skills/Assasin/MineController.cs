@@ -7,6 +7,7 @@ public class MineController : MonoBehaviour
     private float _tornadoLifeTime = 0;
     private float _damage = 0;
     private GameObject _tornado;
+    private float offsetY = -0.3f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +25,12 @@ public class MineController : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            Vector3 newTornadoPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
             collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking();
+            GameObject temp = Instantiate(_tornado, newTornadoPosition, Quaternion.identity);
+            temp.GetComponent<TornadoController>().destroyTornado(_tornadoLifeTime);
+            Destroy(gameObject);
         }
     }
 
