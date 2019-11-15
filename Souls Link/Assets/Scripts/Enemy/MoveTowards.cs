@@ -23,7 +23,7 @@ public class MoveTowards : Action
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-
+            return TaskStatus.Success;
         }
         else
         {

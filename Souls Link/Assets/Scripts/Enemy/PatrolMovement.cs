@@ -8,7 +8,6 @@ public class PatrolMovement : Action
 {
     public List<Vector2> WPoints = new List<Vector2>();
     public float delayBetweenPoints = 0f;
-    private int index = 0;
     private PolyNavAgent _agent;
     private PolyNavAgent agent
     {
