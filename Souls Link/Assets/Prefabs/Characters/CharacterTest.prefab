@@ -450,6 +450,25 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: SWNetwork.SWRPCEvent, SWNetwork, Version=1.0.0.0, Culture=neutral,
         PublicKeyToken=null
+  - eventName: playerSkills
+    Foldout: 1
+    target: 1
+    remoteEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8690233998898529457}
+          m_MethodName: playerOnSkill
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: SWNetwork.SWRPCEvent, SWNetwork, Version=1.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!114 &8690233998898529457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efcdfe72a04e27f439febc5224c5f2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _networkID: {fileID: 1752195763181109855}
 --- !u!1 &7129051181411158736
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,6 +21,15 @@ public class PlayerAiming : MonoBehaviour
         _inputControl = new PlayerInputActions();
     }
 
+    private void Start()
+    {
+        if (!GetComponent<CharacterMultiplayerController>().isMine())
+        {
+            Destroy(_crossHair);
+            Destroy(GetComponent<PlayerAiming>());
+        }
+    }
+
     private void Update()
     {
         SetCrossHair();
