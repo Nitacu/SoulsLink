@@ -44,13 +44,6 @@ public class PlayerSkills : MonoBehaviour
         _inputControl = new PlayerInputActions();
     }
 
-    private void Update()
-    {
-    }
-
-    public delegate void DelegateSkill1();
-    public DelegateSkill1 _skill1Down;
-
     [Header("Skill 1")]
     [SerializeField] UnityEvent Skill1PressDown = new UnityEvent();
     [SerializeField] UnityEvent Skill1PressUp = new UnityEvent();
@@ -64,30 +57,55 @@ public class PlayerSkills : MonoBehaviour
         else if (value.Get<float>() == 0)//Released
         {
             if (Skill1PressUp != null) Skill1PressUp.Invoke();
-
         }
     }
 
-
     [Header("Skill 2")]
-    [SerializeField] UnityEvent Skill2Pressed = new UnityEvent();
-    private void OnSkill2()
+    [SerializeField] UnityEvent Skill2PressDown = new UnityEvent();
+    [SerializeField] UnityEvent Skill2PressUp = new UnityEvent();
+    private void OnSkill2(InputValue value)
     {
-        if (Skill2Pressed != null) Skill2Pressed.Invoke();
+        if (value.Get<float>() == 1)//Pressed
+        {
+            if (Skill2PressDown != null) Skill2PressDown.Invoke();
+
+        }
+        else if (value.Get<float>() == 0)//Released
+        {
+            if (Skill2PressUp != null) Skill2PressUp.Invoke();
+        }
     }
 
     [Header("Skill 3")]
-    [SerializeField] UnityEvent Skill3Pressed = new UnityEvent();
-    private void OnSkill3()
+    [SerializeField] UnityEvent Skill3PressDown = new UnityEvent();
+    [SerializeField] UnityEvent Skill3PressUp = new UnityEvent();
+    private void OnSkill3(InputValue value)
     {
-        if (Skill3Pressed != null) Skill3Pressed.Invoke();
+        if (value.Get<float>() == 1)//Pressed
+        {
+            if (Skill3PressDown != null) Skill3PressDown.Invoke();
+
+        }
+        else if (value.Get<float>() == 0)//Released
+        {
+            if (Skill3PressUp != null) Skill3PressUp.Invoke();
+        }
     }
 
     [Header("Skill 4")]
-    [SerializeField] UnityEvent Skill4Pressed = new UnityEvent();
-    private void OnSkill4()
+    [SerializeField] UnityEvent Skill4PressDown = new UnityEvent();
+    [SerializeField] UnityEvent Skill4PressUp = new UnityEvent();
+    private void OnSkill4(InputValue value)
     {
-        if (Skill4Pressed != null) Skill4Pressed.Invoke();
+        if (value.Get<float>() == 1)//Pressed
+        {
+            if (Skill4PressDown != null) Skill4PressDown.Invoke();
+
+        }
+        else if (value.Get<float>() == 0)//Released
+        {
+            if (Skill4PressUp != null) Skill4PressUp.Invoke();
+        }
     }
 
 

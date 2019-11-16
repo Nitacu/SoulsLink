@@ -2724,11 +2724,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterTest
       objectReference: {fileID: 0}
-    - target: {fileID: 2682875259299368466, guid: c149b41bdb90d084e96b09e886ec1d66,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2682875259299368471, guid: c149b41bdb90d084e96b09e886ec1d66,
         type: 3}
       propertyPath: m_LocalPosition.x
