@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
     private Rigidbody2D _rb;
     private Vector2 _inputMovement;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _inputControl = new PlayerInputActions();
 
+        _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
     }
@@ -28,14 +30,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void move()
     {
-        _rb.velocity = _inputMovement * _speed * Time.deltaTime;
+        _rb.velocity = InputMovement * _speed * Time.deltaTime;
         _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.sqrMagnitude);
     }
 
     public void OnMove(InputValue context)
     {
         // _inputMovement = context.ReadValue<Vector2>();
-        _inputMovement = context.Get<Vector2>();
+        if (_characterMultiplayerController.isMine())
+        {
+            //para mover el player en esta maquina
+            InputMovement = context.Get<Vector2>();
+            //llama decirle a las otras maquinas que tienen que mover este PJ
+            _characterMultiplayerController.pushVectorMovement(context.Get<Vector2>());
+        }            
     }
 
     //Enable and Disable
@@ -48,6 +56,9 @@ public class PlayerMovement : MonoBehaviour
     {
         _inputControl.Disable();
     }
+
+    /////////////// GET Y SET //////////////////////////////
+    public Vector2 InputMovement { get => _inputMovement; set => _inputMovement = value; }
 }
 
 
