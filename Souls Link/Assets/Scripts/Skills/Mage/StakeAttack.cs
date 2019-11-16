@@ -58,8 +58,8 @@ public class StakeAttack : MonoBehaviour
             mineStake.transform.position = gameObject.transform.position;
             LinealProjectile projectile = mineStake.GetComponent<LinealProjectile>();
             projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
-            projectile.setRotation(_aiming.AimVector.normalized);
-            projectile.Velocity = _aiming.AimVector.normalized;
+            projectile.setRotation(_aiming.AimDirection.normalized);
+            projectile.Velocity = _aiming.AimDirection.normalized;
         }
     }
 

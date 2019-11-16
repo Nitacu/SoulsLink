@@ -11,10 +11,12 @@ public class CharacterMultiplayerController : MonoBehaviour
 
     private PlayerMovement _playerMovement;
     private PlayerSkills _playerSkills;
+    private PlayerAiming _playerAiming;
 
     #region Constantes de los nombres de las funciones que se ejecutan en todas las maquinas
     private const string PLAYER_MOVEMENT = "playerMovement";
     private const string PLAYER_SKILLS = "playerSkills";
+    private const string PLAYER_AIMING = "playerAiming";
     #endregion
 
 
@@ -26,14 +28,27 @@ public class CharacterMultiplayerController : MonoBehaviour
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSkills = GetComponent<PlayerSkills>();
+        _playerAiming = GetComponent<PlayerAiming>();
     }
 
     public bool isMine()
     {
-        Debug.Log("El ID es " + _networkID.NetworkObjectId);
         return _networkID.IsMine;
     }
 
+    public void pushVectorAiming(Vector3 vector)
+    {
+        SWNetworkMessage message = new SWNetworkMessage();
+        message.Push(vector);
+        _remoteEventAgent.Invoke(PLAYER_AIMING, message);
+    }
+
+    public void playerAiming(SWNetworkMessage message)
+    {
+        _playerAiming.AimDirection = message.PopVector3();
+    }
+
+    //le envia a las otras maquinas los datos para que active las skills
     public void pushValueSkill(float value, int numberSkill)
     {
         SWNetworkMessage message = new SWNetworkMessage();
@@ -42,6 +57,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         _remoteEventAgent.Invoke(PLAYER_SKILLS, message);
     }
 
+    // carga los datos y activa la skill correspondiente
     public void playerOnSkill(SWNetworkMessage message)
     {
         float value = message.PopFloat();
@@ -51,19 +67,19 @@ public class CharacterMultiplayerController : MonoBehaviour
         {
             switch (numeberSkill)
             {
-                case 1:
+                case 0:
                     _playerSkills.Skill1PressDown1.Invoke();
                     break;
 
-                case 2:
+                case 1:
                     _playerSkills.Skill2PressDown1.Invoke();
                     break;
 
-                case 3:
+                case 2:
                     _playerSkills.Skill3PressDown1.Invoke();
                     break;
 
-                case 4:
+                case 3:
                     _playerSkills.Skill4PressDown1.Invoke();
                     break;
             }
@@ -72,19 +88,19 @@ public class CharacterMultiplayerController : MonoBehaviour
         {
             switch (numeberSkill)
             {
-                case 1:
+                case 0:
                     _playerSkills.Skill1PressUp1.Invoke();
                     break;
 
-                case 2:
+                case 1:
                     _playerSkills.Skill2PressUp1.Invoke();
                     break;
 
-                case 3:
+                case 2:
                     _playerSkills.Skill3PressUp1.Invoke();
                     break;
 
-                case 4:
+                case 3:
                     _playerSkills.Skill4PressUp1.Invoke();
                     break;
             }
@@ -102,9 +118,7 @@ public class CharacterMultiplayerController : MonoBehaviour
     //Metodo donde llega el vector de movimiento y mueve al player de las otras maquinas
     public void playerMovement(SWNetworkMessage message)
     {
-        Debug.Log("me llego algo");
         _playerMovement.InputMovement = message.PopVector3();
-        GetComponent<SpriteRenderer>().color = Color.red;
     }
 
 }

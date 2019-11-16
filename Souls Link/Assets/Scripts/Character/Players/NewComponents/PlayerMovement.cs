@@ -37,10 +37,8 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue context)
     {
         // _inputMovement = context.ReadValue<Vector2>();
-        Debug.Log("es mio? " + _characterMultiplayerController.isMine());
         if (_characterMultiplayerController.isMine())
         {
-            Debug.Log("entra " + context.Get<Vector2>());
             //para mover el player en esta maquina
             InputMovement = context.Get<Vector2>();
             //llama decirle a las otras maquinas que tienen que mover este PJ

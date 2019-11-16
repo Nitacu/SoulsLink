@@ -8,25 +8,22 @@ public class PlayerAiming : MonoBehaviour
     [SerializeField] private GameObject _crossHair;
     [SerializeField] private float _distance = 2;
 
+    private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
 
     private Vector2 _aimDirection = Vector2.right;
-    public Vector2 AimVector
-    {
-        get { return _aimDirection; }
-    }
 
     private void Awake()
     {
+        _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
         _inputControl = new PlayerInputActions();
     }
 
     private void Start()
     {
-        if (!GetComponent<CharacterMultiplayerController>().isMine())
+        if (!_characterMultiplayerController.isMine())
         {
-            Destroy(_crossHair);
-            Destroy(GetComponent<PlayerAiming>());
+            _crossHair.GetComponent<SpriteRenderer>().enabled = false;
         }
     }
 
@@ -37,9 +34,9 @@ public class PlayerAiming : MonoBehaviour
 
     private void SetCrossHair()
     {
-        if (_aimDirection.magnitude > 0)
+        if (AimDirection.magnitude > 0)
         {
-            _crossHair.transform.localPosition = _aimDirection * _distance;
+            _crossHair.transform.localPosition = AimDirection * _distance;
             _crossHair.SetActive(true);
         }
         else
@@ -52,14 +49,16 @@ public class PlayerAiming : MonoBehaviour
     public void OnMove(InputValue context)
     {
         //Vector2 value = context.ReadValue<Vector2>();
-
-        if (context.Get<Vector2>() != Vector2.zero)
+        if (_characterMultiplayerController.isMine())
         {
-            //_aimDirection = value;
-            _aimDirection = context.Get<Vector2>();
-
+            if (context.Get<Vector2>() != Vector2.zero)
+            {
+                //_aimDirection = value;
+                AimDirection = context.Get<Vector2>();
+                //le envia a los otras maquinas a donde apunta este personaje
+                _characterMultiplayerController.pushVectorAiming(AimDirection);
+            }
         }
-
     }
 
     //enables
@@ -72,4 +71,7 @@ public class PlayerAiming : MonoBehaviour
     {
         _inputControl.Enable();
     }
+
+    ///////////////////////////////GET Y SET ////////////////////////////////
+    public Vector2 AimDirection { get => _aimDirection; set => _aimDirection = value; }
 }
