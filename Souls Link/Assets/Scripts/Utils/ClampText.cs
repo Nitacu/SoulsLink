@@ -6,25 +6,22 @@ using TMPro;
 
 public class ClampText : MonoBehaviour
 {
-    public TextMeshProUGUI nameLable;
-    [Header("Para cualquier objeto")]
+    public GameObject Canvas;
+    [Header ("Charge bar")]
     public GameObject _UIGameObject;
-
+    private GameObject temp;
     public float offsetY = 0;
+
+    private void Start()
+    {
+        temp = Instantiate(_UIGameObject, Canvas.transform);
+        temp.GetComponent<Image>().fillAmount = 0;
+    }
 
     void Update()
     {
-        if (nameLable)
-        {
-            Vector3 namePos = Camera.main.WorldToScreenPoint(this.transform.position);
-            nameLable.transform.position = new Vector3(namePos.x,namePos.y + offsetY, namePos.z);
-        }
-        else if (_UIGameObject)
-        {
-            Vector3 namePos = Camera.main.WorldToScreenPoint(this.transform.position);
-            _UIGameObject.transform.position = namePos;
-        }
-
+        Vector3 namePos = Camera.main.WorldToScreenPoint(this.transform.position);
+        temp.transform.position = namePos;
     }
 }
 
