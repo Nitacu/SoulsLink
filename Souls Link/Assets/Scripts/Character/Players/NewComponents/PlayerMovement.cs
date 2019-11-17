@@ -32,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rb.velocity = InputMovement * _speed * Time.deltaTime;
         _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.sqrMagnitude);
+
     }
 
     public void OnMove(InputValue context)

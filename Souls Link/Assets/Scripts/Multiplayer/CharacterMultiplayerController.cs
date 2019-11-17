@@ -17,13 +17,16 @@ public class CharacterMultiplayerController : MonoBehaviour
     private const string PLAYER_MOVEMENT = "playerMovement";
     private const string PLAYER_SKILLS = "playerSkills";
     private const string PLAYER_AIMING = "playerAiming";
+    private const string PLAYER_START_POSITION= "loadStarPosition";
     #endregion
 
 
     private void Start()
     {
         if (!isMine())
+        {
             Destroy(GetComponent<PlayerInput>());
+        }
 
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _playerMovement = GetComponent<PlayerMovement>();
@@ -36,6 +39,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         return _networkID.IsMine;
     }
 
+    #region apuntar
     public void pushVectorAiming(Vector3 vector)
     {
         SWNetworkMessage message = new SWNetworkMessage();
@@ -47,7 +51,9 @@ public class CharacterMultiplayerController : MonoBehaviour
     {
         _playerAiming.AimDirection = message.PopVector3();
     }
+    #endregion
 
+    #region skills
     //le envia a las otras maquinas los datos para que active las skills
     public void pushValueSkill(float value, int numberSkill)
     {
@@ -106,6 +112,23 @@ public class CharacterMultiplayerController : MonoBehaviour
             }
         }
     }
+    #endregion 
+
+    #region movimiento y posicion 
+
+    //envia la posicion actiual del personaje
+    private void pushPosition(Vector3 position)
+    {
+        SWNetworkMessage message = new SWNetworkMessage();
+        message.Push(position);
+        _remoteEventAgent.Invoke(PLAYER_START_POSITION, message);
+    }
+
+    //coloca el personaje en la posicion donde esta cuando entro a la sala
+    public void loadStarPosition(SWNetworkMessage message)
+    {
+        transform.position = message.PopVector3();
+    }
 
     //llama los metodos necesarios para mover la copia del player en las otras maquinas
     public void pushVectorMovement(Vector3 vector)
@@ -118,7 +141,7 @@ public class CharacterMultiplayerController : MonoBehaviour
     //Metodo donde llega el vector de movimiento y mueve al player de las otras maquinas
     public void playerMovement(SWNetworkMessage message)
     {
-        _playerMovement.InputMovement = message.PopVector3();
+        _playerMovement.InputMovement= message.PopVector3();
     }
-
+    #endregion
 }
