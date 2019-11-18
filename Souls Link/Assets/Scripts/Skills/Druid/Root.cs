@@ -12,7 +12,7 @@ public class Root : MonoBehaviour
     [SerializeField] private float _rootDuration;
     [SerializeField] private float _rootSpawnRate;
     private float _coolDownTracker;
-    private bool keepSpawning = true;
+    private bool keepSpawning = false;
     private float cont = 0;
     private float offsetRoots = 1.08f;
     [SerializeField] private KeyCode _inputAttack;
@@ -41,9 +41,19 @@ public class Root : MonoBehaviour
         if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
         {
             KeepSpawning = true;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             useRoot(_aiming.LastVector.normalized);
-            
+            GetComponent<Animator>().SetBool("isCasting", true);
+            GetComponent<PlayerMove>().enabled = false;
             _coolDownTracker = _coolDown;
+        }
+
+        if (Input.GetKeyUp(_inputAttack))
+        {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            GetComponent<PlayerMove>().enabled = true;
+            GetComponent<Animator>().SetBool("isCasting", false);
+            KeepSpawning = false;
         }
     }
 
@@ -63,21 +73,7 @@ public class Root : MonoBehaviour
     {
         GameObject root = Instantiate(_rootPrefab, gameObject.transform.position, Quaternion.identity);
         root.GetComponent<RootSkillController>().setRoot(_rootEffectPrefab, _damage, _rootEffectDuration, gameObject, direction, _rootPrefab, _rootDuration, _rootSpawnRate);
-        /*StartCoroutine(destroyRoot(root, _rootDuration));
-
-        xOffset = 0;
-        yOffset = -0.3f;
-
-        determineOffset(direction);
-
-        Vector3 newPosition = new Vector3(gameObject.transform.position.x + xOffset + (Cont * offsetRoots), gameObject.transform.position.y + yOffset, gameObject.transform.position.z);
-        root.transform.position = newPosition;
-
-        if (KeepSpawning)
-        {
-            Cont++;                        
-            StartCoroutine(spawnRoot(direction, _rootSpawnRate));            
-        }*/
+        
         
     }
 

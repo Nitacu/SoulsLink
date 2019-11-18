@@ -80,7 +80,7 @@ public class RootSkillController : MonoBehaviour
 
         //If Ray
         //If no hits wall
-        if (!hitWall)
+        if (!hitWall && _player.GetComponent<Root>().KeepSpawning)
         {
             StartCoroutine(spawnRoot(_newSpawnRate));
         }
@@ -97,7 +97,7 @@ public class RootSkillController : MonoBehaviour
     {
         Vector2 newPos = (Vector2)gameObject.transform.position + (_directionRoot * 1.08f);      
         GameObject root = Instantiate(_newRootPrefab, newPos, Quaternion.identity);
-        root.GetComponent<RootSkillController>().setRoot(_rootEffect, _damage, _rootEffectDuration, gameObject, _directionRoot, _newRootPrefab, _newRootDuration, _newSpawnRate);
+        root.GetComponent<RootSkillController>().setRoot(_rootEffect, _damage, _rootEffectDuration, playerReference, _directionRoot, _newRootPrefab, _newRootDuration, _newSpawnRate);
     }
 
     public void destroyMyself()
