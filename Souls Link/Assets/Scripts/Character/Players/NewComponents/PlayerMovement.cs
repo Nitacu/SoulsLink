@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float _speed = 100;
     [SerializeField] private Animator _anim;
+    [SerializeField] private SpriteRenderer _renderer;
     const string VELOCITY_PARAMETER = "Velocity";
 
     private void Awake()
@@ -22,17 +23,34 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         //_anim = GetComponent<Animator>();
     }
+    private void Update()
+    {
+        setAnimation();
+    }
 
     private void FixedUpdate()
     {
         move();
     }
 
+    private void setAnimation()
+    {
+        _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.sqrMagnitude);
+
+        //RotarSprite
+        if (_inputMovement.x > 0)
+        {
+            _renderer.flipX = false;
+        }
+        else if (_inputMovement.x < 0)
+        {
+            _renderer.flipX = true;
+        }
+    }
+
     private void move()
     {
         _rb.velocity = InputMovement * _speed * Time.deltaTime;
-        _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.sqrMagnitude);
-
     }
 
     public void OnMove(InputValue context)
