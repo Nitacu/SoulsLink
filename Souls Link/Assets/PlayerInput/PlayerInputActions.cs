@@ -40,7 +40,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""c8fd3e4d-95a9-4b60-aac5-00da13c78fdf"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Skill3"",
@@ -48,7 +48,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""3877be13-7f3f-4edc-9060-e11c25fd1f9f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Skill4"",
@@ -56,7 +56,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""c5e72c4f-fd65-47b6-abb8-fb2a1f10dc41"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=2)""
                 },
                 {
                     ""name"": ""Join"",
