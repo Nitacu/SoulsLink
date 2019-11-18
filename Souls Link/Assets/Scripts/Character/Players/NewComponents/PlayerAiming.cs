@@ -36,6 +36,7 @@ public class PlayerAiming : MonoBehaviour
     {
         if (AimDirection.magnitude > 0)
         {
+            
             _crossHair.transform.localPosition = AimDirection * _distance;
             _crossHair.SetActive(true);
         }
@@ -55,6 +56,7 @@ public class PlayerAiming : MonoBehaviour
             {
                 //_aimDirection = value;
                 AimDirection = context.Get<Vector2>();
+                AimDirection.Normalize();
                 //le envia a los otras maquinas a donde apunta este personaje
                 _characterMultiplayerController.pushVectorAiming(AimDirection);
             }

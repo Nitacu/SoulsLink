@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 _inputMovement;
 
     [SerializeField] private float _speed = 100;
-    private Animator _anim;
+    [SerializeField] private Animator _anim;
     const string VELOCITY_PARAMETER = "Velocity";
 
     private void Awake()
@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
         _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
         _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
+        //_anim = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
