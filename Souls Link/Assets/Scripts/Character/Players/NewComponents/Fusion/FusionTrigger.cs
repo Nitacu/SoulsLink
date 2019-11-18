@@ -7,7 +7,12 @@ public class FusionTrigger : MonoBehaviour
 {
     PlayerInputActions _inputControl;
 
-    [SerializeField] private bool _checkingFusion = false;
+    [SerializeField] private GameObject _hostPrefab;
+    private GameObject _myFusionHosting;
+
+    private bool hostingFusion = false;
+
+    private bool _checkingFusion = false;
     public bool ChekingFusion
     {
         get { return _checkingFusion; }
@@ -25,16 +30,21 @@ public class FusionTrigger : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (_checkingFusion)
         {
             findPlayerToFusion();
         }
+        */
     }
 
     private void findPlayerToFusion()
     {
         //Circle Raycast para encontrar jugadores
-        Collider2D[] _colliders = Physics2D.OverlapCircleAll(transform.position, _radiusFusionCheck, _playersFusionMask);
+        Collider2D[] _colliders = Physics2D.OverlapCircleAll(transform.position, _radiusFusionCheck);
+
+        GameObject hostFindedGO = null;
+        bool _hostFinded = false;
 
         if (_colliders.Length > 0)
         {
@@ -42,15 +52,41 @@ public class FusionTrigger : MonoBehaviour
             foreach (var hit in _colliders)
             {
                 GameObject other = hit.gameObject;
+                Debug.Log("Hit with: " + other.name);
+
+                if (other.GetComponent<FusionHost>())
+                {
+                    _hostFinded = true;
+                    hostFindedGO = other;
+                    Debug.Log("HostFinded");
+                }
+
+                /*
                 if (other.GetComponent<FusionTrigger>() && other != gameObject)
                 {
                     FusionTrigger otherFusionTrigger = other.GetComponent<FusionTrigger>();
+
+                    if (other.GetComponent<FusionHost>())
+                    {
+                        _hostFinded = true;
+                        Debug.Log("HostFinded");
+                    }
                     if (otherFusionTrigger._checkingFusion)
                     {
-                        Fusion();
-                        otherFusionTrigger.Fusion();
+                        
                     }
-                }
+                }*/
+            }
+
+            if (!_hostFinded && !hostingFusion)
+            {
+                _myFusionHosting = Instantiate(_hostPrefab, gameObject.transform, false);
+                _myFusionHosting.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
+                hostingFusion = true;
+            }
+            else
+            {
+                hostFindedGO.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
             }
         }
     }
@@ -66,10 +102,13 @@ public class FusionTrigger : MonoBehaviour
         if (_actionPressed == 1)//Pressed
         {
             _checkingFusion = true;
+            findPlayerToFusion();
         }
         else if (_actionPressed == 0)//Released
         {
             _checkingFusion = false;
+            //if (_myFusionHosting != null) Destroy(_myFusionHosting);
+            //hostingFusion = false;
         }
     }
 

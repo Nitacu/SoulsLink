@@ -1,0 +1,1045 @@
+fileFormatVersion: 2
+guid: 3e49a32512a43f24090378068173bd14
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3413470617210725155
+    second: PlayStation - Breath of Fire 3 - Chimera_0
+  - first:
+      213: 8955380518084120656
+    second: PlayStation - Breath of Fire 3 - Chimera_1
+  - first:
+      213: -7586129766115918074
+    second: PlayStation - Breath of Fire 3 - Chimera_2
+  - first:
+      213: -7081013329477657017
+    second: PlayStation - Breath of Fire 3 - Chimera_3
+  - first:
+      213: -4427345352033376259
+    second: PlayStation - Breath of Fire 3 - Chimera_4
+  - first:
+      213: 8418075405078628705
+    second: PlayStation - Breath of Fire 3 - Chimera_5
+  - first:
+      213: 3289928926652332449
+    second: PlayStation - Breath of Fire 3 - Chimera_6
+  - first:
+      213: -6632521487809329126
+    second: PlayStation - Breath of Fire 3 - Chimera_7
+  - first:
+      213: -9077167798227039318
+    second: PlayStation - Breath of Fire 3 - Chimera_8
+  - first:
+      213: 7155240681186272603
+    second: PlayStation - Breath of Fire 3 - Chimera_9
+  - first:
+      213: -1636640854920638101
+    second: PlayStation - Breath of Fire 3 - Chimera_10
+  - first:
+      213: -1023670212390614570
+    second: PlayStation - Breath of Fire 3 - Chimera_11
+  - first:
+      213: -4291977397530716357
+    second: PlayStation - Breath of Fire 3 - Chimera_12
+  - first:
+      213: 5168341118078576245
+    second: PlayStation - Breath of Fire 3 - Chimera_13
+  - first:
+      213: -3163600208837195542
+    second: PlayStation - Breath of Fire 3 - Chimera_14
+  - first:
+      213: 4555291230358963398
+    second: PlayStation - Breath of Fire 3 - Chimera_15
+  - first:
+      213: 8253901648118691415
+    second: PlayStation - Breath of Fire 3 - Chimera_16
+  - first:
+      213: -4108875525207247397
+    second: PlayStation - Breath of Fire 3 - Chimera_17
+  - first:
+      213: -637693772550068246
+    second: PlayStation - Breath of Fire 3 - Chimera_18
+  - first:
+      213: -2697707749060333027
+    second: PlayStation - Breath of Fire 3 - Chimera_19
+  - first:
+      213: 3093929411904900123
+    second: PlayStation - Breath of Fire 3 - Chimera_20
+  - first:
+      213: -1612356105575293261
+    second: PlayStation - Breath of Fire 3 - Chimera_21
+  - first:
+      213: -1222237593370660046
+    second: PlayStation - Breath of Fire 3 - Chimera_22
+  - first:
+      213: -5922065113085461033
+    second: PlayStation - Breath of Fire 3 - Chimera_23
+  - first:
+      213: -9108499639831735877
+    second: PlayStation - Breath of Fire 3 - Chimera_24
+  - first:
+      213: 31177418327667780
+    second: PlayStation - Breath of Fire 3 - Chimera_25
+  - first:
+      213: -1220459649164893860
+    second: PlayStation - Breath of Fire 3 - Chimera_26
+  - first:
+      213: -2435633564396128188
+    second: PlayStation - Breath of Fire 3 - Chimera_27
+  - first:
+      213: 4583672485951553421
+    second: PlayStation - Breath of Fire 3 - Chimera_28
+  - first:
+      213: 1784910623458387154
+    second: PlayStation - Breath of Fire 3 - Chimera_29
+  - first:
+      213: 1900655210514235489
+    second: PlayStation - Breath of Fire 3 - Chimera_30
+  - first:
+      213: 7464017155992082155
+    second: PlayStation - Breath of Fire 3 - Chimera_31
+  - first:
+      213: 2907635781726737071
+    second: PlayStation - Breath of Fire 3 - Chimera_32
+  - first:
+      213: 396907333504389974
+    second: PlayStation - Breath of Fire 3 - Chimera_33
+  - first:
+      213: 6518271891819495339
+    second: PlayStation - Breath of Fire 3 - Chimera_34
+  - first:
+      213: 6286231366325278941
+    second: PlayStation - Breath of Fire 3 - Chimera_35
+  - first:
+      213: 2149471280976208204
+    second: PlayStation - Breath of Fire 3 - Chimera_36
+  - first:
+      213: -3527457348957140794
+    second: PlayStation - Breath of Fire 3 - Chimera_37
+  - first:
+      213: -4428980521637451223
+    second: PlayStation - Breath of Fire 3 - Chimera_38
+  - first:
+      213: 8818491528234670848
+    second: PlayStation - Breath of Fire 3 - Chimera_39
+  - first:
+      213: 8125325948128202438
+    second: PlayStation - Breath of Fire 3 - Chimera_40
+  - first:
+      213: 7598527144530747987
+    second: PlayStation - Breath of Fire 3 - Chimera_41
+  - first:
+      213: 2061033478915890985
+    second: PlayStation - Breath of Fire 3 - Chimera_42
+  - first:
+      213: 653453556639739996
+    second: PlayStation - Breath of Fire 3 - Chimera_43
+  - first:
+      213: 8798059162786359799
+    second: PlayStation - Breath of Fire 3 - Chimera_44
+  - first:
+      213: 9066858000477615932
+    second: PlayStation - Breath of Fire 3 - Chimera_45
+  - first:
+      213: -1828565771062646471
+    second: PlayStation - Breath of Fire 3 - Chimera_46
+  - first:
+      213: -8236153329007462143
+    second: PlayStation - Breath of Fire 3 - Chimera_47
+  - first:
+      213: 1553860967180447914
+    second: PlayStation - Breath of Fire 3 - Chimera_48
+  - first:
+      213: -5877554792814964240
+    second: PlayStation - Breath of Fire 3 - Chimera_49
+  - first:
+      213: -3673736032184196345
+    second: PlayStation - Breath of Fire 3 - Chimera_50
+  - first:
+      213: 4699225198641204516
+    second: PlayStation - Breath of Fire 3 - Chimera_51
+  - first:
+      213: 915076861210607066
+    second: PlayStation - Breath of Fire 3 - Chimera_52
+  - first:
+      213: -2793885119904036659
+    second: PlayStation - Breath of Fire 3 - Chimera_53
+  - first:
+      213: -9210560923820578755
+    second: PlayStation - Breath of Fire 3 - Chimera_54
+  - first:
+      213: 1050981337435106803
+    second: PlayStation - Breath of Fire 3 - Chimera_55
+  - first:
+      213: 5909699625906584116
+    second: PlayStation - Breath of Fire 3 - Chimera_56
+  - first:
+      213: -1957230732607936200
+    second: PlayStation - Breath of Fire 3 - Chimera_57
+  - first:
+      213: -1240043506777540304
+    second: PlayStation - Breath of Fire 3 - Chimera_58
+  - first:
+      213: 7526214036613120109
+    second: PlayStation - Breath of Fire 3 - Chimera_59
+  - first:
+      213: -5078882041884036833
+    second: PlayStation - Breath of Fire 3 - Chimera_60
+  - first:
+      213: 3954819536366090697
+    second: PlayStation - Breath of Fire 3 - Chimera_61
+  - first:
+      213: -20532274760654825
+    second: PlayStation - Breath of Fire 3 - Chimera_62
+  - first:
+      213: -351759281895439721
+    second: PlayStation - Breath of Fire 3 - Chimera_63
+  - first:
+      213: 5879712129853988638
+    second: PlayStation - Breath of Fire 3 - Chimera_64
+  - first:
+      213: -7778565295830278821
+    second: PlayStation - Breath of Fire 3 - Chimera_65
+  - first:
+      213: 4614570035110717894
+    second: PlayStation - Breath of Fire 3 - Chimera_66
+  - first:
+      213: 8090295267394077278
+    second: PlayStation - Breath of Fire 3 - Chimera_67
+  - first:
+      213: -4741744537663102972
+    second: PlayStation - Breath of Fire 3 - Chimera_68
+  - first:
+      213: 1223383532314769923
+    second: PlayStation - Breath of Fire 3 - Chimera_69
+  - first:
+      213: -4049696549761284267
+    second: PlayStation - Breath of Fire 3 - Chimera_70
+  - first:
+      213: -910932006722813693
+    second: PlayStation - Breath of Fire 3 - Chimera_71
+  - first:
+      213: -6823829437016809341
+    second: PlayStation - Breath of Fire 3 - Chimera_72
+  - first:
+      213: 3564889753547689052
+    second: PlayStation - Breath of Fire 3 - Chimera_73
+  - first:
+      213: -2305104224962391695
+    second: PlayStation - Breath of Fire 3 - Chimera_74
+  - first:
+      213: 5710833638268221532
+    second: PlayStation - Breath of Fire 3 - Chimera_75
+  - first:
+      213: 6953569144909675728
+    second: PlayStation - Breath of Fire 3 - Chimera_76
+  - first:
+      213: 5270776042478086477
+    second: PlayStation - Breath of Fire 3 - Chimera_77
+  - first:
+      213: -5470383502036311964
+    second: PlayStation - Breath of Fire 3 - Chimera_78
+  - first:
+      213: -8370455057738350988
+    second: PlayStation - Breath of Fire 3 - Chimera_79
+  - first:
+      213: -6855949119026547272
+    second: PlayStation - Breath of Fire 3 - Chimera_80
+  - first:
+      213: -50764768775673487
+    second: PlayStation - Breath of Fire 3 - Chimera_81
+  - first:
+      213: 5208680445608151976
+    second: PlayStation - Breath of Fire 3 - Chimera_82
+  - first:
+      213: -2447140490994065705
+    second: PlayStation - Breath of Fire 3 - Chimera_83
+  - first:
+      213: -664433788133286433
+    second: PlayStation - Breath of Fire 3 - Chimera_84
+  - first:
+      213: 4324725394805265611
+    second: PlayStation - Breath of Fire 3 - Chimera_85
+  - first:
+      213: 5160141955991324054
+    second: PlayStation - Breath of Fire 3 - Chimera_86
+  - first:
+      213: 7667350042813759610
+    second: PlayStation - Breath of Fire 3 - Chimera_87
+  - first:
+      213: 2464085865154610494
+    second: PlayStation - Breath of Fire 3 - Chimera_88
+  - first:
+      213: -38059644220267233
+    second: PlayStation - Breath of Fire 3 - Chimera_89
+  - first:
+      213: 3489690745373262407
+    second: PlayStation - Breath of Fire 3 - Chimera_90
+  - first:
+      213: 7940541058143114813
+    second: PlayStation - Breath of Fire 3 - Chimera_91
+  - first:
+      213: 5739210893573079832
+    second: PlayStation - Breath of Fire 3 - Chimera_92
+  - first:
+      213: -1260968396851438908
+    second: PlayStation - Breath of Fire 3 - Chimera_93
+  - first:
+      213: 4069178826903885929
+    second: PlayStation - Breath of Fire 3 - Chimera_94
+  - first:
+      213: 7072277229369407436
+    second: PlayStation - Breath of Fire 3 - Chimera_95
+  - first:
+      213: 8780468484433742524
+    second: PlayStation - Breath of Fire 3 - Chimera_96
+  - first:
+      213: 4821812063897137520
+    second: PlayStation - Breath of Fire 3 - Chimera_97
+  - first:
+      213: 5465728364017633046
+    second: PlayStation - Breath of Fire 3 - Chimera_98
+  - first:
+      213: 1259940084739014457
+    second: PlayStation - Breath of Fire 3 - Chimera_99
+  - first:
+      213: -1425270526054252789
+    second: PlayStation - Breath of Fire 3 - Chimera_100
+  - first:
+      213: 3807213328922040206
+    second: PlayStation - Breath of Fire 3 - Chimera_101
+  - first:
+      213: 374378193325992792
+    second: PlayStation - Breath of Fire 3 - Chimera_102
+  - first:
+      213: -1536109412154135265
+    second: PlayStation - Breath of Fire 3 - Chimera_103
+  - first:
+      213: 2897212652553622662
+    second: PlayStation - Breath of Fire 3 - Chimera_104
+  - first:
+      213: -3675566795096400583
+    second: PlayStation - Breath of Fire 3 - Chimera_105
+  - first:
+      213: -1751502042227667829
+    second: PlayStation - Breath of Fire 3 - Chimera_106
+  - first:
+      213: 2398849120996187175
+    second: PlayStation - Breath of Fire 3 - Chimera_107
+  - first:
+      213: 1996487837924192876
+    second: PlayStation - Breath of Fire 3 - Chimera_108
+  - first:
+      213: -6866238430260901862
+    second: PlayStation - Breath of Fire 3 - Chimera_109
+  - first:
+      213: -9099253775214004894
+    second: PlayStation - Breath of Fire 3 - Chimera_110
+  - first:
+      213: -1685223960106034309
+    second: PlayStation - Breath of Fire 3 - Chimera_111
+  - first:
+      213: 3071798544676717673
+    second: PlayStation - Breath of Fire 3 - Chimera_112
+  - first:
+      213: -6199372303597298798
+    second: PlayStation - Breath of Fire 3 - Chimera_113
+  - first:
+      213: 3827540199460278544
+    second: PlayStation - Breath of Fire 3 - Chimera_114
+  - first:
+      213: -1408946339448567703
+    second: PlayStation - Breath of Fire 3 - Chimera_115
+  - first:
+      213: 8790590462690095619
+    second: PlayStation - Breath of Fire 3 - Chimera_116
+  - first:
+      213: -2311893334813758838
+    second: PlayStation - Breath of Fire 3 - Chimera_117
+  - first:
+      213: -5504197888066759129
+    second: PlayStation - Breath of Fire 3 - Chimera_118
+  - first:
+      213: 8353354933614988247
+    second: PlayStation - Breath of Fire 3 - Chimera_119
+  - first:
+      213: -3746334977638407609
+    second: PlayStation - Breath of Fire 3 - Chimera_120
+  - first:
+      213: 4812583178675480392
+    second: PlayStation - Breath of Fire 3 - Chimera_121
+  - first:
+      213: 802740451439773588
+    second: PlayStation - Breath of Fire 3 - Chimera_122
+  - first:
+      213: 4861493938209642284
+    second: PlayStation - Breath of Fire 3 - Chimera_123
+  - first:
+      213: -1156720988075521034
+    second: PlayStation - Breath of Fire 3 - Chimera_124
+  - first:
+      213: -7011026239020821153
+    second: PlayStation - Breath of Fire 3 - Chimera_125
+  - first:
+      213: -3680203087037043454
+    second: PlayStation - Breath of Fire 3 - Chimera_126
+  - first:
+      213: 5679235508802161727
+    second: PlayStation - Breath of Fire 3 - Chimera_127
+  - first:
+      213: -921129000284323494
+    second: PlayStation - Breath of Fire 3 - Chimera_128
+  - first:
+      213: 8758638349193633326
+    second: PlayStation - Breath of Fire 3 - Chimera_129
+  - first:
+      213: -7351034605591582953
+    second: PlayStation - Breath of Fire 3 - Chimera_130
+  - first:
+      213: -5159329425585096864
+    second: PlayStation - Breath of Fire 3 - Chimera_131
+  - first:
+      213: -1639944173753715283
+    second: PlayStation - Breath of Fire 3 - Chimera_132
+  - first:
+      213: 2032574773917341501
+    second: PlayStation - Breath of Fire 3 - Chimera_133
+  - first:
+      213: -8956491526396894508
+    second: PlayStation - Breath of Fire 3 - Chimera_134
+  - first:
+      213: 1948919822944351424
+    second: PlayStation - Breath of Fire 3 - Chimera_135
+  - first:
+      213: -7587351139396755684
+    second: PlayStation - Breath of Fire 3 - Chimera_136
+  - first:
+      213: 2778444459972897665
+    second: PlayStation - Breath of Fire 3 - Chimera_137
+  - first:
+      213: 8036337361161538921
+    second: PlayStation - Breath of Fire 3 - Chimera_138
+  - first:
+      213: 2313704146914223469
+    second: PlayStation - Breath of Fire 3 - Chimera_139
+  - first:
+      213: 7156202832313271778
+    second: PlayStation - Breath of Fire 3 - Chimera_140
+  - first:
+      213: 102155931219059632
+    second: PlayStation - Breath of Fire 3 - Chimera_141
+  - first:
+      213: -8423103158417850056
+    second: PlayStation - Breath of Fire 3 - Chimera_142
+  - first:
+      213: 2824420068993741258
+    second: PlayStation - Breath of Fire 3 - Chimera_143
+  - first:
+      213: -4183635422496370781
+    second: PlayStation - Breath of Fire 3 - Chimera_144
+  - first:
+      213: 8135346245999328361
+    second: PlayStation - Breath of Fire 3 - Chimera_145
+  - first:
+      213: 4522749798620131596
+    second: PlayStation - Breath of Fire 3 - Chimera_146
+  - first:
+      213: 1327366321210890207
+    second: PlayStation - Breath of Fire 3 - Chimera_147
+  - first:
+      213: -4338775790421527736
+    second: PlayStation - Breath of Fire 3 - Chimera_148
+  - first:
+      213: 4384618739117601762
+    second: PlayStation - Breath of Fire 3 - Chimera_149
+  - first:
+      213: 24748484075718203
+    second: PlayStation - Breath of Fire 3 - Chimera_150
+  - first:
+      213: -8005262768933135860
+    second: PlayStation - Breath of Fire 3 - Chimera_151
+  - first:
+      213: -124063867597178071
+    second: PlayStation - Breath of Fire 3 - Chimera_152
+  - first:
+      213: -3476511235040359066
+    second: PlayStation - Breath of Fire 3 - Chimera_153
+  - first:
+      213: -7759583705984494861
+    second: PlayStation - Breath of Fire 3 - Chimera_154
+  - first:
+      213: -579332112560523684
+    second: PlayStation - Breath of Fire 3 - Chimera_155
+  - first:
+      213: -4057123413034642305
+    second: PlayStation - Breath of Fire 3 - Chimera_156
+  - first:
+      213: 6760505182642808728
+    second: PlayStation - Breath of Fire 3 - Chimera_157
+  - first:
+      213: 4745672888959915934
+    second: PlayStation - Breath of Fire 3 - Chimera_158
+  - first:
+      213: -1694322046431792951
+    second: PlayStation - Breath of Fire 3 - Chimera_159
+  - first:
+      213: -1407112828123759826
+    second: PlayStation - Breath of Fire 3 - Chimera_160
+  - first:
+      213: -3717956262868088981
+    second: PlayStation - Breath of Fire 3 - Chimera_161
+  - first:
+      213: 1367376949822972140
+    second: PlayStation - Breath of Fire 3 - Chimera_162
+  - first:
+      213: -1114646831320764563
+    second: PlayStation - Breath of Fire 3 - Chimera_163
+  - first:
+      213: -3919315639491581902
+    second: PlayStation - Breath of Fire 3 - Chimera_164
+  - first:
+      213: 4361141949385445017
+    second: PlayStation - Breath of Fire 3 - Chimera_165
+  - first:
+      213: -878760256853492869
+    second: PlayStation - Breath of Fire 3 - Chimera_166
+  - first:
+      213: -2457931274376557663
+    second: PlayStation - Breath of Fire 3 - Chimera_167
+  - first:
+      213: 4830302125067430635
+    second: PlayStation - Breath of Fire 3 - Chimera_168
+  - first:
+      213: 1228615458423845538
+    second: PlayStation - Breath of Fire 3 - Chimera_169
+  - first:
+      213: -7229455272328435805
+    second: PlayStation - Breath of Fire 3 - Chimera_170
+  - first:
+      213: 2564955875535136442
+    second: PlayStation - Breath of Fire 3 - Chimera_171
+  - first:
+      213: -7526120646773357803
+    second: PlayStation - Breath of Fire 3 - Chimera_172
+  - first:
+      213: -2409532084506462047
+    second: PlayStation - Breath of Fire 3 - Chimera_173
+  - first:
+      213: -5909380783003766670
+    second: PlayStation - Breath of Fire 3 - Chimera_174
+  - first:
+      213: -8257891531871602737
+    second: PlayStation - Breath of Fire 3 - Chimera_175
+  - first:
+      213: 8359317502431226850
+    second: PlayStation - Breath of Fire 3 - Chimera_176
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 50
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a33c6908701b3be4c973a19bb4796769
+      internalID: 3413470617210725155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64082f6f3dc3ad747a81dee56dd0324d
+      internalID: 8955380518084120656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_2
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e13bc7bd2235ff64dba4a4ee05281d25
+      internalID: -7586129766115918074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_3
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b85fb3f37650c24ea842631d238b370
+      internalID: -7081013329477657017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_4
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b54d55a0eed4d1b46b89f616e74c3479
+      internalID: -4427345352033376259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_5
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e245d6b51c5476643b8c210f0de35a05
+      internalID: 8418075405078628705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_6
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: badc7319eaa5f164f9821034a7aca669
+      internalID: 3289928926652332449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_7
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e7f5b177e7709b499e7d3444e5470b8
+      internalID: -6632521487809329126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_8
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 060f5da3a1323894383eda768276fa33
+      internalID: -9077167798227039318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_9
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 1862
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12e8aa4e7e310ee4284229bc7b9fb8ae
+      internalID: 7155240681186272603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_10
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cd3cafdd8eea0a4b9f2e6b99f2fb36e
+      internalID: -1636640854920638101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_11
+      rect:
+        serializedVersion: 2
+        x: 298
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50c1d1db8ff28d14a84030cf2ba0cdc6
+      internalID: -1023670212390614570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_12
+      rect:
+        serializedVersion: 2
+        x: 443
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c70811ac3ad08cc41a8eda3b7123d8b1
+      internalID: -4291977397530716357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_13
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89f901a6d06e0bf44beb81d2204b3f4e
+      internalID: 5168341118078576245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_14
+      rect:
+        serializedVersion: 2
+        x: 733
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d662dcf64adf7954dba70a1fa8d650c0
+      internalID: -3163600208837195542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_15
+      rect:
+        serializedVersion: 2
+        x: 878
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0744b3ffa2bea44d8bd9ff5ff9b0e40
+      internalID: 4555291230358963398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_16
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47afd3af4e5e198498137779996bb476
+      internalID: 8253901648118691415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_17
+      rect:
+        serializedVersion: 2
+        x: 1168
+        y: 1738
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 164041b49dcac7244b4444f090ddb183
+      internalID: -4108875525207247397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayStation - Breath of Fire 3 - Chimera_30
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1490
+        width: 144
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 951665a147f995643baf019e27e67185
+      internalID: 1900655210514235489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
