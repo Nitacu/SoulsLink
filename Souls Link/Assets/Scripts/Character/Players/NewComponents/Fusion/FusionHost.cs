@@ -7,6 +7,8 @@ public class FusionHost : MonoBehaviour
     private const int HOST_INDEX = 0;
     private List<GameObject> _players = new List<GameObject>();
 
+    [SerializeField] private GameObject _chimeraPrefab;
+
     public void addPlayerToFusion(GameObject player)
     {
         _players.Add(player);
@@ -20,5 +22,7 @@ public class FusionHost : MonoBehaviour
     private void FusionarPlayers()
     {
         Debug.Log("Fusionar Players");
+        GameObject _chimera = Instantiate(_chimeraPrefab);
+        _chimera.transform.position = _players[HOST_INDEX].transform.position;
     }
 }

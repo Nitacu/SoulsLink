@@ -633,9 +633,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -654,9 +654,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 153
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -675,9 +675,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 298
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -696,9 +696,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 443
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -717,9 +717,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 588
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -738,9 +738,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 733
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -759,9 +759,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 878
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -780,9 +780,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1023
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -801,9 +801,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1168
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -822,9 +822,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1313
-        y: 1862
+        y: 1864
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -843,9 +843,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 153
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -864,9 +864,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 298
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -885,9 +885,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 443
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -906,9 +906,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 588
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -927,9 +927,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 733
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -948,9 +948,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 878
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -969,9 +969,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1023
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -990,9 +990,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1168
-        y: 1738
+        y: 1740
         width: 144
-        height: 118
+        height: 116
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1002,27 +1002,6 @@ TextureImporter:
       bones: []
       spriteID: 164041b49dcac7244b4444f090ddb183
       internalID: -4108875525207247397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayStation - Breath of Fire 3 - Chimera_30
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 1490
-        width: 144
-        height: 118
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 951665a147f995643baf019e27e67185
-      internalID: 1900655210514235489
       vertices: []
       indices: 
       edges: []

@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eacd9028c13d55a4c853e67043fa2e16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _chimeraPrefab: {fileID: 1259665957190803052, guid: 15ce1d0c7af14094ebb850c694a09328,
+    type: 3}
 --- !u!61 &2779654387317868684
 BoxCollider2D:
   m_ObjectHideFlags: 0
