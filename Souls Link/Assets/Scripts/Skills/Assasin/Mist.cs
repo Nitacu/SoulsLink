@@ -7,7 +7,6 @@ public class Mist : MonoBehaviour
     public float _coolDown = 0;
     public float _stealthTime = 0;
     public float _mistLifeTime = 0;
-    [SerializeField] private KeyCode _inputAttack;
     public GameObject _mist;
     private float _coolDownTracker = 0;
     private float _stealthTimeTracker = 0;
@@ -35,21 +34,25 @@ public class Mist : MonoBehaviour
         {
             _coolDownTracker -= Time.deltaTime;
         }
-
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-            spawnMist();
-            _coolDownTracker = _coolDown;
-        }
+     
 
         //Debug.Log("Estoy invisible?: " + isStealth);
     }
 
+    public void pressKey()
+    {
+        spawnMist();
+    }
+
     private void spawnMist()
     {
-        Vector3 newMistPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
-        GameObject temp = Instantiate(_mist, newMistPosition, Quaternion.identity);
-        StartCoroutine(destroyMist(temp, _mistLifeTime));
+        if (_coolDownTracker <= 0)
+        {
+            _coolDownTracker = _coolDown;
+            Vector3 newMistPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
+            GameObject temp = Instantiate(_mist, newMistPosition, Quaternion.identity);
+            StartCoroutine(destroyMist(temp, _mistLifeTime));
+        }
     }
 
     IEnumerator destroyMist(GameObject mist, float time)
@@ -64,9 +67,9 @@ public class Mist : MonoBehaviour
         {
             if (isStealth)
             {
-                Color tmp = GetComponent<SpriteRenderer>().color;
+                Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
                 tmp.a = 0.5f;
-                GetComponent<SpriteRenderer>().color = tmp;
+                gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
 
                 if (_stealthTimeTracker <= _stealthTime && _stealthTime > 0)
                 {
@@ -81,17 +84,17 @@ public class Mist : MonoBehaviour
             }
             else
             {
-                Color tmp = GetComponent<SpriteRenderer>().color;
+                Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
                 tmp.a = 1f;
-                GetComponent<SpriteRenderer>().color = tmp;
+                gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
             }
         }
         else
         {
             isStealth = true;
-            Color tmp = GetComponent<SpriteRenderer>().color;
+            Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
             tmp.a = 0.1f;
-            GetComponent<SpriteRenderer>().color = tmp;
+            gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
         }
     }
 

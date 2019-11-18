@@ -1,5 +1,218 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &276340719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 276340723}
+  - component: {fileID: 276340722}
+  - component: {fileID: 276340721}
+  - component: {fileID: 276340720}
+  m_Layer: 5
+  m_Name: Canvas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &276340723
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276340719}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 6226177120453663741}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!223 &276340722
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276340719}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!114 &276340721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276340719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!114 &276340720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276340719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &1373085347
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373085348}
+  - component: {fileID: 1373085349}
+  m_Layer: 8
+  m_Name: ChargeBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373085348
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373085347}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.332, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6226177120453663741}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373085349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373085347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45940ff1f8cf1374b8e92be1ff04ff1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 276340719}
+  _UIGameObject: {fileID: 4196030291286950794, guid: ccdf2313c07974644993896a6fad4216,
+    type: 3}
+  _camera: {fileID: 0}
+  chargeBar: {fileID: 0}
+  offsetY: 0
+--- !u!1 &1373251000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373251003}
+  - component: {fileID: 1373251002}
+  - component: {fileID: 1373251001}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1373251003
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373251000}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.8, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6226177120453663741}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373251002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373251000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!114 &1373251001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373251000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
 --- !u!1 &765243111857866015
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,13 +327,16 @@ GameObject:
   - component: {fileID: 6416025392263254788}
   - component: {fileID: 5812061080386293933}
   - component: {fileID: 8789162026309837581}
-  - component: {fileID: 8366196344268421213}
   - component: {fileID: 1375202588825006389}
   - component: {fileID: 989613481583890978}
   - component: {fileID: 7714001010220193717}
   - component: {fileID: 2886290710582641389}
   - component: {fileID: 848161106968547675}
   - component: {fileID: 8312712316246134390}
+  - component: {fileID: 1357541208}
+  - component: {fileID: 1357541209}
+  - component: {fileID: 1357541210}
+  - component: {fileID: 1357541211}
   m_Layer: 8
   m_Name: AssasinFinal
   m_TagString: Player
@@ -135,12 +351,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6226177120453663736}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3370730034602983611}
   - {fileID: 7263776795313297972}
+  - {fileID: 1373085348}
+  - {fileID: 276340723}
+  - {fileID: 1373251003}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -180,6 +399,7 @@ MonoBehaviour:
   _speed: 200
   _anim: {fileID: 2879079040181944947}
   _renderer: {fileID: 298746667275250245}
+  isDashing: 0
 --- !u!114 &5812061080386293933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +414,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crossHair: {fileID: 7651098687956668841}
   _distance: 2
+  _offsetY: 0.358
+  playerPosition: {x: 0, y: 0}
 --- !u!114 &8789162026309837581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +474,7 @@ MonoBehaviour:
       Inc.   Generic   USB  Joystick  /stick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8366196344268421213}
+      - m_Target: {fileID: 0}
         m_MethodName: OnSkill1
         m_Mode: 0
         m_Arguments:
@@ -300,21 +522,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &8366196344268421213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6226177120453663736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626d7c45bbbb03342b90563261972782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
-    type: 3}
-  _coolDown: 0
 --- !u!114 &1375202588825006389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _checkingFusion: 0
+  _hostPrefab: {fileID: 0}
   _radiusFusionCheck: 2
   _playersFusionMask:
     serializedVersion: 2
@@ -347,8 +554,8 @@ MonoBehaviour:
   Skill1PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8366196344268421213}
-        m_MethodName: startShoot
+      - m_Target: {fileID: 1357541208}
+        m_MethodName: attack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -362,9 +569,14 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill1PressUp:
     m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  Skill2PressDown:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8366196344268421213}
-        m_MethodName: stopShooting
+      - m_Target: {fileID: 1357541209}
+        m_MethodName: spawnBomb
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -376,11 +588,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  Skill2PressDown:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Skill2PressUp:
     m_PersistentCalls:
       m_Calls: []
@@ -388,17 +595,50 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill3PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1357541210}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill3PressUp:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1357541210}
+        m_MethodName: unPressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill4PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1357541211}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill4PressUp:
@@ -532,6 +772,86 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.09}
   serializedVersion: 2
   m_Radius: 0.27992275
+--- !u!114 &1357541208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226177120453663736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e39010d5a1242743905a87bc0f93567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackPrefab: {fileID: 3400747292364688728, guid: 2b9c90a3946c7f343ada957b1a68774c,
+    type: 3}
+  _attackTime: 0.2
+  _coolDown: 0.2
+  _attackDamage: 20
+  stillAttackOption: 0
+--- !u!114 &1357541209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226177120453663736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2db6cd95b53da5f4aa7c9de974a37895, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 2
+  _bombLifeTime: 20
+  _tornadoLifeTime: 2
+  _tornadoDamage: 15
+  _bomb: {fileID: 7108586099890563698, guid: 00d5018f212002242b52b9f5ed293cf6, type: 3}
+  _tornado: {fileID: 1033696519475029628, guid: c03b1d8ba6bea204cbf016f459be2d5d,
+    type: 3}
+  offsetY: -0.2
+--- !u!114 &1357541210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226177120453663736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb69af598687e148827e0a0623dcb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 2
+  dashDuration: 0.2
+  _damage: 15
+  dashSpeed: 25
+  isDashing: 0
+  chargedDash: 1
+  maxChargedSeconds: 1.5
+  maxDashSpeed: 25
+  minDashSpeed: 5
+  maxDuration: 0.2
+  minDuration: 0.05
+  canMultiDash: 1
+  maxDashes: 2
+--- !u!114 &1357541211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226177120453663736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498141c73d6a0324c814ee507a452db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 1
+  _stealthTime: 4
+  _mistLifeTime: 6
+  _mist: {fileID: 6691235259582704694, guid: b637f2ee7f5b32d4db4fb813ddeaf651, type: 3}
+  offsetY: -0.2
 --- !u!1 &7651098687956668841
 GameObject:
   m_ObjectHideFlags: 0

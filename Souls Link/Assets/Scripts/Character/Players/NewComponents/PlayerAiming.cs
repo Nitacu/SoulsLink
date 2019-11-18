@@ -7,7 +7,11 @@ public class PlayerAiming : MonoBehaviour
 {
     [SerializeField] private GameObject _crossHair;
     [SerializeField] private float _distance = 2;
+    [SerializeField] private float _offsetY = 0.358f;
 
+    [HideInInspector]
+    public Vector2 playerPosition = Vector2.zero;
+    
     private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
 
@@ -19,8 +23,21 @@ public class PlayerAiming : MonoBehaviour
         _inputControl = new PlayerInputActions();
     }
 
+    public Vector2 getPosition()
+    {
+        playerPosition = gameObject.transform.position;
+        playerPosition.y = playerPosition.y + _offsetY;
+        return playerPosition;
+    }
+
+    public float getOffsetY()
+    {
+        return _offsetY;
+    }
+
     private void Start()
     {
+        
         if (!_characterMultiplayerController.isMine())
         {
             _crossHair.GetComponent<SpriteRenderer>().enabled = false;

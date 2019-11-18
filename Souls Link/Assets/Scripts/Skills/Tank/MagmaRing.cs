@@ -85,7 +85,10 @@ public class MagmaRing : MonoBehaviour
         }
         Vector2 direction = GetComponent<AimCursor>().LastVector.normalized;
         _coolDownTracker = _coolDown;
+        Vector2 newPos = Vector2.zero;
+        newPos.y = newPos.y - 0.2f;
         GameObject ring = Instantiate(_ringPrefab, gameObject.transform);
+        ring.transform.localPosition = newPos;
         ring.GetComponent<MagmaRingController>().setMagma(_damage, gameObject, lastRing);
         if(ringsSpawned < _numberOfRings)
         {

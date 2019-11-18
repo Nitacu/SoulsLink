@@ -5,7 +5,6 @@ using UnityEngine;
 public class StrongAttack : MonoBehaviour
 {
 
-    [SerializeField] private KeyCode _inputSkill;
     [SerializeField] private GameObject _attackPrefab;
     private GameObject _attackReference;
     [SerializeField] private float _attackTime;
@@ -30,38 +29,36 @@ public class StrongAttack : MonoBehaviour
         {
             _coolDownTracker -= Time.deltaTime;
         }
-
-        if (Input.GetKeyDown(_inputSkill) && _coolDownTracker <= 0)
-        {
-            attack();
-            _coolDownTracker = _coolDown;
-        }
+       
     }
 
-    private void attack()
+    public void attack()
     {
-        if (stillAttackOption)
+        if (_coolDownTracker <= 0)
         {
-            _attackReference = Instantiate(_attackPrefab, gameObject.transform.position, Quaternion.identity);  
+            _coolDownTracker = _coolDown;
+            
+
+            if (stillAttackOption)
+            {
+                _attackReference = Instantiate(_attackPrefab, GetComponent<PlayerAiming>().getPosition(), Quaternion.identity);
+            }
+            else
+            {
+                _attackReference = Instantiate(_attackPrefab, gameObject.transform);
+                _attackReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
+                
+            }
+            _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
+            getDirection();
+            _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction);
+            StartCoroutine(destroyAttack(_attackReference, _attackTime));
         }
-        else
-        {
-            _attackReference = Instantiate(_attackPrefab, gameObject.transform);
-            _attackReference.transform.localPosition = Vector3.zero;
-        }
-        _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
-        getDirection();
-        _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction);
-        StartCoroutine(destroyAttack(_attackReference, _attackTime));
     }
 
     private void getDirection()
-    {
-        direction = new Vector2(Input.GetAxis(GetComponent<PlayerMove>().AxisX), Input.GetAxis(GetComponent<PlayerMove>().AxisY)).normalized;
-        if(direction == Vector2.zero)
-        {
-            direction = GetComponent<AimCursor>().LastVector;
-        }
+    {       
+        direction = GetComponent<PlayerAiming>().AimDirection.normalized;      
     }
 
     IEnumerator destroyAttack(GameObject attack, float attackTime)

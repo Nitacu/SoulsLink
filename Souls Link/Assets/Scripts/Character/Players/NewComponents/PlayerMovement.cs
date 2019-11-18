@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     const string VELOCITY_PARAMETER = "Velocity";
 
+    [HideInInspector]
+    public bool isDashing = false;
+
     private void Awake()
     {
         _inputControl = new PlayerInputActions();
@@ -50,7 +53,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void move()
     {
-        _rb.velocity = InputMovement * _speed * Time.deltaTime;
+        if (!isDashing)
+        {
+            _rb.velocity = InputMovement * _speed * Time.deltaTime;
+        }
+        else
+        {
+            GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection);
+        }
     }
 
     public void OnMove(InputValue context)

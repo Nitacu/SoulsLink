@@ -9,7 +9,6 @@ public class TornadoMine : MonoBehaviour
     public float _bombLifeTime = 0;
     public float _tornadoLifeTime = 0;
     public float _tornadoDamage = 0;
-    [SerializeField] private KeyCode _inputAttack;
     public GameObject _bomb;
     public GameObject _tornado;
     private float _coolDownTracker = 0;
@@ -31,20 +30,19 @@ public class TornadoMine : MonoBehaviour
         {
             _coolDownTracker -= Time.deltaTime;
         }
-
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-            spawnBomb();
-            _coolDownTracker = _coolDown;
-        }
+        
     }
 
-    private void spawnBomb()
+    public void spawnBomb()
     {
-        Vector3 newBombPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
-        GameObject temp = Instantiate(_bomb, newBombPosition, Quaternion.identity);
-        temp.GetComponent<MineController>().setBomb(_tornadoLifeTime, _tornadoDamage, _tornado);
-        StartCoroutine(destroyBomb(temp, _bombLifeTime));
+        if (_coolDownTracker <= 0)
+        {
+            _coolDownTracker = _coolDown;
+            Vector3 newBombPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
+            GameObject temp = Instantiate(_bomb, newBombPosition, Quaternion.identity);
+            temp.GetComponent<MineController>().setBomb(_tornadoLifeTime, _tornadoDamage, _tornado);
+            StartCoroutine(destroyBomb(temp, _bombLifeTime));
+        }
     }
 
     IEnumerator destroyBomb(GameObject bomb, float time)

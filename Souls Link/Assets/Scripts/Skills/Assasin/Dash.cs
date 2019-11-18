@@ -14,15 +14,14 @@ public class Dash : MonoBehaviour
     public float dashDuration = 0;
     private float durationTracker = 0;
     public float _damage = 0;
-    [SerializeField] private KeyCode _inputAttack;
-    private BoxCollider2D _collider;
+    private CircleCollider2D _collider;
     [Header("Simple Dash Settings")]
     public float dashSpeed = 0;
 
 
-    private AimCursor _aiming;
-    public AimCursor Aiming { get => _aiming; set => _aiming = value; }
-    private bool isDashing = false;
+    private PlayerAiming _aiming;
+    public PlayerAiming Aiming { get => _aiming; set => _aiming = value; }
+    public bool isDashing = false;
 
     [Header("Charged Dash Settings")]
     public bool chargedDash = false;
@@ -38,15 +37,18 @@ public class Dash : MonoBehaviour
     public float maxDashes = 0;
     private float currentDashes = 0;
 
+    private bool isCharging = false;
+    private bool canDash = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        _collider = GetComponent<BoxCollider2D>();
+        _collider = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _coolDownTracker = _coolDown;
         durationTracker = dashDuration;
-        _aiming = GetComponent<AimCursor>();
-        chargeBar = GameObject.FindGameObjectWithTag("chargeBar");
+        _aiming = GetComponent<PlayerAiming>();
+        chargeBar = GetComponentInChildren<ClampText>().chargeBar;
         chargeBar.GetComponent<Image>().fillAmount = 0;
     }
 
@@ -64,12 +66,16 @@ public class Dash : MonoBehaviour
             chargeBarControl();
         }
 
+        if (isCharging)
+        {
+            chargedTime += Time.deltaTime;
+        }
     }
 
     public void playerDash(Vector2 direction)
     {           
         _rb.velocity = dashDirection * dashSpeed;
-        GetComponent<PlayerMove>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
         //Debug.Log(direction);
     }
 
@@ -84,11 +90,7 @@ public class Dash : MonoBehaviour
 
     private void captureDirection()
     {
-        Vector2 newDirection = new Vector2(Input.GetAxis(GetComponent<PlayerMove>().AxisX), Input.GetAxis(GetComponent<PlayerMove>().AxisY)).normalized;
-        if (newDirection == Vector2.zero)
-        {
-            newDirection = GetComponent<AimCursor>().LastVector;
-        }
+        Vector2 newDirection = GetComponent<PlayerAiming>().AimDirection;
         dashDirection = newDirection;
     }
 
@@ -119,9 +121,8 @@ public class Dash : MonoBehaviour
     private void chargedDashCheck()
     {
         if (!isDashing)
-        {
-            
-            if (Input.GetKey(_inputAttack))
+        {            
+            /*if (Input.GetKey(_inputAttack))
             {
                 chargedTime += Time.deltaTime;
             }
@@ -133,31 +134,31 @@ public class Dash : MonoBehaviour
                 findDashSpeed(chargedTime, dashDuration);
                 isDashing = true;
 
-            }
+            }*/
         }
         else
         {
             if (durationTracker <= 0)
             {
                 isDashing = false;
-                _collider.isTrigger = false;
+               
                 chargedTime = 0;
                 currentDashes = 0;
                 durationTracker = dashDuration;
                 _coolDownTracker = _coolDown;
-                GetComponent<PlayerMove>().IsDashing = false;
+                GetComponent<PlayerMovement>().isDashing = false;
             }
             else
             {
                 durationTracker -= Time.deltaTime;
-                GetComponent<PlayerMove>().IsDashing = true;
-                if (Input.GetKeyDown(_inputAttack) && currentDashes <= maxDashes && canMultiDash)
+                GetComponent<PlayerMovement>().isDashing = true;
+                /*if (Input.GetKeyDown(_inputAttack) && currentDashes <= maxDashes && canMultiDash)
                 {
                     captureDirection();
                     currentDashes++;
                     durationTracker = dashDuration;
                     GetComponent<PlayerMove>().IsDashing = false;
-                }
+                }*/
             }
         }
     }
@@ -166,36 +167,36 @@ public class Dash : MonoBehaviour
     {
         if (!isDashing)
         {
-            if (Input.GetKeyDown(_inputAttack))
+           /* if (Input.GetKeyDown(_inputAttack))
             {
                 captureDirection();
                 currentDashes = 0;
                 isDashing = true;
                 _collider.isTrigger = true;
-            }
+            }*/
         }
         else
         {
             if (durationTracker <= 0)
             {
                 isDashing = false;
-                _collider.isTrigger = false;
+                
                 durationTracker = dashDuration;
                 currentDashes = 0;
                 _coolDownTracker = _coolDown;
-                GetComponent<PlayerMove>().IsDashing = false;
+                GetComponent<PlayerMovement>().isDashing = false;
             }
             else
             {
                 durationTracker -= Time.deltaTime;
-                GetComponent<PlayerMove>().IsDashing = true;
-                if (Input.GetKeyDown(_inputAttack) && currentDashes < maxDashes && canMultiDash)
+                GetComponent<PlayerMovement>().isDashing = true;
+                /*if (Input.GetKeyDown(_inputAttack) && currentDashes < maxDashes && canMultiDash)
                 {
                     currentDashes++;
                     durationTracker = dashDuration;
                     captureDirection();
                     GetComponent<PlayerMove>().IsDashing = false;
-                }
+                }*/
             }
         }
     }
@@ -223,6 +224,85 @@ public class Dash : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), _collider);
+            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+        }
+    }
+
+    public void pressKey()
+    {
+
+        if (_coolDownTracker <= 0)
+        {
+            canDash = true;
+            if (!chargedDash)
+            {
+                //simple
+                if (!isDashing)
+                {
+                    captureDirection();
+                    currentDashes = 0;
+                    isDashing = true;
+                   
+                }
+                else
+                {
+                    if (durationTracker > 0 && currentDashes < maxDashes && canMultiDash)
+                    {
+                        currentDashes++;
+                        durationTracker = dashDuration;
+                        captureDirection();
+                        GetComponent<PlayerMovement>().isDashing = false;
+                    }
+                }
+            }
+            else
+            {
+                if (!isDashing)
+                {
+                    isCharging = true;
+                }
+                else
+                {
+                    if (durationTracker > 0 && currentDashes < maxDashes && canMultiDash)
+                    {
+                        captureDirection();
+                        currentDashes++;
+                        durationTracker = dashDuration;
+                        GetComponent<PlayerMovement>().isDashing = false;
+                    }
+                }
+            }
+        }
+    }
+
+    public void unPressKey()
+    {
+        Debug.Log("UnpressKey");
+        if (_coolDownTracker <= 0)
+        {
+            if (canDash)
+            {
+                canDash = false;
+                if (chargedDash)
+                {
+                    if (!isDashing)
+                    {
+                        isCharging = false;                       
+                        captureDirection();
+                        findDashSpeed(chargedTime, dashDuration);
+                        isDashing = true;
+
+                    }
+                }
+            }
         }
     }
 }

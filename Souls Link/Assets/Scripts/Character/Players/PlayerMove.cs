@@ -100,7 +100,7 @@ public class PlayerMove : MonoBehaviour
         }
         else
         {
-            GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.LastVector);
+            GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection);
             
         }
         adjustingMotionAnimations();
