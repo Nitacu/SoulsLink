@@ -93,13 +93,15 @@ GameObject:
   - component: {fileID: 4370920888415622395}
   - component: {fileID: 3822002165638600530}
   - component: {fileID: 2043381001436603634}
-  - component: {fileID: 1276875247767764898}
   - component: {fileID: 8554410530443982538}
   - component: {fileID: 7501092959704258013}
   - component: {fileID: 1058151807085711434}
   - component: {fileID: 5597066560623346962}
   - component: {fileID: 7955514675486807716}
   - component: {fileID: 1656836157875964297}
+  - component: {fileID: 489523146}
+  - component: {fileID: 489523147}
+  - component: {fileID: 489523148}
   m_Layer: 8
   m_Name: TankFinal
   m_TagString: Player
@@ -114,7 +116,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3730457550004149255}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.241, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -234,7 +236,8 @@ MonoBehaviour:
       Inc.   Generic   USB  Joystick  /stick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1276875247767764898}
+      - m_Target: {fileID: 1276875247767764898, guid: 01420e03f911cf9419c5349355aac304,
+          type: 3}
         m_MethodName: OnSkill1
         m_Mode: 0
         m_Arguments:
@@ -282,21 +285,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &1276875247767764898
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730457550004149255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626d7c45bbbb03342b90563261972782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
-    type: 3}
-  _coolDown: 0
 --- !u!114 &8554410530443982538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,8 +317,8 @@ MonoBehaviour:
   Skill1PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1276875247767764898}
-        m_MethodName: startShoot
+      - m_Target: {fileID: 489523146}
+        m_MethodName: pressKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -344,9 +332,14 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill1PressUp:
     m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  Skill2PressDown:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1276875247767764898}
-        m_MethodName: stopShooting
+      - m_Target: {fileID: 489523147}
+        m_MethodName: pressKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -358,11 +351,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  Skill2PressDown:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
   Skill2PressUp:
     m_PersistentCalls:
       m_Calls: []
@@ -370,7 +358,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill3PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 489523148}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill3PressUp:
@@ -514,6 +513,64 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.2831405}
   serializedVersion: 2
   m_Radius: 0.20904192
+--- !u!114 &489523146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8972c83425f4644bb5397993b13d7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flameThrowerParticles: {fileID: 256850961190304351, guid: 0b88490a37712bc4e86f812f51351563,
+    type: 3}
+  _colliderFire: {fileID: 1374183763134428994, guid: 1eaf766f67cc391498db7cfdccae0345,
+    type: 3}
+  _coolDown: 5
+  flameDuration: 6
+  _damagePerTick: 10
+  _timeTicks: 0.5
+--- !u!114 &489523147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aeb843c17fa2914fbfa395e9b39c19d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hookPrefab: {fileID: 2808635983260031494, guid: f40ffb99d9e2dca408bf231b4b9280e2,
+    type: 3}
+  _coolDown: 4
+  _hookSpeed: 10
+  _damage: 5
+  _travelTime: 0.2
+  _linePrefab: {fileID: 4208438767150628681, guid: da6a9f74daa528442819130f80812531,
+    type: 3}
+--- !u!114 &489523148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87c87428e0057bb498a8224f0ecebbf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ringPrefab: {fileID: 1349659880750133405, guid: 99b34024b488afc4fa728ae342541cf9,
+    type: 3}
+  _coolDown: 4
+  _damage: 20
+  _numberOfRings: 1
+  _spawnRingRate: 0.8
 --- !u!1 &6647910037698648187
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,6 @@ public class MagmaRing : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _numberOfRings;
     [SerializeField] private float _spawnRingRate;
-    [SerializeField] private KeyCode _inputAttack;
     
     private float _coolDownTracker;
     private PlayerAiming _aiming;
@@ -30,12 +29,7 @@ public class MagmaRing : MonoBehaviour
             _coolDownTracker -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-            spawnRing();
-            disableMovement();
-           
-        }
+
 
 
         /*
@@ -47,10 +41,19 @@ public class MagmaRing : MonoBehaviour
         */
     }
 
+    public void pressKey()
+    {
+        if(_coolDownTracker <= 0)
+        {
+            spawnRing();
+            disableMovement();
+        }
+    }
+
     public void disableMovement()
     {
-        GetComponent<Animator>().SetBool("isCasting", true);
-        GetComponent<PlayerMove>().enabled = false;
+        GetComponentInChildren<Animator>().SetBool("isCasting", true);
+        GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
     }
 
@@ -58,9 +61,9 @@ public class MagmaRing : MonoBehaviour
     {
         ringsSpawned = 0;
         lastRing = false;
-        GetComponent<PlayerMove>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        GetComponent<Animator>().SetBool("isCasting", false);
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
     }
 
     public void stopShooting()
@@ -83,7 +86,7 @@ public class MagmaRing : MonoBehaviour
         {
             lastRing = true;
         }
-        Vector2 direction = GetComponent<AimCursor>().LastVector.normalized;
+        Vector2 direction = _aiming.AimDirection;
         _coolDownTracker = _coolDown;
         Vector2 newPos = Vector2.zero;
         newPos.y = newPos.y - 0.2f;

@@ -9,7 +9,6 @@ public class Hook : MonoBehaviour
     [SerializeField] private float _hookSpeed;
     [SerializeField] private float _damage;
     [SerializeField] private float _travelTime;
-    [SerializeField] private KeyCode _inputAttack;
     [SerializeField] private GameObject _linePrefab;
     private bool isShooting = false;
     private float _coolDownTracker;
@@ -30,15 +29,6 @@ public class Hook : MonoBehaviour
             _coolDownTracker -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-            shootHook();
-            GetComponent<Animator>().SetBool("isCasting", true);
-            GetComponent<PlayerMove>().enabled = false;
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;          
-            isShooting = true;
-        }
-
 
         /*
         if (_skillMaster.SkillTrigger.skill1.pressedDown && _coolDownTracker <= 0)
@@ -49,11 +39,23 @@ public class Hook : MonoBehaviour
         */
     }
 
+    public void pressKey()
+    {
+        if(_coolDownTracker <= 0)
+        {
+            shootHook();
+            GetComponentInChildren<Animator>().SetBool("isCasting", true);
+            GetComponent<PlayerMovement>().enabled = false;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            isShooting = true;
+        }
+    }
+
     public void setBackToNormal()
     {
-        GetComponent<PlayerMove>().enabled = true;
+        GetComponent<PlayerMovement>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        GetComponent<Animator>().SetBool("isCasting", false);
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
     }
     
     public void stopShooting()
@@ -71,12 +73,12 @@ public class Hook : MonoBehaviour
     {
         //if (_coolDownTracker <= 0)
         //{
-        Vector2 direction = GetComponent<AimCursor>().LastVector.normalized;
+        Vector2 direction = _aiming.AimDirection;
         _coolDownTracker = _coolDown;
         hookObject = Instantiate(_hookPrefab, gameObject.transform);
         GameObject line = Instantiate(_linePrefab, gameObject.transform);
         hookObject.GetComponent<HookControl>().setHook(_damage, _hookSpeed, direction, _travelTime, gameObject, line);     
-        float rot2 = Mathf.Atan2(GetComponent<AimCursor>().LastVector.normalized.y, GetComponent<AimCursor>().LastVector.normalized.x) * Mathf.Rad2Deg;
+        float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
         hookObject.transform.rotation = Quaternion.Euler(0, 0, rot2 - 90);
 
 

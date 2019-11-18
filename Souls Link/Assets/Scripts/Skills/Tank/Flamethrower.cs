@@ -10,7 +10,7 @@ public class Flamethrower : MonoBehaviour
     [SerializeField] private float flameDuration;
     [SerializeField] private float _damagePerTick;
     [SerializeField] private float _timeTicks;
-    [SerializeField] private KeyCode _inputAttack;
+
     private bool isShooting = false;
     private float _coolDownTracker;
     private GameObject flame;
@@ -28,9 +28,9 @@ public class Flamethrower : MonoBehaviour
 
         if (isShooting)
         {
-            float rot = Mathf.Atan2(GetComponent<AimCursor>().LastVector.normalized.x, GetComponent<AimCursor>().LastVector.normalized.y) * Mathf.Rad2Deg;
+            float rot = Mathf.Atan2(_aiming.AimDirection.x, _aiming.AimDirection.y) * Mathf.Rad2Deg;
             flame.transform.rotation = Quaternion.Euler(rot - 90, 90, 90);
-            float rot2 = Mathf.Atan2(GetComponent<AimCursor>().LastVector.normalized.y, GetComponent<AimCursor>().LastVector.normalized.x) * Mathf.Rad2Deg;
+            float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
             colliderFlame.transform.rotation = Quaternion.Euler(0, 0, rot2);
         }
 
@@ -39,12 +39,6 @@ public class Flamethrower : MonoBehaviour
             _coolDownTracker -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-            spawnFire();
-            isShooting = true;
-        }
-       
 
         /*
         if (_skillMaster.SkillTrigger.skill1.pressedDown && _coolDownTracker <= 0)
@@ -54,6 +48,16 @@ public class Flamethrower : MonoBehaviour
         }
         */
     }
+
+    public void pressKey()
+    {
+        if (_coolDownTracker <= 0)
+        {
+            spawnFire();
+            isShooting = true;
+        }
+    }
+
     public void stopShooting()
     {
         shooting = false;
@@ -69,7 +73,7 @@ public class Flamethrower : MonoBehaviour
     {
         //if (_coolDownTracker <= 0)
         //{
-        Vector2 direction = GetComponent<AimCursor>().LastVector.normalized;
+        Vector2 direction = _aiming.AimDirection;
         _coolDownTracker = _coolDown;
         flame = Instantiate(_flameThrowerParticles, gameObject.transform);
         colliderFlame = Instantiate(_colliderFire, gameObject.transform);
