@@ -1742,6 +1742,118 @@ MonoBehaviour:
   shapeType: 1
   extraOffset: 0.7
   invertPolygon: 0
+--- !u!1 &888866926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 888866927}
+  - component: {fileID: 888866930}
+  - component: {fileID: 888866929}
+  - component: {fileID: 888866928}
+  m_Layer: 0
+  m_Name: Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &888866927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888866926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.424, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8298825366843527812}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &888866928
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888866926}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!95 &888866929
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888866926}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!212 &888866930
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888866926}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 4872bd1108769a946a6acb68dc156fcf, type: 3}
+  m_Color: {r: 0, g: 0.4908738, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.32, y: 0.32}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &914158631
 GameObject:
   m_ObjectHideFlags: 0
@@ -52844,25 +52956,6 @@ MonoBehaviour:
   restrict: 0
   closerPointOnInvalid: 1
   debugPath: 1
---- !u!95 &8298825366843527809
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8298825366843527935}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!61 &8298825366843527810
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -52876,7 +52969,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.01634407, y: -0.042493343}
+  m_Offset: {x: 0.0065487623, y: -0.6834909}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -52887,57 +52980,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7450409, y: 0.9150133}
+  m_Size: {x: 0.53137517, y: 0.42663407}
   m_EdgeRadius: 0
---- !u!212 &8298825366843527811
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8298825366843527935}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 4872bd1108769a946a6acb68dc156fcf, type: 3}
-  m_Color: {r: 0, g: 0.4908738, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!4 &8298825366843527812
 Transform:
   m_ObjectHideFlags: 0
@@ -52946,9 +52990,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8298825366843527935}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.68, y: 0.14, z: 0}
+  m_LocalPosition: {x: -2.47, y: 2.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 888866927}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53022,8 +53067,8 @@ MonoBehaviour:
         byteData: 4265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d5461726765740100000000456e747279010066318c43e0f41d41000000000000000000000100000053656c6563746f720100d8d39fc071d0e54200000000000000000000020000000200000053657175656e6365010036cbe0c266ac054300000000000000000000020000000300000053656c6563746f7201009a4e97c39cbed54200000000000000000000020000000400000057697468696e2053696768740100000000000000dc4200000000000000000000000090400001000000020000506c617965724265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d54617267657401050000004d6f766520546f7761726473010086bd2ac3e372d44200000000000000000000000000404265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d54617267657401060000004d656c65652041747461636b010090de19c240a9de42000000000000000000004265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d5461726765740107000000576169740100e87ca3424c37e242000000000000000000004265686176696f7244657369676e65722e52756e74696d652e536861726564466c6f61740000803f4265686176696f7244657369676e65722e52756e74696d652e536861726564426f6f6c004265686176696f7244657369676e65722e52756e74696d652e536861726564466c6f61740000803f4265686176696f7244657369676e65722e52756e74696d652e536861726564466c6f61740000803f0800000052657374617274204265686176696f7220547265650100358a6743d3cee142000000000000000000004265686176696f7244657369676e65722e52756e74696d652e53686172656447616d654f626a656374000000004265686176696f7244657369676e65722e52756e74696d652e536861726564496e740000000009000000506174726f6c204d6f76656d656e7400000000af43087de942000000000000000000000a0000000ad75fc10000d040295c0f3e5c8f224014ae4741a470fd3fcdccccbe0ad763c0c3f540415c8f82c0713da2403d0ad7be52b8cec0b81e053fa47087c1cdcc8cbf33333bc152b8e6c09a9989416666a6bf00000000
         byteDataArray: 4265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d5461726765740100000000456e747279010066318c43e0f41d41000000000000000000000100000053656c6563746f720100d8d39fc071d0e54200000000000000000000020000000200000053657175656e6365010036cbe0c266ac054300000000000000000000020000000300000053656c6563746f7201009a4e97c39cbed54200000000000000000000020000000400000057697468696e2053696768740100000000000000dc4200000000000000000000000090400001000000020000506c617965724265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d54617267657401050000004d6f766520546f7761726473010086bd2ac3e372d44200000000000000000000000000404265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d54617267657401060000004d656c65652041747461636b010090de19c240a9de42000000000000000000004265686176696f7244657369676e65722e52756e74696d652e5368617265645472616e73666f726d5461726765740107000000576169740100e87ca3424c37e242000000000000000000004265686176696f7244657369676e65722e52756e74696d652e536861726564466c6f61740000803f4265686176696f7244657369676e65722e52756e74696d652e536861726564426f6f6c004265686176696f7244657369676e65722e52756e74696d652e536861726564466c6f61740000803f4265686176696f7244657369676e65722e52756e74696d652e536861726564466c6f61740000803f0800000052657374617274204265686176696f7220547265650100358a6743d3cee142000000000000000000004265686176696f7244657369676e65722e52756e74696d652e53686172656447616d654f626a656374000000004265686176696f7244657369676e65722e52756e74696d652e536861726564496e740000000009000000506174726f6c204d6f76656d656e7400000000af43087de942000000000000000000000a0000000ad75fc10000d040295c0f3e5c8f224014ae4741a470fd3fcdccccbe0ad763c0c3f540415c8f82c0713da2403d0ad7be52b8cec0b81e053fa47087c1cdcc8cbf33333bc152b8e6c09a9989416666a6bf00000000
       Version: 1.6.3
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
+  gizmoViewMode: 0
+  showBehaviorDesignerGizmo: 0
 --- !u!1 &8298825366843527935
 GameObject:
   m_ObjectHideFlags: 0
@@ -53033,9 +53078,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8298825366843527812}
-  - component: {fileID: 8298825366843527811}
   - component: {fileID: 8298825366843527810}
-  - component: {fileID: 8298825366843527809}
   - component: {fileID: 8298825366843527808}
   - component: {fileID: 8298825366843527814}
   - component: {fileID: 8298825366843527813}
