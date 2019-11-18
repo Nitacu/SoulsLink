@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using SWNetwork;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyKevin : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class LobbyKevin : MonoBehaviour
         NetworkClient.Lobby.OnNewPlayerJoinRoomEvent += Lobby_OnNewPlayerJoinRoomEvent;
         NetworkClient.Lobby.OnPlayerLeaveRoomEvent += Lobby_OnPlayerLeaveRoomEvent;
         NetworkClient.Lobby.OnNewRoomOwnerEvent += Lobby_OnNewRoomOwnerEvent;
+        NetworkClient.Lobby.OnRoomReadyEvent += Lobby_OnRoomReadyEvent;
     }
 
     private void OnDestroy()
@@ -25,6 +27,7 @@ public class LobbyKevin : MonoBehaviour
         NetworkClient.Lobby.OnLobbyConnectedEvent -= OnLobbyConnectedEvent;
         NetworkClient.Lobby.OnPlayerLeaveRoomEvent -= Lobby_OnPlayerLeaveRoomEvent;
         NetworkClient.Lobby.OnNewRoomOwnerEvent -= Lobby_OnNewRoomOwnerEvent;
+        NetworkClient.Lobby.OnRoomReadyEvent -= Lobby_OnRoomReadyEvent;
     }
 
     public void checkIn()
@@ -251,6 +254,46 @@ public class LobbyKevin : MonoBehaviour
         if (NetworkClient.Lobby.IsOwner)
         {
             _lobbyUI._buttonStarGame.SetActive(true);
+        }
+    }
+
+    public void StartGame()
+    {
+        if (NetworkClient.Lobby.IsOwner)
+        {
+            NetworkClient.Lobby.StartRoom((okay, error) =>
+            {
+                if (okay)
+                {
+                    // Lobby server has sent request to SocketWeaver. The request is being processed.
+                    // If socketweaver finds suitable server, Lobby server will invoke the OnRoomReadyEvent.
+                    // If socketweaver cannot find suitable server, Lobby server will invoke the OnFailedToStartRoomEvent.
+                    Debug.Log("Started room");                   
+                }
+                else
+                {
+                    Debug.Log("Failed to start room " + error);
+                }
+            });
+        }       
+    }
+
+    void Lobby_OnRoomReadyEvent(SWRoomReadyEventData eventData)
+    {
+        Debug.Log("Room is ready: roomId= " + eventData.roomId);
+        NetworkClient.Instance.ConnectToRoom(ConnectedToRoom);
+    }
+
+    void ConnectedToRoom(bool connected)
+    {
+        if (connected)
+        {
+            Debug.Log("Connected to room");
+            SceneManager.LoadScene("Arena");
+        }
+        else
+        {
+            Debug.Log("Failed to connect to room");
         }
     }
 }
