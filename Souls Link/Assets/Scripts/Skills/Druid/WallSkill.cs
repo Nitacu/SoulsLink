@@ -7,7 +7,6 @@ public class WallSkill : MonoBehaviour
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private float _coolDown;
     [SerializeField] private float wallDuration;
-    [SerializeField] private KeyCode _inputAttack;
 
     private float _coolDownTracker;
 
@@ -26,22 +25,20 @@ public class WallSkill : MonoBehaviour
             _coolDownTracker -= Time.deltaTime;
         }
 
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-            spawnWall();
-        }
 
-        /*
-        if (_skillMaster.SkillTrigger.skill1.pressedDown && _coolDownTracker <= 0)
-        {
-            shotStake(_aiming.AimVector.normalized);
-            _coolDownTracker = _coolDown;
-        }
-        */
     }
     public void stopShooting()
     {
         shooting = false;
+    }
+
+    public void pressKey()
+    {
+        if (_coolDownTracker <= 0)
+        {
+            _coolDownTracker = _coolDown;
+            spawnWall();
+        }
     }
 
     private bool shooting = false;
@@ -54,8 +51,7 @@ public class WallSkill : MonoBehaviour
     {
         //if (_coolDownTracker <= 0)
         //{
-            Vector2 direction = GetComponent<AimCursor>().LastVector.normalized;
-            _coolDownTracker = _coolDown;
+            Vector2 direction = GetComponent<PlayerAiming>().AimDirection;           
             GameObject wall = Instantiate(_wallPrefab, gameObject.transform.position, Quaternion.identity);
             StartCoroutine(destroyWall(wall, wallDuration));
             wall.transform.position = gameObject.transform.position;

@@ -10,16 +10,15 @@ public class VineWhip : MonoBehaviour
     [SerializeField] private float _rootDuration;
     private float _coolDownTracker;
     private Vector2 direction;
-    [SerializeField] private KeyCode _inputAttack;
 
-    private AimCursor _aiming;
+    private PlayerAiming _aiming;
 
     private float xOffset = 0;
     private float yOffset = -0.3f;
 
     private void Start()
     {
-        _aiming = GetComponent<AimCursor>();
+        _aiming = GetComponent<PlayerAiming>();
     }
 
     private void Update()
@@ -29,12 +28,14 @@ public class VineWhip : MonoBehaviour
             _coolDownTracker -= Time.deltaTime;
         }
 
+    }
 
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
+    public void pressKey()
+    {
+        if(_coolDownTracker <= 0)
         {
-            useRoot(_aiming.LastVector.normalized);
-
             _coolDownTracker = _coolDown;
+            useRoot(_aiming.AimDirection);
         }
     }
 
@@ -56,7 +57,8 @@ public class VineWhip : MonoBehaviour
 
         determineOffset(direction);
 
-        root.transform.localPosition = new Vector2(0 + xOffset, 0 + yOffset);
+        //root.transform.localPosition = new Vector2(0 + xOffset, 0 + yOffset);
+        root.transform.localPosition = Vector2.zero;
 
     }
 

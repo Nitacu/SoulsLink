@@ -114,13 +114,15 @@ GameObject:
   - component: {fileID: 5629918484414440053}
   - component: {fileID: 5153145828023280092}
   - component: {fileID: 7985533438736044668}
-  - component: {fileID: 7147638319136573740}
   - component: {fileID: 305826300416606276}
   - component: {fileID: 1914276296870830931}
   - component: {fileID: 8945999466565772996}
   - component: {fileID: 4550071630333260700}
   - component: {fileID: 2084733530544857130}
   - component: {fileID: 7239430704798170887}
+  - component: {fileID: 543879862}
+  - component: {fileID: 543879863}
+  - component: {fileID: 543879864}
   m_Layer: 8
   m_Name: DruidFinal
   m_TagString: Player
@@ -135,7 +137,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4705385350353087113}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.241, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -180,6 +182,7 @@ MonoBehaviour:
   _speed: 200
   _anim: {fileID: 3521739264431764226}
   _renderer: {fileID: 1373154316664478516}
+  isDashing: 0
 --- !u!114 &5153145828023280092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crossHair: {fileID: 9008634845870170328}
   _distance: 2
+  _offsetY: 0.358
+  playerPosition: {x: 0, y: 0}
 --- !u!114 &7985533438736044668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +257,8 @@ MonoBehaviour:
       Inc.   Generic   USB  Joystick  /stick]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7147638319136573740}
+      - m_Target: {fileID: 7147638319136573740, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+          type: 3}
         m_MethodName: OnSkill1
         m_Mode: 0
         m_Arguments:
@@ -300,21 +306,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7147638319136573740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4705385350353087113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626d7c45bbbb03342b90563261972782, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
-    type: 3}
-  _coolDown: 0
 --- !u!114 &305826300416606276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _checkingFusion: 0
+  _hostPrefab: {fileID: 0}
   _radiusFusionCheck: 2
   _playersFusionMask:
     serializedVersion: 2
@@ -347,8 +338,8 @@ MonoBehaviour:
   Skill1PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7147638319136573740}
-        m_MethodName: startShoot
+      - m_Target: {fileID: 543879862}
+        m_MethodName: pressKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -363,8 +354,8 @@ MonoBehaviour:
   Skill1PressUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7147638319136573740}
-        m_MethodName: stopShooting
+      - m_Target: {fileID: 543879862}
+        m_MethodName: unPressKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -378,7 +369,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill2PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 543879863}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill2PressUp:
@@ -388,7 +390,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill3PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 543879864}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill3PressUp:
@@ -532,6 +545,60 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.09}
   serializedVersion: 2
   m_Radius: 0.27992275
+--- !u!114 &543879862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705385350353087113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dea4db1a2adff647afbc28b5b62f152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rootPrefab: {fileID: 7905251995183566779, guid: e6a213a9cc313f84ba3810043a186512,
+    type: 3}
+  _rootEffectPrefab: {fileID: 7531255531702625296, guid: 66ce5878bd6a9084285bb74cb913cdfd,
+    type: 3}
+  _coolDown: 2
+  _damage: 20
+  _rootEffectDuration: 3
+  _rootDuration: 1.5
+  _rootSpawnRate: 0.3
+--- !u!114 &543879863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705385350353087113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57c617c3639e0224a8db548c5663ae91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _vineWhip: {fileID: 7081138357069249965, guid: aa5533f000850c947bc78f94cacd6fbc,
+    type: 3}
+  _coolDown: 0
+  _damage: 20
+  _rootDuration: 0.35
+--- !u!114 &543879864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705385350353087113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2442adac6e29f0444b23bd3d6611e959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wallPrefab: {fileID: 7882638779556085853, guid: ebb6cb9e0e337f646bbc10eea366e340,
+    type: 3}
+  _coolDown: 5
+  wallDuration: 5
 --- !u!1 &9008634845870170328
 GameObject:
   m_ObjectHideFlags: 0

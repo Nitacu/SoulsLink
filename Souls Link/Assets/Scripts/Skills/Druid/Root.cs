@@ -15,9 +15,8 @@ public class Root : MonoBehaviour
     private bool keepSpawning = false;
     private float cont = 0;
     private float offsetRoots = 1.08f;
-    [SerializeField] private KeyCode _inputAttack;
 
-    private AimCursor _aiming;
+    private PlayerAiming _aiming;
 
     private float xOffset = 0;
     private float yOffset = -0.3f;
@@ -27,7 +26,7 @@ public class Root : MonoBehaviour
 
     private void Start()
     {
-        _aiming = GetComponent<AimCursor>();
+        _aiming = GetComponent<PlayerAiming>();
     }
 
     private void Update()
@@ -38,23 +37,27 @@ public class Root : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
+    }
+
+    public void pressKey()
+    {
+        if(_coolDownTracker <= 0)
         {
+            _coolDownTracker = _coolDown;
             KeepSpawning = true;
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            useRoot(_aiming.LastVector.normalized);
-            GetComponent<Animator>().SetBool("isCasting", true);
-            GetComponent<PlayerMove>().enabled = false;
-            _coolDownTracker = _coolDown;
+            useRoot(_aiming.AimDirection);
+            GetComponentInChildren<Animator>().SetBool("isCasting", true);
+            GetComponent<PlayerMovement>().enabled = false;
         }
+    }
 
-        if (Input.GetKeyUp(_inputAttack))
-        {
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-            GetComponent<PlayerMove>().enabled = true;
-            GetComponent<Animator>().SetBool("isCasting", false);
-            KeepSpawning = false;
-        }
+    public void unPressKey()
+    {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
+        KeepSpawning = false;
     }
 
     IEnumerator destroyRoot(GameObject root, float time)
