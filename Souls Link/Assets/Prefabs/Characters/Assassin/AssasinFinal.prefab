@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crossHair: {fileID: 7651098687956668841}
   _distance: 2
-  _offsetY: 0.358
+  _offsetY: 0
   playerPosition: {x: 0, y: 0}
 --- !u!114 &8789162026309837581
 MonoBehaviour:
