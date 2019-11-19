@@ -6,7 +6,6 @@ using SWNetwork;
 public class ControlSpawnEnemys : MonoBehaviour
 {
     [SerializeField] List<Transform> _spawnPoints = new List<Transform>();
-    [SerializeField] private GameObject _enemy;
     private float _lifeEnemys = 50;
 
     public void spawnRandomEnemy()
@@ -15,22 +14,22 @@ public class ControlSpawnEnemys : MonoBehaviour
         {
             int random = Random.Range(0, _spawnPoints.Count);
 
-            NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, _spawnPoints[random].position, Quaternion.identity).GetComponent<SimpleEnemyController>().health = _lifeEnemys;
-            _lifeEnemys += 20;
+            NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, random);//.GetComponent<SimpleEnemyController>().health = _lifeEnemys;
+            //_lifeEnemys += 20;
 
         }
     }
 
-
     public void spawnNewEnemy()
     {
-        if (GetComponent<NetworkID>().OwnerCustomPlayerId == GetComponent<NetworkID>().OwnerRemotePlayerId)
-        {
-            foreach (Transform spawn in _spawnPoints)
+        //if (GetComponent<NetworkID>().OwnerCustomPlayerId == GetComponent<NetworkID>().OwnerRemotePlayerId)
+        //{
+            for(int i = 0;i<_spawnPoints.Count ;i++)
             {
-                NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, spawn.position, Quaternion.identity);
+                NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0,i);
                 _lifeEnemys += 20;
             }
-        }
+        //}
+        
     }
 }

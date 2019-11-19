@@ -81,7 +81,8 @@ public class SimpleEnemyController : MonoBehaviour
     private void OnDestroy()
     {
         StopAllCoroutines();
-        _controlSpawnEnemys.spawnNewEnemy();      
+        if (GetComponent<EnemyMeleeMultiplayerController>().isMine())
+            _controlSpawnEnemys.spawnRandomEnemy();
     }
 
     public void recieveTickDamage(float damage, float tickTime)
