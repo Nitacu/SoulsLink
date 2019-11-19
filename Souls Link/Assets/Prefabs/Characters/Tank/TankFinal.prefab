@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2018034427}
   - component: {fileID: 2018034426}
-  - component: {fileID: 2018034425}
+  - component: {fileID: 335667339460857283}
   m_Layer: 0
   m_Name: DashCollider
   m_TagString: Untagged
@@ -125,7 +125,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.011645824, y: -0.1410284}
@@ -141,7 +141,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.55744964, y: 0.6403284}
   m_EdgeRadius: 0
---- !u!114 &2018034425
+--- !u!114 &335667339460857283
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,10 +150,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2018034424}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c04d1f2c67d6b74b8d5fec180ffc6d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 291afa7e1bd49b948be0e268ef838281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  _playerReference: {fileID: 3730457550004149255}
   stunDuration: 2
 --- !u!1 &1120487844959786582
 GameObject:
@@ -749,7 +749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _coolDown: 2
   dashDuration: 0.2
-  _damage: 15
+  _stunDuration: 2
   _dashCollider: {fileID: 2018034424}
   dashSpeed: 25
   isDashing: 0

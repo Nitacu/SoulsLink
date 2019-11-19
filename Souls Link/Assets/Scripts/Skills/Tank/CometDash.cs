@@ -11,7 +11,7 @@ public class CometDash : MonoBehaviour
     public float _coolDown = 0;
     public float dashDuration = 0;
     private float durationTracker = 0;
-    public float _damage = 0;
+    public float _stunDuration = 0;
     private CircleCollider2D _collider;
     public GameObject _dashCollider;
     [Header("Simple Dash Settings")]
@@ -29,6 +29,7 @@ public class CometDash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _dashCollider.GetComponent<CometDashControl>().setStun(_stunDuration, gameObject);
         _dashCollider.SetActive(false);
         _collider = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
@@ -142,5 +143,15 @@ public class CometDash : MonoBehaviour
 
             }
         }
+    }
+
+    public void resetDash()
+    {
+        isDashing = false;
+
+        durationTracker = dashDuration;
+
+        _coolDownTracker = _coolDown;
+        GetComponent<PlayerMovement>().isDashing = false;
     }
 }

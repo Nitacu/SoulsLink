@@ -160,9 +160,9 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void noMoreHypnotized()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        canWalk = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        canWalk = true;       
     }
 
 }
