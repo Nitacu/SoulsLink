@@ -51,6 +51,10 @@ public class PatrolMovement : Action
         Vector2 endPosition = WPoints[index];
         agent.SetDestination(endPosition);
         index++;
+        if (WPoints.Count == index)
+        {
+            index = 0;
+        }
     }
 
     void OnDrawGizmosSelected()
