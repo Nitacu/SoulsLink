@@ -11,13 +11,13 @@ public class ControlSpawnEnemys : MonoBehaviour
 
     private void Start()
     {
-        spawnNewEnemy();
+        
     }
 
     public void spawnNewEnemy()
     {
         int random = Random.Range(0, _spawnPoints.Count);
-        //NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, _spawnPoints[random].position, Quaternion.identity).GetComponent<SimpleEnemyController>().health = _lifeEnemys;
+        NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, _spawnPoints[random].position, Quaternion.identity).GetComponent<SimpleEnemyController>().health = _lifeEnemys;
         _lifeEnemys += 20;
     }
 }
