@@ -13,7 +13,7 @@ public class SimpleEnemyController : MonoBehaviour
     private bool firstTimePressing = true;
     private bool isGettingDamaged = false;
     private Animator _anim;
-
+    public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
 
     // Start is called before the first frame update
@@ -21,6 +21,7 @@ public class SimpleEnemyController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         Anim = GetComponentInChildren<Animator>();
+        _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
     }
 
     // Update is called once per frame
@@ -79,7 +80,8 @@ public class SimpleEnemyController : MonoBehaviour
 
     private void OnDestroy()
     {
-        FindObjectOfType<ControlSpawnEnemys>().spawnNewEnemy();
+        StopAllCoroutines();
+        _controlSpawnEnemys.spawnNewEnemy();      
     }
 
     public void recieveTickDamage(float damage, float tickTime)
