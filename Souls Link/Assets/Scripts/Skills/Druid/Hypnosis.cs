@@ -64,9 +64,10 @@ public class Hypnosis : MonoBehaviour
                 _hypnosisReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
 
             }
-            _hypnosisReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
+            
             getDirection();
-            _hypnosisReference.GetComponentInChildren<StrongAttackController>().setDirection(direction);
+            _hypnosisReference.GetComponentInChildren<HypnosisSkillControl>().setHypnosis(direction, _attackDamage);
+            //hypnosisReference.GetComponentInChildren<StrongAttackController>().setDirection(direction);
             StartCoroutine(destroyHypnoFlash(_hypnosisReference, _hypnosisFlashTime));
         }
     }
