@@ -22,7 +22,7 @@ public class HookControl : MonoBehaviour
             _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             collidedWithEnemy = true;
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damage);
-            collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking();
+            collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(true);
             collision.gameObject.transform.parent = gameObject.transform;
             isTraveling = false;
             GetComponent<Rigidbody2D>().velocity = Vector2.zero;
@@ -36,6 +36,7 @@ public class HookControl : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 if (_enemyReference != null)
                 {
+                    _enemyReference.GetComponent<SimpleEnemyController>().keepWalking();
                     _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     _enemyReference.gameObject.transform.parent = null;
                 }

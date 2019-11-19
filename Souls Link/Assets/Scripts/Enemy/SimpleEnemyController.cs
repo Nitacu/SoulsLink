@@ -118,9 +118,20 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
-    public void stopWalking()
+
+    public void stopWalking(bool isHook)
     {
         canWalk = false;
+        if (!isHook)
+        {
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        }
+    }
+
+    public void keepWalking()
+    {
+        canWalk = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
 }

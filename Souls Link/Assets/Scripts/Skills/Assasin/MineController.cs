@@ -27,7 +27,7 @@ public class MineController : MonoBehaviour
         {
             Vector3 newTornadoPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
-            collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking();
+            collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(false);
             GameObject temp = Instantiate(_tornado, newTornadoPosition, Quaternion.identity);
             temp.GetComponent<TornadoController>().destroyTornado(_tornadoLifeTime);
             Destroy(gameObject);

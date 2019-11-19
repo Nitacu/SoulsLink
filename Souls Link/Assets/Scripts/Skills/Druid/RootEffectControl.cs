@@ -23,6 +23,8 @@ public class RootEffectControl : MonoBehaviour
         {
             enemy.GetComponent<SimpleEnemyController>().canWalk = true;
         }
+
+        enemy.GetComponent<SimpleEnemyController>().keepWalking();
         
         Destroy(gameObject);
     }

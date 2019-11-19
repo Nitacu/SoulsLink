@@ -23,7 +23,7 @@ public class RootSkillController : MonoBehaviour
         {                       
             if (collision.gameObject.GetComponent<SimpleEnemyController>().canWalk)
             {
-                collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking();
+                collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(false);
                 _enemyWasWalking = true;
             }
             else

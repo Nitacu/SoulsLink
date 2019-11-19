@@ -18,7 +18,7 @@ public class TornadoController : MonoBehaviour
             Vector3 temp = enemyReference.gameObject.transform.rotation.eulerAngles;
             temp.z = 0;
             enemyReference.gameObject.transform.rotation = Quaternion.Euler(temp);
-            enemyReference.GetComponent<SimpleEnemyController>().canWalk = true;
+            enemyReference.GetComponent<SimpleEnemyController>().keepWalking();
         }
        
         Destroy(gameObject);
