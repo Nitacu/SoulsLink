@@ -26,7 +26,7 @@ public class PatrolMovement : Action
 
         GetComponent<PolyNavAgent>().enabled = true;
 
-        StopCoroutine(WaitAndMove());
+        Debug.Log("Enemigo");
 
         if (WPoints.Count > 0)
         {

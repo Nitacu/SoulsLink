@@ -22,14 +22,14 @@ public class ControlSpawnEnemys : MonoBehaviour
 
     public void spawnNewEnemy()
     {
-        //if (GetComponent<NetworkID>().OwnerCustomPlayerId == GetComponent<NetworkID>().OwnerRemotePlayerId)
-        //{
+        if (GetComponent<NetworkID>().OwnerCustomPlayerId == GetComponent<NetworkID>().OwnerRemotePlayerId)
+        {
             for(int i = 0;i<_spawnPoints.Count ;i++)
             {
                 NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0,i);
                 _lifeEnemys += 20;
             }
-        //}
+        }
         
     }
 }

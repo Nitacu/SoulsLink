@@ -11,8 +11,13 @@ public class ClonedEnemy : Action
     {
 
         if (GetComponent<EnemyMeleeMultiplayerController>().isMine())
-        {
+        {   
             return TaskStatus.Success;
+        }
+        else
+        {
+            GetComponent<BehaviorTree>().enabled = false;
+            GetComponent<PolyNavAgent>().enabled = false;
         }
 
         return TaskStatus.Running;
