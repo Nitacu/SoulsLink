@@ -826,6 +826,7 @@ MonoBehaviour:
   - {fileID: 2023616563}
   - {fileID: 214667757}
   _offsetX: 86
+  _characterIndexSelected: 0
 --- !u!114 &237127875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,8 +2632,8 @@ RectTransform:
   m_Father: {fileID: 237127871}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.34754154, y: 0.031370375}
-  m_AnchorMax: {x: 0.7910779, y: 0.12418518}
+  m_AnchorMin: {x: 0.278125, y: 0.03435642}
+  m_AnchorMax: {x: 0.721875, y: 0.12768976}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

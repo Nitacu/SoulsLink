@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 290672798}
   - component: {fileID: 6483173280497757933}
   - component: {fileID: 7622960227306823921}
+  - component: {fileID: 5865272979500603272}
   m_Layer: 0
   m_Name: Hook
   m_TagString: Untagged
@@ -150,3 +151,14 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!210 &5865272979500603272
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808635983260031494}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
