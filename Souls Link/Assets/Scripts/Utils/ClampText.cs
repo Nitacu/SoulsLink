@@ -15,6 +15,8 @@ public class ClampText : MonoBehaviour
     public GameObject chargeBar;
     public float offsetY = 0;
 
+    Vector2 posItem = Vector2.zero;
+
     private void Start()
     {
         chargeBar = Instantiate(_UIGameObject, Canvas.transform);
@@ -23,8 +25,15 @@ public class ClampText : MonoBehaviour
 
     void Update()
     {
-        Vector3 namePos = Camera.main.WorldToScreenPoint(transform.position);
-        chargeBar.transform.position = namePos;
+        if (_camera == null)
+        {
+            posItem = Camera.main.WorldToScreenPoint(transform.position);
+        }
+        else
+        {
+            posItem = _camera.WorldToScreenPoint(transform.position);
+        }
+        chargeBar.transform.position = posItem;
     }
 }
 

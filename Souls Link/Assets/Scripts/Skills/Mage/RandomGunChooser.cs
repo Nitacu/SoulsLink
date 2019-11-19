@@ -12,6 +12,7 @@ public class RandomGunChooser : MonoBehaviour
     [HideInInspector]
     public GameObject randomPicker;
     public float offsetY = 0;
+    private Vector2 posItem = Vector2.zero;
 
     private void Start()
     {
@@ -35,8 +36,15 @@ public class RandomGunChooser : MonoBehaviour
     {
         if (randomPicker != null)
         {
-            Vector3 namePos = Camera.main.WorldToScreenPoint(transform.position);
-            randomPicker.transform.position = namePos;
+            if (_camera == null)
+            {
+                posItem = Camera.main.WorldToScreenPoint(transform.position);
+            }
+            else
+            {
+                posItem = _camera.WorldToScreenPoint(transform.position);
+            }
+            randomPicker.transform.position = posItem;
         }
     }
 }

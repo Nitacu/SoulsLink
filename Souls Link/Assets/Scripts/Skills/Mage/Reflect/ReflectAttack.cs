@@ -43,6 +43,7 @@ public class ReflectAttack : MonoBehaviour
 
     private void stopMoving()
     {
+        GetComponent<PlayerHPControl>().setReflectiveMode();
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponentInChildren<Animator>().SetBool("isCasting", true);
@@ -51,6 +52,7 @@ public class ReflectAttack : MonoBehaviour
 
     private void backToNormal()
     {
+        GetComponent<PlayerHPControl>().setNormalMode();
         GetComponent<PlayerMovement>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponentInChildren<Animator>().SetBool("isCasting", false);
