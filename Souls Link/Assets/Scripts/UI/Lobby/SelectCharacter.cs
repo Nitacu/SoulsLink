@@ -45,6 +45,7 @@ public class SelectCharacter : MonoBehaviour
             }
         }
 
+        resetCharacterPanelPosition();
         selectCharacter(_characterIndexSelected);
         setArrows();
     }
@@ -120,6 +121,12 @@ public class SelectCharacter : MonoBehaviour
         }
 
         GameManager.GetInstace()._myCharacter = _characterEnum;
+    }
+
+    public void resetCharacterPanelPosition()
+    {
+        _characterIndexSelected = 0;
+        _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
     }
 
     public void OnStartGame()

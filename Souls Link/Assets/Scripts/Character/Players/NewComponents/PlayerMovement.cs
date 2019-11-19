@@ -59,7 +59,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection);
+            if (GetComponent<Dash>() != null)
+            {
+                GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection);
+            }
+            else
+            {
+                GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection);
+            }
         }
     }
 

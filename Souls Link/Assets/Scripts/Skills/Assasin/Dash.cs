@@ -15,6 +15,7 @@ public class Dash : MonoBehaviour
     private float durationTracker = 0;
     public float _damage = 0;
     private CircleCollider2D _collider;
+    public GameObject _dashCollider;
     [Header("Simple Dash Settings")]
     public float dashSpeed = 0;
 
@@ -43,12 +44,18 @@ public class Dash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _dashCollider.SetActive(false);
         _collider = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
         _coolDownTracker = _coolDown;
         durationTracker = dashDuration;
         _aiming = GetComponent<PlayerAiming>();
-        chargeBar = GetComponentInChildren<ClampText>().chargeBar;
+        
+    }
+
+    public void setChargeBar(GameObject _chargeBar)
+    {
+        chargeBar = _chargeBar;
         chargeBar.GetComponent<Image>().fillAmount = 0;
     }
 
@@ -121,23 +128,12 @@ public class Dash : MonoBehaviour
     private void chargedDashCheck()
     {
         if (!isDashing)
-        {            
-            /*if (Input.GetKey(_inputAttack))
-            {
-                chargedTime += Time.deltaTime;
-            }
-
-            if (Input.GetKeyUp(_inputAttack))
-            {
-                _collider.isTrigger = true;
-                captureDirection();
-                findDashSpeed(chargedTime, dashDuration);
-                isDashing = true;
-
-            }*/
+        {
+            _dashCollider.SetActive(false);
         }
         else
         {
+            _dashCollider.SetActive(true);
             if (durationTracker <= 0)
             {
                 isDashing = false;
@@ -167,16 +163,11 @@ public class Dash : MonoBehaviour
     {
         if (!isDashing)
         {
-           /* if (Input.GetKeyDown(_inputAttack))
-            {
-                captureDirection();
-                currentDashes = 0;
-                isDashing = true;
-                _collider.isTrigger = true;
-            }*/
+            _dashCollider.SetActive(false);
         }
         else
         {
+            _dashCollider.SetActive(true);
             if (durationTracker <= 0)
             {
                 isDashing = false;
@@ -219,22 +210,7 @@ public class Dash : MonoBehaviour
         dashSpeed = ((pressedTimePercent * distanceDifference) / 100) + minDashSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Enemy")
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<BoxCollider2D>(), _collider);
-            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
-        }
-    }
+   
 
     public void pressKey()
     {
@@ -270,7 +246,7 @@ public class Dash : MonoBehaviour
                     isCharging = true;
                 }
                 else
-                {
+                {                   
                     if (durationTracker > 0 && currentDashes < maxDashes && canMultiDash)
                     {
                         captureDirection();

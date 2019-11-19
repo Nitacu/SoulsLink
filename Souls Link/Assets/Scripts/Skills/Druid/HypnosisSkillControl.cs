@@ -6,11 +6,13 @@ public class HypnosisSkillControl : MonoBehaviour
 {
     private float _damage;
     private Vector2 _direction;
+    private float _duration;
 
-    public void setHypnosis(Vector2 direction, float damage)
+    public void setHypnosis(Vector2 direction, float damage, float duration)
     {
         _damage = damage;
         _direction = direction;
+        _duration = duration;
 
         float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         gameObject.transform.parent.rotation = Quaternion.Euler(0, 0, rot);
@@ -20,7 +22,7 @@ public class HypnosisSkillControl : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            //HipnotizeEnemy;
+            collision.GetComponent<SimpleEnemyController>().Hypnotize(_duration);
         }
     }
 }
