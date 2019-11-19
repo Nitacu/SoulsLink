@@ -172,7 +172,7 @@ public class PolyNavAgent : MonoBehaviour{
 
 		//goal is almost the same as agent position. We consider arrived immediately
 		if ((goal - position).sqrMagnitude < stoppingDistance){
-			OnArrived();
+            OnArrived();
 			return true;
 		}
 

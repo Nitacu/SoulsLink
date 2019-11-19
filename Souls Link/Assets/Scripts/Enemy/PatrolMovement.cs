@@ -6,7 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class PatrolMovement : Action
 {
-    
+
     public List<Vector2> WPoints = new List<Vector2>();
     public float delayBetweenPoints = 0;
     int index = 0;
@@ -26,7 +26,7 @@ public class PatrolMovement : Action
 
         GetComponent<PolyNavAgent>().enabled = true;
 
-        Debug.Log("Enemigo");
+        Debug.Log("Enemigo On Start");
 
         if (WPoints.Count > 0)
         {
@@ -34,27 +34,50 @@ public class PatrolMovement : Action
         }
     }
 
+    bool canWaitAndMove = true;
+
     void MoveRandom()
-    {       
-        StartCoroutine(WaitAndMove());
+    {
+        if (canWaitAndMove)
+        {
+            StartCoroutine(WaitAndMove());
+        }
     }
-    
+
     public override TaskStatus OnUpdate()
     {
         return TaskStatus.Running;
     }
-    
+
+    Vector2 lasPositionDestination = new Vector2();
+    Vector2 newPositionDestination = new Vector2();
+
     IEnumerator WaitAndMove()
     {
-        GetComponent<SimpleEnemyController>().Anim.SetFloat("Velocity",0);
-        yield return new WaitForSeconds(0);        
-        Vector2 endPosition = WPoints[index];
-        agent.SetDestination(endPosition);
-        index++;
-        if (WPoints.Count == index)
+        canWaitAndMove = false;
+
+        GetComponent<SimpleEnemyController>().Anim.SetFloat("Velocity", 0);
+        yield return new WaitForSeconds(0);
+        newPositionDestination = WPoints[index];
+
+        if (newPositionDestination != lasPositionDestination)
         {
-            index = 0;
+            lasPositionDestination = newPositionDestination;
+            agent.SetDestination(newPositionDestination);
+            index++;
+            if (WPoints.Count == index)
+            {
+                index = 0;
+            }
         }
+
+        StartCoroutine(allowStartWaitAndMove());
+    }
+
+    IEnumerator allowStartWaitAndMove()
+    {
+        yield return new WaitForEndOfFrame();
+        canWaitAndMove = true;
     }
 
     void OnDrawGizmosSelected()
@@ -64,6 +87,6 @@ public class PatrolMovement : Action
             Gizmos.DrawSphere(WPoints[i], 0.05f);
         }
     }
-    
-    
+
+
 }
