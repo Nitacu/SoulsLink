@@ -93,7 +93,7 @@ public class SimpleEnemyController : MonoBehaviour
             else
             {
                 StartCoroutine(recieveTick(damage, tickTime));
-                GetComponent<SpriteRenderer>().color = Color.red;
+                GetComponentInChildren<SpriteRenderer>().color = Color.red;
                 Invoke("backToNormal", tickTime / 2);
             }
         }
