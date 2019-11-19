@@ -17,6 +17,7 @@ public class StakeControl : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+            Destroy(gameObject);
         }
     }
 }
