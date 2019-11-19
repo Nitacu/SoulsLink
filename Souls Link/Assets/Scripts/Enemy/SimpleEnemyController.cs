@@ -141,4 +141,19 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
+    public void Hypnotize(float duration)
+    {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        canWalk = false;
+        GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
+        Invoke("noMoreHypnotized", duration);
+    }
+
+    public void noMoreHypnotized()
+    {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        canWalk = true;
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+    }
+
 }

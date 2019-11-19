@@ -1660,6 +1660,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 3730457550004149255, guid: 01420e03f911cf9419c5349355aac304,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3730457550004149250, guid: 01420e03f911cf9419c5349355aac304,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1856,6 +1861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 300
   canWalk: 0
+  _controlSpawnEnemys: {fileID: 0}
 --- !u!61 &823093209
 BoxCollider2D:
   m_ObjectHideFlags: 0

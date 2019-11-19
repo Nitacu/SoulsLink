@@ -66,7 +66,7 @@ public class Hypnosis : MonoBehaviour
             }
             
             getDirection();
-            _hypnosisReference.GetComponentInChildren<HypnosisSkillControl>().setHypnosis(direction, _attackDamage);
+            _hypnosisReference.GetComponentInChildren<HypnosisSkillControl>().setHypnosis(direction, _attackDamage, _hypnosisDuration);
             //hypnosisReference.GetComponentInChildren<StrongAttackController>().setDirection(direction);
             StartCoroutine(destroyHypnoFlash(_hypnosisReference, _hypnosisFlashTime));
         }

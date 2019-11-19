@@ -14,12 +14,14 @@ public class ClampText : MonoBehaviour
     [HideInInspector]
     public GameObject chargeBar;
     public float offsetY = 0;
+    public Dash _dashScript;
 
     Vector2 posItem = Vector2.zero;
 
     private void Start()
     {
         chargeBar = Instantiate(_UIGameObject, Canvas.transform);
+        _dashScript.setChargeBar(chargeBar);
         chargeBar.GetComponent<Image>().fillAmount = 0;
     }
 

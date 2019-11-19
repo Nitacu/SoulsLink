@@ -24,6 +24,19 @@ public class TornadoController : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            enemyReference = collision.gameObject;
+            enemyReference.GetComponent<SimpleEnemyController>().stopWalking(false);
+            Vector3 temp = collision.gameObject.transform.rotation.eulerAngles;
+            temp.z = temp.z + 4;
+            collision.gameObject.transform.rotation = Quaternion.Euler(temp);
+        }
+    }
+
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy")){
@@ -34,6 +47,8 @@ public class TornadoController : MonoBehaviour
         }
     }
 
+
+    
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))

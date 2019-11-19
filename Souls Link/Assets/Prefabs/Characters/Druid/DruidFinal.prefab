@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550179237}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4705385350353087116}
@@ -691,10 +691,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hypnosisPrefab: {fileID: 4650659342928750992, guid: 34fa0851d96537f4eafa08ec1dd36160,
     type: 3}
-  _hypnosisFlashTime: 0.5
+  _hypnosisFlashTime: 0.2
   _coolDown: 5
   _attackDamage: 0
-  _hypnosisDuration: 5
+  _hypnosisDuration: 2.5
   stillAttackOption: 1
 --- !u!114 &638625345572385673
 MonoBehaviour:
