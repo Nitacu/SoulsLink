@@ -19,13 +19,24 @@ public class HookControl : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             _enemyReference = collision.gameObject;
-            _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-            collidedWithEnemy = true;
-            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damage);
-            collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(true);
-            collision.gameObject.transform.parent = gameObject.transform;
-            isTraveling = false;
-            GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if(Vector2.Distance(_playerReference.transform.position,_enemyReference.transform.position) < 1)
+            {
+                collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damage);
+                GetComponentInParent<Hook>().setBackToNormal();
+                Destroy(_lineReference);
+                Destroy(gameObject);
+            }
+            else
+            {
+                _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                collidedWithEnemy = true;
+                collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damage);
+                collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(true);
+                collision.gameObject.transform.parent = gameObject.transform;
+                isTraveling = false;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+           
         }
 
         if (collision.CompareTag("Player"))
