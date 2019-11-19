@@ -74,8 +74,12 @@ public class SimpleEnemyController : MonoBehaviour
     {
         GetComponent<CircleCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        FindObjectOfType<ControlSpawnEnemys>().spawnNewEnemy();
         Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        FindObjectOfType<ControlSpawnEnemys>().spawnNewEnemy();
     }
 
     public void recieveTickDamage(float damage, float tickTime)

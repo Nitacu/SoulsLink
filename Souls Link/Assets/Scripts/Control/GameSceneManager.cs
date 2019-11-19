@@ -14,7 +14,7 @@ public class GameSceneManager : MonoBehaviour
         if (!alreadyFinishedSceneSetup)
         {
             NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0,0,0),Quaternion.identity);
-            NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, new Vector3(16, 0, 0), Quaternion.identity).GetComponent<SimpleEnemyController>().health = 50;
+            GetComponent<ControlSpawnEnemys>().spawnNewEnemy();
             NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
         }
     }
