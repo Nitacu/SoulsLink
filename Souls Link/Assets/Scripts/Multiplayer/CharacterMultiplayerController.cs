@@ -26,6 +26,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         if (!isMine())
         {
             Destroy(GetComponent<PlayerInput>());
+            Destroy(GetComponentInChildren<Camera>().gameObject);
         }
 
         _remoteEventAgent = GetComponent<RemoteEventAgent>();

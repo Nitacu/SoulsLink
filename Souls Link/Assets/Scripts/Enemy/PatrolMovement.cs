@@ -8,7 +8,8 @@ public class PatrolMovement : Action
 {
     
     public List<Vector2> WPoints = new List<Vector2>();
-    public float delayBetweenPoints = 0f;
+    public float delayBetweenPoints = 0;
+    int index = 0;
     private PolyNavAgent _agent;
     private PolyNavAgent agent
     {
@@ -20,7 +21,12 @@ public class PatrolMovement : Action
         agent.OnDestinationReached += MoveRandom;
         agent.OnDestinationInvalid += MoveRandom;
 
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
         GetComponent<PolyNavAgent>().enabled = true;
+
+        StopCoroutine(WaitAndMove());
 
         if (WPoints.Count > 0)
         {
@@ -40,9 +46,11 @@ public class PatrolMovement : Action
     
     IEnumerator WaitAndMove()
     {
-        yield return new WaitForSeconds(delayBetweenPoints);
-        Vector2 endPosition = WPoints[Random.Range(0, WPoints.Count)];
+        GetComponent<SimpleEnemyController>().Anim.SetFloat("Velocity",0);
+        yield return new WaitForSeconds(0);        
+        Vector2 endPosition = WPoints[index];
         agent.SetDestination(endPosition);
+        index++;
     }
 
     void OnDrawGizmosSelected()

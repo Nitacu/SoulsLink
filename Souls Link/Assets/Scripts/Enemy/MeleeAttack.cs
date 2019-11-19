@@ -17,7 +17,7 @@ public class MeleeAttack : Action
 
             foreach (Collider2D obj in col)
             {
-                if (obj.GetComponentInChildren<Animator>().gameObject == target.Value.gameObject)
+                if (obj.gameObject == target.Value.gameObject)
                 {
                     GetComponent<SimpleEnemyController>().attack(target.Value.gameObject);
                 }

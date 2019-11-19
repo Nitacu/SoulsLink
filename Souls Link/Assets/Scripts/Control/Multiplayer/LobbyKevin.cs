@@ -147,7 +147,6 @@ public class LobbyKevin : MonoBehaviour
                 foreach (SWPlayer player in reply.players)
                 {
                     Debug.Log("nombre de jugador" + player.data);
-
                     _lobbyUI.crearNewItemInPlayerList(player.data);
                 }
 

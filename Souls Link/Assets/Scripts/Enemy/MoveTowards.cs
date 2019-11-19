@@ -34,6 +34,7 @@ public class MoveTowards : Action
             direction = target.Value.position - _thisCharacter.Value.position;
             direction.Normalize();
             GetComponent<Rigidbody2D>().velocity = direction * speed;
+            GetComponent<SimpleEnemyController>().changeOrientation(direction.x);
         }
 
         return TaskStatus.Running;
@@ -44,10 +45,9 @@ public class MoveTowards : Action
         if (target.Value != null)
         {
             Collider2D[] col = Physics2D.OverlapCircleAll(_thisCharacter.Value.position, 0.75f);
-
             foreach (Collider2D obj in col)
             {
-                if (obj.GetComponentInChildren<Animator>().gameObject == _destiny.gameObject)
+                if (obj.gameObject == _destiny.gameObject)
                 {
                     Debug.Log("en rango");
                     return true;
