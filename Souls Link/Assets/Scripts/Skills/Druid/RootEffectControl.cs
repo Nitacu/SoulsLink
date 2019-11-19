@@ -21,10 +21,16 @@ public class RootEffectControl : MonoBehaviour
     {
         if (_enemyWasWalking)
         {
-            enemy.GetComponent<SimpleEnemyController>().canWalk = true;
+            if (enemy != null)
+            {
+                enemy.GetComponent<SimpleEnemyController>().canWalk = true;
+            }
         }
 
-        enemy.GetComponent<SimpleEnemyController>().keepWalking();
+        if (enemy != null)
+        {
+            enemy.GetComponent<SimpleEnemyController>().keepWalking();
+        }
         
         Destroy(gameObject);
     }
