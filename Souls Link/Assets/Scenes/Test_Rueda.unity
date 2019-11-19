@@ -1676,6 +1676,130 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5869427, y: 0.70666987}
   m_EdgeRadius: 0
+--- !u!1001 &1212854202
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4705385350353087113, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_Name
+      value: DruidFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.241
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914276296870830931, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: Skill4PressDown.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914276296870830931, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: Skill4PressDown.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914276296870830931, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: Skill4PressDown.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914276296870830931, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: Skill4PressDown.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1212854204}
+    - target: {fileID: 1914276296870830931, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: Skill4PressDown.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: hypnotize
+      objectReference: {fileID: 0}
+    - target: {fileID: 1914276296870830931, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: Skill4PressDown.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6b20397bf6e46d42b8e01fb1d60374e, type: 3}
+--- !u!1 &1212854203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4705385350353087113, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1212854202}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1212854204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1212854203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948bc18d49474b54da0bf8a4fa2e6ddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hypnosisPrefab: {fileID: 4650659342928750992, guid: 34fa0851d96537f4eafa08ec1dd36160,
+    type: 3}
+  _hypnosisFlashTime: 0.5
+  _coolDown: 5
+  _attackDamage: 0
+  _hypnosisDuration: 5
+  stillAttackOption: 1
 --- !u!1 &1270199707
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,7 +3272,6 @@ MonoBehaviour:
     type: 3}
   _coolDown: 5
   wallDuration: 5
-  _inputAttack: 100
 --- !u!1001 &6929579312789344898
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3164,7 +3287,7 @@ PrefabInstance:
     - target: {fileID: 3689693627332086208, guid: 2896d67c3d1a91e479b910d11597356b,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3689693627332086213, guid: 2896d67c3d1a91e479b910d11597356b,
         type: 3}

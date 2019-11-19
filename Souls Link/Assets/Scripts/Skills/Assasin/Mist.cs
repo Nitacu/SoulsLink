@@ -71,6 +71,8 @@ public class Mist : MonoBehaviour
                 tmp.a = 0.5f;
                 gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
 
+                gameObject.layer = LayerMask.NameToLayer("Invisible");
+
                 if (_stealthTimeTracker <= _stealthTime && _stealthTime > 0)
                 {
                     _stealthTimeTracker -= Time.deltaTime;
@@ -87,6 +89,7 @@ public class Mist : MonoBehaviour
                 Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
                 tmp.a = 1f;
                 gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
+                gameObject.layer = LayerMask.NameToLayer("Player");
             }
         }
         else
@@ -95,6 +98,7 @@ public class Mist : MonoBehaviour
             Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
             tmp.a = 0.1f;
             gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
+            gameObject.layer = LayerMask.NameToLayer("Invisible");
         }
     }
 
