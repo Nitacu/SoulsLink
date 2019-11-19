@@ -40,6 +40,8 @@ public class SelectCharacter : MonoBehaviour
                 }
             }
         }
+
+        selectCharacter(_characterIndexSelected);
     }
 
     public void OnSelectRight()
