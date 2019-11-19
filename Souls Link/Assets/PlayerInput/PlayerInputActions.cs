@@ -352,7 +352,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""f3aa64f7-dd25-486a-9348-5c7167540f11"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""SelectLeft"",
@@ -360,7 +360,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""6382d3aa-a3bd-47bb-a8b2-0c5f6dfd058e"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""StartGame"",
@@ -368,7 +368,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""id"": ""4ab9323c-46dd-4227-a09e-48421ba3ccd6"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [

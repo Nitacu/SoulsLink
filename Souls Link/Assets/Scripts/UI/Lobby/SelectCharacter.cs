@@ -8,7 +8,8 @@ public class SelectCharacter : MonoBehaviour
 {
     [SerializeField] private List<PlayerSelectCharPanel> _imagePlayers = new List<PlayerSelectCharPanel>();
     [SerializeField] private float _offsetX = 215f;
-    private int _characterIndexSelected = 0;
+    
+    [SerializeField] private int _characterIndexSelected = 0;
     private GameObject _charactersPanel;
 
     private void OnEnable()
@@ -67,6 +68,7 @@ public class SelectCharacter : MonoBehaviour
 
     public void movePanel(bool selectRight)
     {
+        selectCharacter(_characterIndexSelected);
         float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
         float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
         _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
@@ -74,15 +76,14 @@ public class SelectCharacter : MonoBehaviour
 
     public void OnStartGame()
     {
-        selectCharacter();
         FindObjectOfType<LobbyKevin>().StartGame();
     }
 
-    public void selectCharacter()
+    public void selectCharacter(int currentIndex)
     {
         GameManager.Characters _characterEnum;
 
-        switch (_characterIndexSelected)
+        switch (currentIndex)
         {
             case 0:
                 _characterEnum = GameManager.Characters.MAGE;
