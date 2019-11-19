@@ -11,6 +11,8 @@ public class SelectCharacter : MonoBehaviour
     
     [SerializeField] private int _characterIndexSelected = 0;
     private GameObject _charactersPanel;
+    private GameObject _leftArrow;
+    private GameObject _rightArrow;
 
     private void OnEnable()
     {
@@ -36,12 +38,15 @@ public class SelectCharacter : MonoBehaviour
                     //set seleccionar personaje
                     Debug.Log("Finded my self: " + myID);
                     _charactersPanel = imagePlayer.getCharacterSelection();
+                    _leftArrow = imagePlayer.getLeftArrow();
+                    _rightArrow = imagePlayer.getRightArrow();
                     break;
                 }
             }
         }
 
         selectCharacter(_characterIndexSelected);
+        setArrows();
     }
 
     public void OnSelectRight()
@@ -71,14 +76,24 @@ public class SelectCharacter : MonoBehaviour
     public void movePanel(bool selectRight)
     {
         selectCharacter(_characterIndexSelected);
+        setArrows();
+
         float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
         float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
         _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
     }
 
-    public void OnStartGame()
+    public void setArrows()
     {
-        FindObjectOfType<LobbyKevin>().StartGame();
+        //set Right Arrow
+        _rightArrow.SetActive(
+            (_characterIndexSelected < (_imagePlayers.Count - 1)) ? true : false
+            );
+
+        //set Left Arrow
+        _leftArrow.SetActive(
+            (_characterIndexSelected > 0) ? true : false
+            );
     }
 
     public void selectCharacter(int currentIndex)
@@ -107,4 +122,8 @@ public class SelectCharacter : MonoBehaviour
         GameManager.GetInstace()._myCharacter = _characterEnum;
     }
 
+    public void OnStartGame()
+    {
+        FindObjectOfType<LobbyKevin>().StartGame();
+    }
 }
