@@ -26,9 +26,9 @@ public class ControlSpawnEnemys : MonoBehaviour
     {
         if (GetComponent<NetworkID>().OwnerCustomPlayerId == GetComponent<NetworkID>().OwnerRemotePlayerId)
         {
-            foreach (Transform transform in _spawnPoints)
+            foreach (Transform spawn in _spawnPoints)
             {
-                NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, transform.position, Quaternion.identity).GetComponent<SimpleEnemyController>().health = _lifeEnemys;
+                NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, spawn.position, Quaternion.identity);
                 _lifeEnemys += 20;
             }
         }
