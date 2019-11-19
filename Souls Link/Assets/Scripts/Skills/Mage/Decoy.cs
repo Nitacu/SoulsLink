@@ -5,30 +5,21 @@ using UnityEngine;
 public class Decoy : MonoBehaviour
 {
 
-    [SerializeField] private KeyCode _inputAttack;
     [SerializeField] private float _distance = 1;
     [SerializeField] private GameObject _decoyShadow;
 
     [SerializeField] private float _coolDown;
     private float _coolDownTracker;
 
-    private AimCursor _aiming;
+    private PlayerAiming _aiming;
 
     private void Start()
     {
-        _aiming = GetComponent<AimCursor>();
+        _aiming = GetComponent<PlayerAiming>();
     }
 
     private void Update()
     {
-
-        if (Input.GetKeyDown(_inputAttack) && _coolDownTracker <= 0)
-        {
-
-            decoyTp();
-
-            _coolDownTracker = _coolDown;
-        }
 
 
         if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
@@ -37,10 +28,19 @@ public class Decoy : MonoBehaviour
         }
     }
 
+    public void pressKey()
+    {
+        if (_coolDownTracker <= 0)
+        {
+            decoyTp();
+            _coolDownTracker = _coolDown;
+        }
+    }
+
     private void decoyTp()
     {
         Vector2 currentPos = transform.position;
-        Vector2 newPos = (Vector2)transform.position - (_aiming.AimVector * _distance);
+        Vector2 newPos = (Vector2)transform.position + (_aiming.AimDirection * _distance);
 
         transform.position = newPos;
         GameObject decoyShadow = Instantiate(_decoyShadow);

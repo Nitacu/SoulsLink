@@ -5,7 +5,6 @@ using UnityEngine;
 public class ReflectAttack : MonoBehaviour
 {
 
-    [SerializeField] private KeyCode _inputSkill;
     [SerializeField] private float _radiusDetection;
     [SerializeField] private float _coneDetectioneDistance;
 
@@ -29,18 +28,39 @@ public class ReflectAttack : MonoBehaviour
 
     [SerializeField] ReflectType _reflectType;
 
-    private AimCursor _aiming;
+    private PlayerAiming _aiming;
+    private bool buttonPressed = false;
 
     private void Start()
     {
-        _aiming = gameObject.GetComponent<AimCursor>();
+        _aiming = gameObject.GetComponent<PlayerAiming>();
+    }
+
+    public void pressKey()
+    {
+        buttonPressed = true;
+    }
+
+    private void stopMoving()
+    {
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponentInChildren<Animator>().SetBool("isCasting", true);
+    }
+
+    private void backToNormal()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(_inputSkill) && !reflecting && _coolDownTracker <= 0)
+        if (buttonPressed && !reflecting && _coolDownTracker <= 0)
         {
             reflecting = true;
+            stopMoving();
             _reflectingTimeTracker = _reflectingTime;
 
             //feedback start
@@ -77,7 +97,8 @@ public class ReflectAttack : MonoBehaviour
             else
             {
                 reflecting = false;
-
+                buttonPressed = false;
+                backToNormal();
                 //feedback end
                 Destroy(_shieldReference);
             }
@@ -92,9 +113,9 @@ public class ReflectAttack : MonoBehaviour
 
     private void detectoProjectilesOnDirection()
     {
-        Debug.Log("Direction: " + _aiming.AimVector * 0.1f);
-        Vector2 offset = (Vector2)transform.position + _aiming.AimVector * 0.5f;
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(offset, 0.3f, _aiming.AimVector, _coneDetectioneDistance);
+        Debug.Log("Direction: " + _aiming.AimDirection * 0.1f);
+        Vector2 offset = (Vector2)transform.position + _aiming.AimDirection * 0.5f;
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(offset, 0.3f, _aiming.AimDirection, _coneDetectioneDistance);
 
         if (hits.Length > 0)
         {

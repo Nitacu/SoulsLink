@@ -100,6 +100,8 @@ GameObject:
   - component: {fileID: 6148689994448844183}
   - component: {fileID: 8547802313979291169}
   - component: {fileID: 1010509657511000332}
+  - component: {fileID: 930049934}
+  - component: {fileID: 930049935}
   m_Layer: 8
   m_Name: Mage
   m_TagString: Player
@@ -297,6 +299,7 @@ MonoBehaviour:
   _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
     type: 3}
   _coolDown: 0
+  _damage: 30
 --- !u!114 &7948591199161042511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,7 +334,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 666552386384072487}
-        m_MethodName: startShoot
+        m_MethodName: shotStake
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -361,7 +364,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill2PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930049934}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill2PressUp:
@@ -371,7 +385,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill3PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 930049935}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill3PressUp:
@@ -515,6 +540,43 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.2831405}
   serializedVersion: 2
   m_Radius: 0.20904192
+--- !u!114 &930049934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115771829702683778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e81c522bf016d945aa110a92dea284a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radiusDetection: 1
+  _coneDetectioneDistance: 1
+  _shielAroundPrefab: {fileID: 592897995847261921, guid: 687dc33e49fcac349b56f908f189ec32,
+    type: 3}
+  _shieldDirectionPrefab: {fileID: 7283907965343569989, guid: 1e95c9113a4a19240a6cb3dc87edd049,
+    type: 3}
+  _reflectingTime: 3
+  _coolDown: 5
+  _reflectType: 0
+--- !u!114 &930049935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115771829702683778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b88ec80ae556f03488001d68f449164e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _distance: 0.5
+  _decoyShadow: {fileID: 1933650003457465940, guid: 246d51984d790e74185cae71c817b726,
+    type: 3}
+  _coolDown: 3
 --- !u!1 &8630043043880022629
 GameObject:
   m_ObjectHideFlags: 0

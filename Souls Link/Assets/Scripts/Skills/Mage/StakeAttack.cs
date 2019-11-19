@@ -8,6 +8,7 @@ public class StakeAttack : MonoBehaviour
     [SerializeField] private GameObject _stakePrefab;
 
     [SerializeField] private float _coolDown;
+    [SerializeField] private float _damage = 30;
     private float _coolDownTracker;
 
     private PlayerAiming _aiming;
@@ -55,6 +56,7 @@ public class StakeAttack : MonoBehaviour
             _coolDownTracker = _coolDown;
 
             GameObject mineStake = Instantiate(_stakePrefab);
+            mineStake.GetComponent<StakeControl>().setStake(_damage);
             mineStake.transform.position = gameObject.transform.position;
             LinealProjectile projectile = mineStake.GetComponent<LinealProjectile>();
             projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
