@@ -25,6 +25,7 @@ public class ClampText : MonoBehaviour
         chargeBar.GetComponent<Image>().fillAmount = 0;
     }
 
+    /*
     void Update()
     {
         if (_camera == null)
@@ -37,5 +38,6 @@ public class ClampText : MonoBehaviour
         }
         chargeBar.transform.position = posItem;
     }
+    */
 }
 

@@ -132,6 +132,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 3115771829702683778, guid: ee06c4c547521df4f9e523b0636f57c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3115771829702683783, guid: ee06c4c547521df4f9e523b0636f57c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2862,15 +2867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AssasinFinal
       objectReference: {fileID: 0}
-    - target: {fileID: 6226177120453663736, guid: fdd26b943b06e6c4189c13e813fbdc1f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6226177120453663741, guid: fdd26b943b06e6c4189c13e813fbdc1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 6226177120453663741, guid: fdd26b943b06e6c4189c13e813fbdc1f,
         type: 3}
