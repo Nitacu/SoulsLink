@@ -83,6 +83,78 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268420328}
   m_Enabled: 1
+--- !u!1 &2018034424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2018034427}
+  - component: {fileID: 2018034426}
+  - component: {fileID: 2018034425}
+  m_Layer: 0
+  m_Name: DashCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2018034427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018034424}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3730457550004149250}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &2018034426
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018034424}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.011645824, y: -0.1410284}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.55744964, y: 0.6403284}
+  m_EdgeRadius: 0
+--- !u!114 &2018034425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018034424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c04d1f2c67d6b74b8d5fec180ffc6d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  stunDuration: 2
 --- !u!1 &1120487844959786582
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +257,7 @@ GameObject:
   - component: {fileID: 489523147}
   - component: {fileID: 489523148}
   - component: {fileID: 1046008368}
+  - component: {fileID: 763165872}
   m_Layer: 8
   m_Name: TankFinal
   m_TagString: Player
@@ -206,6 +279,7 @@ Transform:
   - {fileID: 5432978742226290500}
   - {fileID: 7875760171259188468}
   - {fileID: 1268420329}
+  - {fileID: 2018034427}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -445,7 +519,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill4PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 763165872}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill4PressUp:
@@ -650,6 +735,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: 200
+--- !u!114 &763165872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23fcd555b7dec441b40ece3fb2bab3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 2
+  dashDuration: 0.2
+  _damage: 15
+  _dashCollider: {fileID: 2018034424}
+  dashSpeed: 25
+  isDashing: 0
 --- !u!1 &6647910037698648187
 GameObject:
   m_ObjectHideFlags: 0
