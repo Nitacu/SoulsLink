@@ -30,22 +30,26 @@ public class ControlLobbyUI : MonoBehaviour
 
     }
 
-    public void crearNewItemInPlayerList(string name)
+    public void crearNewItemInPlayerList(string name, string id)
     {
         _panelRooms.SetActive(false);
 
-        _panelInRoom.SetActive(true);
+        _panelInRoom.SetActive(true);        
 
         foreach (GameObject player in _imagenPlayerName)
         {
             if (!player.activeSelf)
             {
                 player.SetActive(true);
-                player.GetComponentInChildren<TMP_Text>().text = name;
+                player.GetComponentInChildren<TMP_Text>().text = name; //show name
+                player.GetComponent<PlayerSelectCharPanel>().PlayerID = id;//assign id
+                Debug.Log("Player ID setted");
                 break;
             }
         }
-    }
+
+
+    }    
 
     public void clearPlayersList()
     {

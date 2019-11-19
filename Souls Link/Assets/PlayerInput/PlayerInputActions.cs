@@ -341,6 +341,137 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""5a58df60-3509-465b-92fb-c04d1b62d458"",
+            ""actions"": [
+                {
+                    ""name"": ""SelectRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3aa64f7-dd25-486a-9348-5c7167540f11"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""SelectLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""6382d3aa-a3bd-47bb-a8b2-0c5f6dfd058e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""StartGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""4ab9323c-46dd-4227-a09e-48421ba3ccd6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""060b5cc0-dec7-492f-b14a-3a18042196ed"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f3bbc8c5-9807-47a0-82d0-b0b12ecde093"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/stick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick Generic"",
+                    ""action"": ""SelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f151ea5-cf4e-49d6-8076-cb83ede73cb2"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SelectRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc05e481-d08f-4904-aa2e-036af3f0150f"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bf686924-d08e-4f81-8f8e-bcb60d66eb31"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/stick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick Generic"",
+                    ""action"": ""SelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fa931c77-5b50-4732-b308-98fed86a7a36"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SelectLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e44c4bb-7d78-4d16-b5e2-8233788cf437"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""14fa8eb3-6441-4f59-92d5-5b6460e98ff4"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button10"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick Generic"",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bdb0f23e-fdeb-4305-a621-a8c968ea5d66"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""StartGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -388,6 +519,11 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Skill4 = m_PlayerControls.FindAction("Skill4", throwIfNotFound: true);
         m_PlayerControls_Join = m_PlayerControls.FindAction("Join", throwIfNotFound: true);
         m_PlayerControls_Fusion = m_PlayerControls.FindAction("Fusion", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_SelectRight = m_UI.FindAction("SelectRight", throwIfNotFound: true);
+        m_UI_SelectLeft = m_UI.FindAction("SelectLeft", throwIfNotFound: true);
+        m_UI_StartGame = m_UI.FindAction("StartGame", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -514,6 +650,55 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         }
     }
     public PlayerControlsActions @PlayerControls => new PlayerControlsActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_SelectRight;
+    private readonly InputAction m_UI_SelectLeft;
+    private readonly InputAction m_UI_StartGame;
+    public struct UIActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public UIActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @SelectRight => m_Wrapper.m_UI_SelectRight;
+        public InputAction @SelectLeft => m_Wrapper.m_UI_SelectLeft;
+        public InputAction @StartGame => m_Wrapper.m_UI_StartGame;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
+            {
+                @SelectRight.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectRight;
+                @SelectRight.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectRight;
+                @SelectRight.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectRight;
+                @SelectLeft.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectLeft;
+                @SelectLeft.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectLeft;
+                @SelectLeft.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSelectLeft;
+                @StartGame.started -= m_Wrapper.m_UIActionsCallbackInterface.OnStartGame;
+                @StartGame.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnStartGame;
+                @StartGame.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnStartGame;
+            }
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @SelectRight.started += instance.OnSelectRight;
+                @SelectRight.performed += instance.OnSelectRight;
+                @SelectRight.canceled += instance.OnSelectRight;
+                @SelectLeft.started += instance.OnSelectLeft;
+                @SelectLeft.performed += instance.OnSelectLeft;
+                @SelectLeft.canceled += instance.OnSelectLeft;
+                @StartGame.started += instance.OnStartGame;
+                @StartGame.performed += instance.OnStartGame;
+                @StartGame.canceled += instance.OnStartGame;
+            }
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -550,5 +735,11 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnSkill4(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
         void OnFusion(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnSelectRight(InputAction.CallbackContext context);
+        void OnSelectLeft(InputAction.CallbackContext context);
+        void OnStartGame(InputAction.CallbackContext context);
     }
 }

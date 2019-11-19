@@ -119,11 +119,11 @@ public class LobbyKevin : MonoBehaviour
                 // Remove rooms in the rooms list
                 _lobbyUI.clearListRooms();
                 //muestra los rooms que ya estan creados
-                
+
                 foreach (SWRoom room in reply.rooms)
                 {
                     Debug.Log("nombre de la sala " + room.data);
-                    _lobbyUI.crearNewItemInRoomList(room.data,room.id);
+                    _lobbyUI.crearNewItemInRoomList(room.data, room.id);
                 }
 
             }
@@ -147,7 +147,8 @@ public class LobbyKevin : MonoBehaviour
                 foreach (SWPlayer player in reply.players)
                 {
                     Debug.Log("nombre de jugador" + player.data);
-                    _lobbyUI.crearNewItemInPlayerList(player.data);
+
+                    _lobbyUI.crearNewItemInPlayerList(player.data, player.id);
                 }
 
             }
@@ -215,7 +216,7 @@ public class LobbyKevin : MonoBehaviour
                 if (successful)
                 {
                     Debug.Log("ChangeRoomCustomData successful");
-                    _lobbyUI.crearNewItemInPlayerList(eventData.data);
+                    _lobbyUI.crearNewItemInPlayerList(eventData.data, eventData.newPlayerId);
                 }
                 else
                 {
@@ -267,14 +268,14 @@ public class LobbyKevin : MonoBehaviour
                     // Lobby server has sent request to SocketWeaver. The request is being processed.
                     // If socketweaver finds suitable server, Lobby server will invoke the OnRoomReadyEvent.
                     // If socketweaver cannot find suitable server, Lobby server will invoke the OnFailedToStartRoomEvent.
-                    Debug.Log("Started room");                   
+                    Debug.Log("Started room");
                 }
                 else
                 {
                     Debug.Log("Failed to start room " + error);
                 }
             });
-        }       
+        }
     }
 
     void Lobby_OnRoomReadyEvent(SWRoomReadyEventData eventData)
