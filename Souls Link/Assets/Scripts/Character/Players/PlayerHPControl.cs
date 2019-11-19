@@ -20,7 +20,7 @@ public class PlayerHPControl : MonoBehaviour
             {
                 Destroy(gameObject);
             }
-            GetComponent<SpriteRenderer>().color = Color.red;
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
             Invoke("backToNormal", 0.5f);
         }
         else
@@ -46,6 +46,6 @@ public class PlayerHPControl : MonoBehaviour
 
     private void backToNormal()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 }
