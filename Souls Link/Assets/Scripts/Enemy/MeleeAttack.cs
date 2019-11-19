@@ -7,12 +7,21 @@ using BehaviorDesigner.Runtime.Tasks;
 public class MeleeAttack : Action
 {
     public SharedTransform target;
+    public SharedTransform _thisCharacter;
 
     public override TaskStatus OnUpdate()
     {
-        if (Physics2D.OverlapCircle(target.Value.position,0.1f).CompareTag("Player"))
+        if (target.Value != null)
         {
-            Debug.Log("Pau le pegue");
+            Collider2D[] col = Physics2D.OverlapCircleAll(_thisCharacter.Value.position, 0.75f);
+
+            foreach (Collider2D obj in col)
+            {
+                if (obj.GetComponentInChildren<Animator>().gameObject == target.Value.gameObject)
+                {
+                    GetComponent<SimpleEnemyController>().attack(target.Value.gameObject);
+                }
+            }
         }
 
         return TaskStatus.Success;

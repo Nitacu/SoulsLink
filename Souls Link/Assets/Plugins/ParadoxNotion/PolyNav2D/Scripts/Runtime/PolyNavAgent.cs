@@ -65,9 +65,15 @@ public class PolyNavAgent : MonoBehaviour{
 	private float accelerationValue = 0;
 
 	private static List<PolyNavAgent> allAgents = new List<PolyNavAgent>();
+    private Animator _anim;
 
-	///The position of the agent
-	public Vector2 position{
+    private void Start()
+    {
+        _anim = GetComponentInChildren<Animator>();
+    }
+
+    ///The position of the agent
+    public Vector2 position{
 		get {return transform.position + (Vector3)centerOffset;}
 		set {transform.position = new Vector3(value.x, value.y, transform.position.z) - (Vector3)centerOffset;}
 	}
@@ -263,9 +269,10 @@ public class PolyNavAgent : MonoBehaviour{
 
 		//move the agent
 		position += velocity * Time.deltaTime;
-
-		//restrict just after movement
-		Restrict();
+        _anim.SetFloat("Velocity", Math.Abs(velocity.x));
+        if (velocity.x > 0) { GetComponentInChildren<SpriteRenderer>().flipX = false; } else { GetComponentInChildren<SpriteRenderer>().flipX = true; } 
+        //restrict just after movement
+        Restrict();
 
 		//rotate if must
 		if (rotateTransform){

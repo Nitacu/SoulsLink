@@ -6,6 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class PatrolMovement : Action
 {
+    
     public List<Vector2> WPoints = new List<Vector2>();
     public float delayBetweenPoints = 0f;
     private PolyNavAgent _agent;
@@ -31,18 +32,17 @@ public class PatrolMovement : Action
     {       
         StartCoroutine(WaitAndMove());
     }
-
+    
     public override TaskStatus OnUpdate()
     {
         return TaskStatus.Running;
     }
-
+    
     IEnumerator WaitAndMove()
     {
         yield return new WaitForSeconds(delayBetweenPoints);
         Vector2 endPosition = WPoints[Random.Range(0, WPoints.Count)];
         agent.SetDestination(endPosition);
-        GetComponent<Animator>().SetFloat("Velocity", 1);
     }
 
     void OnDrawGizmosSelected()
@@ -52,6 +52,6 @@ public class PatrolMovement : Action
             Gizmos.DrawSphere(WPoints[i], 0.05f);
         }
     }
-
-
+    
+    
 }

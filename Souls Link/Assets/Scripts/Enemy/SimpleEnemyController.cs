@@ -5,61 +5,29 @@ using UnityEngine;
 public class SimpleEnemyController : MonoBehaviour
 {
     public float health = 0;
-    public bool canWalk = false;
-    public float movementSpeed = 0;
+    public bool canWalk = true;
     private bool facingLeft = false;
     private Rigidbody2D _rb;
     private bool firstTimePressing = true;
     private bool isGettingDamaged = false;
+    private Animator _anim;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            canWalk = !canWalk;
-            if (firstTimePressing)
-            {
-                firstTimePressing = false;
-                changeDirection();
-            }
-                
-        }
-
-        if (canWalk)
-        {
-            moveEnemy();
-        }
-        else{
-            _rb.velocity = Vector3.zero;
-        }
+        _anim.SetBool("Can_Walk", canWalk);
     }
 
-    private void changeDirection()
+    public void attack(GameObject player)
     {
-        facingLeft = !facingLeft;
-        Invoke("changeDirection", 5);
-    }
-
-    private void moveEnemy()
-    {
-        Vector2 direction = Vector2.zero;
-
-        if (facingLeft)
-        {
-            direction = Vector2.left;
-        }
-        else
-        {
-            direction = Vector2.right;
-        }
-        _rb.velocity = direction * movementSpeed;
+        _anim.Play(Animator.StringToHash("Attack"));
     }
 
     public void recieveDamage(float damage)
@@ -122,4 +90,5 @@ public class SimpleEnemyController : MonoBehaviour
     {
         canWalk = false;
     }
+
 }
