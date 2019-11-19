@@ -11,6 +11,9 @@ public class StakeAttack : MonoBehaviour
     [SerializeField] private float _damage = 30;
     private float _coolDownTracker;
 
+    [HideInInspector]
+    public bool canShoot = true;
+
     private PlayerAiming _aiming;
 
     private void Start()
@@ -51,17 +54,20 @@ public class StakeAttack : MonoBehaviour
 
     public void shotStake()
     {
-        if (_coolDownTracker <= 0)
+        if (canShoot)
         {
-            _coolDownTracker = _coolDown;
+            if (_coolDownTracker <= 0)
+            {
+                _coolDownTracker = _coolDown;
 
-            GameObject mineStake = Instantiate(_stakePrefab);
-            mineStake.GetComponent<StakeControl>().setStake(_damage);
-            mineStake.transform.position = gameObject.transform.position;
-            LinealProjectile projectile = mineStake.GetComponent<LinealProjectile>();
-            projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
-            projectile.setRotation(_aiming.AimDirection.normalized);
-            projectile.Velocity = _aiming.AimDirection.normalized;
+                GameObject mineStake = Instantiate(_stakePrefab);
+                mineStake.GetComponent<StakeControl>().setStake(_damage);
+                mineStake.transform.position = gameObject.transform.position;
+                LinealProjectile projectile = mineStake.GetComponent<LinealProjectile>();
+                projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
+                projectile.setRotation(_aiming.AimDirection.normalized);
+                projectile.Velocity = _aiming.AimDirection.normalized;
+            }
         }
     }
 

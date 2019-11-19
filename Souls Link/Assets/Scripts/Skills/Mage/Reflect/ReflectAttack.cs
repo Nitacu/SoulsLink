@@ -46,6 +46,7 @@ public class ReflectAttack : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponentInChildren<Animator>().SetBool("isCasting", true);
+        GetComponent<StakeAttack>().canShoot = false;
     }
 
     private void backToNormal()
@@ -53,6 +54,7 @@ public class ReflectAttack : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponentInChildren<Animator>().SetBool("isCasting", false);
+        GetComponent<StakeAttack>().canShoot = true;
     }
 
     private void Update()
