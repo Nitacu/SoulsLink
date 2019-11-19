@@ -44,7 +44,7 @@ public class RandomGun : MonoBehaviour
         if (_coolDownTracker <= 0)
         {
             chooseWeapon();
-            
+            _coolDownTracker = _coolDown;
         }
     }
 
@@ -74,11 +74,17 @@ public class RandomGun : MonoBehaviour
         shooting = true;
     }
 
+    public void canPickAgain()
+    {
+        pickedWeapon = false;
+    }
+
     public void chooseWeapon()
     {
         //if (_coolDownTracker <= 0)
         //{
         
+
         Vector2 direction = _aiming.AimDirection;
         _coolDownTracker = _coolDown;
         Vector2 newPos = Vector2.zero;
