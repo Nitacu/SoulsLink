@@ -34,6 +34,7 @@ public class RandomGunChooser : MonoBehaviour
 
     void Update()
     {
+        /*
         if (randomPicker != null)
         {
             if (_camera == null)
@@ -46,5 +47,6 @@ public class RandomGunChooser : MonoBehaviour
             }
             randomPicker.transform.position = posItem;
         }
+        */
     }
 }
