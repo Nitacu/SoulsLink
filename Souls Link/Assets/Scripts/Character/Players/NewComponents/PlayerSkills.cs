@@ -117,7 +117,7 @@ public class PlayerSkills : MonoBehaviour
     {
         if (_characterMultiplayerController.isMine())
         {
-            _characterMultiplayerController.pushValueSkill(value.Get<float>(), 3);
+            _characterMultiplayerController.pushValueSkill(value.Get<float>(), 4);
 
             if (value.Get<float>() == 1)//Pressed
             {
