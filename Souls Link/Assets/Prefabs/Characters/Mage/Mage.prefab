@@ -884,7 +884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6802728a994b5f6498e6c6c2999b12de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _randomGunPickerPrefab: {fileID: 1393615877393367571, guid: bbbc73d7ce32cce46af7fb779a4ad307,
+  _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
   _randomGunPickerPosition: {fileID: 1930448433}
   _coolDown: 6

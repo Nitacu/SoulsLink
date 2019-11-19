@@ -29,7 +29,8 @@ public class RandomGunChooser : MonoBehaviour
     public void recieveGunData(float gunNumber)
     {
         Debug.Log("Picked gun: " + gunNumber);
-        GetComponentInParent<RandomGun>().canPickAgain();
+        GetComponentInParent<RandomGun>().spawnEnergyBalls();
+        //GetComponentInParent<RandomGun>().canPickAgain();
     }
 
     void Update()

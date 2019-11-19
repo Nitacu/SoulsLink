@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RandomGun : MonoBehaviour
 {
-    [SerializeField] private GameObject _randomGunPickerPrefab;
+    [SerializeField] private GameObject _energyBalls;
     [SerializeField] private GameObject _randomGunPickerPosition;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
@@ -96,9 +96,18 @@ public class RandomGun : MonoBehaviour
             _randomGunPickerPosition.GetComponent<RandomGunChooser>().startChoosing();
         }
         
+        
 
         
         //}
     }
+
+    public void spawnEnergyBalls()
+    {
+        GameObject temp = Instantiate(_energyBalls, gameObject.transform);
+        Invoke("canPickAgain", _coolDown);
+    }
+
+    
 
 }
