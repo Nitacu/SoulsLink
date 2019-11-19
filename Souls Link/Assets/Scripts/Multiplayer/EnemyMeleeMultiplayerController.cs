@@ -25,15 +25,6 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         return _networkID.IsMine;
     }
 
-    private void Update()
-    {
-        if (isMine())
-        {
-            //transform.position = _syncPropertyAgent.GetPropertyWithName(POSITION).GetVector3Value();
-            _syncPropertyAgent.Modify(POSITION, transform.position);
-        }
-            
-    }
 
     #region movimiento y posicion 
     public void OnPositionReady()
