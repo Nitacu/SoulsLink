@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 6580469155026097927}
   - component: {fileID: 8690233998898529457}
   - component: {fileID: 464165788}
+  - component: {fileID: -7541494737494305932}
   m_Layer: 8
   m_Name: CharacterTest
   m_TagString: Player
@@ -158,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 200
   _anim: {fileID: 6100166295803025305}
+  _renderer: {fileID: 0}
+  isDashing: 0
 --- !u!114 &2590758414971520327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +175,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crossHair: {fileID: 1833675844747936835}
   _distance: 2
+  _offsetY: 0.358
+  playerPosition: {x: 0, y: 0}
 --- !u!114 &767247480633685735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,6 +298,8 @@ MonoBehaviour:
   _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
     type: 3}
   _coolDown: 0
+  _damage: 30
+  canShoot: 1
 --- !u!114 &6938108281490220255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _checkingFusion: 0
+  _hostPrefab: {fileID: 0}
   _radiusFusionCheck: 2
   _playersFusionMask:
     serializedVersion: 2
@@ -410,7 +417,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2682875259299368466}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 202338497, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
   m_Name: 
@@ -510,6 +517,127 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.09}
   serializedVersion: 2
   m_Radius: 0.27992275
+--- !u!114 &-7541494737494305932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2682875259299368466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1480947390, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncedGenerics: []
+  syncedTransform:
+    interpolate: 20
+    smoothLevel: 0
+    snapDistance: 2
+    readFunction: 1
+    bandwidth: 4
+    padding: 0
+    pos_x_setting:
+      enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    pos_y_setting:
+      enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    pos_z_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    rot_x_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    rot_y_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    rot_z_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    scale_x_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    scale_y_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    scale_z_setting:
+      enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+    externalFreeze: 0.2
+  syncedAnimator:
+    animator: {fileID: 6100166295803025305}
+    syncParameters:
+    - enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: isCasting
+      isProperty: 0
+    - enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: Velocity
+      isProperty: 0
+    bandwidth: 3
+    padding: 7
+  syncTransFormEnabled: 1
+  syncAnimatorEnabled: 1
+  syncTransFormFoldout: 1
+  syncAnimatorFoldout: 1
+  restoreState: 1
 --- !u!1 &8773609389369938165
 GameObject:
   m_ObjectHideFlags: 0
