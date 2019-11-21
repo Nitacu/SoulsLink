@@ -14,7 +14,7 @@ public class GameSceneManager : MonoBehaviour
         if (!alreadyFinishedSceneSetup)
         {
             NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0,0,0),Quaternion.identity);
-            //GetComponent<ControlSpawnEnemys>().spawnNewEnemy();
+            GetComponent<ControlSpawnEnemys>().spawnNewEnemy();
             NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
         }
     }
