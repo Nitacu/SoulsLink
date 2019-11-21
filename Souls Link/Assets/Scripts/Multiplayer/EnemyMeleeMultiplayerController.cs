@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SWNetwork;
+using BehaviorDesigner.Runtime;
+using BehaviorDesigner.Runtime.Tasks;
 
 public class EnemyMeleeMultiplayerController : MonoBehaviour
 {
@@ -14,6 +16,15 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
+
+    }
+
+    private void Update()
+    {
+        if (!NetworkClient.Instance.IsHost)
+        {
+            GetComponent<BehaviorTree>().enabled = false;
+        }
     }
 
     public bool isMine()
@@ -22,6 +33,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         {
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
         }
+
         return _networkID.IsMine;
     }
 

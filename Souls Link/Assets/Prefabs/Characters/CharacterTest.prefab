@@ -453,7 +453,7 @@ MonoBehaviour:
   syncedGenerics: []
   syncedTransform:
     interpolate: 20
-    smoothLevel: 0
+    smoothLevel: 2
     snapDistance: 2
     readFunction: 1
     bandwidth: 4
