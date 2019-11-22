@@ -19,23 +19,36 @@ public class FusionTrigger : MonoBehaviour
     }
 
     [SerializeField] float _radiusFusionCheck;
-    [SerializeField] LayerMask _playersFusionMask;
+    [SerializeField] List<GameObject> _componentsToDeactivate;
 
     private void Awake()
     {
         _inputControl = new PlayerInputActions();
-
     }
 
 
+    private bool _isOnFusion;
+    public bool IsOnFusion
+    {
+        get { return _isOnFusion; }
+        set { _isOnFusion = value; }
+    }
+
+    private int _onFusionID;
+    public int OnFusionID
+    {
+        get { return _onFusionID; }
+        set { _onFusionID = value; }
+    }
+
     private void Update()
     {
-        /*
+
         if (_checkingFusion)
         {
             findPlayerToFusion();
         }
-        */
+
     }
 
     private void findPlayerToFusion()
@@ -52,48 +65,47 @@ public class FusionTrigger : MonoBehaviour
             foreach (var hit in _colliders)
             {
                 GameObject other = hit.gameObject;
-                Debug.Log("Hit with: " + other.name);
 
                 if (other.GetComponent<FusionHost>())
                 {
-                    _hostFinded = true;
                     hostFindedGO = other;
-                    Debug.Log("HostFinded");
                 }
-
-                /*
-                if (other.GetComponent<FusionTrigger>() && other != gameObject)
-                {
-                    FusionTrigger otherFusionTrigger = other.GetComponent<FusionTrigger>();
-
-                    if (other.GetComponent<FusionHost>())
-                    {
-                        _hostFinded = true;
-                        Debug.Log("HostFinded");
-                    }
-                    if (otherFusionTrigger._checkingFusion)
-                    {
-                        
-                    }
-                }*/
             }
+        }
 
-            if (!_hostFinded && !hostingFusion)
+        if (hostFindedGO != null)
+        {
+            //Encontré un host existente
+
+            if (!hostFindedGO.GetComponent<FusionHost>().playerIsAttached(gameObject))//Saber si soy parte del host
             {
-                _myFusionHosting = Instantiate(_hostPrefab, gameObject.transform, false);
-                _myFusionHosting.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
-                hostingFusion = true;
-            }
-            else
-            {
+                //Si no soy parte del host puedo fusionar
                 hostFindedGO.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
             }
         }
+        else
+        {
+            //No encontré ningún host
+
+            //Crear un nuevo host
+            _myFusionHosting = Instantiate(_hostPrefab, gameObject.transform, false);
+            //Añadirme al host
+            _myFusionHosting.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
+        }
+
     }
 
-    public void Fusion()
+
+    public void DeactivateComponentsOnFusion()
     {
-        Debug.Log("Fusionar");
+        foreach (var component in _componentsToDeactivate)
+        {
+            component.SetActive(false);
+        }
+
+        //gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        Destroy(gameObject.GetComponent<Rigidbody2D>());
+        gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
     private void OnFusion(InputValue action)
@@ -102,12 +114,12 @@ public class FusionTrigger : MonoBehaviour
         if (_actionPressed == 1)//Pressed
         {
             _checkingFusion = true;
-            findPlayerToFusion();
         }
         else if (_actionPressed == 0)//Released
         {
             _checkingFusion = false;
-            //if (_myFusionHosting != null) Destroy(_myFusionHosting);
+            if (_myFusionHosting != null) Destroy(_myFusionHosting);
+
             //hostingFusion = false;
         }
     }

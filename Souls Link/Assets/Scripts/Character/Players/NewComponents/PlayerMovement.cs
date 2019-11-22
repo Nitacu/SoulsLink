@@ -18,10 +18,21 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool isDashing = false;
 
+
+    private FusionTrigger _fusionTriggerRef;
+
+
+    private ChimeraController _currentChimeraParent;
+    public ChimeraController CurrentChimeraParent
+    {
+        get { return _currentChimeraParent; }
+        set { _currentChimeraParent = value; }
+    }
+
     private void Awake()
     {
         _inputControl = new PlayerInputActions();
-
+        _fusionTriggerRef = GetComponent<FusionTrigger>();
         _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
         _rb = GetComponent<Rigidbody2D>();
         //_anim = GetComponent<Animator>();
@@ -33,7 +44,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        move();
+        if (_fusionTriggerRef.IsOnFusion)
+            moveOnFusion();
+        else
+            move();
     }
 
     private void setAnimation()
@@ -50,6 +64,12 @@ public class PlayerMovement : MonoBehaviour
             _renderer.flipX = true;
         }
     }
+
+    private void moveOnFusion()
+    {
+        _currentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);
+    }
+
 
     private void move()
     {
@@ -79,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
             InputMovement = context.Get<Vector2>();
             //llama decirle a las otras maquinas que tienen que mover este PJ
             _characterMultiplayerController.pushVectorMovement(context.Get<Vector2>());
-        }            
+        }
     }
 
     //Enable and Disable

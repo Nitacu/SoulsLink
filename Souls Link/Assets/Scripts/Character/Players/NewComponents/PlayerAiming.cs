@@ -51,9 +51,14 @@ public class PlayerAiming : MonoBehaviour
 
     private void SetCrossHair()
     {
-        if (AimDirection.magnitude > 0)
+        if (gameObject.GetComponent<FusionTrigger>().IsOnFusion)
         {
-            
+            _crossHair.SetActive(false);
+            return;
+        }
+
+        if (AimDirection.magnitude > 0)
+        {            
             _crossHair.transform.localPosition = AimDirection * _distance;
             _crossHair.SetActive(true);
         }
