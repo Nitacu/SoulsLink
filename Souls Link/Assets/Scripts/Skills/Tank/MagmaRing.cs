@@ -9,7 +9,8 @@ public class MagmaRing : MonoBehaviour
     [SerializeField] private float _damage;
     [SerializeField] private float _numberOfRings;
     [SerializeField] private float _spawnRingRate;
-    
+    [SerializeField] private float _magmaTimeAlive;
+
     private float _coolDownTracker;
     private PlayerAiming _aiming;
     private float ringsSpawned = 0;
@@ -45,25 +46,8 @@ public class MagmaRing : MonoBehaviour
     {
         if(_coolDownTracker <= 0)
         {
-            spawnRing();
-            disableMovement();
+            spawnRing();            
         }
-    }
-
-    public void disableMovement()
-    {
-        GetComponentInChildren<Animator>().SetBool("isCasting", true);
-        GetComponent<PlayerMovement>().enabled = false;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-    }
-
-    public void setBackToNormal()
-    {
-        ringsSpawned = 0;
-        lastRing = false;
-        GetComponent<PlayerMovement>().enabled = true;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        GetComponentInChildren<Animator>().SetBool("isCasting", false);
     }
 
     public void stopShooting()
@@ -87,12 +71,9 @@ public class MagmaRing : MonoBehaviour
             lastRing = true;
         }
         Vector2 direction = _aiming.AimDirection;
-        _coolDownTracker = _coolDown;
-        Vector2 newPos = Vector2.zero;
-        newPos.y = newPos.y - 0.2f;
-        GameObject ring = Instantiate(_ringPrefab, gameObject.transform);
-        ring.transform.localPosition = newPos;
-        ring.GetComponent<MagmaRingController>().setMagma(_damage, gameObject, lastRing);
+        _coolDownTracker = _coolDown;        
+        GameObject ring = Instantiate(_ringPrefab, gameObject.transform.position, Quaternion.identity);       
+        ring.GetComponent<MagmaRingController>().setMagma(_damage, gameObject, lastRing, _magmaTimeAlive);
         if(ringsSpawned < _numberOfRings)
         {
             StartCoroutine(spawnAnotherRing(_spawnRingRate));

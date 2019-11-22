@@ -17,7 +17,17 @@ public class MistAnimations : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             player = collision.gameObject;
-            player.GetComponent<Mist>().activateInsideMist();
+            if (player.GetComponent<Mist>() != null)
+            {
+                player.GetComponent<Mist>().activateInsideMist();
+            }
+            else
+            {
+                Color tmp = player.GetComponentInChildren<SpriteRenderer>().color;
+                tmp.a = 0.1f;
+                player.GetComponentInChildren<SpriteRenderer>().color = tmp;
+                player.layer = LayerMask.NameToLayer("Invisible");
+            }
         }
         isColliding = true;
     }
@@ -26,8 +36,18 @@ public class MistAnimations : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Mist>().resetStealth();
-            collision.gameObject.GetComponent<Mist>().IsStealth = true;
+            if (collision.gameObject.GetComponent<Mist>() != null)
+            {
+                collision.gameObject.GetComponent<Mist>().resetStealth();
+                collision.gameObject.GetComponent<Mist>().IsStealth = true;
+            }
+            else
+            {
+                Color tmp = collision.gameObject.GetComponentInChildren<SpriteRenderer>().color;
+                tmp.a = 1f;
+                collision.gameObject.GetComponentInChildren<SpriteRenderer>().color = tmp;
+                collision.gameObject.layer = LayerMask.NameToLayer("Player");
+            }
             isColliding = false;
         }
     }

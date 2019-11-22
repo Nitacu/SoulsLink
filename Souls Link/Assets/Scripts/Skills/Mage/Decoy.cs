@@ -12,6 +12,12 @@ public class Decoy : MonoBehaviour
     private float _coolDownTracker;
 
     private PlayerAiming _aiming;
+    [HideInInspector]
+    public List<GameObject> clones = new List<GameObject>();
+    [HideInInspector]
+    public float contClones;
+    private float isEmpty = 0;
+    private bool oneEmpty = false;
 
     private void Start()
     {
@@ -41,9 +47,27 @@ public class Decoy : MonoBehaviour
     {
         Vector2 currentPos = transform.position;
         Vector2 newPos = (Vector2)transform.position + (_aiming.AimDirection * _distance);
-
         transform.position = newPos;
-        GameObject decoyShadow = Instantiate(_decoyShadow);
-        decoyShadow.transform.position = currentPos;
+        if (contClones < 3)
+        {
+            contClones++;
+            GameObject decoyShadow = Instantiate(_decoyShadow);
+            decoyShadow.GetComponent<SelfDestroy>().setDecoy(gameObject);
+            clones.Add(decoyShadow);
+            decoyShadow.transform.position = currentPos;
+        }
+        else
+        {
+            GameObject decoyShadow = Instantiate(_decoyShadow);
+            decoyShadow.GetComponent<SelfDestroy>().setDecoy(gameObject);
+            Destroy(clones[0]);
+            clones.RemoveAt(0);
+            clones.Add(decoyShadow);
+            decoyShadow.transform.position = currentPos;
+        }
+
+
     }
+
+
 }

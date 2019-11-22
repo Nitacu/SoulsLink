@@ -558,7 +558,7 @@ MonoBehaviour:
   _coolDown: 2
   _damage: 20
   _rootEffectDuration: 3
-  _rootDuration: 1.5
+  _rootDuration: 3.5
   _rootSpawnRate: 0.3
 --- !u!114 &543879863
 MonoBehaviour:

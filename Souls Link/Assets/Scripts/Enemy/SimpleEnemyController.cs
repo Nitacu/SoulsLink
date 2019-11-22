@@ -40,7 +40,15 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void attack(GameObject player)
     {
-        player.GetComponent<PlayerHPControl>().recieveDamage(20, gameObject);
+        if (player.GetComponent<PlayerHPControl>() != null)
+        {
+            player.GetComponent<PlayerHPControl>().recieveDamage(20, gameObject);
+        }
+        else
+        {
+            player.GetComponent<SelfDestroy>().loseHealth(20);
+        }
+
         Anim.Play(Animator.StringToHash("Attack"));
     }
 

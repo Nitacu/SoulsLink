@@ -722,6 +722,7 @@ MonoBehaviour:
   _damage: 20
   _numberOfRings: 1
   _spawnRingRate: 0.8
+  _magmaTimeAlive: 4
 --- !u!114 &1046008368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59df2fc1c4e9552468a31188c0a538dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealth: 200
+  _playerHealth: 400
 --- !u!114 &763165872
 MonoBehaviour:
   m_ObjectHideFlags: 0

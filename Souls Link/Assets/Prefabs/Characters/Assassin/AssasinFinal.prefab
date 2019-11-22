@@ -935,7 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coolDown: 1
-  _stealthTime: 4
+  _stealthTime: 0
   _mistLifeTime: 6
   _mist: {fileID: 6691235259582704694, guid: b637f2ee7f5b32d4db4fb813ddeaf651, type: 3}
   offsetY: -0.2

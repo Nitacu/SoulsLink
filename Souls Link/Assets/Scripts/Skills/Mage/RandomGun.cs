@@ -13,6 +13,9 @@ public class RandomGun : MonoBehaviour
     private PlayerAiming _aiming;
 
     private bool pickedWeapon = false;
+    private bool hasWeapon = false;
+    public bool HasWeapon { get => hasWeapon; set => hasWeapon = value; }
+    private GameObject currentGun;
 
 
     private void Start()
@@ -69,6 +72,9 @@ public class RandomGun : MonoBehaviour
     }
 
     private bool shooting = false;
+
+    
+
     public void startShoot()
     {
         shooting = true;
@@ -104,7 +110,17 @@ public class RandomGun : MonoBehaviour
 
     public void spawnEnergyBalls()
     {
-        GameObject temp = Instantiate(_energyBalls, gameObject.transform);
+        if (!hasWeapon)
+        {
+            currentGun = Instantiate(_energyBalls, gameObject.transform);
+            hasWeapon = true;
+        }
+        else
+        {
+            Destroy(currentGun);
+            currentGun = Instantiate(_energyBalls, gameObject.transform);
+            hasWeapon = true;
+        }
         Invoke("canPickAgain", _coolDown);
     }
 

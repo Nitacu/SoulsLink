@@ -15,6 +15,7 @@ public class DefensiveBallsControl : MonoBehaviour
         contBallNumber++;
         if(contBallNumber >= numberOfBalls)
         {
+            GetComponentInParent<RandomGun>().HasWeapon = false;
             Destroy(gameObject);
         }
         
