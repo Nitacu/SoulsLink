@@ -1,0 +1,33 @@
+{
+    "name": "PlayerInputNitae",
+    "maps": [
+        {
+            "name": "Controls",
+            "id": "b5933768-36b0-4482-8faa-b4b0a2b0d324",
+            "actions": [
+                {
+                    "name": "Move",
+                    "type": "Value",
+                    "id": "be6249af-3c83-49ee-b821-7dfc69562c44",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c426a343-d3c1-40e8-b5cc-5c539bcd25fb",
+                    "path": "<HID:: USB Gamepad          >/stick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
