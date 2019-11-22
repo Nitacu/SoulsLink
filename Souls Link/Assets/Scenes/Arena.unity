@@ -2261,7 +2261,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nonPlayerPrefabs.Array.data[0]
       value: 
-      objectReference: {fileID: 7022923299750757200, guid: 363963fd2150b2149be6a53a25fd936a,
+      objectReference: {fileID: 2889222794902835628, guid: 363963fd2150b2149be6a53a25fd936a,
         type: 3}
     - target: {fileID: 668986245159099744, guid: 7dd9d08dafd23ec419c66e78f2656851,
         type: 3}

@@ -25,6 +25,10 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         {
             GetComponent<BehaviorTree>().enabled = false;
         }
+        else
+        {
+            GetComponent<BehaviorTree>().enabled = true;
+        }
     }
 
     public bool isMine()
