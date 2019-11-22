@@ -11,7 +11,7 @@ public class PlayerAiming : MonoBehaviour
 
     [HideInInspector]
     public Vector2 playerPosition = Vector2.zero;
-    
+
     private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
 
@@ -37,7 +37,7 @@ public class PlayerAiming : MonoBehaviour
 
     private void Start()
     {
-        
+
         if (!_characterMultiplayerController.isMine())
         {
             _crossHair.GetComponent<SpriteRenderer>().enabled = false;
@@ -51,14 +51,17 @@ public class PlayerAiming : MonoBehaviour
 
     private void SetCrossHair()
     {
-        if (gameObject.GetComponent<FusionTrigger>().IsOnFusion)
+        if (gameObject.GetComponent<FusionTrigger>())
         {
-            _crossHair.SetActive(false);
-            return;
+            if (gameObject.GetComponent<FusionTrigger>().IsOnFusion)
+            {
+                _crossHair.SetActive(false);
+                return;
+            }
         }
 
         if (AimDirection.magnitude > 0)
-        {            
+        {
             _crossHair.transform.localPosition = AimDirection * _distance;
             _crossHair.SetActive(true);
         }

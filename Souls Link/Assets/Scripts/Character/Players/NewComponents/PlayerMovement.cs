@@ -44,11 +44,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_fusionTriggerRef.IsOnFusion)
-            moveOnFusion();
+        if (_fusionTriggerRef != null)
+        {
+            if (_fusionTriggerRef.IsOnFusion)
+            {
+                moveOnFusion();
+            }
+            else
+            {
+                move();
+            }
+        }
         else
+        {
             move();
+        }
     }
+
+
 
     private void setAnimation()
     {
