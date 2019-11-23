@@ -67,7 +67,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
         _enemyController.health = health;
-        if (health < 0 && _syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
+        if (health <= 0 && _syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
         {
             _enemyController.StartCoroutine(_enemyController.die());
         }

@@ -21,12 +21,4 @@ public class ControlSpawnEnemys : MonoBehaviour
         }
         */
     }
-
-    public void spawnNewEnemy()
-    {
-        for (int i = 0; i < _spawnPoints.Count; i++)
-        {
-            NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, i);
-        }
-    }
 }

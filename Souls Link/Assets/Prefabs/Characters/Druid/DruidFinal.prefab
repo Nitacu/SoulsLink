@@ -530,6 +530,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _networkID: {fileID: 8945999466565772996}
+  _remoteEventAgent: {fileID: 4550071630333260700}
+  _syncPropertyAgent: {fileID: 4979329638451275245}
 --- !u!114 &8945999466565772996
 MonoBehaviour:
   m_ObjectHideFlags: 0

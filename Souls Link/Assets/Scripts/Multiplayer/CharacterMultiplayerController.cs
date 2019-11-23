@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class CharacterMultiplayerController : MonoBehaviour
 {
     [SerializeField] private NetworkID _networkID;
-    private RemoteEventAgent _remoteEventAgent;
-    private SyncPropertyAgent _syncPropertyAgent;
+    [SerializeField] private RemoteEventAgent _remoteEventAgent;
+    [SerializeField] private SyncPropertyAgent _syncPropertyAgent;
 
     private PlayerMovement _playerMovement;
     private PlayerSkills _playerSkills;
@@ -30,8 +30,6 @@ public class CharacterMultiplayerController : MonoBehaviour
         }
 
         _hPControl = GetComponent<PlayerHPControl>();
-        _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
-        _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSkills = GetComponent<PlayerSkills>();
         _playerAiming = GetComponent<PlayerAiming>();
