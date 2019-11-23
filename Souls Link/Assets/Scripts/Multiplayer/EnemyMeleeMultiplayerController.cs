@@ -11,6 +11,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     private RemoteEventAgent _remoteEventAgent;
     private SyncPropertyAgent _syncPropertyAgent;
     private SimpleEnemyController _enemyController;
+    private ControlSpawnEnemys _controlSpawnEnemys;
     [SerializeField]private SpriteRenderer _spriteRenderer;
 
     private const string ATTACK = "Attack";
@@ -22,6 +23,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
         _enemyController = GetComponent<SimpleEnemyController>();
+        _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
     }
 
     private void Update()
@@ -45,6 +47,11 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     public bool isHost()
     {
         return NetworkClient.Instance.IsHost;
+    }
+
+    public void destroySelf()
+    {
+        NetworkClient.Destroy(gameObject);
     }
 
     #region Flip
@@ -92,7 +99,6 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
         float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
-
         if (version == 0)
         {
             // colocar la vida en el maximo

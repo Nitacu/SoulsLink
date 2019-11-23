@@ -34,7 +34,7 @@ public class SimpleEnemyController : MonoBehaviour
 
         if (isGettingKnocked)
         {
-            _rb.velocity = _knockBackDirection * _force ;
+            _rb.velocity = _knockBackDirection * _force;
         }
     }
 
@@ -101,14 +101,13 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        if (_multiplayerController.isHost())
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
         StopAllCoroutines();
-        if (GetComponent<EnemyMeleeMultiplayerController>().isMine())
+        if (GetComponent<EnemyMeleeMultiplayerController>().isHost())
             _controlSpawnEnemys.spawnRandomEnemy();
     }
 
@@ -198,10 +197,10 @@ public class SimpleEnemyController : MonoBehaviour
     public void getKnocked(float force, float damage, float duration, Vector2 knockBackDirection)
     {
         _force = force;
-        
+
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
         _knockBackDirection = knockBackDirection;
-        isGettingKnocked = true;        
+        isGettingKnocked = true;
         StartCoroutine(stopKnockBack(duration));
     }
 

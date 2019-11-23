@@ -52034,6 +52034,7 @@ MonoBehaviour:
   - {fileID: 1007194136}
   - {fileID: 396646532}
   - {fileID: 180835284}
+  _numberEnemys: 4
 --- !u!1 &1611269192
 GameObject:
   m_ObjectHideFlags: 0
