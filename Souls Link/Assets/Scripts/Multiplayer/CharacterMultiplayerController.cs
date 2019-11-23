@@ -9,6 +9,8 @@ public class CharacterMultiplayerController : MonoBehaviour
     [SerializeField] private NetworkID _networkID;
     [SerializeField] private RemoteEventAgent _remoteEventAgent;
     [SerializeField] private SyncPropertyAgent _syncPropertyAgent;
+    [SerializeField] private GameObject _playerHUD;
+
 
     private PlayerMovement _playerMovement;
     private PlayerSkills _playerSkills;
@@ -28,7 +30,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         if (!isMine())
         {
             Destroy(GetComponent<PlayerInput>());
-            Destroy(GetComponentInChildren<Camera>().gameObject);
+            Destroy(_playerHUD);
         }
 
         _hPControl = GetComponent<PlayerHPControl>();

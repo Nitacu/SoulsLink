@@ -92,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 2140758622555812974}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 7326982879e539c4d9f4ad035e3d0539, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5fa2cc50a0307f4468de0ec486cf5f9f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -533,6 +533,7 @@ MonoBehaviour:
   _networkID: {fileID: 8945999466565772996}
   _remoteEventAgent: {fileID: 4550071630333260700}
   _syncPropertyAgent: {fileID: 4979329638451275245}
+  _playerHUD: {fileID: 5125799139981186}
 --- !u!114 &8945999466565772996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,14 +698,32 @@ MonoBehaviour:
       maxInt: 300
     externalFreeze: 0.2
   syncedAnimator:
-    animator: {fileID: 0}
-    syncParameters: []
-    bandwidth: 0
-    padding: 0
+    animator: {fileID: 3521739264431764226}
+    syncParameters:
+    - enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: isCasting
+      isProperty: 0
+    - enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: Velocity
+      isProperty: 0
+    bandwidth: 3
+    padding: 7
   syncTransFormEnabled: 1
-  syncAnimatorEnabled: 0
+  syncAnimatorEnabled: 1
   syncTransFormFoldout: 1
-  syncAnimatorFoldout: 0
+  syncAnimatorFoldout: 1
   restoreState: 1
 --- !u!114 &4979329638451275245
 MonoBehaviour:
@@ -1072,6 +1091,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c3a04d58d8d6cf4ca21079a9696f62e, type: 3}
+--- !u!1 &5125799139981186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4865761528020584401, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4869690508336722003}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5125799139981187 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4865761528020584400, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,

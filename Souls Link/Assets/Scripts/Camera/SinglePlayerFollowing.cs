@@ -8,9 +8,7 @@ public class SinglePlayerFollowing : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(findPlayersAgain(0));
-
-       
+        StartCoroutine(findPlayersAgain(0));       
     }
 
     IEnumerator findPlayersAgain(float timeToStart)

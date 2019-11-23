@@ -45,24 +45,7 @@ public class HUDController : MonoBehaviour
                 setMultiplayerTextType();
                 isHost = networkInfo.IsHost;
             }
-        }
-
-        /*
-        GameManager.MultiplayerTypeConnection _multiplayerType = GameManager.GetInstace()._multiplayerConnection;
-
-        switch (_multiplayerType)
-        {
-            case GameManager.MultiplayerTypeConnection.HOST:
-                _multiplayerState.text = "Host";
-                break;
-            case GameManager.MultiplayerTypeConnection.INVITED:
-                _multiplayerState.text = "Invited";
-                break;
-            default:
-                _multiplayerState.text = "Host";
-                break;
-        }
-        */
+        }      
     }
 
     private void setMultiplayerTextType()
