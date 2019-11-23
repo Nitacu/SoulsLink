@@ -14,6 +14,9 @@ public class SimpleEnemyController : MonoBehaviour
     private EnemyMeleeMultiplayerController _multiplayerController;
     public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
+    private float _force = 0;
+    private bool isGettingKnocked = false;
+    private Vector2 _knockBackDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +31,11 @@ public class SimpleEnemyController : MonoBehaviour
     void Update()
     {
         Anim.SetBool("Can_Walk", canWalk);
+
+        if (isGettingKnocked)
+        {
+            _rb.velocity = _knockBackDirection * _force ;
+        }
     }
 
     public void changeOrientation(float value)
@@ -187,4 +195,21 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = true;
     }
 
+    public void getKnocked(float force, float damage, float duration, Vector2 knockBackDirection)
+    {
+        _force = force;
+        Debug.Log(force);
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        _knockBackDirection = knockBackDirection;
+        isGettingKnocked = true;        
+        StartCoroutine(stopKnockBack(duration));
+    }
+
+    IEnumerator stopKnockBack(float time)
+    {
+        yield return new WaitForSeconds(time);
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        _rb.velocity = Vector2.zero;
+        isGettingKnocked = false;
+    }
 }

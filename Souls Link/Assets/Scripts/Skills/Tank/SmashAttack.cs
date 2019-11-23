@@ -9,6 +9,8 @@ public class SmashAttack : MonoBehaviour
     [SerializeField] private GameObject _attackPrefab;
     [SerializeField] private float _minForce;
     [SerializeField] private float _maxForce;
+    [SerializeField] private float _damage;
+    public float _knockBackDuration = 1;
     private float forceUsed = 0;
     private GameObject _attackReference;
     private bool isCharging = false;
@@ -18,6 +20,7 @@ public class SmashAttack : MonoBehaviour
     public float maxChargedSeconds = 3;
     private Vector2 attackDirection;
     public float attackDuration = 0.2f;
+    private bool canAttack = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +51,7 @@ public class SmashAttack : MonoBehaviour
     }
 
 
-    private void findForce(float _pressedTime, float _dashDuration)
+    private void findForce(float _pressedTime)
     {
         if (_pressedTime > maxChargedSeconds)
         {
@@ -67,19 +70,27 @@ public class SmashAttack : MonoBehaviour
         if (_coolDownTracker <= 0)
         {
             isCharging = true;
+            canAttack = true;
         }
     }
 
     public void unPressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (canAttack)
         {
-            isCharging = false;
-            captureDirection();
-            _coolDownTracker = _coolDown;
-            _attackReference = Instantiate(_attackPrefab, gameObject.transform);
-            _attackReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
-            StartCoroutine(destroyAttack(attackDuration, _attackReference));
+            if (_coolDownTracker <= 0)
+            {
+                canAttack = false;
+                isCharging = false;
+                chargedTime = 0;
+                captureDirection();
+                findForce(chargedTime);
+                _coolDownTracker = _coolDown;
+                _attackReference = Instantiate(_attackPrefab, gameObject.transform);
+                _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);
+                _attackReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
+                StartCoroutine(destroyAttack(attackDuration, _attackReference));
+            }
         }
 
     }

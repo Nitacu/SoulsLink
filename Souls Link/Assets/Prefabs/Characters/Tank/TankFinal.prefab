@@ -92,7 +92,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1285452567}
-  - component: {fileID: 1285452568}
   - component: {fileID: 1285452569}
   m_Layer: 8
   m_Name: ChargeBar (1)
@@ -115,25 +114,6 @@ Transform:
   m_Father: {fileID: 3730457550004149250}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1285452568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1285452566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45940ff1f8cf1374b8e92be1ff04ff1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Canvas: {fileID: 2010983506}
-  _UIGameObject: {fileID: 1748368925936823850, guid: a5fdd9e146d594d4092c6d62bb5b41ff,
-    type: 3}
-  _camera: {fileID: 0}
-  chargeBar: {fileID: 0}
-  offsetY: 0
-  _dashScript: {fileID: 0}
 --- !u!114 &1285452569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +132,7 @@ MonoBehaviour:
   _camera: {fileID: 1268420331}
   chargeBar: {fileID: 0}
   offsetY: 0
-  _dashScript: {fileID: 0}
+  _dashScript: {fileID: 763165873}
 --- !u!1 &2010983506
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,7 +168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 2.0410001, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 6.537, y: 3.682}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &2010983510
@@ -1030,11 +1010,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPrefab: {fileID: 3400747292364688728, guid: 8cb01d0255d937c4f845d5906ad268b1,
     type: 3}
-  _minForce: 1
-  _maxForce: 3
+  _minForce: 10
+  _maxForce: 20
+  _damage: 15
+  _knockBackDuration: 0.5
   _coolDown: 2
   maxChargedSeconds: 3
-  attackDuration: 0.2
+  attackDuration: 0.1
 --- !u!114 &8436775203454071024
 MonoBehaviour:
   m_ObjectHideFlags: 0
