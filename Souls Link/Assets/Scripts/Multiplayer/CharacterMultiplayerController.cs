@@ -114,7 +114,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else
+        else if(_syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
         {
             _hPControl.StartCoroutine(_hPControl.changeColor());
 

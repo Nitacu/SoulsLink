@@ -19,7 +19,7 @@ public class SimpleEnemyController : MonoBehaviour
     private Vector2 _knockBackDirection;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         Anim = GetComponentInChildren<Animator>();
@@ -28,7 +28,7 @@ public class SimpleEnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         Anim.SetBool("Can_Walk", canWalk);
 
@@ -46,7 +46,7 @@ public class SimpleEnemyController : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().flipX = true;
     }
 
-    public void attack(GameObject player)
+    public virtual void attack(GameObject player)
     {
         //solo el host hace lo del daño 
         if (_multiplayerController.isHost())

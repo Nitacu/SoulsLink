@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SinglePlayerFollowing : MonoBehaviour
 {
-    private GameObject target;
+    [SerializeField]private GameObject target;
 
     private void Start()
     {
