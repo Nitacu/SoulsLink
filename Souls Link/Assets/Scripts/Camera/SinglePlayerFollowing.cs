@@ -29,12 +29,20 @@ public class SinglePlayerFollowing : MonoBehaviour
 
     private void assignTarget(CharacterMultiplayerController[] playerFinded)
     {
+        bool playerFound = false;
+
         foreach (var player in playerFinded)
         {
             if (player.isMine())
             {
                 target = player.gameObject;
+                playerFound = true;
             }
+        }
+
+        if (!playerFound)
+        {
+            StartCoroutine(findPlayersAgain(0.2f));
         }
     }
 
