@@ -1491,10 +1491,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 930049935, guid: ee06c4c547521df4f9e523b0636f57c7, type: 3}
-      propertyPath: _coolDown
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee06c4c547521df4f9e523b0636f57c7, type: 3}
 --- !u!1001 &565396773
@@ -1678,7 +1674,7 @@ PrefabInstance:
     - target: {fileID: 3730457550004149255, guid: 01420e03f911cf9419c5349355aac304,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3730457550004149250, guid: 01420e03f911cf9419c5349355aac304,
         type: 3}
@@ -3051,6 +3047,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AssasinFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226177120453663736, guid: fdd26b943b06e6c4189c13e813fbdc1f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6226177120453663741, guid: fdd26b943b06e6c4189c13e813fbdc1f,
         type: 3}

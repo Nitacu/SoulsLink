@@ -64,7 +64,7 @@ public class ReflectAttack : MonoBehaviour
         if (buttonPressed && !reflecting && _coolDownTracker <= 0)
         {
             reflecting = true;
-            stopMoving();
+            
             _reflectingTimeTracker = _reflectingTime;
 
             //feedback start
@@ -102,7 +102,7 @@ public class ReflectAttack : MonoBehaviour
             {
                 reflecting = false;
                 buttonPressed = false;
-                backToNormal();
+                
                 //feedback end
                 Destroy(_shieldReference);
             }
