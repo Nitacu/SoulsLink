@@ -5,28 +5,29 @@ using SWNetwork;
 
 public class GameSceneManager : MonoBehaviour
 {
-    SceneSpawner spawner;
+    public SceneSpawner spawner;
 
     public void onSpawnerReady(bool alreadyFinishedSceneSetup)
     {
         int characterSelectedIndex = setCharacterToSpawn();
-        
+
         if (!alreadyFinishedSceneSetup)
         {
-            NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0,0,0),Quaternion.identity);
+            NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0, 0, 0), Quaternion.identity);
 
             if (NetworkClient.Instance.IsHost)
             {
-                NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, 0);
+                for (int i = 0; i < spawner.NumberOfSpawnPoints; i++)
+                    NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, i);
             }
-        } 
-        
+        }
+
         NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
     }
 
     private int setCharacterToSpawn()
-    {        
-        GameManager.Characters characterSelected = GameManager.GetInstace()._myCharacter;        
+    {
+        GameManager.Characters characterSelected = GameManager.GetInstace()._myCharacter;
 
         switch (characterSelected)
         {

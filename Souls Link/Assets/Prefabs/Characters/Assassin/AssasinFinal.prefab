@@ -1087,7 +1087,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: SWNetwork.SWSyncedPropertyInitialFetchFinishedEvent, SWNetwork,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  restoreState: 1
+  restoreState: 0
   AutoInitialization: 1
 --- !u!1 &7651098687956668841
 GameObject:

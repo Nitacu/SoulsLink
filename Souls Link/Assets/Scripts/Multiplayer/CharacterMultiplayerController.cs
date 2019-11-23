@@ -43,15 +43,19 @@ public class CharacterMultiplayerController : MonoBehaviour
     #region Vida
     //inicializa la vida
     public void onHealthSyncPropertyReady()
-    {   
-        int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
+    {
         float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
 
-        if (version == 0)
+        if (isMine())
         {
-            // colocar la vida en el maximo
-            _syncPropertyAgent.Modify(HEALTH,_hPControl.PlayerHealth);
-            health = _hPControl.PlayerHealth;
+            int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
+
+            if (version == 0)
+            {
+                // colocar la vida en el maximo
+                _syncPropertyAgent.Modify(HEALTH, _hPControl.PlayerHealth);
+                health = _hPControl.PlayerHealth;
+            }
         }
 
         // carga la vida
@@ -98,11 +102,12 @@ public class CharacterMultiplayerController : MonoBehaviour
 
     #region skills
     //le envia a las otras maquinas los datos para que active las skills
-    public void pushValueSkill(float value, int numberSkill)
+    public void pushValueSkill(float value, float numberSkill)
     {
         SWNetworkMessage message = new SWNetworkMessage();
         message.Push(value);
         message.Push(numberSkill);
+        Debug.Log("valor " + value + " numero de skill "+ numberSkill);
         _remoteEventAgent.Invoke(PLAYER_SKILLS, message);
     }
 
@@ -110,25 +115,27 @@ public class CharacterMultiplayerController : MonoBehaviour
     public void playerOnSkill(SWNetworkMessage message)
     {
         float value = message.PopFloat();
-        int numeberSkill = message.PopInt16();
+        float numeberSkill = message.PopFloat();
+
+        Debug.Log("valor " + value + " numero de skill " + numeberSkill);
 
         if (value == 1)
         {
             switch (numeberSkill)
             {
-                case 0:
+                case 1:
                     _playerSkills.Skill1PressDown1.Invoke();
                     break;
 
-                case 1:
+                case 2:
                     _playerSkills.Skill2PressDown1.Invoke();
                     break;
 
-                case 2:
+                case 3:
                     _playerSkills.Skill3PressDown1.Invoke();
                     break;
 
-                case 3:
+                case 4:
                     _playerSkills.Skill4PressDown1.Invoke();
                     break;
             }
@@ -137,19 +144,19 @@ public class CharacterMultiplayerController : MonoBehaviour
         {
             switch (numeberSkill)
             {
-                case 0:
+                case 1:
                     _playerSkills.Skill1PressUp1.Invoke();
                     break;
 
-                case 1:
+                case 2:
                     _playerSkills.Skill2PressUp1.Invoke();
                     break;
 
-                case 2:
+                case 3:
                     _playerSkills.Skill3PressUp1.Invoke();
                     break;
 
-                case 3:
+                case 4:
                     _playerSkills.Skill4PressUp1.Invoke();
                     break;
             }

@@ -485,7 +485,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: SWNetwork.SWSyncedPropertyInitialFetchFinishedEvent, SWNetwork,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  restoreState: 1
+  restoreState: 0
   AutoInitialization: 1
 --- !u!114 &7622574858527786198
 MonoBehaviour:
