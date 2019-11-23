@@ -6,21 +6,22 @@ using SWNetwork;
 public class GameSceneManager : MonoBehaviour
 {
     SceneSpawner spawner;
+    private GameObject player;
 
     public void onSpawnerReady(bool alreadyFinishedSceneSetup)
     {
         int characterSelectedIndex = setCharacterToSpawn();
-
-        if (!alreadyFinishedSceneSetup)
+        
+        if (player == null)
         {
-            NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0,0,0),Quaternion.identity);              
-        }
+            player = NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0,0,0),Quaternion.identity);
 
-        if (NetworkClient.Instance.IsHost)
-        {
-            GetComponent<ControlSpawnEnemys>().spawnNewEnemy();
-        }
-
+            if (!alreadyFinishedSceneSetup && NetworkClient.Instance.IsHost)
+            {
+                GetComponent<ControlSpawnEnemys>().spawnNewEnemy();
+            }
+        } 
+        
         NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
     }
 

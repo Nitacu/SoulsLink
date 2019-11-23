@@ -45,9 +45,9 @@ public class CharacterMultiplayerController : MonoBehaviour
     #region Vida
     //inicializa la vida
     public void onHealthSyncPropertyReady()
-    {
-        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
+    {   
         int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
+        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
 
         if (version == 0)
         {
