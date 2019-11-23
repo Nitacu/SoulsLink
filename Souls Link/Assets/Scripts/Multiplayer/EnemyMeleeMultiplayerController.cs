@@ -10,13 +10,16 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     [SerializeField] private NetworkID _networkID;
     private RemoteEventAgent _remoteEventAgent;
     private SyncPropertyAgent _syncPropertyAgent;
-    private const string POSITION = "Position";
+    private SimpleEnemyController _enemyController;
+
+    private const string ATTACK = "Attack";
+    private const string HEALTH = "Health";
 
     private void Start()
     {
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
-
+        _enemyController = GetComponent<SimpleEnemyController>();
     }
 
     private void Update()
@@ -33,32 +36,66 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
 
     public bool isMine()
     {
-        if (!_networkID.IsMine)
-        {
-            GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        }
-
         return _networkID.IsMine;
     }
 
-
-    #region movimiento y posicion 
-    public void OnPositionReady()
+    public bool isHost()
     {
-        Debug.Log("OnHPPropertyReady");
+        return NetworkClient.Instance.IsHost;
+    }
 
-        if (isMine())
+    #region Vida
+    //inicializa la vida
+    public void onHealthSyncPropertyReady()
+    {
+        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
+        int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
+
+        if (version == 0)
         {
-            _syncPropertyAgent.Modify(POSITION, transform.position);
+            // colocar la vida en el maximo
+            _syncPropertyAgent.Modify(HEALTH, _enemyController.health);
+            health = _enemyController.health;
         }
 
+        // carga la vida
+        _enemyController.health = health;
     }
 
-    public void OnPositionChanged()
+    //cuando detecta un cambio de vida en el servidor
+    public void onHealthSyncPropertyChanged()
     {
-        // Update the hpSlider when player hp changes
-        transform.position = _syncPropertyAgent.GetPropertyWithName(POSITION).GetVector3Value();
-
+        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
+        _enemyController.health = health;
+        if (health < 0)
+        {
+            _enemyController.StartCoroutine(_enemyController.die());
+        }
+        else
+        {
+            _enemyController.StartCoroutine(_enemyController.changeColor(0.5f));
+        }
     }
+
+    //envia el cambio de vida al servidor
+    public void changeHealth(float health)
+    {
+        _syncPropertyAgent.Modify(HEALTH, health);
+    }
+
     #endregion
+
+    #region Ataque
+    //llama a las demas maquinas lo de atacar
+    public void setAttack()
+    {
+        _remoteEventAgent.Invoke(ATTACK);
+    }
+
+    //recibe la informacion de que esta atacando
+    public void getAttack()
+    {
+        _enemyController.Anim.Play(Animator.StringToHash("Attack"));
+    }
+    #endregion 
 }

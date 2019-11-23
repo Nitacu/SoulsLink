@@ -8,16 +8,17 @@ public class CharacterMultiplayerController : MonoBehaviour
 {
     [SerializeField] private NetworkID _networkID;
     private RemoteEventAgent _remoteEventAgent;
+    private SyncPropertyAgent _syncPropertyAgent;
 
     private PlayerMovement _playerMovement;
     private PlayerSkills _playerSkills;
     private PlayerAiming _playerAiming;
+    private PlayerHPControl _hPControl;
 
     #region Constantes de los nombres de las funciones que se ejecutan en todas las maquinas
-    private const string PLAYER_MOVEMENT = "playerMovement";
     private const string PLAYER_SKILLS = "playerSkills";
     private const string PLAYER_AIMING = "playerAiming";
-    private const string PLAYER_START_POSITION= "loadStarPosition";
+    private const string HEALTH = "Health";
     #endregion
 
 
@@ -28,6 +29,8 @@ public class CharacterMultiplayerController : MonoBehaviour
             Destroy(GetComponent<PlayerInput>());
         }
 
+        _hPControl = GetComponent<PlayerHPControl>();
+        _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSkills = GetComponent<PlayerSkills>();
@@ -38,6 +41,40 @@ public class CharacterMultiplayerController : MonoBehaviour
     {
         return _networkID.IsMine;
     }
+
+    #region Vida
+    //inicializa la vida
+    public void onHealthSyncPropertyReady()
+    {
+        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
+        int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
+
+        if (version == 0)
+        {
+            // colocar la vida en el maximo
+            _syncPropertyAgent.Modify(HEALTH,_hPControl.PlayerHealth);
+            health = _hPControl.PlayerHealth;
+        }
+
+        // carga la vida
+        _hPControl.PlayerHealth = health;
+    }
+
+    //cuando detecta un cambio de vida en el servidor
+    public void onHealthSyncPropertyChanged()
+    {
+        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
+        _hPControl.PlayerHealth = health;
+        _hPControl.StartCoroutine(_hPControl.changeColor());
+    }
+
+    //envia el cambio de vida al servidor
+    public void changeHealth(float health)
+    {
+        _syncPropertyAgent.Modify(HEALTH, health);
+    }
+
+    #endregion
 
     #region apuntar
     public void pushVectorAiming(Vector3 vector)
@@ -114,34 +151,4 @@ public class CharacterMultiplayerController : MonoBehaviour
     }
     #endregion 
 
-    #region movimiento y posicion 
-
-    //envia la posicion actiual del personaje
-    private void pushPosition(Vector3 position)
-    {
-        SWNetworkMessage message = new SWNetworkMessage();
-        message.Push(position);
-        _remoteEventAgent.Invoke(PLAYER_START_POSITION, message);
-    }
-
-    //coloca el personaje en la posicion donde esta cuando entro a la sala
-    public void loadStarPosition(SWNetworkMessage message)
-    {
-        transform.position = message.PopVector3();
-    }
-
-    //llama los metodos necesarios para mover la copia del player en las otras maquinas
-    public void pushVectorMovement(Vector3 vector)
-    {
-        SWNetworkMessage message = new SWNetworkMessage();
-        message.Push(vector);
-        _remoteEventAgent.Invoke(PLAYER_MOVEMENT, message);
-    }
-
-    //Metodo donde llega el vector de movimiento y mueve al player de las otras maquinas
-    public void playerMovement(SWNetworkMessage message)
-    {
-        _playerMovement.InputMovement= message.PopVector3();
-    }
-    #endregion
 }

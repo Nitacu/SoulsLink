@@ -1,18 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SWNetwork;
-
 
 public class SimpleEnemyController : MonoBehaviour
 {
-    public float health = 0;
+    public float health;
     public bool canWalk = true;
     private bool facingLeft = false;
     private Rigidbody2D _rb;
     private bool firstTimePressing = true;
     private bool isGettingDamaged = false;
     private Animator _anim;
+    private EnemyMeleeMultiplayerController _multiplayerController;
     public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
 
@@ -22,6 +21,7 @@ public class SimpleEnemyController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         Anim = GetComponentInChildren<Animator>();
         _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
+        _multiplayerController = GetComponent<EnemyMeleeMultiplayerController>();
     }
 
     // Update is called once per frame
@@ -40,31 +40,39 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void attack(GameObject player)
     {
-        if (player.GetComponent<PlayerHPControl>() != null)
+        //solo el host hace lo del daño 
+        if (_multiplayerController.isHost())
         {
-            player.GetComponent<PlayerHPControl>().recieveDamage(20, gameObject);
-        }
-        else
-        {
-            player.GetComponent<SelfDestroy>().loseHealth(20);
-        }
+            //envia a los demas la informacion para que se vea que ataco
+            _multiplayerController.setAttack();
 
-        Anim.Play(Animator.StringToHash("Attack"));
+            if (player.GetComponent<PlayerHPControl>() != null)
+            {
+                player.GetComponent<PlayerHPControl>().recieveDamage(20, gameObject);
+            }
+            else
+            {
+                player.GetComponent<SelfDestroy>().loseHealth(20);
+            }
+
+            Anim.Play(Animator.StringToHash("Attack"));
+        }
     }
 
     public void recieveDamage(float damage)
     {
-        health -= damage;
-        if (health < 0)
+        if (_multiplayerController.isHost())
         {
-            Anim.Play(Animator.StringToHash("Death"));
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            StartCoroutine(die());
-        }
-        else
-        {
-            GetComponentInChildren<SpriteRenderer>().color = Color.red;
-            Invoke("backToNormal", 0.5f);
+            health -= damage;
+            _multiplayerController.changeHealth(health);
+            if (health < 0)
+            {
+                StartCoroutine(die());
+            }
+            else
+            {
+                StartCoroutine(changeColor(0.5f));
+            }
         }
     }
 
@@ -79,11 +87,14 @@ public class SimpleEnemyController : MonoBehaviour
         StartCoroutine(stopTickDamage(time));
     }
 
-    IEnumerator die()
+    public IEnumerator die()
     {
+        Anim.Play(Animator.StringToHash("Death"));
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        if (_multiplayerController.isHost())
+            Destroy(gameObject);
     }
 
     private void OnDestroy()
@@ -95,24 +106,25 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void recieveTickDamage(float damage, float tickTime)
     {
-
-        if (isGettingDamaged)
+        if (_multiplayerController.isHost())
         {
-            health -= damage;
-            if (health < 0)
+            if (isGettingDamaged)
             {
-                Anim.Play(Animator.StringToHash("Death"));
-                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-                StartCoroutine(die());
+                health -= damage;
+                _multiplayerController.changeHealth(health);
+
+                if (health < 0)
+                {
+                    StartCoroutine(die());
+                }
+                else
+                {
+                    StartCoroutine(recieveTick(damage, tickTime));
+                    StartCoroutine(changeColor(0.5f));
+                }
             }
-            else
-            {
-                StartCoroutine(recieveTick(damage, tickTime));
-                GetComponentInChildren<SpriteRenderer>().color = Color.red;
-                Invoke("backToNormal", tickTime / 2);
-            }
+            Debug.Log(health);
         }
-        Debug.Log(health);
     }
 
     IEnumerator recieveTick(float _damage, float tickTime)
@@ -128,8 +140,10 @@ public class SimpleEnemyController : MonoBehaviour
     }
 
 
-    private void backToNormal()
+    public IEnumerator changeColor(float interval)
     {
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(interval);
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
@@ -152,7 +166,7 @@ public class SimpleEnemyController : MonoBehaviour
     public void GetStunned(float duration)
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-       GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         canWalk = false;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
         Invoke("noMoreHypnotized", duration);
@@ -170,7 +184,7 @@ public class SimpleEnemyController : MonoBehaviour
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        canWalk = true;       
+        canWalk = true;
     }
 
 }

@@ -111,7 +111,6 @@ public class PlayerMovement : MonoBehaviour
             //para mover el player en esta maquina
             InputMovement = context.Get<Vector2>();
             //llama decirle a las otras maquinas que tienen que mover este PJ
-            _characterMultiplayerController.pushVectorMovement(context.Get<Vector2>());
         }
     }
 

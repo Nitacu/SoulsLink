@@ -5,23 +5,34 @@ using UnityEngine;
 public class PlayerHPControl : MonoBehaviour
 {
     [SerializeField] private float _playerHealth;
+    private CharacterMultiplayerController _multiplayerController;
 
     #region PLAYER STATES
-     private bool canRecieveDamage = true;
+    private bool canRecieveDamage = true;
      private bool deflectsDamage = false;
+
+
     #endregion
+
+    private void Start()
+    {
+        _multiplayerController = GetComponent<CharacterMultiplayerController>();
+    }
 
     public void recieveDamage(float damage, GameObject attackingEnemy)
     {
         if (canRecieveDamage)
         {
-            _playerHealth -= damage;
-            if (_playerHealth < 0)
+            PlayerHealth -= damage;
+            //envia la modificacion a todos
+            _multiplayerController.changeHealth(PlayerHealth);
+
+            if (PlayerHealth < 0)
             {
                 Destroy(gameObject);
             }
-            GetComponentInChildren<SpriteRenderer>().color = Color.red;
-            Invoke("backToNormal", 0.5f);
+
+            StartCoroutine(changeColor());
         }
         else
         {
@@ -44,8 +55,13 @@ public class PlayerHPControl : MonoBehaviour
         deflectsDamage = false;
     }
 
-    private void backToNormal()
+    public IEnumerator changeColor()
     {
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.5f);
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
+
+    /// /////////////////////////////////////GET Y SET /////////////////////////////////////
+    public float PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
 }
