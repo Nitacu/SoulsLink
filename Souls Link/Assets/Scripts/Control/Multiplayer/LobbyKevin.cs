@@ -289,7 +289,7 @@ public class LobbyKevin : MonoBehaviour
         if (connected)
         {
             Debug.Log("Connected to room");
-            SceneManager.LoadScene("Test_Kevin");
+            SceneManager.LoadScene("Arena");
         }
         else
         {

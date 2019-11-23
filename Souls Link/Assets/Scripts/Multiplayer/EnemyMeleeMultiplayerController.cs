@@ -11,7 +11,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     private RemoteEventAgent _remoteEventAgent;
     private SyncPropertyAgent _syncPropertyAgent;
     private SimpleEnemyController _enemyController;
-    private SpriteRenderer _spriteRenderer;
+    [SerializeField]private SpriteRenderer _spriteRenderer;
 
     private const string ATTACK = "Attack";
     private const string HEALTH = "Health";
@@ -22,7 +22,6 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
         _enemyController = GetComponent<SimpleEnemyController>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()

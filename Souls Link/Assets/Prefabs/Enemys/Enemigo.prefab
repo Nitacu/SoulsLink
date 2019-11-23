@@ -274,6 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _networkID: {fileID: 2889222794902836080}
+  _spriteRenderer: {fileID: 2889222794902835359}
 --- !u!58 &2889222794902835397
 CircleCollider2D:
   m_ObjectHideFlags: 0
