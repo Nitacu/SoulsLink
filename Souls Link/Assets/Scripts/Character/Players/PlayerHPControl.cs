@@ -9,7 +9,7 @@ public class PlayerHPControl : MonoBehaviour
 
     #region PLAYER STATES
     private bool canRecieveDamage = true;
-     private bool deflectsDamage = false;
+    private bool deflectsDamage = false;
 
 
     #endregion
@@ -31,6 +31,9 @@ public class PlayerHPControl : MonoBehaviour
             {
                 Destroy(gameObject);
             }
+
+            if (GetComponentInChildren<HUDController>())
+                GetComponentInChildren<HUDController>().setHealthBar(PlayerHealth);
 
             StartCoroutine(changeColor());
         }

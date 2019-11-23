@@ -15,6 +15,14 @@ public class GameManager
     //Character Selected in Lobby
     public Characters _myCharacter;
 
+
+    public enum MultiplayerTypeConnection
+    {
+        HOST,
+        INVITED
+    }
+    public MultiplayerTypeConnection _multiplayerConnection;
+
     static GameManager _instace;
     public static GameManager GetInstace()
     {

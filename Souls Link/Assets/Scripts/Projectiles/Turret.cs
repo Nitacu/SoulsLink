@@ -6,6 +6,7 @@ public class Turret : MonoBehaviour
 {
     [SerializeField] private GameObject _target;
     [SerializeField] private GameObject _projectile;
+    [SerializeField] private float _damage = 10;
 
     [SerializeField] private float _fireRate = 1;
     private float _fireRateTracker = 0;
@@ -38,6 +39,7 @@ public class Turret : MonoBehaviour
 
         LinealProjectile projectile = mineStake.GetComponent<LinealProjectile>();
         projectile._projetileOwner = Projectile.ProjectileOwner.ENEMY;
+        projectile.Damage = _damage;
         projectile.setRotation(direction);
         projectile.Velocity = direction;
     }
