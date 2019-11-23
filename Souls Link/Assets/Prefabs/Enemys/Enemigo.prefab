@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dca7b1122c714d248b0d8aba86733fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 150
   canWalk: 1
   _controlSpawnEnemys: {fileID: 0}
 --- !u!114 &2889222794902836083
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  dynamicallySpawned: 0
+  dynamicallySpawned: 1
   fixedNetworkObjectID: 35
   showVisibleGizmo: 1
   Filterable: 0
