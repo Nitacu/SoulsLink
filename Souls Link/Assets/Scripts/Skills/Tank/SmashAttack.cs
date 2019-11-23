@@ -91,7 +91,7 @@ public class SmashAttack : MonoBehaviour
                 _coolDownTracker = _coolDown;
                 _attackReference = Instantiate(_attackPrefab, gameObject.transform);
                 _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);
-                _attackReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
+                _attackReference.transform.localPosition = new Vector2(0, 0);
                 StartCoroutine(destroyAttack(attackDuration, _attackReference));
             }
         }
