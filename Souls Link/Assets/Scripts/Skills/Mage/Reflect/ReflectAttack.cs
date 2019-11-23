@@ -75,6 +75,7 @@ public class ReflectAttack : MonoBehaviour
                     break;
                 case ReflectType.DIRECTION:
                     _shieldReference = Instantiate(_shieldDirectionPrefab, gameObject.transform);
+                    _shieldReference.GetComponent<RotateAroundByAim>().rotateAround(GetComponent<PlayerAiming>().AimDirection);
                     break;
             }
             _coolDownTracker = _coolDown;
@@ -92,7 +93,7 @@ public class ReflectAttack : MonoBehaviour
                         detectProjectilesAround();
                         break;
                     case ReflectType.DIRECTION:
-                        //detectoProjectilesOnDirection();
+                        detectoProjectilesOnDirection();
                         break;
                 }
 
@@ -117,7 +118,7 @@ public class ReflectAttack : MonoBehaviour
 
     private void detectoProjectilesOnDirection()
     {
-        Debug.Log("Direction: " + _aiming.AimDirection * 0.1f);
+        //Debug.Log("Direction: " + _aiming.AimDirection * 0.1f);
         Vector2 offset = (Vector2)transform.position + _aiming.AimDirection * 0.5f;
         RaycastHit2D[] hits = Physics2D.CircleCastAll(offset, 0.3f, _aiming.AimDirection, _coneDetectioneDistance);
 

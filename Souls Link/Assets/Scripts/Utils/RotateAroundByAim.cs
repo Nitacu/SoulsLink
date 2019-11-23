@@ -8,16 +8,12 @@ public class RotateAroundByAim : MonoBehaviour
 
     private void Update()
     {
-        rotateAround();
+        
     }
 
-    private void rotateAround()
+    public void rotateAround(Vector2 direction)
     {
-        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        _aimVector = mousePosition - (Vector2)transform.position;
-        _aimVector.Normalize();
-
-        float rot = Mathf.Atan2(_aimVector.y, _aimVector.x) * Mathf.Rad2Deg;
+        float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         gameObject.transform.rotation = Quaternion.Euler(0,0,rot);
     }
 }

@@ -664,7 +664,7 @@ MonoBehaviour:
     type: 3}
   _reflectingTime: 0.3
   _coolDown: 2
-  _reflectType: 0
+  _reflectType: 1
 --- !u!114 &930049935
 MonoBehaviour:
   m_ObjectHideFlags: 0
