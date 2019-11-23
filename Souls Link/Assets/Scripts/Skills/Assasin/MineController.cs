@@ -37,7 +37,8 @@ public class MineController : MonoBehaviour
 
     public void setBomb(float tornadoLifeTime, float damage, GameObject tornado, float chargePercent)
     {
-        if(chargePercent >= 50)
+        chargePercent = 51;
+        if (chargePercent >= 50)
         {
             magneticField.SetActive(true);
         }
