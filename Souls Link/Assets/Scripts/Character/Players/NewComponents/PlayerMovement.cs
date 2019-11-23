@@ -70,12 +70,15 @@ public class PlayerMovement : MonoBehaviour
         //RotarSprite
         if (_inputMovement.x > 0)
         {
-            _renderer.flipX = false;
+            Renderer.flipX = false;
         }
         else if (_inputMovement.x < 0)
         {
-            _renderer.flipX = true;
+            Renderer.flipX = true;
         }
+
+        if (_characterMultiplayerController.isMine())
+            _characterMultiplayerController.changeFlip(Renderer.flipX);
     }
 
     private void moveOnFusion()
@@ -127,6 +130,7 @@ public class PlayerMovement : MonoBehaviour
 
     /////////////// GET Y SET //////////////////////////////
     public Vector2 InputMovement { get => _inputMovement; set => _inputMovement = value; }
+    public SpriteRenderer Renderer { get => _renderer; set => _renderer = value; }
 }
 
 

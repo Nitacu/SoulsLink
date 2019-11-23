@@ -20,13 +20,7 @@ public class LinealProjectile : Projectile
         get { return _playerReference; }
         set { _playerReference = value; }
     }
-
-    private float _damage;
-    public float Damage
-    {
-        get { return _damage; }
-        set { _damage = value; }
-    }
+    public float Damage { get; set; }
 
 
     private void Update()
@@ -51,7 +45,7 @@ public class LinealProjectile : Projectile
                 if (other.CompareTag("Player") && _projetileOwner != ProjectileOwner.PLAYER)
                 {
                     //Aply Damage
-                    other.GetComponent<PlayerHPControl>().recieveDamage(_damage, gameObject);
+                    other.GetComponent<PlayerHPControl>().recieveDamage(Damage, gameObject);
                     Destroy(gameObject);
                     break;
                 }

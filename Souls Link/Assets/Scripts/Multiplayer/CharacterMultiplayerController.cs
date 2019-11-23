@@ -19,6 +19,7 @@ public class CharacterMultiplayerController : MonoBehaviour
     private const string PLAYER_SKILLS = "playerSkills";
     private const string PLAYER_AIMING = "playerAiming";
     private const string HEALTH = "Health";
+    private const string FLIP = "Flip";
     #endregion
 
 
@@ -39,6 +40,44 @@ public class CharacterMultiplayerController : MonoBehaviour
     {
         return _networkID.IsMine;
     }
+
+    #region Flip
+    //inicializa la vida
+    public void onFlipSyncPropertyReady()
+    {
+        bool flip = _syncPropertyAgent.GetPropertyWithName(FLIP).GetBoolValue();
+
+        if (isMine())
+        {
+            int version = _syncPropertyAgent.GetPropertyWithName(FLIP).version;
+
+            if (version == 0)
+            {
+                // colocar la vida en el maximo
+                _syncPropertyAgent.Modify(FLIP, _playerMovement.Renderer.flipX);
+                flip = _playerMovement.Renderer.flipX;
+            }
+        }
+
+        // carga la vida
+        _playerMovement.Renderer.flipX = flip;
+    }
+
+    //cuando detecta un cambio de vida en el servidor
+    public void onFlipSyncPropertyChanged()
+    {
+        bool flip = _syncPropertyAgent.GetPropertyWithName(FLIP).GetBoolValue();
+
+        _playerMovement.Renderer.flipX = flip;
+    }
+
+    //envia el cambio de vida al servidor
+    public void changeFlip(bool flip)
+    {
+        _syncPropertyAgent.Modify(FLIP, flip);
+    }
+
+    #endregion
 
     #region Vida
     //inicializa la vida

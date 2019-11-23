@@ -11,15 +11,18 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     private RemoteEventAgent _remoteEventAgent;
     private SyncPropertyAgent _syncPropertyAgent;
     private SimpleEnemyController _enemyController;
+    private SpriteRenderer _spriteRenderer;
 
     private const string ATTACK = "Attack";
     private const string HEALTH = "Health";
+    private const string FLIP = "Flip";
 
     private void Start()
     {
         _remoteEventAgent = GetComponent<RemoteEventAgent>();
         _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
         _enemyController = GetComponent<SimpleEnemyController>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -31,6 +34,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         else
         {
             GetComponent<BehaviorTree>().enabled = true;
+            changeFlip(_spriteRenderer.flipX);
         }
     }
 
@@ -43,6 +47,45 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         return NetworkClient.Instance.IsHost;
     }
+
+    #region Flip
+    //inicializa la vida
+    public void onFlipSyncPropertyReady()
+    {
+        bool flip = _syncPropertyAgent.GetPropertyWithName(FLIP).GetBoolValue();
+
+        if (isMine())
+        {
+            int version = _syncPropertyAgent.GetPropertyWithName(FLIP).version;
+
+            if (version == 0)
+            {
+                // colocar la vida en el maximo
+                _syncPropertyAgent.Modify(FLIP, _spriteRenderer.flipX);
+                flip = _spriteRenderer.flipX;
+            }
+        }
+
+        // carga la vida
+        _spriteRenderer.flipX = flip;
+    }
+
+    //cuando detecta un cambio de vida en el servidor
+    public void onFlipSyncPropertyChanged()
+    {
+        bool flip = _syncPropertyAgent.GetPropertyWithName(FLIP).GetBoolValue();
+
+        _spriteRenderer.flipX = flip;
+    }
+
+    //envia el cambio de vida al servidor
+    public void changeFlip(bool flip)
+    {
+        _syncPropertyAgent.Modify(FLIP, flip);
+    }
+
+    #endregion
+
 
     #region Vida
     //inicializa la vida
