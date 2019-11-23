@@ -8,7 +8,11 @@ using SWNetwork;
 
 public class HUDController : MonoBehaviour
 {
+    const string DAMAGE_RECEIVE = "DamageReceived";
+
     [SerializeField] TextMeshProUGUI _multiplayerState;
+
+    [SerializeField] private Animator _receivDamageAnim;
 
     [SerializeField] private Image _healthBar;
 
@@ -90,4 +94,20 @@ public class HUDController : MonoBehaviour
 
         _healthBar.fillAmount = healthFactor;
     }
+
+    public void receiveDamageEffect()
+    {
+        if (_receivDamageAnim != null)
+        {
+            _receivDamageAnim.SetBool(DAMAGE_RECEIVE, true);
+            StartCoroutine(endReceiveDamageEffect());
+            
+        }
+    }
+    IEnumerator endReceiveDamageEffect()
+    {
+        yield return new WaitForEndOfFrame();
+        _receivDamageAnim.SetBool(DAMAGE_RECEIVE, false);
+    }
+
 }

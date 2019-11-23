@@ -61,6 +61,9 @@ public class PlayerHPControl : MonoBehaviour
     public IEnumerator changeColor()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        if (GetComponentInChildren<HUDController>())
+            GetComponentInChildren<HUDController>().receiveDamageEffect();
+
         yield return new WaitForSeconds(0.5f);
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
