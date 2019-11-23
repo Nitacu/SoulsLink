@@ -95,19 +95,19 @@ public class HUDController : MonoBehaviour
         _healthBar.fillAmount = healthFactor;
     }
 
-    public void receiveDamageEffect()
+    public IEnumerator receiveDamageEffect()
     {
         if (_receivDamageAnim != null)
         {
+            Debug.Log("Set Animation on: " + true);
             _receivDamageAnim.SetBool(DAMAGE_RECEIVE, true);
-            StartCoroutine(endReceiveDamageEffect());
-            
+
+            yield return new WaitForSeconds(0.5f);
+
+            Debug.Log("Set Animation on: " + true);
+            _receivDamageAnim.SetBool(DAMAGE_RECEIVE, false);
         }
     }
-    IEnumerator endReceiveDamageEffect()
-    {
-        yield return new WaitForEndOfFrame();
-        _receivDamageAnim.SetBool(DAMAGE_RECEIVE, false);
-    }
+
 
 }

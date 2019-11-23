@@ -35,6 +35,9 @@ public class PlayerHPControl : MonoBehaviour
             if (GetComponentInChildren<HUDController>())
                 GetComponentInChildren<HUDController>().setHealthBar(PlayerHealth);
 
+            if (GetComponentInChildren<HUDController>())
+                StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
+
             StartCoroutine(changeColor());
         }
         else
@@ -61,11 +64,12 @@ public class PlayerHPControl : MonoBehaviour
     public IEnumerator changeColor()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        if (GetComponentInChildren<HUDController>())
-            GetComponentInChildren<HUDController>().receiveDamageEffect();
+        canRecieveDamage = false;
 
         yield return new WaitForSeconds(0.5f);
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        if (GetComponentInChildren<HUDController>())
+        canRecieveDamage = true;
     }
 
     /// /////////////////////////////////////GET Y SET /////////////////////////////////////
