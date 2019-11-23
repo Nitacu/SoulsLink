@@ -117,6 +117,12 @@ public class CharacterMultiplayerController : MonoBehaviour
         else
         {
             _hPControl.StartCoroutine(_hPControl.changeColor());
+
+            if (GetComponentInChildren<HUDController>())
+                GetComponentInChildren<HUDController>().setHealthBar(_hPControl.PlayerHealth);
+
+            if (GetComponentInChildren<HUDController>())
+                StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
         }
     }
 
