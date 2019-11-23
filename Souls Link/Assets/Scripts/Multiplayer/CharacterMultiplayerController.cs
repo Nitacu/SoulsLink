@@ -66,7 +66,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
         _hPControl.PlayerHealth = health;
 
-        if (health <= 0)
+        if (health <= 0 && _syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
         {
             Destroy(gameObject);
         }

@@ -12,11 +12,11 @@ public class GameSceneManager : MonoBehaviour
     {
         int characterSelectedIndex = setCharacterToSpawn();
         
-        if (player == null)
+        if (!alreadyFinishedSceneSetup)
         {
             player = NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0,0,0),Quaternion.identity);
 
-            if (!alreadyFinishedSceneSetup && NetworkClient.Instance.IsHost)
+            if (NetworkClient.Instance.IsHost)
             {
                 GetComponent<ControlSpawnEnemys>().spawnNewEnemy();
             }
