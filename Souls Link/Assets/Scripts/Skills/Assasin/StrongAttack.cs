@@ -52,7 +52,8 @@ public class StrongAttack : MonoBehaviour
             }
             _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
             getDirection();
-            _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction);
+            _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction, GetComponent<Dash>().chargePercent);
+            GetComponent<Dash>().resetCharge();
             StartCoroutine(destroyAttack(_attackReference, _attackTime));
         }
     }

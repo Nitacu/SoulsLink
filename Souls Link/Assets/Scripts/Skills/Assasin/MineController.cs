@@ -30,15 +30,15 @@ public class MineController : MonoBehaviour
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
             collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(false);
             GameObject temp = Instantiate(_tornado, newTornadoPosition, Quaternion.identity);
-            temp.GetComponent<TornadoController>().destroyTornado(_tornadoLifeTime);
+            temp.GetComponent<TornadoController>().destroyTornado(_tornadoLifeTime);           
             Destroy(gameObject);
         }
     }
 
     public void setBomb(float tornadoLifeTime, float damage, GameObject tornado, float chargePercent)
     {
-        chargePercent = 51;
-        if (chargePercent >= 50)
+        
+        if (chargePercent >= 80)
         {
             magneticField.SetActive(true);
         }

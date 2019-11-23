@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class MistAnimations : MonoBehaviour
 {
+    public float _damage = 20;
     private bool isColliding = false;
     private GameObject player;
+    private bool isCharged = false;
 
     public void completeAnimation()
     {
         GetComponent<Animator>().SetBool("CreationCompleted", true);
+    }
+
+    public void setMist(float chargePercent)
+    {
+        if(chargePercent >= 80)
+        {
+            isCharged = true;
+            GetComponent<SpriteRenderer>().color = Color.cyan;
+            Color tmp = GetComponent<SpriteRenderer>().color;
+            tmp.a = 0.45f;
+            GetComponent<SpriteRenderer>().color = tmp;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -30,6 +44,15 @@ public class MistAnimations : MonoBehaviour
             }
         }
         isColliding = true;
+        if (collision.CompareTag("Enemy"))
+        {
+            if (isCharged)
+            {
+                collision.gameObject.GetComponent<SimpleEnemyController>().timeDamage(5);
+                collision.gameObject.GetComponent<SimpleEnemyController>().recieveTickDamage(_damage, 0.8f);
+            }
+        }
+
     }
 
     public void OnTriggerExit2D(Collider2D collision)
@@ -49,6 +72,14 @@ public class MistAnimations : MonoBehaviour
                 collision.gameObject.layer = LayerMask.NameToLayer("Player");
             }
             isColliding = false;
+        }
+
+        if (collision.CompareTag("Enemy"))
+        {
+            if (isCharged)
+            {
+                collision.gameObject.GetComponent<SimpleEnemyController>().stopDamage();
+            }
         }
     }
 

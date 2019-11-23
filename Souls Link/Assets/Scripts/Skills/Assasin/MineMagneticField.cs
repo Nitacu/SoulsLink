@@ -13,7 +13,7 @@ public class MineMagneticField : MonoBehaviour
         if (moveToEnemy)
         {
             //moveTowardsEnemy
-            float step = 5f * Time.deltaTime;
+            float step = 6f * Time.deltaTime;
             transform.parent.position = Vector3.MoveTowards(transform.parent.position, enemy.transform.position, step);
         }
     }

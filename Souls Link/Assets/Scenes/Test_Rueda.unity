@@ -1353,7 +1353,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &519420029
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1675,6 +1675,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TankFinal
       objectReference: {fileID: 0}
+    - target: {fileID: 3730457550004149255, guid: 01420e03f911cf9419c5349355aac304,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3730457550004149250, guid: 01420e03f911cf9419c5349355aac304,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1733,7 +1738,7 @@ PrefabInstance:
     - target: {fileID: 1285452568, guid: 01420e03f911cf9419c5349355aac304, type: 3}
       propertyPath: _camera
       value: 
-      objectReference: {fileID: 1770067923}
+      objectReference: {fileID: 0}
     - target: {fileID: 1285452568, guid: 01420e03f911cf9419c5349355aac304, type: 3}
       propertyPath: _dashScript
       value: 
@@ -3047,20 +3052,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: AssasinFinal
       objectReference: {fileID: 0}
-    - target: {fileID: 6226177120453663736, guid: fdd26b943b06e6c4189c13e813fbdc1f,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6226177120453663741, guid: fdd26b943b06e6c4189c13e813fbdc1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: 6226177120453663741, guid: fdd26b943b06e6c4189c13e813fbdc1f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.59
       objectReference: {fileID: 0}
     - target: {fileID: 6226177120453663741, guid: fdd26b943b06e6c4189c13e813fbdc1f,
         type: 3}
@@ -3121,12 +3121,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb69af598687e148827e0a0623dcb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!20 &1770067923 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 239816832, guid: fdd26b943b06e6c4189c13e813fbdc1f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1770067921}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1915452296
 PrefabInstance:
   m_ObjectHideFlags: 0
