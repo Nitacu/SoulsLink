@@ -1010,12 +1010,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackPrefab: {fileID: 3400747292364688728, guid: 8cb01d0255d937c4f845d5906ad268b1,
     type: 3}
-  _minForce: 10
-  _maxForce: 20
+  _minForce: 7
+  _maxForce: 15
   _damage: 15
   _knockBackDuration: 0.5
   _coolDown: 2
-  maxChargedSeconds: 3
+  maxChargedSeconds: 1.5
   attackDuration: 0.1
 --- !u!114 &8436775203454071024
 MonoBehaviour:

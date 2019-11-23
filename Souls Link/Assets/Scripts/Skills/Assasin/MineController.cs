@@ -7,6 +7,7 @@ public class MineController : MonoBehaviour
     private float _tornadoLifeTime = 0;
     private float _damage = 0;
     private GameObject _tornado;
+    public GameObject magneticField;
     private float offsetY = -0.3f;
 
     // Start is called before the first frame update
@@ -34,8 +35,12 @@ public class MineController : MonoBehaviour
         }
     }
 
-    public void setBomb(float tornadoLifeTime, float damage, GameObject tornado)
+    public void setBomb(float tornadoLifeTime, float damage, GameObject tornado, float chargePercent)
     {
+        if(chargePercent >= 50)
+        {
+            magneticField.SetActive(true);
+        }
         _tornadoLifeTime = tornadoLifeTime;
         _damage = damage;
         _tornado = tornado;

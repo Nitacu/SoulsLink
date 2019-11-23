@@ -21,6 +21,7 @@ public class SmashBar : MonoBehaviour
     {
         chargeBar = Instantiate(_UIGameObject, Canvas.transform);
         _dashScript.setSmashBar(chargeBar);
+        chargeBar.GetComponent<Image>().color = Color.red;
         chargeBar.GetComponent<Image>().fillAmount = 0;
     }
 

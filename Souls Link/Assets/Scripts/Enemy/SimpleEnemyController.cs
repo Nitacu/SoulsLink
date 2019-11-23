@@ -198,7 +198,7 @@ public class SimpleEnemyController : MonoBehaviour
     public void getKnocked(float force, float damage, float duration, Vector2 knockBackDirection)
     {
         _force = force;
-        Debug.Log(force);
+        
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
         _knockBackDirection = knockBackDirection;
         isGettingKnocked = true;        

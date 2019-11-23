@@ -57,11 +57,13 @@ public class SmashAttack : MonoBehaviour
         {
             _pressedTime = maxChargedSeconds;
         }
+
         float pressedTimePercent = (_pressedTime * 100) / maxChargedSeconds;
         float distanceDifference = _maxForce - _minForce;
        
 
         forceUsed = ((pressedTimePercent * distanceDifference) / 100) + _minForce;
+        
        
     }
 
@@ -82,9 +84,10 @@ public class SmashAttack : MonoBehaviour
             {
                 canAttack = false;
                 isCharging = false;
+                findForce(chargedTime);
                 chargedTime = 0;
                 captureDirection();
-                findForce(chargedTime);
+                
                 _coolDownTracker = _coolDown;
                 _attackReference = Instantiate(_attackPrefab, gameObject.transform);
                 _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);
