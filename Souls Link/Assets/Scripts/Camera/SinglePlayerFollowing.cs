@@ -4,15 +4,50 @@ using UnityEngine;
 
 public class SinglePlayerFollowing : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private GameObject target;
+
+    private void Start()
     {
-        
+        StartCoroutine(findPlayersAgain(0));
+
+       
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator findPlayersAgain(float timeToStart)
     {
-        
+        yield return new WaitForSeconds(timeToStart);
+
+        CharacterMultiplayerController[] _players = FindObjectsOfType<CharacterMultiplayerController>();
+
+        if (_players.Length <= 0)
+        {
+            StartCoroutine(findPlayersAgain(0.2f));
+        }
+        else
+        {
+            assignTarget(_players);
+        }
+    }
+
+    private void assignTarget(CharacterMultiplayerController[] playerFinded)
+    {
+        foreach (var player in playerFinded)
+        {
+            if (player.isMine())
+            {
+                target = player.gameObject;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        //Follow Player
+        if (target != null)
+        {
+            Debug.Log("Move Camera");
+            gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, gameObject.transform.position.z);
+        }
+
     }
 }
