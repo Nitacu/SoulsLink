@@ -10,6 +10,7 @@ public class StrongAttack : MonoBehaviour
     [SerializeField] private float _attackTime;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _attackDamage;
+
     private float _coolDownTracker;
     private Vector2 direction;
     
@@ -55,6 +56,8 @@ public class StrongAttack : MonoBehaviour
             StartCoroutine(destroyAttack(_attackReference, _attackTime));
         }
     }
+
+
 
     private void getDirection()
     {       
