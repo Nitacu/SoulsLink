@@ -65,7 +65,15 @@ public class CharacterMultiplayerController : MonoBehaviour
     {
         float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
         _hPControl.PlayerHealth = health;
-        _hPControl.StartCoroutine(_hPControl.changeColor());
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            _hPControl.StartCoroutine(_hPControl.changeColor());
+        }
     }
 
     //envia el cambio de vida al servidor
