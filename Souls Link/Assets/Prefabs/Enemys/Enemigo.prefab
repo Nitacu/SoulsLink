@@ -224,9 +224,9 @@ MonoBehaviour:
   syncedGenerics: []
   syncedTransform:
     interpolate: 20
-    smoothLevel: 100
+    smoothLevel: 2
     snapDistance: 5
-    readFunction: 0
+    readFunction: 1
     bandwidth: 4
     padding: 1
     pos_x_setting:
