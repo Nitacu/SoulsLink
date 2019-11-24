@@ -2860,12 +2860,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b524fa2eb51d264b89fb9723c4886c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   _numberEnemys: 4
+  spawner: {fileID: 0}
 --- !u!114 &1832087599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 668986245159099744, guid: 7dd9d08dafd23ec419c66e78f2656851,
@@ -2910,6 +2906,12 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: SWNetwork.SWRPCEvent, SWNetwork, Version=1.0.0.0, Culture=neutral,
         PublicKeyToken=null
+--- !u!1 &4158939585996270178 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4752920485378827313, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+    type: 3}
+  m_PrefabInstance: {fileID: 8665566128739749459}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5255720744210038871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3089,8 +3091,8 @@ MonoBehaviour:
   health: 0
   canWalk: 1
   _controlSpawnEnemys: {fileID: 0}
-  player: {fileID: 688120569}
-  _projectile: {fileID: 0}
+  _projectile: {fileID: 4158939585996270178}
+  _damage: 20
 --- !u!95 &5255720744210039062
 Animator:
   serializedVersion: 3
@@ -3386,6 +3388,75 @@ MonoBehaviour:
       Version: 1.6.3
   gizmoViewMode: 2
   showBehaviorDesignerGizmo: 1
+--- !u!1001 &8665566128739749459
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4752920485378827313, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_Name
+      value: ImpProjectile
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.026
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.496
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9207692488507630600, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 883d1b47089bb3e4aace5bb6e7dd6412, type: 3}
 --- !u!114 &8849321530831848102
 MonoBehaviour:
   m_ObjectHideFlags: 0

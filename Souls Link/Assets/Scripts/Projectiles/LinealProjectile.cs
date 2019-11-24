@@ -60,7 +60,7 @@ public class LinealProjectile : Projectile
     {
         float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //gameObject.transform.Rotate(0, 0, rot - 90);
-        gameObject.transform.rotation = Quaternion.Euler(0,0,rot-90);
+        gameObject.transform.rotation = Quaternion.Euler(0,0,rot);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

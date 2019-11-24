@@ -221,6 +221,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee06c4c547521df4f9e523b0636f57c7, type: 3}
+--- !u!1 &484493708 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3115771829702683778, guid: ee06c4c547521df4f9e523b0636f57c7,
+    type: 3}
+  m_PrefabInstance: {fileID: 313822325}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &501993193
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,8 +1555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 542934ebd1bcea840b4b39f458a6bbba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 4884090393670523795}
-  _projectile: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
+  _target: {fileID: 484493708}
+  _projectile: {fileID: 4752920485378827313, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
     type: 3}
   _damage: 10
   _fireRate: 1
@@ -3591,6 +3597,7 @@ MonoBehaviour:
   _networkID: {fileID: 9128152406478215134}
   _remoteEventAgent: {fileID: 0}
   _syncPropertyAgent: {fileID: 0}
+  _playerHUD: {fileID: 0}
 --- !u!1 &2251419117346440564
 GameObject:
   m_ObjectHideFlags: 0
@@ -3616,11 +3623,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4336704982300009148}
     m_Modifications:
-    - target: {fileID: 1480738239689671216, guid: 4619785c376fec640b3f7baa58536120,
-        type: 3}
-      propertyPath: m_Name
-      value: ReceiveDamange
-      objectReference: {fileID: 0}
     - target: {fileID: 7863436502849192114, guid: 4619785c376fec640b3f7baa58536120,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3725,6 +3727,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1480738239689671216, guid: 4619785c376fec640b3f7baa58536120,
+        type: 3}
+      propertyPath: m_Name
+      value: ReceiveDamange
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4619785c376fec640b3f7baa58536120, type: 3}
@@ -5662,6 +5669,7 @@ MonoBehaviour:
   _networkID: {fileID: 1609757516371661570}
   _remoteEventAgent: {fileID: 0}
   _syncPropertyAgent: {fileID: 0}
+  _playerHUD: {fileID: 0}
 --- !u!1 &8630043044167451048
 GameObject:
   m_ObjectHideFlags: 0
