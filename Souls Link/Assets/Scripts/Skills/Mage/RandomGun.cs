@@ -5,6 +5,7 @@ using UnityEngine;
 public class RandomGun : MonoBehaviour
 {
     [SerializeField] private GameObject _energyBalls;
+    [SerializeField] private GameObject _machineGun;
     [SerializeField] private GameObject _randomGunPickerPosition;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
@@ -119,6 +120,24 @@ public class RandomGun : MonoBehaviour
         {
             Destroy(currentGun);
             currentGun = Instantiate(_energyBalls, gameObject.transform);
+            hasWeapon = true;
+        }
+        Invoke("canPickAgain", _coolDown);
+    }
+
+    public void spawnMachineGun()
+    {
+        if (!hasWeapon)
+        {
+            currentGun = Instantiate(_machineGun, gameObject.transform);
+            currentGun.GetComponent<MachineGun>().startShooting();
+            hasWeapon = true;
+        }
+        else
+        {
+            Destroy(currentGun);
+            currentGun = Instantiate(_machineGun, gameObject.transform);
+            currentGun.GetComponent<MachineGun>().startShooting();
             hasWeapon = true;
         }
         Invoke("canPickAgain", _coolDown);

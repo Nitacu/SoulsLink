@@ -697,8 +697,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
+  _machineGun: {fileID: 5741372167121810170, guid: e030d90015f8a044c8b3e8ba0df0b7df,
+    type: 3}
   _randomGunPickerPosition: {fileID: 1930448433}
-  _coolDown: 6
+  _coolDown: 5
   _damage: 0
 --- !u!114 &6225481780737515098
 MonoBehaviour:
