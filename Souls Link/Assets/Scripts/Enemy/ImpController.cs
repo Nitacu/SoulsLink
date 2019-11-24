@@ -21,7 +21,7 @@ public class ImpController : SimpleEnemyController
         //GameObject aux = Instantiate(_projectile,transform.position,Quaternion.identity);
 
         angle = Vector2.Angle(transform.position,player.transform.position);
-        Debug.Log(angle);
+        Debug.Log(angle *Mathf.Rad2Deg);
 
         //aux.transform.localEulerAngles = new Vector3(0,0,angle);
 

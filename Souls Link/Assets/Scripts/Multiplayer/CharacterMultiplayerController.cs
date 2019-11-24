@@ -117,7 +117,7 @@ public class CharacterMultiplayerController : MonoBehaviour
 
         if (health <= 0 && _syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
         {
-            Destroy(gameObject);
+            destroySelf();
         }
         else if(_syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
         {

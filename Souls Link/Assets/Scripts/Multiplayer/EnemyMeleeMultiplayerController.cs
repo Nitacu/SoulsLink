@@ -28,7 +28,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!NetworkClient.Instance.IsHost)
+        if (NetworkClient.Instance.IsHost)
         {
             GetComponent<BehaviorTree>().enabled = false;
         }
