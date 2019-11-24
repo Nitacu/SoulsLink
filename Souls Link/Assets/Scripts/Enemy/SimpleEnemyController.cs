@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 public class SimpleEnemyController : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class SimpleEnemyController : MonoBehaviour
     private bool firstTimePressing = true;
     private bool isGettingDamaged = false;
     private Animator _anim;
-    private EnemyMeleeMultiplayerController _multiplayerController;
+    protected EnemyMeleeMultiplayerController _multiplayerController;
     public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
     private float _force = 0;
@@ -44,6 +45,13 @@ public class SimpleEnemyController : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().flipX = false;
         else
             GetComponentInChildren<SpriteRenderer>().flipX = true;
+    }
+
+
+    // no borrar
+    public virtual void createdBullet(Vector2 direction)
+    {
+
     }
 
     public virtual void attack(GameObject player)
@@ -100,6 +108,8 @@ public class SimpleEnemyController : MonoBehaviour
         Anim.Play(Animator.StringToHash("Death"));
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<PolyNavAgent>().enabled = false;
+        GetComponent<BehaviorTree>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         if (_multiplayerController.isMine())
         {
@@ -110,8 +120,6 @@ public class SimpleEnemyController : MonoBehaviour
     private void OnDestroy()
     {
         StopAllCoroutines();
-        if (GetComponent<EnemyMeleeMultiplayerController>().isHost())
-            _controlSpawnEnemys.spawnRandomEnemy();
     }
 
     public void recieveTickDamage(float damage, float tickTime)

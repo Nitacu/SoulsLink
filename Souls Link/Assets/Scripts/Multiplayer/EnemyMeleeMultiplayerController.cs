@@ -12,9 +12,10 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     private SyncPropertyAgent _syncPropertyAgent;
     private SimpleEnemyController _enemyController;
     private ControlSpawnEnemys _controlSpawnEnemys;
-    [SerializeField]private SpriteRenderer _spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private const string ATTACK = "Attack";
+    private const string RANGE_ATTACK = "RangeAttack";
     private const string HEALTH = "Health";
     private const string FLIP = "Flip";
 
@@ -53,7 +54,9 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
 
     public void destroySelf()
     {
+        _controlSpawnEnemys.spawnRandomEnemy();
         NetworkClient.Destroy(gameObject);
+
     }
 
     #region Flip
@@ -141,6 +144,21 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     public void getAttack()
     {
         _enemyController.Anim.Play(Animator.StringToHash("Attack"));
+    }
+
+    //llama a las demas maquinas lo de atacar
+    public void setRangeAttack(Vector2 direction)
+    {
+        SWNetworkMessage message = new SWNetworkMessage();
+        message.Push(direction);
+        _remoteEventAgent.Invoke(RANGE_ATTACK, message);
+    }
+
+    //recibe la informacion de que esta atacando
+    public void getRangeAttack(SWNetworkMessage message)
+    {
+        Vector2 direction = message.PopVector3();
+        _enemyController.createdBullet(direction);
     }
     #endregion 
 }

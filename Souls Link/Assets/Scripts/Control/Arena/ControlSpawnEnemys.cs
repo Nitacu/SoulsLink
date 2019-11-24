@@ -13,12 +13,10 @@ public class ControlSpawnEnemys : MonoBehaviour
     {
         if (NetworkClient.Instance.IsHost)
         {
-            if (_numberEnemys > 0)
-            {
-                int random = Random.Range(0, spawner.NumberOfSpawnPoints);
 
-                NetworkClient.Instance.FindSpawner(1).SpawnForNonPlayer(0, random);
-            }
+            Debug.Log("as");
+            int random = Random.Range(0, spawner.NumberOfSpawnPoints);
+            NetworkClient.Instance.FindSpawner(1).SpawnForNonPlayer(0, random);
         }
 
     }
@@ -29,9 +27,11 @@ public class ControlSpawnEnemys : MonoBehaviour
         {
             for (int i = 0; i < spawner.NumberOfSpawnPoints; i++)
             {
-                _numberEnemys--;
+                NumberEnemys--;
                 NetworkClient.Instance.FindSpawner(1).SpawnForNonPlayer(0, i);
             }
         }
     }
+
+    public int NumberEnemys { get => _numberEnemys; set => _numberEnemys = value; }
 }

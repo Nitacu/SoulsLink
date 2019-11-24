@@ -37,7 +37,7 @@ public class WithinSight : Conditional
         
         if (_player != null)
         {
-            if (!Physics2D.Raycast(_thisCharacter.Value.position, (_player.position - _thisCharacter.Value.position), 5, _layerWalls))
+            if (!Physics2D.Raycast(_thisCharacter.Value.position, (_player.position - _thisCharacter.Value.position), _radio, _layerWalls))
             {
                 target.Value = _player.transform;
                 return true;
