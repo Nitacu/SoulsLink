@@ -107,6 +107,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _duration: 4
   bulletDamage: 20
-  _fireRate: 0.1
+  _fireRate: 0.2
   stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
     type: 3}
