@@ -27,9 +27,9 @@ public class PlayerHPControl : MonoBehaviour
             //envia la modificacion a todos
             _multiplayerController.changeHealth(PlayerHealth);
 
-            if (PlayerHealth < 0)
+            if (PlayerHealth < 0 && _multiplayerController.isMine())
             {
-                Destroy(gameObject);
+                _multiplayerController.destroySelf();
             }
 
             if (GetComponentInChildren<HUDController>())

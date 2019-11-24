@@ -5,21 +5,33 @@ using SWNetwork;
 
 public class ControlSpawnEnemys : MonoBehaviour
 {
-    [SerializeField] List<Transform> _spawnPoints = new List<Transform>();
     private float _lifeEnemys = 150;
-    [SerializeField] private float _numberEnemys = 4;
+    [SerializeField] private int _numberEnemys = 4;
+    public SceneSpawner spawner;
 
     public void spawnRandomEnemy()
     {
         if (NetworkClient.Instance.IsHost)
         {
-            if (FindObjectsOfType<EnemyMeleeMultiplayerController>().Length < _numberEnemys)
+            if (_numberEnemys > 0)
             {
-                int random = Random.Range(0, _spawnPoints.Count);
+                int random = Random.Range(0, spawner.NumberOfSpawnPoints);
 
-                NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, random);
+                NetworkClient.Instance.FindSpawner(1).SpawnForNonPlayer(0, random);
             }
         }
 
+    }
+
+    public void onSpawnerReady(bool alreadyFinishedSceneSetup)
+    {
+        if (NetworkClient.Instance.IsHost)
+        {
+            for (int i = 0; i < spawner.NumberOfSpawnPoints; i++)
+            {
+                _numberEnemys--;
+                NetworkClient.Instance.FindSpawner(1).SpawnForNonPlayer(0, i);
+            }
+        }
     }
 }

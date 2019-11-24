@@ -101,7 +101,10 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        Destroy(gameObject);
+        if (_multiplayerController.isMine())
+        {
+            _multiplayerController.destroySelf();
+        }
     }
 
     private void OnDestroy()

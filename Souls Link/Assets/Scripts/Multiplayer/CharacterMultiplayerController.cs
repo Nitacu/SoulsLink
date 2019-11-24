@@ -44,6 +44,11 @@ public class CharacterMultiplayerController : MonoBehaviour
         return _networkID.IsMine;
     }
 
+    public void destroySelf()
+    {
+        NetworkClient.Destroy(gameObject);
+    }
+
     #region Flip
     //inicializa la vida
     public void onFlipSyncPropertyReady()

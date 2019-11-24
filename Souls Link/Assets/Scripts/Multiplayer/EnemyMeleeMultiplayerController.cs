@@ -98,16 +98,11 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     public void onHealthSyncPropertyReady()
     {
         int version = _syncPropertyAgent.GetPropertyWithName(HEALTH).version;
-        float health = _syncPropertyAgent.GetPropertyWithName(HEALTH).GetFloatValue();
         if (version == 0)
         {
             // colocar la vida en el maximo
             _syncPropertyAgent.Modify(HEALTH, _enemyController.health);
-            health = _enemyController.health;
         }
-
-        // carga la vida
-        _enemyController.health = health;
     }
 
     //cuando detecta un cambio de vida en el servidor

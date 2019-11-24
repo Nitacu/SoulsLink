@@ -13,13 +13,7 @@ public class GameSceneManager : MonoBehaviour
 
         if (!alreadyFinishedSceneSetup)
         {
-            NetworkClient.Instance.LastSpawner.SpawnForPlayer(characterSelectedIndex, new Vector3(0, 0, 0), Quaternion.identity);
-
-            if (NetworkClient.Instance.IsHost)
-            {
-                for (int i = 0; i < spawner.NumberOfSpawnPoints; i++)
-                    NetworkClient.Instance.LastSpawner.SpawnForNonPlayer(0, i);
-            }
+            NetworkClient.Instance.FindSpawner(2).SpawnForPlayer(characterSelectedIndex, characterSelectedIndex);
         }
 
         NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
