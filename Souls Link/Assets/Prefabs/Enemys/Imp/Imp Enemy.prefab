@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _map: {fileID: 0}
-  maxSpeed: 5
+  maxSpeed: 4
   mass: 20
   stoppingDistance: 0.1
   slowingDistance: 1
@@ -327,7 +327,7 @@ MonoBehaviour:
   syncedTransform:
     interpolate: 20
     smoothLevel: 2
-    snapDistance: 2
+    snapDistance: 5
     readFunction: 1
     bandwidth: 4
     padding: 1

@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b524fa2eb51d264b89fb9723c4886c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberEnemys: 4
+  _numberEnemys: 6
   spawner: {fileID: 512843056}
 --- !u!114 &512843056
 MonoBehaviour:
@@ -1140,6 +1140,7 @@ MonoBehaviour:
   playerPrefabs: []
   nonPlayerPrefabs:
   - {fileID: 4458730500604363250, guid: 23759186d7faa7e44913b96d2571233e, type: 3}
+  - {fileID: 9036395065842063911, guid: 0bf22b42fb0cc034bbd920cddcdc7005, type: 3}
   spawnPoints:
   - {fileID: 1249499736}
   - {fileID: 1007194136}
