@@ -518,7 +518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
     type: 3}
-  _coolDown: 0
+  _coolDown: 1
   _damage: 30
   canShoot: 1
 --- !u!114 &8133908661185029464
@@ -664,7 +664,7 @@ MonoBehaviour:
     type: 3}
   _reflectingTime: 0.3
   _coolDown: 2
-  _reflectType: 0
+  _reflectType: 1
 --- !u!114 &930049935
 MonoBehaviour:
   m_ObjectHideFlags: 0
