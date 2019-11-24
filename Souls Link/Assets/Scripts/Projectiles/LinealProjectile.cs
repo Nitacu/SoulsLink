@@ -34,7 +34,7 @@ public class LinealProjectile : Projectile
 
         foreach (var hit in hits)
         {
-            
+
             GameObject other = hit.collider.gameObject;
             if (other != Player)
             {
@@ -54,7 +54,7 @@ public class LinealProjectile : Projectile
         }
 
         transform.position = newPos;
-        
+
     }
 
 
@@ -92,8 +92,15 @@ public class LinealProjectile : Projectile
         {
             //Aply Damage
             Debug.Log("Aply Damage");
+            if (collision.GetComponent<PlayerHPControl>())
+            {
+                collision.GetComponent<PlayerHPControl>().recieveDamage(Damage, gameObject);
+            }
+            else if (collision.GetComponent<SelfDestroy>())
+            {
+                collision.GetComponent<SelfDestroy>().loseHealth(20);
+            }
 
-            collision.GetComponent<PlayerHPControl>().recieveDamage(Damage, gameObject);
             Destroy(gameObject);
         }
     }

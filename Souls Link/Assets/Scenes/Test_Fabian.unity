@@ -219,6 +219,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 930049934, guid: ee06c4c547521df4f9e523b0636f57c7, type: 3}
+      propertyPath: _reflectType
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee06c4c547521df4f9e523b0636f57c7, type: 3}
 --- !u!1 &484493708 stripped
@@ -1671,6 +1675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
+  _machineGun: {fileID: 0}
   _randomGunPickerPosition: {fileID: 1647476220}
   _coolDown: 6
   _damage: 0
@@ -5185,6 +5190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
+  _machineGun: {fileID: 0}
   _randomGunPickerPosition: {fileID: 7564560485835192608}
   _coolDown: 6
   _damage: 0
