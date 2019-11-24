@@ -30,11 +30,11 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         if (NetworkClient.Instance.IsHost)
         {
-            GetComponent<BehaviorTree>().enabled = false;
+            GetComponent<BehaviorTree>().enabled = true;
         }
         else
         {
-            GetComponent<BehaviorTree>().enabled = true;
+            GetComponent<BehaviorTree>().enabled = false;
             changeFlip(_spriteRenderer.flipX);
         }
     }
