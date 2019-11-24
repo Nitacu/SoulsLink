@@ -56,6 +56,10 @@ public class SinglePlayerFollowing : MonoBehaviour
             Debug.Log("Move Camera");
             gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, gameObject.transform.position.z);
         }
+        else
+        {
+            StartCoroutine(findPlayersAgain(0));
+        }
 
     }
 }
