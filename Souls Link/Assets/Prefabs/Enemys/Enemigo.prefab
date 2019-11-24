@@ -66,8 +66,8 @@ MonoBehaviour:
   rotateTransform: 0
   rotateSpeed: 350
   repath: 1
-  restrict: 1
-  closerPointOnInvalid: 1
+  restrict: 0
+  closerPointOnInvalid: 0
   debugPath: 1
 --- !u!114 &4108111505099805789
 MonoBehaviour:

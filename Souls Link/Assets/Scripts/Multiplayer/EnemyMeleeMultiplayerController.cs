@@ -30,10 +30,12 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         if (NetworkClient.Instance.IsHost)
         {
+            GetComponent<PolyNavAgent>().enabled = true;
             GetComponent<BehaviorTree>().enabled = true;
         }
         else
         {
+            GetComponent<PolyNavAgent>().enabled = false;
             GetComponent<BehaviorTree>().enabled = false;
             changeFlip(_spriteRenderer.flipX);
         }
