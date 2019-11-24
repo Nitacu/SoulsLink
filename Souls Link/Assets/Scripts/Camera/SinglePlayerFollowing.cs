@@ -37,11 +37,13 @@ public class SinglePlayerFollowing : MonoBehaviour
             {
                 target = player.gameObject;
                 playerFound = true;
+                Debug.Log("Player found: " + target.name);
             }
         }
 
         if (!playerFound)
         {
+            Debug.Log("Player not found - Try Again");
             StartCoroutine(findPlayersAgain(0.2f));
         }
     }
