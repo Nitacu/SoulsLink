@@ -38,7 +38,8 @@ public class ReflectAttack : MonoBehaviour
 
     public void pressKey()
     {
-        buttonPressed = true;
+        if(_coolDownTracker <= 0)
+            buttonPressed = true;
     }
 
     private void stopMoving()
