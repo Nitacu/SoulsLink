@@ -115,6 +115,10 @@ public class SimpleEnemyController : MonoBehaviour
         {
             _multiplayerController.destroySelf();
         }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

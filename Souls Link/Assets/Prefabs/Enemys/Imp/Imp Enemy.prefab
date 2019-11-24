@@ -546,7 +546,7 @@ MonoBehaviour:
   remoteEvents_:
   - eventName: RangeAttack
     Foldout: 1
-    target: 0
+    target: 1
     remoteEvent:
       m_PersistentCalls:
         m_Calls:

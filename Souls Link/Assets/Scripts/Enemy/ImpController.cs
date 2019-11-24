@@ -13,8 +13,8 @@ public class ImpController : SimpleEnemyController
         {
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
-
             _multiplayerController.setRangeAttack(direction);
+            createdBullet(direction);
         }
     }
 
