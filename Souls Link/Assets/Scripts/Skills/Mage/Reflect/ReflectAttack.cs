@@ -135,6 +135,7 @@ public class ReflectAttack : MonoBehaviour
                     if (!projectile.Reflected)
                     {
                         projectile.reflectMySelf();
+                        projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
                     }
                 }
             }
@@ -158,6 +159,7 @@ public class ReflectAttack : MonoBehaviour
                     if (!projectile.Reflected)
                     {
                         projectile.reflectMySelf();
+                        projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
                     }
                 }
             }

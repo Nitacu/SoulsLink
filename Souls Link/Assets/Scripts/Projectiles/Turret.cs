@@ -25,9 +25,7 @@ public class Turret : MonoBehaviour
             shotProjectileToTarget();
             _fireRateTracker = 0;
         }
-
     }
-
 
     private void shotProjectileToTarget()
     {

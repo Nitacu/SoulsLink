@@ -34,6 +34,7 @@ public class LinealProjectile : Projectile
 
         foreach (var hit in hits)
         {
+            
             GameObject other = hit.collider.gameObject;
             if (other != Player)
             {
@@ -52,7 +53,8 @@ public class LinealProjectile : Projectile
             }
         }
 
-        transform.position = newPos;        
+        transform.position = newPos;
+        
     }
 
 
@@ -60,17 +62,7 @@ public class LinealProjectile : Projectile
     {
         float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         //gameObject.transform.Rotate(0, 0, rot - 90);
-        gameObject.transform.rotation = Quaternion.Euler(0,0,rot);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Collision with: " + collision.gameObject.name);
-
-        if (collision.gameObject.tag == "Wall")
-        {
-            Destroy(gameObject);
-        }
+        gameObject.transform.rotation = Quaternion.Euler(0, 0, rot);
     }
 
     public override void reflectMySelf()
@@ -82,5 +74,27 @@ public class LinealProjectile : Projectile
         newDirection.Normalize();
         _velocity = newDirection;
         setRotation(newDirection);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.CompareTag("Enemy") && _projetileOwner != ProjectileOwner.ENEMY)
+        {
+            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+            Destroy(gameObject);
+        }
+        if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+        if (collision.CompareTag("Player") && _projetileOwner != ProjectileOwner.PLAYER)
+        {
+            //Aply Damage
+            Debug.Log("Aply Damage");
+
+            collision.GetComponent<PlayerHPControl>().recieveDamage(Damage, gameObject);
+            Destroy(gameObject);
+        }
     }
 }
