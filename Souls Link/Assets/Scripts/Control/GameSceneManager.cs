@@ -27,19 +27,14 @@ public class GameSceneManager : MonoBehaviour
         {
             case GameManager.Characters.TANK:
                 return 0;
-                break;
             case GameManager.Characters.MAGE:
                 return 1;
-                break;
             case GameManager.Characters.DRUID:
                 return 2;
-                break;
             case GameManager.Characters.ASSASIN:
                 return 3;
-                break;
             default:
                 return 0;
-                break;
         }
     }
 }

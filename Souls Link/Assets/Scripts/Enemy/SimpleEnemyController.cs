@@ -13,11 +13,14 @@ public class SimpleEnemyController : MonoBehaviour
     private bool isGettingDamaged = false;
     private Animator _anim;
     protected EnemyMeleeMultiplayerController _multiplayerController;
+    private PolyNavAgent _poly;
     public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
     private float _force = 0;
     private bool isGettingKnocked = false;
     private Vector2 _knockBackDirection;
+    [SerializeField] private Transform _positionAttack;
+    public bool _flip = false;
 
     // Start is called before the first frame update
     public void Start()
@@ -26,6 +29,7 @@ public class SimpleEnemyController : MonoBehaviour
         Anim = GetComponentInChildren<Animator>();
         _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
         _multiplayerController = GetComponent<EnemyMeleeMultiplayerController>();
+        _poly = GetComponent<PolyNavAgent>();
     }
 
     // Update is called once per frame
@@ -37,14 +41,32 @@ public class SimpleEnemyController : MonoBehaviour
         {
             _rb.velocity = _knockBackDirection * _force;
         }
+
+        if (_flip)
+        {
+            _anim.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            _anim.transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (_poly.enabled)
+        {
+            changeOrientation(_poly.velocity.x);
+        }
     }
 
     public void changeOrientation(float value)
     {
         if (value > 0)
-            GetComponentInChildren<SpriteRenderer>().flipX = false;
+        {
+            _flip = false;
+        }
         else
-            GetComponentInChildren<SpriteRenderer>().flipX = true;
+        {
+            _flip = true;
+        }
     }
 
 
@@ -61,17 +83,32 @@ public class SimpleEnemyController : MonoBehaviour
         {
             //envia a los demas la informacion para que se vea que ataco
             _multiplayerController.setAttack();
-
-            if (player.GetComponent<PlayerHPControl>() != null)
-            {
-                player.GetComponent<PlayerHPControl>().recieveDamage(20, gameObject);
-            }
-            else
-            {
-                player.GetComponent<SelfDestroy>().loseHealth(20);
-            }
-
+            exeAttack();
             Anim.Play(Animator.StringToHash("Attack"));
+        }
+    }
+
+    public void exeAttack()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_positionAttack.position, new Vector2(0.9785732f, 2.59f), 0);
+
+        if (colliders.Length > 0)
+        {
+            foreach (var col in colliders)
+            {
+                if (col.CompareTag("Player"))
+                {
+                    if (col.GetComponent<PlayerHPControl>() != null)
+                    {
+                        col.GetComponent<PlayerHPControl>().recieveDamage(20, gameObject);
+                    }
+                    else
+                    {
+                        col.GetComponent<SelfDestroy>().loseHealth(20);
+                    }
+
+                }
+            }
         }
     }
 
@@ -153,6 +190,17 @@ public class SimpleEnemyController : MonoBehaviour
     {
         Invoke("stopDamage", time);
     }
+    private void changeRedToWhiteColor(float time)
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        Invoke("changeToWhite", time);
+    }
+
+    private void changeToWhite()
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+    }
+
 
     IEnumerator recieveTick(float _damage, float tickTime)
     {
@@ -164,17 +212,6 @@ public class SimpleEnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         stopDamage();
-    }
-
-    private void changeRedToWhiteColor(float time)
-    {
-        GetComponentInChildren<SpriteRenderer>().color = Color.red;
-        Invoke("changeToWhite", time);
-    }
-
-    private void changeToWhite()
-    {
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
 
@@ -242,4 +279,5 @@ public class SimpleEnemyController : MonoBehaviour
         _rb.velocity = Vector2.zero;
         isGettingKnocked = false;
     }
+
 }

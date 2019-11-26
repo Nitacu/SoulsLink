@@ -22,9 +22,7 @@ public class PatrolMovement : Action
         agent.OnDestinationInvalid += MoveRandom;
 
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-
-        GetComponent<PolyNavAgent>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
         Debug.Log("Enemigo On Start");
 

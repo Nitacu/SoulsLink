@@ -13,15 +13,7 @@ public class MeleeAttack : Action
     {
         if (target.Value != null)
         {
-            Collider2D[] col = Physics2D.OverlapCircleAll(_thisCharacter.Value.position, 0.75f);
-
-            foreach (Collider2D obj in col)
-            {
-                if (obj.gameObject == target.Value.gameObject)
-                {
-                    GetComponent<SimpleEnemyController>().attack(target.Value.gameObject);
-                }
-            }
+            GetComponent<SimpleEnemyController>().attack(target.Value.gameObject);
         }
 
         return TaskStatus.Success;

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 [AddComponentMenu("Navigation/PolyNavAgent")]
 ///Place this on a game object to find it's path
 public class PolyNavAgent : MonoBehaviour{
-
+    
 	///The target PolyNav2D map this agent is assigned to.
 	[SerializeField]
 	private PolyNav2D _map			 = null;
@@ -57,7 +57,7 @@ public class PolyNavAgent : MonoBehaviour{
 	private event System.Action<bool> reachedCallback;
 
 
-	private Vector2 velocity          = Vector2.zero;
+	public Vector2 velocity          = Vector2.zero;
 	private float maxForce            = 100;
 	private int requests              = 0;
 	private List<Vector2> _activePath = new List<Vector2>();
@@ -229,7 +229,7 @@ public class PolyNavAgent : MonoBehaviour{
 			OnNavigationStarted();
 		}
 	}
-
+    
 	//main loop
 	void LateUpdate(){
 
@@ -270,7 +270,7 @@ public class PolyNavAgent : MonoBehaviour{
 		//move the agent
 		position += velocity * Time.deltaTime;
         _anim.SetFloat("Velocity", Math.Abs(velocity.x));
-        if (velocity.x > 0) { GetComponentInChildren<SpriteRenderer>().flipX = false; } else { GetComponentInChildren<SpriteRenderer>().flipX = true; } 
+        
         //restrict just after movement
         Restrict();
 

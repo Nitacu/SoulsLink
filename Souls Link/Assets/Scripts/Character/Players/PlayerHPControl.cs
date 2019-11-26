@@ -21,30 +21,33 @@ public class PlayerHPControl : MonoBehaviour
 
     public void recieveDamage(float damage, GameObject attackingEnemy)
     {
-        if (canRecieveDamage)
+        if (_multiplayerController.isMine())
         {
-            PlayerHealth -= damage;
-            //envia la modificacion a todos
-            _multiplayerController.changeHealth(PlayerHealth);
-
-            if (PlayerHealth < 0 && _multiplayerController.isMine())
+            if (canRecieveDamage)
             {
-                _multiplayerController.destroySelf();
+                PlayerHealth -= damage;
+                //envia la modificacion a todos
+                _multiplayerController.changeHealth(PlayerHealth);
+
+                if (PlayerHealth < 0 && _multiplayerController.isMine())
+                {
+                    _multiplayerController.destroySelf();
+                }
+
+                if (GetComponentInChildren<HUDController>())
+                    GetComponentInChildren<HUDController>().setHealthBar(PlayerHealth);
+
+                if (GetComponentInChildren<HUDController>())
+                    StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
+
+                StartCoroutine(changeColor());
             }
-
-            if (GetComponentInChildren<HUDController>())
-                GetComponentInChildren<HUDController>().setHealthBar(PlayerHealth);
-
-            if (GetComponentInChildren<HUDController>())
-                StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
-
-            StartCoroutine(changeColor());
-        }
-        else
-        {
-            if (deflectsDamage)
+            else
             {
-                attackingEnemy.GetComponent<SimpleEnemyController>().recieveDamage(damage);
+                if (deflectsDamage)
+                {
+                    attackingEnemy.GetComponent<SimpleEnemyController>().recieveDamage(damage);
+                }
             }
         }
     }

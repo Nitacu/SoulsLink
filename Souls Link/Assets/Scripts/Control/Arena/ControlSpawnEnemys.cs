@@ -5,7 +5,6 @@ using SWNetwork;
 
 public class ControlSpawnEnemys : MonoBehaviour
 {
-    private float _lifeEnemys = 150;
     [SerializeField] private int _numberEnemys = 6;
     public SceneSpawner spawner;
 
@@ -24,7 +23,7 @@ public class ControlSpawnEnemys : MonoBehaviour
     {
         if (NetworkClient.Instance.IsHost)
         {
-            for (int i = 0; i < spawner.NumberOfSpawnPoints; i++)
+            for (int i = 0; i < _numberEnemys; i++)
             {
                 int random = Random.Range(0, spawner.NumberOfNonPlayerPrefabs);
                 NetworkClient.Instance.FindSpawner(1).SpawnForNonPlayer(random, i);

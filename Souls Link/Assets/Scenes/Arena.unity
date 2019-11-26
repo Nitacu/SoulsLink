@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &155817877
 GameObject:
@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 155817877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.86, y: 1.66, z: 0}
+  m_LocalPosition: {x: 6.99, y: 4.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 662924240}
@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &325576051
 GameObject:
@@ -772,7 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &395704464
 GameObject:
@@ -991,7 +991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &467526120
 GameObject:
@@ -1123,7 +1123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b524fa2eb51d264b89fb9723c4886c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberEnemys: 6
+  _numberEnemys: 4
   spawner: {fileID: 512843056}
 --- !u!114 &512843056
 MonoBehaviour:
@@ -1139,8 +1139,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs: []
   nonPlayerPrefabs:
+  - {fileID: 6948308493364157619, guid: 0bf22b42fb0cc034bbd920cddcdc7005, type: 3}
   - {fileID: 4458730500604363250, guid: 23759186d7faa7e44913b96d2571233e, type: 3}
-  - {fileID: 9036395065842063911, guid: 0bf22b42fb0cc034bbd920cddcdc7005, type: 3}
   spawnPoints:
   - {fileID: 1249499736}
   - {fileID: 1007194136}
@@ -1405,7 +1405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &662924236
 GameObject:
@@ -1916,7 +1916,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 808676528}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.77, y: -1.81, z: 0}
+  m_LocalPosition: {x: -7.32, y: -5.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 662924240}
@@ -2217,7 +2217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &989379989
 GameObject:
@@ -2324,7 +2324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997997060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.68, y: 1.66, z: 0}
+  m_LocalPosition: {x: -7.36, y: 4.32, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 662924240}
@@ -2547,7 +2547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1148415173
 GameObject:
@@ -2703,6 +2703,89 @@ Transform:
   m_Children: []
   m_Father: {fileID: 512843054}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1348087265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1348087268}
+  - component: {fileID: 1348087267}
+  - component: {fileID: 1348087266}
+  m_Layer: 0
+  m_Name: Camera (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!81 &1348087266
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348087265}
+  m_Enabled: 1
+--- !u!20 &1348087267
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348087265}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 11.9
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &1348087268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348087265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.91}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1381945164
 GameObject:
@@ -2887,7 +2970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1386521700
 GameObject:
@@ -2995,7 +3078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1397536234
 GameObject:
@@ -3331,7 +3414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1506301368
 GameObject:
@@ -52184,7 +52267,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1629403586
 GameObject:
@@ -52373,7 +52456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1697030773
 GameObject:
@@ -52480,7 +52563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822761076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.86, y: -1.66, z: 0}
+  m_LocalPosition: {x: 6.78, y: -5.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 662924240}
@@ -52673,7 +52756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1955598989
 GameObject:
@@ -52943,7 +53026,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shapeType: 1
-  extraOffset: 0.2
+  extraOffset: 0.3
   invertPolygon: 0
 --- !u!1 &1994081632
 GameObject:

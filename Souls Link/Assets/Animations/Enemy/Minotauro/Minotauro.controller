@@ -42,7 +42,7 @@ AnimatorStateMachine:
     m_Position: {x: 286.97723, y: 115.12033, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2362452781859061006}
-    m_Position: {x: 130, y: -40, z: 0}
+    m_Position: {x: 110, y: -40, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7318626614765911843}
     m_Position: {x: 290, y: -90, z: 0}
@@ -151,13 +151,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Can_Walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

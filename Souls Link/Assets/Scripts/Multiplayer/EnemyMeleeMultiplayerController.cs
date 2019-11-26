@@ -38,7 +38,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         {
             GetComponent<PolyNavAgent>().enabled = false;
             GetComponent<BehaviorTree>().enabled = false;
-            changeFlip(_spriteRenderer.flipX);
+            //changeFlip(_spriteRenderer.flipX);
         }
     }
 
@@ -143,6 +143,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     //recibe la informacion de que esta atacando
     public void getAttack()
     {
+        _enemyController.exeAttack();
         _enemyController.Anim.Play(Animator.StringToHash("Attack"));
     }
 

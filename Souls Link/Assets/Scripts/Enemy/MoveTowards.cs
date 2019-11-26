@@ -25,14 +25,16 @@ public class MoveTowards : Action
         if (inRange())
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             return TaskStatus.Success;
         }
         else
         {
             // We haven't reached the target yet so keep moving towards it
-            direction = target.Value.position - _thisCharacter.Value.position;
+            GetComponent<PolyNavAgent>().enabled = false;
+            direction = target.Value.position - transform.position;
             direction.Normalize();
+            Debug.Log("Direcion de movimiento " + direction);
             GetComponent<Rigidbody2D>().velocity = direction * speed;
             GetComponent<SimpleEnemyController>().changeOrientation(direction.x);
         }

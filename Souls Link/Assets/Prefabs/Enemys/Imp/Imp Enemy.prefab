@@ -113,8 +113,8 @@ GameObject:
   - component: {fileID: 4458730500604363538}
   - component: {fileID: 4458730500604363539}
   - component: {fileID: 4458730500604362882}
-  - component: {fileID: 4458730500604363565}
   - component: {fileID: 4458730500604363248}
+  - component: {fileID: 4458730500604363565}
   - component: {fileID: 4458730500604362907}
   - component: {fileID: 4458730500604363566}
   - component: {fileID: 4458730500604363261}
@@ -170,6 +170,7 @@ MonoBehaviour:
   restrict: 1
   closerPointOnInvalid: 1
   debugPath: 1
+  velocity: {x: 0, y: 0}
 --- !u!114 &4458730500604363539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,20 +245,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4458730500604363565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4458730500604363250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f88644e254983943b64d0edf4308717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _networkID: {fileID: 4458730500604363566}
-  _spriteRenderer: {fileID: 4458730500604362945}
 --- !u!114 &4458730500604363248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,9 +260,25 @@ MonoBehaviour:
   health: 60
   canWalk: 1
   _controlSpawnEnemys: {fileID: 0}
+  _positionAttack: {fileID: 0}
+  _flip: 0
   _projectile: {fileID: 4752920485378827313, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
     type: 3}
   _damage: 20
+--- !u!114 &4458730500604363565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4458730500604363250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f88644e254983943b64d0edf4308717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkID: {fileID: 4458730500604363566}
+  _spriteRenderer: {fileID: 4458730500604362945}
 --- !u!58 &4458730500604362907
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -323,14 +326,53 @@ MonoBehaviour:
   m_Script: {fileID: -1480947390, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncedGenerics: []
+  syncedGenerics:
+  - syncTarget: {fileID: 4458730500604363248}
+    enabled: 1
+    foldout: 1
+    bandwidth: 1
+    padding: 7
+    editorName: Generic
+    uncompressedSyncFields: []
+    syncFields:
+    - enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: canWalk
+      isProperty: 0
+    - enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: _flip
+      isProperty: 0
+    - enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 0
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: health
+      isProperty: 0
+    syncVector2Fields: []
+    syncVector3Fields: []
+    syncQuaternionFields: []
+    syncVector4Fields: []
   syncedTransform:
     interpolate: 20
     smoothLevel: 2
-    snapDistance: 5
+    snapDistance: 3
     readFunction: 1
-    bandwidth: 4
-    padding: 1
+    bandwidth: 5
+    padding: 7
     pos_x_setting:
       enabled: 1
       min: -22
@@ -380,10 +422,10 @@ MonoBehaviour:
       minInt: -300
       maxInt: 300
     scale_x_setting:
-      enabled: 0
-      min: -300
-      max: 300
-      resolution: 3
+      enabled: 1
+      min: -1
+      max: 1
+      resolution: 1
       valueType: 0
       minInt: -300
       maxInt: 300
@@ -431,7 +473,7 @@ MonoBehaviour:
   syncAnimatorEnabled: 1
   syncTransFormFoldout: 1
   syncAnimatorFoldout: 1
-  restoreState: 1
+  restoreState: 0
 --- !u!114 &1143807532540707596
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,48 +518,6 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 4458730500604363565}
           m_MethodName: onHealthSyncPropertyReady
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: SWNetwork.SWSyncedPropertyInitialFetchFinishedEvent, SWNetwork,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - Foldout: 1
-    name: Flip
-    type: 0
-    conflictResolution: 0
-    data: 
-    onValueChange:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4458730500604363565}
-          m_MethodName: onFlipSyncPropertyChanged
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: SWNetwork.SWSyncedPropertyValueChangeEvent, SWNetwork, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onConflict:
-      m_PersistentCalls:
-        m_Calls: []
-      m_TypeName: SWNetwork.SWSyncedPropertyConflictEvent, SWNetwork, Version=1.0.0.0,
-        Culture=neutral, PublicKeyToken=null
-    onReady:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 4458730500604363565}
-          m_MethodName: onFlipSyncPropertyReady
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
