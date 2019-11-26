@@ -28,16 +28,16 @@ public class PlayerSkills : MonoBehaviour
 
     IEnumerator skillDelay(float value, UnityEvent _eventDown, UnityEvent _eventUp, float index)
     {
-        yield return new WaitForSeconds(DELAY);
-        
+
         if (_characterMultiplayerController.isMine())
         {
             _characterMultiplayerController.pushValueSkill(value, index);
 
+            yield return new WaitForSeconds(DELAY);
+
             if (value == 1)//Pressed
             {
                 if (_eventDown != null) _eventDown.Invoke();
-
             }
             else if (value == 0)//Released
             {
@@ -60,7 +60,7 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] UnityEvent Skill2PressUp = new UnityEvent();
     private void OnSkill2(InputValue value)
     {
-        StartCoroutine(skillDelay(value.Get<float>(), Skill2PressDown, Skill2PressUp, 2));        
+        StartCoroutine(skillDelay(value.Get<float>(), Skill2PressDown, Skill2PressUp, 2));
     }
 
     [Header("Skill 3")]

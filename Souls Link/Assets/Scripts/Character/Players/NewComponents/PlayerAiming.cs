@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerAiming : MonoBehaviour
 {
+    const float DELAY = 0.05f;
+
     [SerializeField] private GameObject _crossHair;
     [SerializeField] private float _distance = 2;
     [SerializeField] private float _offsetY = 0.358f;
@@ -79,13 +81,33 @@ public class PlayerAiming : MonoBehaviour
         {
             if (context.Get<Vector2>() != Vector2.zero)
             {
+
+                Vector2 newAimAux = context.Get<Vector2>();
+                newAimAux.Normalize();
+
+                StartCoroutine(setDirectionDelay(newAimAux));
+
+                /*
                 //_aimDirection = value;
+
                 AimDirection = context.Get<Vector2>();
                 AimDirection.Normalize();
+
                 //le envia a los otras maquinas a donde apunta este personaje
+                
                 _characterMultiplayerController.pushVectorAiming(AimDirection);
+                */
             }
         }
+    }
+
+    IEnumerator setDirectionDelay(Vector2 _aim)
+    {
+        _characterMultiplayerController.pushVectorAiming(_aim);
+
+        yield return new WaitForSeconds(DELAY);
+
+        AimDirection = _aim;
     }
 
     //enables

@@ -73,6 +73,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7891341-a472-478c-8172-b1fa94cba998"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -332,11 +340,55 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""552a267a-a177-4c5e-88be-04049372da8c"",
-                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Joystick Generic"",
                     ""action"": ""Fusion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""586fcac0-d3cf-4268-bdf0-b67ffa123420"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Fusion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d44406cd-a1fd-4a87-858e-5588424387fb"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac41e5f5-eb86-463d-b192-ea86dd850ea2"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""08d1177d-9fe9-49f2-99ae-1dbd30daf95a"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Dash"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -519,6 +571,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Skill4 = m_PlayerControls.FindAction("Skill4", throwIfNotFound: true);
         m_PlayerControls_Join = m_PlayerControls.FindAction("Join", throwIfNotFound: true);
         m_PlayerControls_Fusion = m_PlayerControls.FindAction("Fusion", throwIfNotFound: true);
+        m_PlayerControls_Dash = m_PlayerControls.FindAction("Dash", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_SelectRight = m_UI.FindAction("SelectRight", throwIfNotFound: true);
@@ -580,6 +633,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Skill4;
     private readonly InputAction m_PlayerControls_Join;
     private readonly InputAction m_PlayerControls_Fusion;
+    private readonly InputAction m_PlayerControls_Dash;
     public struct PlayerControlsActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -591,6 +645,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Skill4 => m_Wrapper.m_PlayerControls_Skill4;
         public InputAction @Join => m_Wrapper.m_PlayerControls_Join;
         public InputAction @Fusion => m_Wrapper.m_PlayerControls_Fusion;
+        public InputAction @Dash => m_Wrapper.m_PlayerControls_Dash;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -621,6 +676,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Fusion.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFusion;
                 @Fusion.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFusion;
                 @Fusion.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnFusion;
+                @Dash.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -646,6 +704,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @Fusion.started += instance.OnFusion;
                 @Fusion.performed += instance.OnFusion;
                 @Fusion.canceled += instance.OnFusion;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -735,6 +796,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnSkill4(InputAction.CallbackContext context);
         void OnJoin(InputAction.CallbackContext context);
         void OnFusion(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

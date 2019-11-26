@@ -50,16 +50,11 @@ public class PlayerMovement : MonoBehaviour
             if (_fusionTriggerRef.IsOnFusion)
             {
                 moveOnFusion();
-            }
-            else
-            {
-                move();
+                return;
             }
         }
-        else
-        {
-            move();
-        }
+
+        move();
     }
 
 
