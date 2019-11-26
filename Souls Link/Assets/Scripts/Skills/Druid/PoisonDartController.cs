@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StakeControl : MonoBehaviour
+public class PoisonDartController : MonoBehaviour
 {
     private float _damage = 0;
-   
-    public void setStake(float damage)
+
+    public void setDart(float damage)
     {
         _damage = damage;
     }
@@ -15,7 +15,9 @@ public class StakeControl : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+            collision.gameObject.GetComponent<SimpleEnemyController>().timeDamage(3);
+            collision.gameObject.GetComponent<SimpleEnemyController>().recieveTickDamage(_damage, 0.5f);         
+            
             Destroy(gameObject);
         }
     }

@@ -69,8 +69,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7426400159412822394, guid: 36ba02c288748db458d3c9fce90e5b0d,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: d6442c00ae1ee5147b0943be384bf623, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -91,12 +90,12 @@ GameObject:
   m_Component:
   - component: {fileID: 2140888088771834679}
   - component: {fileID: 6018324513651983999}
-  - component: {fileID: 681600754382964692}
   - component: {fileID: 8683517893223259654}
   - component: {fileID: 4915156337154946165}
-  - component: {fileID: 5517563887240400349}
+  - component: {fileID: 4696909280625159838}
+  - component: {fileID: 2456007949508081418}
   m_Layer: 9
-  m_Name: IceStake
+  m_Name: PoisonDart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 2560435101665407758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3701478066939516612}
   m_Father: {fileID: 0}
@@ -155,8 +154,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 6243134394356835381, guid: 8dd6d358bff88d54d8150e812ed0efa9,
-    type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,25 +162,9 @@ SpriteRenderer:
   m_Size: {x: 2.51, y: 4.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &681600754382964692
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2560435101665407758}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0682636, y: -0.0105020795}
-  m_Size: {x: 0.660901, y: 0.34058785}
-  m_Direction: 1
 --- !u!114 &8683517893223259654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +191,35 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5517563887240400349
+--- !u!60 &4696909280625159838
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2560435101665407758}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.23029086, y: 0.2474423}
+      - {x: -0.24701911, y: -0.25796378}
+      - {x: 0.23550981, y: 0.008816391}
+--- !u!114 &2456007949508081418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -218,6 +228,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2560435101665407758}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c3df835aa5429c459155a61410f72bb, type: 3}
+  m_Script: {fileID: 11500000, guid: 46076708df6f5164491874e1610971a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

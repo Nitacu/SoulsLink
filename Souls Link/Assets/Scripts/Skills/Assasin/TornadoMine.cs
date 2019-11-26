@@ -40,8 +40,7 @@ public class TornadoMine : MonoBehaviour
             _coolDownTracker = _coolDown;
             Vector3 newBombPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             GameObject temp = Instantiate(_bomb, newBombPosition, Quaternion.identity);
-            temp.GetComponent<MineController>().setBomb(_tornadoLifeTime, _tornadoDamage, _tornado, GetComponent<Dash>().chargePercent);
-            GetComponent<Dash>().resetCharge();
+            temp.GetComponent<MineController>().setBomb(_tornadoLifeTime, _tornadoDamage, _tornado, GetComponent<Dash>().chargePercent, gameObject);
             StartCoroutine(destroyBomb(temp, _bombLifeTime));
         }
     }

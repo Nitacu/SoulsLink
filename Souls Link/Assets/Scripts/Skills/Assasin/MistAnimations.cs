@@ -8,21 +8,23 @@ public class MistAnimations : MonoBehaviour
     private bool isColliding = false;
     private GameObject player;
     private bool isCharged = false;
+    private float electricCost = 45;
 
     public void completeAnimation()
     {
         GetComponent<Animator>().SetBool("CreationCompleted", true);
     }
 
-    public void setMist(float chargePercent)
+    public void setMist(float chargePercent, GameObject playerReference)
     {
-        if(chargePercent >= 80)
+        if(chargePercent >= electricCost)
         {
             isCharged = true;
             GetComponent<SpriteRenderer>().color = Color.cyan;
             Color tmp = GetComponent<SpriteRenderer>().color;
             tmp.a = 0.45f;
             GetComponent<SpriteRenderer>().color = tmp;
+            playerReference.GetComponent<Dash>().consumeChargeBar(electricCost);
         }
     }
 

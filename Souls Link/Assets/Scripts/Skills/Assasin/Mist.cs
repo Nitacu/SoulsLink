@@ -51,8 +51,8 @@ public class Mist : MonoBehaviour
             _coolDownTracker = _coolDown;
             Vector3 newMistPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             GameObject temp = Instantiate(_mist, newMistPosition, Quaternion.identity);
-            temp.GetComponent<MistAnimations>().setMist(GetComponent<Dash>().chargePercent);
-            GetComponent<Dash>().resetCharge();
+            temp.GetComponent<MistAnimations>().setMist(GetComponent<Dash>().chargePercent, gameObject);
+            
             StartCoroutine(destroyMist(temp, _mistLifeTime));
         }
     }

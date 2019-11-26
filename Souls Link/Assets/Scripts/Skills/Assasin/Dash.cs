@@ -44,6 +44,7 @@ public class Dash : MonoBehaviour
     private bool hasCharged = false;
     [HideInInspector]
     public float chargePercent = 0;
+    private float electricCost = 20;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +57,7 @@ public class Dash : MonoBehaviour
         _coolDownTracker = _coolDown;
         durationTracker = dashDuration;
         _aiming = GetComponent<PlayerAiming>();
-        
+
     }
 
     public void setChargeBar(GameObject _chargeBar)
@@ -86,7 +87,7 @@ public class Dash : MonoBehaviour
     }
 
     public void playerDash(Vector2 direction)
-    {           
+    {
         _rb.velocity = dashDirection * dashSpeed;
         GetComponent<PlayerMovement>().enabled = true;
         //Debug.Log(direction);
@@ -98,7 +99,23 @@ public class Dash : MonoBehaviour
         {
             chargedTime = maxChargedSeconds;
         }
+        if (chargedTime <= 0)
+        {
+            chargedTime = 0;
+        }
         chargeBar.GetComponent<Image>().fillAmount = ((100 * chargedTime) / maxChargedSeconds) / 100;
+    }
+
+    public void consumeChargeBar(float percent)
+    {
+        float numberToDiscount = (percent * maxChargedSeconds) / 100;
+
+        chargedTime = chargedTime - numberToDiscount;
+        chargePercent = chargePercent - percent;
+        chargeBarControl();
+
+        getChargePercent(chargedTime);
+
     }
 
     private void captureDirection()
@@ -127,7 +144,7 @@ public class Dash : MonoBehaviour
         }
         if (_coolDownTracker <= 0)
         {
-            dashCheck();
+
         }
     }
 
@@ -142,64 +159,36 @@ public class Dash : MonoBehaviour
             _dashCollider.SetActive(true);
             if (durationTracker <= 0)
             {
+                //Dash is over
                 isDashing = false;
+                isCharging = false;
+                canDash = false;
                 dashEffect.SetActive(false);
-                chargedTime = 0;
-                currentDashes = 0;
                 durationTracker = dashDuration;
                 _coolDownTracker = _coolDown;
-                resetCharge();
+                
                 GetComponent<PlayerMovement>().isDashing = false;
             }
             else
             {
+                //Dashing
                 durationTracker -= Time.deltaTime;
                 GetComponent<PlayerMovement>().isDashing = true;
-               
+
             }
         }
     }
 
-    private void dashCheck()
-    {
-        if (!isDashing)
-        {
-            _dashCollider.SetActive(false);
-        }
-        else
-        {
-            _dashCollider.SetActive(true);
-            if (durationTracker <= 0)
-            {
-                isDashing = false;
-                
-                durationTracker = dashDuration;
-                currentDashes = 0;
-                _coolDownTracker = _coolDown;
-                GetComponent<PlayerMovement>().isDashing = false;
-            }
-            else
-            {
-                durationTracker -= Time.deltaTime;
-                GetComponent<PlayerMovement>().isDashing = true;
-                /*if (Input.GetKeyDown(_inputAttack) && currentDashes < maxDashes && canMultiDash)
-                {
-                    currentDashes++;
-                    durationTracker = dashDuration;
-                    captureDirection();
-                    GetComponent<PlayerMove>().IsDashing = false;
-                }*/
-            }
-        }
-    }
 
     private void findDashSpeed(float _pressedTime, float _dashDuration)
     {
         if (_pressedTime > maxChargedSeconds)
         {
             _pressedTime = maxChargedSeconds;
-            
+
         }
+
+        _pressedTime = maxChargedSeconds;
 
 
         float pressedTimePercent = (_pressedTime * 100) / maxChargedSeconds;
@@ -211,7 +200,48 @@ public class Dash : MonoBehaviour
         dashSpeed = ((pressedTimePercent * distanceDifference) / 100) + minDashSpeed;
     }
 
-   
+    public void newPressKey()
+    {
+        if (_coolDownTracker <= 0)
+        {
+            canDash = true;
+
+            if (!isDashing && !hasCharged) //If hasnt charged and is not dashing, start charging
+            {
+                isCharging = true;
+            }
+
+            if (hasCharged) //if has charge check chargePercent to see if he can dash
+            {
+                if (chargePercent >= electricCost)
+                {
+                    //dash
+                    consumeChargeBar(electricCost);
+                    isCharging = false;
+                    hasCharged = false;
+                    dashEffect.SetActive(true);
+                    captureDirection();
+                    findDashSpeed(chargedTime, dashDuration);
+                    isDashing = true;
+                }
+                else
+                {
+                    isCharging = true;
+                    hasCharged = false;
+                }
+            }
+        }
+    }
+
+    public void newUnpress()
+    {
+        if (!hasCharged)
+        {
+            isCharging = false;
+            getChargePercent(chargedTime);
+            hasCharged = true;
+        }
+    }
 
     public void pressKey()
     {
@@ -219,30 +249,9 @@ public class Dash : MonoBehaviour
         if (_coolDownTracker <= 0)
         {
             canDash = true;
-            if (!chargedDash)
+            if (chargedDash)
             {
-                //simple
-                if (!isDashing)
-                {
-                    captureDirection();
-                    currentDashes = 0;
-                    isDashing = true;
-                   
-                }
-                else
-                {
-                    if (durationTracker > 0 && currentDashes < maxDashes && canMultiDash)
-                    {
-                        currentDashes++;
-                        durationTracker = dashDuration;
-                        captureDirection();
-                        GetComponent<PlayerMovement>().isDashing = false;
-                    }
-                }
-            }
-            else
-            {
-                if (!isDashing && hasCharged)
+                if (!isDashing && hasCharged && chargePercent >= electricCost)
                 {
                     isCharging = false;
                     hasCharged = false;
@@ -257,7 +266,7 @@ public class Dash : MonoBehaviour
                     isCharging = true;
                 }
                 else
-                {                   
+                {
                     if (durationTracker > 0 && currentDashes < maxDashes && canMultiDash)
                     {
                         captureDirection();
@@ -286,7 +295,6 @@ public class Dash : MonoBehaviour
                         getChargePercent(chargedTime);
                         hasCharged = true;
                     }
-                    
                 }
             }
         }
@@ -305,9 +313,10 @@ public class Dash : MonoBehaviour
     public void resetCharge()
     {
         isCharging = false;
-        hasCharged = false;
         canDash = false;
+        hasCharged = false;
         chargedTime = 0;
         chargePercent = 0;
+
     }
 }

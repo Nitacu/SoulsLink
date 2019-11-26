@@ -142,11 +142,16 @@ public class SimpleEnemyController : MonoBehaviour
                 else
                 {
                     StartCoroutine(recieveTick(damage, tickTime));
-                    StartCoroutine(changeColor(0.5f));
+                    changeRedToWhiteColor(0.3f);
                 }
             }
             Debug.Log(health);
         }
+    }
+
+    public void stopPoison(float time)
+    {
+        Invoke("stopDamage", time);
     }
 
     IEnumerator recieveTick(float _damage, float tickTime)
@@ -159,6 +164,17 @@ public class SimpleEnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         stopDamage();
+    }
+
+    private void changeRedToWhiteColor(float time)
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        Invoke("changeToWhite", time);
+    }
+
+    private void changeToWhite()
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
 

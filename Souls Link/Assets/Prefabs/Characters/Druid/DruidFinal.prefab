@@ -119,13 +119,13 @@ GameObject:
   - component: {fileID: 543879862}
   - component: {fileID: 543879863}
   - component: {fileID: 543879864}
-  - component: {fileID: 1212854204}
   - component: {fileID: 638625345572385673}
   - component: {fileID: 2084733530544857130}
   - component: {fileID: 8945999466565772996}
   - component: {fileID: 4550071630333260700}
   - component: {fileID: 7718030360473016951}
   - component: {fileID: 4979329638451275245}
+  - component: {fileID: 1230959870}
   m_Layer: 8
   m_Name: DruidFinal
   m_TagString: Player
@@ -398,8 +398,8 @@ MonoBehaviour:
   Skill4PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1212854204}
-        m_MethodName: hypnotize
+      - m_Target: {fileID: 1230959870}
+        m_MethodName: shootPosionDart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -486,25 +486,6 @@ MonoBehaviour:
     type: 3}
   _coolDown: 5
   wallDuration: 5
---- !u!114 &1212854204
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4705385350353087113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 948bc18d49474b54da0bf8a4fa2e6ddb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hypnosisPrefab: {fileID: 4650659342928750992, guid: 34fa0851d96537f4eafa08ec1dd36160,
-    type: 3}
-  _hypnosisFlashTime: 0.2
-  _coolDown: 5
-  _attackDamage: 0
-  _hypnosisDuration: 2.5
-  stillAttackOption: 1
 --- !u!114 &638625345572385673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +805,23 @@ MonoBehaviour:
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   restoreState: 0
   AutoInitialization: 1
+--- !u!114 &1230959870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705385350353087113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a616dcf2c1cd849bf7b5c213519005, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poisonDartPrefab: {fileID: 2560435101665407758, guid: 2d21b0fcbe41e194ea9fc0b7af2f4cba,
+    type: 3}
+  _coolDown: 0.5
+  _damagePerTick: 10
+  canShoot: 1
 --- !u!1 &6058020209759171419
 GameObject:
   m_ObjectHideFlags: 0
@@ -1063,31 +1061,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865761527713309155, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865761527713309155, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865761527713309155, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865761527713309155, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4865761527713309155, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c3a04d58d8d6cf4ca21079a9696f62e, type: 3}
