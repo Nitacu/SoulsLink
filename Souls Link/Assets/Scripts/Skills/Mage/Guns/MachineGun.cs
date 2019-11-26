@@ -49,8 +49,9 @@ public class MachineGun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         float rot = Mathf.Atan2(GetComponentInParent<PlayerAiming>().AimDirection.y, GetComponentInParent<PlayerAiming>().AimDirection.x) * Mathf.Rad2Deg;
-        if(Mathf.Sign(GetComponentInParent<PlayerAiming>().AimDirection.x) < 0)
+        if (Mathf.Sign(GetComponentInParent<PlayerAiming>().AimDirection.x) < 0)
         {
             GetComponent<SpriteRenderer>().flipY = true;
         }

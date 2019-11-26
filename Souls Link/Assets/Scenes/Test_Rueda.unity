@@ -1431,11 +1431,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
-    - target: {fileID: 3115771829702683778, guid: ee06c4c547521df4f9e523b0636f57c7,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3115771829702683783, guid: ee06c4c547521df4f9e523b0636f57c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1504,6 +1499,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DruidFinal
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705385350353087113, guid: c6b20397bf6e46d42b8e01fb1d60374e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
         type: 3}
@@ -1876,6 +1876,8 @@ MonoBehaviour:
   health: 300
   canWalk: 0
   _controlSpawnEnemys: {fileID: 0}
+  _positionAttack: {fileID: 0}
+  _flip: 0
 --- !u!61 &823093209
 BoxCollider2D:
   m_ObjectHideFlags: 0

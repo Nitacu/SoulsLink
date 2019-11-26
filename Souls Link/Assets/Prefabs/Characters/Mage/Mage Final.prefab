@@ -699,6 +699,8 @@ MonoBehaviour:
     type: 3}
   _machineGun: {fileID: 5741372167121810170, guid: e030d90015f8a044c8b3e8ba0df0b7df,
     type: 3}
+  _dualGuns: {fileID: 6759147795795087079, guid: a12d6476dbd5137458fa20c7009550ce,
+    type: 3}
   _randomGunPickerPosition: {fileID: 1930448433}
   _coolDown: 5
   _damage: 0

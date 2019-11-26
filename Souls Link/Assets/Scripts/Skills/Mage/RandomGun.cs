@@ -6,6 +6,7 @@ public class RandomGun : MonoBehaviour
 {
     [SerializeField] private GameObject _energyBalls;
     [SerializeField] private GameObject _machineGun;
+    [SerializeField] private GameObject _dualGuns;
     [SerializeField] private GameObject _randomGunPickerPosition;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
@@ -143,6 +144,24 @@ public class RandomGun : MonoBehaviour
         Invoke("canPickAgain", _coolDown);
     }
 
-    
+    public void spawnDualGuns()
+    {
+        if (!hasWeapon)
+        {
+            currentGun = Instantiate(_dualGuns, gameObject.transform);
+            currentGun.GetComponent<DualGuns>().startShooting();
+            hasWeapon = true;
+        }
+        else
+        {
+            Destroy(currentGun);
+            currentGun = Instantiate(_dualGuns, gameObject.transform);
+            currentGun.GetComponent<DualGuns>().startShooting();
+            hasWeapon = true;
+        }
+        Invoke("canPickAgain", _coolDown);
+    }
+
+
 
 }
