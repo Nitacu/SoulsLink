@@ -18,6 +18,15 @@ public class FusionTrigger : MonoBehaviour
         get { return _checkingFusion; }
     }
 
+    private bool _checkingUnFusion = false;
+
+    private ChimeraController _currentChimeraParent;
+    public ChimeraController CurrentChimeraParent
+    {
+        get { return _currentChimeraParent; }
+        set { _currentChimeraParent = value; }
+    }
+
     [SerializeField] float _radiusFusionCheck;
     [SerializeField] List<GameObject> _componentsToDeactivate;
 
@@ -48,7 +57,18 @@ public class FusionTrigger : MonoBehaviour
         {
             findPlayerToFusion();
         }
+        else if (_checkingUnFusion)
+        {
+            sendUnFusion();
+        }
+    }
 
+    private void sendUnFusion()
+    {
+        if (CurrentChimeraParent != null)
+        {
+            CurrentChimeraParent.sendUnFusion(true, OnFusionID);
+        }
     }
 
     private void findPlayerToFusion()
@@ -57,7 +77,7 @@ public class FusionTrigger : MonoBehaviour
         Collider2D[] _colliders = Physics2D.OverlapCircleAll(transform.position, _radiusFusionCheck);
 
         GameObject hostFindedGO = null;
-        bool _hostFinded = false;
+        GameObject chimeraFindedGO = null;
 
         if (_colliders.Length > 0)
         {
@@ -69,6 +89,10 @@ public class FusionTrigger : MonoBehaviour
                 if (other.GetComponent<FusionHost>())
                 {
                     hostFindedGO = other;
+                }
+                if (other.GetComponent<ChimeraController>())
+                {
+                    chimeraFindedGO = other;
                 }
             }
         }
@@ -85,14 +109,25 @@ public class FusionTrigger : MonoBehaviour
         }
         else
         {
-            //No encontré ningún host
+            //No encontré host pero si una chimera
+            if (chimeraFindedGO != null)
+            {
+                //Unirme a la chimera
+                chimeraFindedGO.GetComponent<ChimeraController>().addNewPlayer(gameObject);
+                DeactivateComponentsOnFusion();
+            }
+            else
+            {
 
-            //Crear un nuevo host
-            _myFusionHosting = Instantiate(_hostPrefab, gameObject.transform, false);
-            //Añadirme al host
-            _myFusionHosting.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
+                //No encontré ningún host
+
+
+                //Crear un nuevo host
+                _myFusionHosting = Instantiate(_hostPrefab, gameObject.transform, false);
+                //Añadirme al host
+                _myFusionHosting.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
+            }
         }
-
     }
 
 
@@ -108,17 +143,44 @@ public class FusionTrigger : MonoBehaviour
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
 
+    public void ActiveComponentsOnFusion()
+    {
+        foreach (var component in _componentsToDeactivate)
+        {
+            component.SetActive(true);
+        }
+
+        //gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        rb.gravityScale = 0;
+        rb.freezeRotation = true;
+        GetComponent<PlayerMovement>().RigidBodyPlayer = rb;
+
+        gameObject.GetComponent<CircleCollider2D>().enabled = true;
+    }
+
     private void OnFusion(InputValue action)
     {
         float _actionPressed = action.Get<float>();
         if (_actionPressed == 1)//Pressed
         {
-            _checkingFusion = true;
+            if (IsOnFusion && !ChekingFusion)
+            {
+                _checkingUnFusion = true;
+            }
+            else
+            {
+                _checkingFusion = true;
+
+            }
+
         }
         else if (_actionPressed == 0)//Released
         {
             _checkingFusion = false;
+            _checkingUnFusion = false;
             if (_myFusionHosting != null) Destroy(_myFusionHosting);
+            if (IsOnFusion) CurrentChimeraParent.sendUnFusion(false, OnFusionID);
 
             //hostingFusion = false;
         }

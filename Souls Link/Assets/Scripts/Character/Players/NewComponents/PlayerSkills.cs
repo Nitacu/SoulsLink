@@ -5,30 +5,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Events;
 
-public class Skills
-{
-    public bool pressedDown;
-    public bool pressed;
-    public bool pressedUp;
-
-    public bool GetDown()
-    {
-        return pressedDown;
-    }
-
-    public bool Get()
-    {
-        return pressed;
-    }
-
-    public bool GetUp()
-    {
-        return pressedUp;
-    }
-}
-
 public class PlayerSkills : MonoBehaviour
 {
+    const float DELAY = 0.05f;
+
     private PlayerInputActions _inputControl;
     private CharacterMultiplayerController _characterMultiplayerController;
 
@@ -46,25 +26,33 @@ public class PlayerSkills : MonoBehaviour
         _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
     }
 
+    IEnumerator skillDelay(float value, UnityEvent _eventDown, UnityEvent _eventUp, float index)
+    {
+        yield return new WaitForSeconds(DELAY);
+        
+        if (_characterMultiplayerController.isMine())
+        {
+            _characterMultiplayerController.pushValueSkill(value, index);
+
+            if (value == 1)//Pressed
+            {
+                if (_eventDown != null) _eventDown.Invoke();
+
+            }
+            else if (value == 0)//Released
+            {
+                if (_eventUp != null) _eventUp.Invoke();
+            }
+        }
+    }
+
     [Header("Skill 1")]
     [SerializeField] UnityEvent Skill1PressDown = new UnityEvent();
     [SerializeField] UnityEvent Skill1PressUp = new UnityEvent();
     private void OnSkill1(InputValue value)
     {
-        if (_characterMultiplayerController.isMine())
-        {
-            _characterMultiplayerController.pushValueSkill(value.Get<float>(),1);
+        StartCoroutine(skillDelay(value.Get<float>(), Skill1PressDown, Skill1PressUp, 1));
 
-            if (value.Get<float>() == 1)//Pressed
-            {
-                if (Skill1PressDown != null) Skill1PressDown.Invoke();
-
-            }
-            else if (value.Get<float>() == 0)//Released
-            {
-                if (Skill1PressUp != null) Skill1PressUp.Invoke();
-            }
-        }
     }
 
     [Header("Skill 2")]
@@ -72,20 +60,7 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] UnityEvent Skill2PressUp = new UnityEvent();
     private void OnSkill2(InputValue value)
     {
-        if (_characterMultiplayerController.isMine())
-        {
-            _characterMultiplayerController.pushValueSkill(value.Get<float>(), 2);
-
-            if (value.Get<float>() == 1)//Pressed
-            {
-                if (Skill2PressDown != null) Skill2PressDown.Invoke();
-
-            }
-            else if (value.Get<float>() == 0)//Released
-            {
-                if (Skill2PressUp != null) Skill2PressUp.Invoke();
-            }
-        }
+        StartCoroutine(skillDelay(value.Get<float>(), Skill2PressDown, Skill2PressUp, 2));        
     }
 
     [Header("Skill 3")]
@@ -93,20 +68,7 @@ public class PlayerSkills : MonoBehaviour
     [SerializeField] UnityEvent Skill3PressUp = new UnityEvent();
     private void OnSkill3(InputValue value)
     {
-        if (_characterMultiplayerController.isMine())
-        {
-            _characterMultiplayerController.pushValueSkill(value.Get<float>(), 3);
-
-            if (value.Get<float>() == 1)//Pressed
-            {
-                if (Skill3PressDown != null) Skill3PressDown.Invoke();
-
-            }
-            else if (value.Get<float>() == 0)//Released
-            {
-                if (Skill3PressUp != null) Skill3PressUp.Invoke();
-            }
-        }
+        StartCoroutine(skillDelay(value.Get<float>(), Skill3PressDown, Skill3PressUp, 3));
     }
 
     [Header("Skill 4")]
@@ -115,20 +77,7 @@ public class PlayerSkills : MonoBehaviour
 
     private void OnSkill4(InputValue value)
     {
-        if (_characterMultiplayerController.isMine())
-        {
-            _characterMultiplayerController.pushValueSkill(value.Get<float>(), 4);
-
-            if (value.Get<float>() == 1)//Pressed
-            {
-                if (Skill4PressDown != null) Skill4PressDown.Invoke();
-
-            }
-            else if (value.Get<float>() == 0)//Released
-            {
-                if (Skill4PressUp != null) Skill4PressUp.Invoke();
-            }
-        }
+        StartCoroutine(skillDelay(value.Get<float>(), Skill4PressDown, Skill4PressUp, 4));
     }
 
 

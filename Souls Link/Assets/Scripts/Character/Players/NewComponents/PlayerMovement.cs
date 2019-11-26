@@ -5,9 +5,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+        const float DELAY = 0.05f;
+
+
     private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
     private Rigidbody2D _rb;
+    public Rigidbody2D RigidBodyPlayer
+    {
+        get { return _rb; }
+        set { _rb = value; }
+    }
     private Vector2 _inputMovement;
 
     [SerializeField] private float _speed = 100;
@@ -20,14 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     private FusionTrigger _fusionTriggerRef;
-
-
-    private ChimeraController _currentChimeraParent;
-    public ChimeraController CurrentChimeraParent
-    {
-        get { return _currentChimeraParent; }
-        set { _currentChimeraParent = value; }
-    }
+    
 
     private void Awake()
     {
@@ -65,8 +66,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void setAnimation()
     {
-        _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.sqrMagnitude);
-
         //RotarSprite
         if (_inputMovement.x > 0)
         {
@@ -83,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void moveOnFusion()
     {
-        _currentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);
+        _fusionTriggerRef.CurrentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);        
     }
 
 
@@ -112,9 +111,21 @@ public class PlayerMovement : MonoBehaviour
         if (_characterMultiplayerController.isMine())
         {
             //para mover el player en esta maquina
-            InputMovement = context.Get<Vector2>();
+
+            StartCoroutine(multiplayerDelay(context.Get<Vector2>()));
+            //InputMovement = context.Get<Vector2>();
+            
+            
             //llama decirle a las otras maquinas que tienen que mover este PJ
         }
+    }
+
+     IEnumerator multiplayerDelay(Vector2 input)
+    {
+        yield return new WaitForSeconds(DELAY);
+
+        InputMovement = input;
+
     }
 
     //Enable and Disable

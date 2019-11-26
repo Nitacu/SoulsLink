@@ -14,7 +14,7 @@ public class FusionHost : MonoBehaviour
 
         _players.Add(player);
 
-        if (_players.Count >= 2)
+        if (_players.Count == 2)
         {
             FusionarPlayers();
         }
@@ -33,6 +33,8 @@ public class FusionHost : MonoBehaviour
     IEnumerator createChimera()
     {
         yield return new WaitForEndOfFrame();
+
+        Debug.Log("Fusionar");
 
         //Calcular punto medio
 
