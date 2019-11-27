@@ -80,7 +80,13 @@ public class PlayerSkills : MonoBehaviour
         StartCoroutine(skillDelay(value.Get<float>(), Skill4PressDown, Skill4PressUp, 4));
     }
 
+    [Header("Dash")]
+    [SerializeField] UnityEvent dashPressDown = new UnityEvent();
 
+    private void OnDash(InputValue value)
+    {
+        StartCoroutine(skillDelay(value.Get<float>(), dashPressDown, null, 5));
+    }
 
     //Enable and Disable
     private void OnEnable()
@@ -102,4 +108,5 @@ public class PlayerSkills : MonoBehaviour
     public UnityEvent Skill3PressUp1 { get => Skill3PressUp; set => Skill3PressUp = value; }
     public UnityEvent Skill2PressDown1 { get => Skill2PressDown; set => Skill2PressDown = value; }
     public UnityEvent Skill2PressUp1 { get => Skill2PressUp; set => Skill2PressUp = value; }
+    public UnityEvent DashPressDown { get => dashPressDown; set => dashPressDown = value; }
 }

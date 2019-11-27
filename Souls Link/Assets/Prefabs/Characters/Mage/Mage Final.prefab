@@ -318,6 +318,7 @@ GameObject:
   - component: {fileID: 6148689994448844183}
   - component: {fileID: 3747049108239286686}
   - component: {fileID: 6145723585276956772}
+  - component: {fileID: 3275035448857356706}
   m_Layer: 8
   m_Name: Mage Final
   m_TagString: Player
@@ -626,6 +627,22 @@ MonoBehaviour:
   Skill4PressUp:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  dashPressDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3275035448857356706}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!58 &1010509657511000332
@@ -1025,6 +1042,23 @@ MonoBehaviour:
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   restoreState: 0
   AutoInitialization: 1
+--- !u!114 &3275035448857356706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115771829702683778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23fcd555b7dec441b40ece3fb2bab3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 2
+  dashDuration: 0.2
+  _stunDuration: 2
+  dashSpeed: 25
+  isDashing: 0
 --- !u!1 &8630043043880022629
 GameObject:
   m_ObjectHideFlags: 0

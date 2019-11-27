@@ -191,6 +191,9 @@ public class CharacterMultiplayerController : MonoBehaviour
                 case 4:
                     _playerSkills.Skill4PressDown1.Invoke();
                     break;
+                case 5:
+                    _playerSkills.DashPressDown.Invoke();
+                    break;
             }
         }
         else if (value == 0)
