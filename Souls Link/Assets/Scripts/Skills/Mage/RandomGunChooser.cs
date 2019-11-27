@@ -30,11 +30,16 @@ public class RandomGunChooser : MonoBehaviour
     {
         Debug.Log("Picked gun: " + gunNumber);
        
-        if(gunNumber < 4)
+        if(gunNumber < 3)
         {
             GetComponentInParent<RandomGun>().spawnMachineGun();
         }
-        if (gunNumber >3 && gunNumber < 7)
+        if (gunNumber > 2 && gunNumber <5)
+        {
+            GetComponentInParent<RandomGun>().spawnShotGun();
+        }
+
+        if (gunNumber >4 && gunNumber < 7)
         {
             GetComponentInParent<RandomGun>().spawnEnergyBalls();
         }

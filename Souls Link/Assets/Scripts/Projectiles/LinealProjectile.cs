@@ -6,6 +6,11 @@ using UnityEngine;
 public class LinealProjectile : Projectile
 {
     [SerializeField] private float _speed;
+    public float Speed
+    {
+        get { return _speed; }
+        set { _speed = value; }
+    }
 
     private Vector2 _velocity;
     public Vector2 Velocity
