@@ -21,6 +21,8 @@ public class SimpleEnemyController : MonoBehaviour
     private Vector2 _knockBackDirection;
     [SerializeField] private Transform _positionAttack;
     public bool _flip = false;
+    public ParticleSystem _poisonParticles;
+    private bool isPoisoned = false;
 
     // Start is called before the first frame update
     public void Start()
@@ -140,6 +142,15 @@ public class SimpleEnemyController : MonoBehaviour
         StartCoroutine(stopTickDamage(time));
     }
 
+    public void startPoison(float time)
+    {
+        isPoisoned = true;
+        _poisonParticles.Play();
+        isGettingDamaged = true;
+        
+        StartCoroutine(stopPoison(time));
+    }
+
     public IEnumerator die()
     {
         Anim.Play(Animator.StringToHash("Death"));
@@ -179,17 +190,34 @@ public class SimpleEnemyController : MonoBehaviour
                 else
                 {
                     StartCoroutine(recieveTick(damage, tickTime));
-                    changeRedToWhiteColor(0.3f);
+                    if (!isPoisoned)
+                    {
+                        changeRedToWhiteColor(0.3f);
+                    }
+                    else
+                    {
+                        changePurpleToWhiteColor(0.3f);
+                    }
                 }
             }
             Debug.Log(health);
         }
     }
 
-    public void stopPoison(float time)
+    IEnumerator stopPoison(float time)
     {
-        Invoke("stopDamage", time);
+        yield return new WaitForSeconds(time);
+        _poisonParticles.Stop();
+        isGettingDamaged = false;
+        isPoisoned = false;
     }
+
+    private void changePurpleToWhiteColor(float time)
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.magenta;
+        Invoke("changeToWhite", time);
+    }
+
     private void changeRedToWhiteColor(float time)
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.red;

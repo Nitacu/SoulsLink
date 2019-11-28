@@ -179,6 +179,19 @@ public class Dash : MonoBehaviour
         }
     }
 
+    private void stopMoving()
+    {     
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponentInChildren<Animator>().SetBool("isCasting", true);       
+    }
+
+    private void backToNormal()
+    {       
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
+    }
 
     private void findDashSpeed(float _pressedTime, float _dashDuration)
     {
@@ -209,6 +222,7 @@ public class Dash : MonoBehaviour
             if (!isDashing && !hasCharged) //If hasnt charged and is not dashing, start charging
             {
                 isCharging = true;
+                stopMoving();
             }
 
             if (hasCharged) //if has charge check chargePercent to see if he can dash
@@ -227,6 +241,7 @@ public class Dash : MonoBehaviour
                 else
                 {
                     isCharging = true;
+                    stopMoving();
                     hasCharged = false;
                 }
             }
@@ -238,6 +253,7 @@ public class Dash : MonoBehaviour
         if (!hasCharged)
         {
             isCharging = false;
+            backToNormal();
             getChargePercent(chargedTime);
             hasCharged = true;
         }

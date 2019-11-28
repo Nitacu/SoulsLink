@@ -1431,6 +1431,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage
       objectReference: {fileID: 0}
+    - target: {fileID: 3115771829702683778, guid: ee06c4c547521df4f9e523b0636f57c7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3115771829702683783, guid: ee06c4c547521df4f9e523b0636f57c7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1508,7 +1513,7 @@ PrefabInstance:
     - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.241
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4705385350353087116, guid: c6b20397bf6e46d42b8e01fb1d60374e,
         type: 3}
@@ -1559,6 +1564,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 543879863, guid: c6b20397bf6e46d42b8e01fb1d60374e, type: 3}
+      propertyPath: _coolDown
+      value: 0.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c6b20397bf6e46d42b8e01fb1d60374e, type: 3}
@@ -1669,7 +1678,7 @@ PrefabInstance:
     - target: {fileID: 3730457550004149255, guid: 01420e03f911cf9419c5349355aac304,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3730457550004149250, guid: 01420e03f911cf9419c5349355aac304,
         type: 3}
@@ -1870,6 +1879,7 @@ MonoBehaviour:
   _controlSpawnEnemys: {fileID: 0}
   _positionAttack: {fileID: 0}
   _flip: 0
+  _poisonParticles: {fileID: 0}
 --- !u!61 &823093209
 BoxCollider2D:
   m_ObjectHideFlags: 0

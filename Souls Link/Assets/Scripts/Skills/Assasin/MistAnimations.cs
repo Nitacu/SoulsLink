@@ -28,6 +28,18 @@ public class MistAnimations : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            if (isCharged)
+            {
+                collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed = collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed / 2;
+                collision.gameObject.GetComponent<PolyNavAgent>().velocity = collision.gameObject.GetComponent<PolyNavAgent>().velocity / 2;
+            }
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -46,14 +58,7 @@ public class MistAnimations : MonoBehaviour
             }
         }
         isColliding = true;
-        if (collision.CompareTag("Enemy"))
-        {
-            if (isCharged)
-            {
-                collision.gameObject.GetComponent<SimpleEnemyController>().timeDamage(5);
-                collision.gameObject.GetComponent<SimpleEnemyController>().recieveTickDamage(_damage, 0.8f);
-            }
-        }
+        
 
     }
 
@@ -80,7 +85,8 @@ public class MistAnimations : MonoBehaviour
         {
             if (isCharged)
             {
-                collision.gameObject.GetComponent<SimpleEnemyController>().stopDamage();
+                collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed = collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed * 2;
+                collision.gameObject.GetComponent<PolyNavAgent>().velocity = collision.gameObject.GetComponent<PolyNavAgent>().velocity * 2;
             }
         }
     }

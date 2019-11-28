@@ -15,7 +15,7 @@ public class PoisonDartController : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.gameObject.GetComponent<SimpleEnemyController>().timeDamage(3);
+            collision.gameObject.GetComponent<SimpleEnemyController>().startPoison(3);
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveTickDamage(_damage, 0.5f);         
             
             Destroy(gameObject);

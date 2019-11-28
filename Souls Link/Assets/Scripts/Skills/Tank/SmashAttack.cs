@@ -21,6 +21,7 @@ public class SmashAttack : MonoBehaviour
     private Vector2 attackDirection;
     public float attackDuration = 0.2f;
     private bool canAttack = false;
+    private bool attackIsReady = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,20 @@ public class SmashAttack : MonoBehaviour
         }
     }
 
+    private void stopMoving()
+    {
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponentInChildren<Animator>().SetBool("isCasting", true);
+    }
+
+    private void backToNormal()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
+    }
+
     public void setSmashBar(GameObject smashBar)
     {
         chargeBar = smashBar;
@@ -60,42 +75,59 @@ public class SmashAttack : MonoBehaviour
 
         float pressedTimePercent = (_pressedTime * 100) / maxChargedSeconds;
         float distanceDifference = _maxForce - _minForce;
-       
+
 
         forceUsed = ((pressedTimePercent * distanceDifference) / 100) + _minForce;
-        
-       
+
+
     }
 
     public void pressKey()
     {
         if (_coolDownTracker <= 0)
         {
-            isCharging = true;
-            canAttack = true;
+            if (!attackIsReady)
+            {
+                isCharging = true;
+                stopMoving();
+            }
+            else
+            {
+                smashAttack();
+            }
+
+            
         }
     }
 
     public void unPressKey()
     {
-        if (canAttack)
+        if (_coolDownTracker <= 0)
         {
-            if (_coolDownTracker <= 0)
+            if (!attackIsReady)
             {
-                canAttack = false;
-                isCharging = false;
-                findForce(chargedTime);
-                chargedTime = 0;
-                captureDirection();
                 
-                _coolDownTracker = _coolDown;
-                _attackReference = Instantiate(_attackPrefab, gameObject.transform);
-                _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);
-                _attackReference.transform.localPosition = new Vector2(0, 0);
-                StartCoroutine(destroyAttack(attackDuration, _attackReference));
+                isCharging = false;
+                attackIsReady = true;
+                findForce(chargedTime);
+                backToNormal();
+
             }
         }
 
+    }
+
+    private void smashAttack()
+    {
+        
+        captureDirection();
+        chargedTime = 0;
+        attackIsReady = false;
+        _coolDownTracker = _coolDown;
+        _attackReference = Instantiate(_attackPrefab, gameObject.transform);
+        _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);
+        _attackReference.transform.localPosition = new Vector2(0, 0);
+        StartCoroutine(destroyAttack(attackDuration, _attackReference));
     }
 
     IEnumerator destroyAttack(float time, GameObject attack)

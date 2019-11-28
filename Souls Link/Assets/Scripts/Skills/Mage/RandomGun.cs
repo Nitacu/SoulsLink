@@ -5,9 +5,6 @@ using UnityEngine;
 public class RandomGun : MonoBehaviour
 {
     [SerializeField] private GameObject _energyBalls;
-    [SerializeField] private GameObject _machineGun;
-    [SerializeField] private GameObject _dualGuns;
-    [SerializeField] private GameObject _shotGun;
     [SerializeField] private GameObject _randomGunPickerPosition;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
@@ -127,59 +124,7 @@ public class RandomGun : MonoBehaviour
         Invoke("canPickAgain", _coolDown);
     }
 
-    public void spawnMachineGun()
-    {
-        if (!hasWeapon)
-        {
-            currentGun = Instantiate(_machineGun, gameObject.transform);
-            currentGun.GetComponent<MachineGun>().startShooting();
-            hasWeapon = true;
-        }
-        else
-        {
-            Destroy(currentGun);
-            currentGun = Instantiate(_machineGun, gameObject.transform);
-            currentGun.GetComponent<MachineGun>().startShooting();
-            hasWeapon = true;
-        }
-        Invoke("canPickAgain", _coolDown);
-    }
-
-    public void spawnDualGuns()
-    {
-        if (!hasWeapon)
-        {
-            currentGun = Instantiate(_dualGuns, gameObject.transform);
-            currentGun.GetComponent<DualGuns>().startShooting();
-            hasWeapon = true;
-        }
-        else
-        {
-            Destroy(currentGun);
-            currentGun = Instantiate(_dualGuns, gameObject.transform);
-            currentGun.GetComponent<DualGuns>().startShooting();
-            hasWeapon = true;
-        }
-        Invoke("canPickAgain", _coolDown);
-    }
-
-    public void spawnShotGun()
-    {
-        if (!hasWeapon)
-        {
-            currentGun = Instantiate(_shotGun, gameObject.transform);
-            currentGun.GetComponent<Shotgun>().startShooting();
-            hasWeapon = true;
-        }
-        else
-        {
-            Destroy(currentGun);
-            currentGun = Instantiate(_shotGun, gameObject.transform);
-            currentGun.GetComponent<Shotgun>().startShooting();
-            hasWeapon = true;
-        }
-        Invoke("canPickAgain", _coolDown);
-    }
+   
 
 
 
