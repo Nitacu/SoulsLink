@@ -714,12 +714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
-  _machineGun: {fileID: 5741372167121810170, guid: e030d90015f8a044c8b3e8ba0df0b7df,
-    type: 3}
-  _dualGuns: {fileID: 6759147795795087079, guid: a12d6476dbd5137458fa20c7009550ce,
-    type: 3}
-  _shotGun: {fileID: 1256071875564584171, guid: 5103d2fdbfc0ad144af1a06d2dd55fb3,
-    type: 3}
+  _turret: {fileID: 465011960163533587, guid: 2a76980f4395c3949bcc7f326c636da6, type: 3}
   _randomGunPickerPosition: {fileID: 1930448433}
   _coolDown: 5
   _damage: 0
