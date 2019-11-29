@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using SWNetwork;
 
 public class ControlLobbyUI : MonoBehaviour
 {
@@ -47,7 +46,6 @@ public class ControlLobbyUI : MonoBehaviour
                 break;
             }
         }
-
 
     }    
 

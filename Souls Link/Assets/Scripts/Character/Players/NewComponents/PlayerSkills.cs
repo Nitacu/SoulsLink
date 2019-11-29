@@ -10,7 +10,14 @@ public class PlayerSkills : MonoBehaviour
     const float DELAY = 0.05f;
 
     private PlayerInputActions _inputControl;
-    private CharacterMultiplayerController _characterMultiplayerController;
+
+    #region delegate
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isMine;
+
+    public delegate void DelegateMultiplayerControllerSendSkill(float value, float index);
+    public DelegateMultiplayerControllerSendSkill _pushValueSkill;
+    #endregion
 
     public enum InputSkill
     {
@@ -23,15 +30,14 @@ public class PlayerSkills : MonoBehaviour
     private void Awake()
     {
         _inputControl = new PlayerInputActions();
-        _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
     }
 
     IEnumerator skillDelay(float value, UnityEvent _eventDown, UnityEvent _eventUp, float index)
     {
 
-        if (_characterMultiplayerController.isMine())
+        if (_isMine())
         {
-            _characterMultiplayerController.pushValueSkill(value, index);
+            _pushValueSkill(value, index);
 
             yield return new WaitForSeconds(DELAY);
 

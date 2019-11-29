@@ -14,6 +14,9 @@ public class SelectCharacter : MonoBehaviour
     private GameObject _leftArrow;
     private GameObject _rightArrow;
 
+    public delegate void StarGame();
+    public StarGame starGame;
+
     private void OnEnable()
     {
         StartCoroutine(FindAndSelectMyPanel());
@@ -22,7 +25,7 @@ public class SelectCharacter : MonoBehaviour
     IEnumerator FindAndSelectMyPanel()
     {
         yield return new WaitForEndOfFrame();
-
+        /*
         string myID = NetworkClient.Lobby.PlayerId;
 
         Debug.Log("Find players ID");
@@ -44,10 +47,10 @@ public class SelectCharacter : MonoBehaviour
                 }
             }
         }
-
-        resetCharacterPanelPosition();
-        selectCharacter(_characterIndexSelected);
-        setArrows();
+        */
+        //resetCharacterPanelPosition();
+        //selectCharacter(_characterIndexSelected);
+        //setArrows();
     }
 
     public void OnSelectRight()
@@ -126,11 +129,11 @@ public class SelectCharacter : MonoBehaviour
     public void resetCharacterPanelPosition()
     {
         _characterIndexSelected = 0;
-        _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
+        //_charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
     }
 
     public void OnStartGame()
     {
-        FindObjectOfType<LobbyKevin>().StartGame();
+        starGame();
     }
 }

@@ -7,8 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
         const float DELAY = 0.05f;
 
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isMine;
 
-    private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
     private Rigidbody2D _rb;
     public Rigidbody2D RigidBodyPlayer
@@ -34,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _inputControl = new PlayerInputActions();
         _fusionTriggerRef = GetComponent<FusionTrigger>();
-        _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
         _rb = GetComponent<Rigidbody2D>();
         //_anim = GetComponent<Animator>();
     }
@@ -71,8 +71,6 @@ public class PlayerMovement : MonoBehaviour
             Renderer.flipX = true;
         }
 
-        if (_characterMultiplayerController.isMine())
-            _characterMultiplayerController.changeFlip(Renderer.flipX);
     }
 
     private void moveOnFusion()
@@ -103,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
     public void OnMove(InputValue context)
     {
         // _inputMovement = context.ReadValue<Vector2>();
-        if (_characterMultiplayerController.isMine())
+        if (_isMine())
         {
             //para mover el player en esta maquina
 

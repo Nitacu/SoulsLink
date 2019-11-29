@@ -14,14 +14,20 @@ public class PlayerAiming : MonoBehaviour
     [HideInInspector]
     public Vector2 playerPosition = Vector2.zero;
 
-    private CharacterMultiplayerController _characterMultiplayerController;
     private PlayerInputActions _inputControl;
 
     private Vector2 _aimDirection = Vector2.right;
 
+    #region delegate
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isMine;
+
+    public delegate void DelegateMultiplayerControllerSendVector(Vector3 vector);
+    public DelegateMultiplayerControllerSendVector _pushVectorAiming;
+    #endregion
+
     private void Awake()
     {
-        _characterMultiplayerController = GetComponent<CharacterMultiplayerController>();
         _inputControl = new PlayerInputActions();
     }
 
@@ -39,8 +45,14 @@ public class PlayerAiming : MonoBehaviour
 
     private void Start()
     {
+        StartCoroutine(destroyCrossHair());
+    }
 
-        if (!_characterMultiplayerController.isMine())
+    IEnumerator destroyCrossHair()
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (!_isMine())
         {
             _crossHair.GetComponent<SpriteRenderer>().enabled = false;
         }
@@ -77,7 +89,7 @@ public class PlayerAiming : MonoBehaviour
     public void OnMove(InputValue context)
     {
         //Vector2 value = context.ReadValue<Vector2>();
-        if (_characterMultiplayerController.isMine())
+        if (_isMine())
         {
             if (context.Get<Vector2>() != Vector2.zero)
             {
@@ -103,7 +115,7 @@ public class PlayerAiming : MonoBehaviour
 
     IEnumerator setDirectionDelay(Vector2 _aim)
     {
-        _characterMultiplayerController.pushVectorAiming(_aim);
+        _pushVectorAiming(_aim);
 
         yield return new WaitForSeconds(DELAY);
 

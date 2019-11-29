@@ -17,6 +17,8 @@ public class CharacterMultiplayerController : MonoBehaviour
     private PlayerAiming _playerAiming;
     private PlayerHPControl _hPControl;
 
+    
+
     #region Constantes de los nombres de las funciones que se ejecutan en todas las maquinas
     private const string PLAYER_SKILLS = "playerSkills";
     private const string PLAYER_AIMING = "playerAiming";
@@ -37,6 +39,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSkills = GetComponent<PlayerSkills>();
         _playerAiming = GetComponent<PlayerAiming>();
+        addDelegate();
     }
 
     public bool isMine()
@@ -47,6 +50,17 @@ public class CharacterMultiplayerController : MonoBehaviour
     public void destroySelf()
     {
         NetworkClient.Destroy(gameObject);
+    }
+
+    public void addDelegate()
+    {
+        _playerMovement._isMine = new PlayerMovement.DelegateMultiplayerController(isMine);
+
+        _playerSkills._isMine = new PlayerSkills.DelegateMultiplayerController(isMine);
+        _playerSkills._pushValueSkill = new PlayerSkills.DelegateMultiplayerControllerSendSkill(pushValueSkill);
+
+        _playerAiming._isMine = new PlayerAiming.DelegateMultiplayerController(isMine);
+        _playerAiming._pushVectorAiming = new PlayerAiming.DelegateMultiplayerControllerSendVector(pushVectorAiming);
     }
 
     #region Flip
