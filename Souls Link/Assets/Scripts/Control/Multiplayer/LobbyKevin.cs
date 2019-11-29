@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class LobbyKevin : MonoBehaviour
 {
-
+    [SerializeField] private SelectCharacter _selectCharacter; 
     [SerializeField] private ControlLobbyUI _lobbyUI;
 
     private void Start()
@@ -100,8 +100,8 @@ public class LobbyKevin : MonoBehaviour
                 GetPlayersInCurrentRoom();
 
                 _lobbyUI._buttonStarGame.SetActive(true);
-                FindObjectOfType<SelectCharacter>().starGame = new SelectCharacter.StarGame(StartGame);
-                Debug.Log("as");
+                Debug.Log("Si lo encuentra ? " + _selectCharacter.name);
+                _selectCharacter.starGame = new SelectCharacter.StarGame(StartGame);
             }
             else
             {
@@ -256,7 +256,6 @@ public class LobbyKevin : MonoBehaviour
         if (NetworkClient.Lobby.IsOwner)
         {
             _lobbyUI._buttonStarGame.SetActive(true);
-            FindObjectOfType<SelectCharacter>().starGame = new SelectCharacter.StarGame(StartGame);
         }
     }
 

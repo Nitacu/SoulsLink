@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using SWNetwork;
+using Photon.Pun;
 
 public class HUDController : MonoBehaviour
 {
@@ -21,8 +22,12 @@ public class HUDController : MonoBehaviour
     private NetworkClient networkInfo;
     private bool isHost = false;
 
+    private GameManager.MultiplayerServer _server;
+    private bool _isHostServer = false;
+
     private void OnEnable()
     {
+        _server = GameManager.GetInstace()._multiplayerServer;
         maxPlayerHealth = GetComponentInParent<PlayerHPControl>().PlayerHealth;
         setHealthBar(maxPlayerHealth);
         setMultiplayerConnectionType();
@@ -38,28 +43,29 @@ public class HUDController : MonoBehaviour
 
     public void setMultiplayerConnectionType()
     {
-        if (networkInfo != null)
+        if (connet())
         {
-            if (isHost != networkInfo.IsHost)
+            if (isHost != defineHost())
             {
                 setMultiplayerTextType();
-                isHost = networkInfo.IsHost;
+                isHost = _isHostServer;
             }
-        }      
+        }
     }
 
     private void setMultiplayerTextType()
     {
-        _multiplayerState.text = (networkInfo.IsHost) ? "Host" : "Invited";
+        _multiplayerState.text = (_isHostServer) ? "Host" : "Invited";
     }
 
     IEnumerator findNetworkClientAgain(float timeToWait)
     {
         yield return new WaitForSeconds(timeToWait);
 
-        networkInfo = FindObjectOfType<NetworkClient>();
+        if (_server == GameManager.MultiplayerServer.SOCKETWEAVER)
+            networkInfo = FindObjectOfType<NetworkClient>();
 
-        if (networkInfo == null)
+        if (connet())
         {
             StartCoroutine(findNetworkClientAgain(2));
         }
@@ -92,5 +98,38 @@ public class HUDController : MonoBehaviour
         }
     }
 
+    private bool defineHost()
+    {
+        switch (_server)
+        {
+            case GameManager.MultiplayerServer.SOCKETWEAVER:
+                _isHostServer = networkInfo.IsHost;
+                break;
 
+            case GameManager.MultiplayerServer.PHOTON:
+                _isHostServer = PhotonNetwork.IsMasterClient;
+                break;
+        }
+
+        return _isHostServer;
+    }
+
+    private bool connet()
+    {
+        switch (_server)
+        {
+            case GameManager.MultiplayerServer.SOCKETWEAVER:
+                return networkInfo;
+                break;
+
+            case GameManager.MultiplayerServer.PHOTON:
+                return PhotonNetwork.IsConnected;
+                break;
+
+            default:
+                return false;
+                break;
+
+        }
+    }
 }

@@ -3553,6 +3553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 572c50becdb219b42a679bed91f01040, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectCharacter: {fileID: 237127874}
   _lobbyUI: {fileID: 1739560594}
 --- !u!114 &1739560594
 MonoBehaviour:
