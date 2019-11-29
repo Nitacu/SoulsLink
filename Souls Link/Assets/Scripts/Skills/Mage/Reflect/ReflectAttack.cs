@@ -72,6 +72,8 @@ public class ReflectAttack : MonoBehaviour
             switch (_reflectType)
             {
                 case ReflectType.AROUND:
+                    GetComponent<PlayerHPControl>().setReflectiveMode();
+                    GetComponent<StakeAttack>().canShoot = false;
                     _shieldReference = Instantiate(_shielAroundPrefab, gameObject.transform);
                     break;
                 case ReflectType.DIRECTION:
@@ -97,8 +99,6 @@ public class ReflectAttack : MonoBehaviour
                         detectoProjectilesOnDirection();
                         break;
                 }
-
-
             }
             else
             {
@@ -107,6 +107,8 @@ public class ReflectAttack : MonoBehaviour
                 
                 //feedback end
                 Destroy(_shieldReference);
+                GetComponent<StakeAttack>().canShoot = true;
+                GetComponent<PlayerHPControl>().setNormalMode();
             }
 
         }
