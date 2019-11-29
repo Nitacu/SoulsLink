@@ -17,6 +17,10 @@ public class SelectCharacter : MonoBehaviour
     public delegate void StarGame();
     public StarGame starGame;
 
+    private string myID;
+
+    public string MyID { get => myID; set => myID = value; }
+
     private void OnEnable()
     {
         StartCoroutine(FindAndSelectMyPanel());
@@ -25,8 +29,6 @@ public class SelectCharacter : MonoBehaviour
     IEnumerator FindAndSelectMyPanel()
     {
         yield return new WaitForEndOfFrame();
-        /*
-        string myID = NetworkClient.Lobby.PlayerId;
 
         Debug.Log("Find players ID");
         foreach (PlayerSelectCharPanel imagePlayer in _imagePlayers)
@@ -36,10 +38,10 @@ public class SelectCharacter : MonoBehaviour
                 imagePlayer.DeactivateMySelection();
 
                 string panelID = imagePlayer.PlayerID;
-                if (panelID.Equals(myID))
+                if (panelID.Equals(MyID))
                 {
                     //set seleccionar personaje
-                    Debug.Log("Finded my self: " + myID);
+                    Debug.Log("Finded my self: " + MyID);
                     _charactersPanel = imagePlayer.getCharacterSelection();
                     _leftArrow = imagePlayer.getLeftArrow();
                     _rightArrow = imagePlayer.getRightArrow();
@@ -47,10 +49,10 @@ public class SelectCharacter : MonoBehaviour
                 }
             }
         }
-        */
-        //resetCharacterPanelPosition();
-        //selectCharacter(_characterIndexSelected);
-        //setArrows();
+        
+        resetCharacterPanelPosition();
+        selectCharacter(_characterIndexSelected);
+        setArrows();
     }
 
     public void OnSelectRight()

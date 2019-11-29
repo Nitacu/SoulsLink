@@ -1532,7 +1532,7 @@ MonoBehaviour:
   _photonView: {fileID: 688120571}
   _points: []
   _characters:
-  - Mage
+  - Mage Final
 --- !u!1 &1270199707
 GameObject:
   m_ObjectHideFlags: 0

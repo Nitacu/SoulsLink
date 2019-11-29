@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         if (!isDashing)
         {
             _rb.velocity = InputMovement * _speed * Time.deltaTime;
+            _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.magnitude);
         }
         else
         {

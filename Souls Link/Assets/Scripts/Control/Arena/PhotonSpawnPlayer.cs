@@ -12,8 +12,6 @@ public class PhotonSpawnPlayer : MonoBehaviourPun
 
     private void Start()
     {
-
         PhotonNetwork.Instantiate(_characters[0], new Vector3(0f, 0, 0f), Quaternion.identity, 0);
-
     }
 }

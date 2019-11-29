@@ -100,6 +100,8 @@ public class LobbyKevin : MonoBehaviour
                 GetPlayersInCurrentRoom();
 
                 _lobbyUI._buttonStarGame.SetActive(true);
+                FindObjectOfType<SelectCharacter>().starGame = new SelectCharacter.StarGame(StartGame);
+                Debug.Log("as");
             }
             else
             {
@@ -143,7 +145,7 @@ public class LobbyKevin : MonoBehaviour
                 Debug.Log("Got players " + reply);
 
                 _lobbyUI.clearPlayersList();
-
+                _lobbyUI._panelInRoom.GetComponent<SelectCharacter>().MyID = NetworkClient.Lobby.PlayerId;
                 foreach (SWPlayer player in reply.players)
                 {
                     Debug.Log("nombre de jugador" + player.data);
@@ -254,6 +256,7 @@ public class LobbyKevin : MonoBehaviour
         if (NetworkClient.Lobby.IsOwner)
         {
             _lobbyUI._buttonStarGame.SetActive(true);
+            FindObjectOfType<SelectCharacter>().starGame = new SelectCharacter.StarGame(StartGame);
         }
     }
 

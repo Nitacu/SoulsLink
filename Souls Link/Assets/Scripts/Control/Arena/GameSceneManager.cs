@@ -2,21 +2,46 @@
 using System.Collections.Generic;
 using UnityEngine;
 using SWNetwork;
+using Photon.Pun;
 
 public class GameSceneManager : MonoBehaviour
 {
     public SceneSpawner spawner;
+    private int characterSelectedIndex;
+    [Header("Cosas del Photon")]
+    public PhotonView _photonView;
+    [SerializeField] private List<Transform> _points = new List<Transform>();
+    [SerializeField] private List<string> _characters = new List<string>();
+
+    private void Awake()
+    {
+        characterSelectedIndex = setCharacterToSpawn();
+    }
+
+    private void Start()
+    {
+        onSpawnPlayerWithPhoton();
+    }
 
     public void onSpawnerReady(bool alreadyFinishedSceneSetup)
     {
-        int characterSelectedIndex = setCharacterToSpawn();
-
-        if (!alreadyFinishedSceneSetup)
+        if (GameManager.GetInstace()._multiplayerServer == GameManager.MultiplayerServer.SOCKETWEAVER)
         {
-            NetworkClient.Instance.FindSpawner(2).SpawnForPlayer(characterSelectedIndex, characterSelectedIndex);
-        }
+            if (!alreadyFinishedSceneSetup)
+            {
+                NetworkClient.Instance.FindSpawner(2).SpawnForPlayer(characterSelectedIndex, characterSelectedIndex);
+            }
 
-        NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
+            NetworkClient.Instance.LastSpawner.PlayerFinishedSceneSetup();
+        }
+    }
+
+    public void onSpawnPlayerWithPhoton()
+    {
+        if (GameManager.GetInstace()._multiplayerServer == GameManager.MultiplayerServer.PHOTON)
+        {
+            PhotonNetwork.Instantiate(_characters[characterSelectedIndex], _points[characterSelectedIndex].position, Quaternion.identity, 0);
+        }
     }
 
     private int setCharacterToSpawn()

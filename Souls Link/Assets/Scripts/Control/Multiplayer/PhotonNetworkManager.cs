@@ -29,7 +29,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void starGame()
     {
-        SceneManager.LoadScene("Test_Kevin");
+        SceneManager.LoadScene("Arena");
     }
 
     public void registerName()
@@ -81,7 +81,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
         Debug.Log("Entro a la sala");
 
         _lobbyUI.clearPlayersList();
-
+        _lobbyUI._panelInRoom.GetComponent<SelectCharacter>().MyID = PhotonNetwork.LocalPlayer.UserId;
         foreach (Player player in PhotonNetwork.PlayerList)
         {
             _lobbyUI.crearNewItemInPlayerList(player.NickName, player.UserId);
