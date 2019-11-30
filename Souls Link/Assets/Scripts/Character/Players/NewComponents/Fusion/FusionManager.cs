@@ -154,10 +154,11 @@ public class FusionManager : MonoBehaviour
             ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
 
             //crear cadena de ids
-            string ids = _players[0].GetComponent<FusionTrigger>()._myID.ToString();
+            string ids = _players[0].GetComponent<FusionTrigger>()._myID();
+
             for (int i = 1; i < _players.Count; i++)
             {
-                string newId = "#" + _players[i].GetComponent<FusionTrigger>()._myID.ToString();
+                string newId = "#" + _players[i].GetComponent<FusionTrigger>()._myID();
                 ids += newId;
             }
 

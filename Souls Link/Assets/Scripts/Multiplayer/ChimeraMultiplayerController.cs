@@ -12,12 +12,6 @@ public class ChimeraMultiplayerController : MonoBehaviour
     private const string SET_PLAYERS = "setPlayers";
     private const string SEND_MOVEMENT = "sendMovement";
 
-    private void Start()
-    {
-        _chimeraController = GetComponent<ChimeraController>();
-        addDelegate();
-    }
-
     public bool isMine()
     {
         return _networkID.IsMine;
@@ -25,6 +19,7 @@ public class ChimeraMultiplayerController : MonoBehaviour
 
     public void addDelegate()
     {
+        _chimeraController = GetComponent<ChimeraController>();
         _chimeraController._setPlayersInFusion = new ChimeraController.DelegateMultiplayerControllerIDs(pushSetPlayersInFusion);
         _chimeraController._isMine = new ChimeraController.DelegateMultiplayerController(isMine);
         _chimeraController._sendMovement = new ChimeraController.DelegateMultiplayerControllerIMove(pushsendMovement);

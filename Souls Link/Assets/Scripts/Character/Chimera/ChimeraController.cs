@@ -97,7 +97,7 @@ public class ChimeraController : MonoBehaviour
         {
             foreach (var player in players)
             {
-                if (player.GetComponent<FusionTrigger>()._myID.ToString().Equals(id))
+                if (player.GetComponent<FusionTrigger>()._myID().Equals(id))
                 {
                     playersWithIds.Add(player);
                     Debug.Log("PLayer encontrado " + player.name + " ID " + id);
