@@ -50,7 +50,7 @@ public class FusionTrigger : MonoBehaviour
         set { _isOnFusion = value; }
     }
 
-    private int _onFusionID;
+    [SerializeField]private int _onFusionID;
     public int OnFusionID
     {
         get { return _onFusionID; }

@@ -64,7 +64,7 @@ public class ChimeraController : MonoBehaviour
 
     public void sendMovement(Vector2 movement, int id)
     {
-        Debug.Log("input received");
+        Debug.Log("id " + id + " movemente " + movement);
         _inputsMovements[id] = movement;
     }
 

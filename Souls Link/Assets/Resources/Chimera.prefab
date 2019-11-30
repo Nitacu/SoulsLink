@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 100
+  _players: []
   _renderer: {fileID: 1259665956790016033}
   _movement: {x: 0, y: 0}
   _inputsMovements: []
@@ -822,7 +823,7 @@ MonoBehaviour:
   syncedTransform:
     interpolate: 20
     smoothLevel: 2
-    snapDistance: 2
+    snapDistance: 5
     readFunction: 1
     bandwidth: 4
     padding: 0

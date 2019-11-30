@@ -42,6 +42,7 @@ public class ChimeraMultiplayerController : MonoBehaviour
 
     public void pushsendMovement(Vector2 movement, int id)
     {
+        Debug.Log("id " + id + " movemente " + movement);
         SWNetworkMessage message = new SWNetworkMessage();
         message.Push(movement);
         message.Push(id);
@@ -51,7 +52,7 @@ public class ChimeraMultiplayerController : MonoBehaviour
     public void sendMovement(SWNetworkMessage message)
     {
         Vector2 movement = message.PopVector3();
-        int id = message.PopUInt16();
+        int id = message.PopInt32();
         _chimeraController.sendMovement(movement, id);
     }
 }
