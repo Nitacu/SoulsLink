@@ -21,7 +21,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 705c7dc6752037c4385cbd947d08553c, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7bea50b9369f5ea46afcae064ca21fb4, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -129,7 +129,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AssassinBase
+  m_Name: ChimeraBase
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Velocity
@@ -178,7 +178,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: b325f4bb482022441bda485a708ca7c9, type: 2}
+  m_Motion: {fileID: 7400000, guid: 30599a593ece50944b53f098d9d5d445, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
