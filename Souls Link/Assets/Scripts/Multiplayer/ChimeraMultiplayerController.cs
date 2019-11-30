@@ -35,6 +35,7 @@ public class ChimeraMultiplayerController : MonoBehaviour
     {
         SWNetworkMessage message = new SWNetworkMessage();
         message.PushUTF8LongString(ids);
+        Debug.Log("IDS" + ids);
         _remoteEventAgent.Invoke(SET_PLAYERS, message);
     }
 

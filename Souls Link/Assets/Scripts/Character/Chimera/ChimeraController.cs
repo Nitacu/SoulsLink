@@ -80,7 +80,8 @@ public class ChimeraController : MonoBehaviour
     }
 
     public void setPlayersInFusion(string playersIds)
-    {       
+    {
+        Debug.Log("PlayersIds " + playersIds);
         _players = getPlayersByID(playersIds);
         setPlayersChild();
     }
@@ -99,6 +100,7 @@ public class ChimeraController : MonoBehaviour
                 if (player.GetComponent<FusionTrigger>()._myID.ToString().Equals(id))
                 {
                     playersWithIds.Add(player);
+                    Debug.Log("PLayer encontrado " + player.name + " ID " + id);
                     break;
                 }
             }
