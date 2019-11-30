@@ -179,7 +179,7 @@ public class FusionTrigger : MonoBehaviour
         transform.SetParent(chimeraController.transform);
         transform.localPosition = Vector3.zero;
 
-        assingSkillsTochimera(chimeraController);
+        //assingSkillsTochimera(chimeraController);
     }
 }
 

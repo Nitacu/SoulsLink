@@ -150,7 +150,17 @@ public class FusionManager : MonoBehaviour
         _chimera.transform.position = newPos;
 
         ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
-        chimeraController.setPlayersInFusion(_players);
+
+        //crear cadena de ids
+        string ids = _players[0].GetComponent<FusionTrigger>()._myID.ToString();
+        for (int i = 1; i < _players.Count; i++)
+        {
+            string newId = "#" + _players[i].GetComponent<FusionTrigger>()._myID.ToString();
+            ids += newId;
+        }
+
+        //Se debe llamar en los demás también
+        chimeraController.setPlayersInFusion(ids);
     }
 
     public void addMeToFusion(GameObject player)

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -69,10 +70,32 @@ public class ChimeraController : MonoBehaviour
         _movement = newinputMovement;
     }
 
-    public void setPlayersInFusion(List<GameObject> players)
-    {
-        _players = players;
+    public void setPlayersInFusion(string playersIds)
+    {       
+        _players = getPlayersByID(playersIds);
         setPlayersChild();
+    }
+
+    private List<GameObject> getPlayersByID(string playerIds)
+    {
+        string[] ids = playerIds.Split("#".ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        List<GameObject> playersWithIds = new List<GameObject>();
+
+        foreach (var id in ids)
+        {
+            foreach (var player in players)
+            {
+                if (player.GetComponent<FusionTrigger>()._myID.ToString().Equals(id))
+                {
+                    playersWithIds.Add(player);
+                    break;
+                }
+            }
+        }
+
+        return playersWithIds;
     }
 
     private void setPlayersChild()
