@@ -7,10 +7,6 @@ public class FusionTrigger : MonoBehaviour
 {
     PlayerInputActions _inputControl;
 
-    [SerializeField] private GameObject _hostPrefab;
-    private GameObject _myFusionHosting;
-
-    private bool hostingFusion = false;
 
     private bool _checkingFusion = false;
     public bool ChekingFusion
@@ -27,7 +23,6 @@ public class FusionTrigger : MonoBehaviour
         set { _currentChimeraParent = value; }
     }
 
-    [SerializeField] float _radiusFusionCheck;
     [SerializeField] List<GameObject> _componentsToDeactivate;
 
     [SerializeField] List<Component> _skills = new List<Component>();

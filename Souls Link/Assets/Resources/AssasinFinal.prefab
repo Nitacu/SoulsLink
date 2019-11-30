@@ -558,6 +558,7 @@ GameObject:
   - component: {fileID: 7293039826511788930}
   - component: {fileID: 4803317335317458375}
   - component: {fileID: 5348236992748763033}
+  - component: {fileID: 6682319642306534826}
   m_Layer: 8
   m_Name: AssasinFinal
   m_TagString: Player
@@ -1442,6 +1443,27 @@ MonoBehaviour:
   _transformView: {fileID: 4803317335317458375}
   _photonView: {fileID: 7293039826511788930}
   _animatorView: {fileID: 7641686675164920339}
+--- !u!114 &6682319642306534826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226177120453663736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radiusFusionCheck: 3
+  _componentsToDeactivate:
+  - {fileID: 7651098687956668841}
+  - {fileID: 1391171811173228292}
+  _skills:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &7651098687956668841
 GameObject:
   m_ObjectHideFlags: 0

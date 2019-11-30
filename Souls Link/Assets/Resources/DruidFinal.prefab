@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 176549247442507862}
   - component: {fileID: -8751755090289655173}
   - component: {fileID: 4878653693941284781}
+  - component: {fileID: 1247423873342727483}
   m_Layer: 8
   m_Name: DruidFinal
   m_TagString: Player
@@ -1047,6 +1048,22 @@ MonoBehaviour:
   _transformView: {fileID: -8751755090289655173}
   _photonView: {fileID: 176549247442507862}
   _animatorView: {fileID: 5286450238894508449}
+--- !u!114 &1247423873342727483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705385350353087113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentsToDeactivate:
+  - {fileID: 6058020209759171419}
+  - {fileID: 9008634845870170328}
+  _skills: []
 --- !u!1 &6058020209759171419
 GameObject:
   m_ObjectHideFlags: 0

@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 4089845607099693761}
   - component: {fileID: -1279554282154300685}
   - component: {fileID: 4479304578083625502}
+  - component: {fileID: 1896778109585023796}
   m_Layer: 8
   m_Name: TankFinal
   m_TagString: Player
@@ -1228,6 +1229,22 @@ MonoBehaviour:
   _transformView: {fileID: -1279554282154300685}
   _photonView: {fileID: 4089845607099693761}
   _animatorView: {fileID: 5005781633665576282}
+--- !u!114 &1896778109585023796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentsToDeactivate:
+  - {fileID: 1120487844959786582}
+  - {fileID: 6647910037698648187}
+  _skills: []
 --- !u!1 &6647910037698648187
 GameObject:
   m_ObjectHideFlags: 0
