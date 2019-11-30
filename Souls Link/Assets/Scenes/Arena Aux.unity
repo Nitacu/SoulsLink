@@ -51804,6 +51804,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2253769971f47c2458558a63c500df6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
+  _photonView: {fileID: 0}
+  _points: []
+  _characters: []
 --- !u!114 &1595148997
 MonoBehaviour:
   m_ObjectHideFlags: 0

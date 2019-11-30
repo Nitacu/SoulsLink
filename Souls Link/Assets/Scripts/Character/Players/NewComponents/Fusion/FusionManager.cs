@@ -9,6 +9,11 @@ public class FusionManager : MonoBehaviour
 
     private GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
 
+    #region Delegate
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isHost;
+    #endregion
+
     private void Update()
     {
         int count = 0;
@@ -64,7 +69,7 @@ public class FusionManager : MonoBehaviour
                 //Analizar en lista de player que se pueden fusionar
                 if (_unMatchedPlayers.Count == 0)//Matcheo con todos se puede fusionar
                 {
-                    _playersCanFusion.Add(_playersToFusion[i]);                   
+                    _playersCanFusion.Add(_playersToFusion[i]);
                 }
                 else
                 {
@@ -84,7 +89,7 @@ public class FusionManager : MonoBehaviour
                     //si no hay unmatches players en la lista añadirme a fusionar
                     if (noUnMatchedPlayers)
                     {
-                        _playersCanFusion.Add(_playersToFusion[i]);                       
+                        _playersCanFusion.Add(_playersToFusion[i]);
                     }
                 }
             }
@@ -95,6 +100,7 @@ public class FusionManager : MonoBehaviour
         {
             FusionarPlayers(_playersCanFusion);
         }
+
     }
 
     private void FusionarPlayers(List<GameObject> _players)
@@ -114,7 +120,8 @@ public class FusionManager : MonoBehaviour
             player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
         }
 
-        StartCoroutine(createChimera(_players));
+        if (_isHost())
+            StartCoroutine(createChimera(_players));
     }
 
     IEnumerator createChimera(List<GameObject> _players)

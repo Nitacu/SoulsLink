@@ -16,10 +16,12 @@ public class CharacterMultiplayerController : MonoBehaviour
     private PlayerSkills _playerSkills;
     private PlayerAiming _playerAiming;
     private PlayerHPControl _hPControl;
-
-    
+    private FusionTrigger _fusionTrigger;
+    private FusionManager _fusionManager;
 
     #region Constantes de los nombres de las funciones que se ejecutan en todas las maquinas
+    private const string ADD_ME_HOST = "addMeHost";
+    private const string GET_OUT_HOST = "getOutHost";
     private const string PLAYER_SKILLS = "playerSkills";
     private const string PLAYER_AIMING = "playerAiming";
     private const string HEALTH = "Health";
@@ -39,7 +41,14 @@ public class CharacterMultiplayerController : MonoBehaviour
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSkills = GetComponent<PlayerSkills>();
         _playerAiming = GetComponent<PlayerAiming>();
+        _fusionTrigger = GetComponent<FusionTrigger>();
+        _fusionManager = FindObjectOfType<FusionManager>();
         addDelegate();
+    }
+
+    public bool isHost()
+    {
+        return NetworkClient.Instance.IsHost;
     }
 
     public bool isMine()
@@ -65,6 +74,12 @@ public class CharacterMultiplayerController : MonoBehaviour
         _hPControl._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
         _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
         _hPControl._changeHealth = new PlayerHPControl.DelegateMultiplayerControllerHealth(changeHealth);
+
+        _fusionTrigger._isMine = new FusionTrigger.DelegateMultiplayerController(isMine);
+        _fusionTrigger._pushAddMeToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushAddMeToGeneralHost);
+        _fusionTrigger._pushGetoutToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushGetoutToGeneralHost);
+
+        _fusionManager._isHost = new FusionManager.DelegateMultiplayerController(isHost);
     }
 
     #region Flip
@@ -236,6 +251,31 @@ public class CharacterMultiplayerController : MonoBehaviour
             }
         }
     }
-    #endregion 
+    #endregion
+
+    #region Fusion
+
+    //Para agregar a la lista del host quimera
+    public void pushAddMeToGeneralHost()
+    {
+        _remoteEventAgent.Invoke(ADD_ME_HOST);
+    }
+
+    public void addMeToGeneralHost()
+    {
+        _fusionTrigger.AddMeToGeneralHost();
+    }
+
+    //Para sacar de la lista del host quimera
+    public void pushGetoutToGeneralHost()
+    {
+        _remoteEventAgent.Invoke(GET_OUT_HOST);
+    }
+
+    public void getoutToGeneralHost()
+    {
+        _fusionTrigger.GetoutToGeneralHost();
+    }
+    #endregion
 
 }

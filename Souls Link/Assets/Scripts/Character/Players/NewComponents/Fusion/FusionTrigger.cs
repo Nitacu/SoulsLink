@@ -32,6 +32,14 @@ public class FusionTrigger : MonoBehaviour
 
     [SerializeField] List<Component> _skills = new List<Component>();
 
+    #region Delegate
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isMine;
+    public delegate void DelegateMultiplayerControllerVoid();
+    public DelegateMultiplayerControllerVoid _pushAddMeToGeneralHost;
+    public DelegateMultiplayerControllerVoid _pushGetoutToGeneralHost;
+    #endregion
+
     private void Awake()
     {
         _inputControl = new PlayerInputActions();
@@ -89,30 +97,37 @@ public class FusionTrigger : MonoBehaviour
 
     private void OnFusion(InputValue action)
     {
-        float _actionPressed = action.Get<float>();
-        if (_actionPressed == 1)//Pressed
+        if (_isMine())
         {
-            if (!IsOnFusion)
+            float _actionPressed = action.Get<float>();
+            if (_actionPressed == 1)//Pressed
             {
-                AddMeToGeneralHost();
+                if (!IsOnFusion)
+                {
+                    AddMeToGeneralHost();//me agrega al host de la quimera
+                    _pushAddMeToGeneralHost(); // se agrega en otras maquinas
+                }
+                else
+                {
+                    //para separarse
+                    CurrentChimeraParent.sendUnFusion(true, OnFusionID);
+                }
             }
-            else
+            else if (_actionPressed == 0)//Released
             {
-                CurrentChimeraParent.sendUnFusion(true, OnFusionID);
-            }            
-        }
-        else if (_actionPressed == 0)//Released
-        {
-            if (alreadyInHost && !IsOnFusion)
-                GetoutToGeneralHost();
+                if (alreadyInHost && !IsOnFusion)
+                {
+                    GetoutToGeneralHost(); //lo saca del host de la quimera
+                    _pushGetoutToGeneralHost(); // lo saca en las demas maquinas
+                }
+                if (IsOnFusion) CurrentChimeraParent.sendUnFusion(false, OnFusionID);
 
-            if (IsOnFusion) CurrentChimeraParent.sendUnFusion(false, OnFusionID);
-
+            }
         }
     }
 
     bool alreadyInHost = false;
-    private void AddMeToGeneralHost()
+    public void AddMeToGeneralHost()
     {
         FusionManager fusionManager = FindObjectOfType<FusionManager>();
 
@@ -124,7 +139,7 @@ public class FusionTrigger : MonoBehaviour
         }
     }
 
-    private void GetoutToGeneralHost()
+    public void GetoutToGeneralHost()
     {
         FusionManager fusionManager = FindObjectOfType<FusionManager>();
 

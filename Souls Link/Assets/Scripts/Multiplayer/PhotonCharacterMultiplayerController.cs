@@ -11,11 +11,15 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     private PlayerSkills _playerSkills;
     private PlayerAiming _playerAiming;
     private PlayerHPControl _hPControl;
+    private FusionTrigger _fusionTrigger;
+    private FusionManager _fusionManager;
 
     [SerializeField] private GameObject _playerHUD;
     [SerializeField] private PhotonView _photonView;
 
     #region Constantes de los nombres de las funciones que se ejecutan en todas las maquinas
+    private const string ADD_ME_HOST = "addMeToGeneralHost";
+    private const string GET_OUT_HOST = "getoutToGeneralHost";
     private const string PLAYER_SKILLS = "playerOnSkill";
     private const string PLAYER_AIMING = "playerAiming";
     private const string HEALTH = "Health";
@@ -34,7 +38,14 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _playerMovement = GetComponent<PlayerMovement>();
         _playerSkills = GetComponent<PlayerSkills>();
         _playerAiming = GetComponent<PlayerAiming>();
+        _fusionTrigger = GetComponent<FusionTrigger>();
+        _fusionManager = FindObjectOfType<FusionManager>();
         addDelegate();
+    }
+
+    public bool isHost()
+    {
+        return PhotonNetwork.IsMasterClient;
     }
 
     public bool isMine()
@@ -60,6 +71,12 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _hPControl._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
         _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
         _hPControl._changeHealth = new PlayerHPControl.DelegateMultiplayerControllerHealth(changeHealth);
+
+        _fusionTrigger._isMine = new FusionTrigger.DelegateMultiplayerController(isMine);
+        _fusionTrigger._pushAddMeToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushAddMeToGeneralHost);
+        _fusionTrigger._pushGetoutToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushGetoutToGeneralHost);
+
+        _fusionManager._isHost = new FusionManager.DelegateMultiplayerController(isHost);
     }
 
 
@@ -168,6 +185,32 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
 
     #endregion
 
+    #region Fusion
+
+    //Para agregar a la lista del host quimera
+    public void pushAddMeToGeneralHost()
+    {
+        _photonView.RPC(ADD_ME_HOST,RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void addMeToGeneralHost()
+    {
+        _fusionTrigger.AddMeToGeneralHost();
+    }
+
+    //Para sacar de la lista del host quimera
+    public void pushGetoutToGeneralHost()
+    {
+        _photonView.RPC(GET_OUT_HOST, RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void getoutToGeneralHost()
+    {
+        _fusionTrigger.GetoutToGeneralHost();
+    }
+    #endregion
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
