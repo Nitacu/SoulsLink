@@ -64,7 +64,7 @@ public class CometDash : MonoBehaviour
             {
                 Debug.Log("Send Dash");
                 float chimeraDashSpeed = dashSpeed;
-                chiControl.sendMovement(dashDirection * (chimeraDashSpeed/(2)), GetComponent<PlayerMovement>().FusionTriggerRef.OnFusionID);
+                //chiControl.sendMovement(dashDirection * (chimeraDashSpeed/(2)), GetComponent<PlayerMovement>().FusionTriggerRef.OnFusionID);
             }
         }
         else

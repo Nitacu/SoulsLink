@@ -21,6 +21,15 @@ public class ChimeraController : MonoBehaviour
 
     bool[] _unFusionCheck;
 
+    #region Delegate
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isMine;
+    public delegate void DelegateMultiplayerControllerIDs(string ids);
+    public DelegateMultiplayerControllerIDs _setPlayersInFusion;
+    public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id);
+    public DelegateMultiplayerControllerIMove _sendMovement;
+    #endregion
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();

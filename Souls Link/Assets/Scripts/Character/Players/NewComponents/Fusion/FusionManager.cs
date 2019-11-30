@@ -5,13 +5,14 @@ using UnityEngine;
 public class FusionManager : MonoBehaviour
 {
     [SerializeField] private float _distanceToFusion = 10;
-    [SerializeField] private GameObject _chimeraPrefab;
 
     private GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
 
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isHost;
+    public delegate GameObject DelegateMultiplayerControllerCreatedChimera();
+    public DelegateMultiplayerControllerCreatedChimera _createdChimera;
     #endregion
 
     private void Update()
@@ -128,39 +129,42 @@ public class FusionManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
 
-        //Calcular punto medio
-
-        float xPos = 0;
-        float yPos = 0;
-
-        foreach (var player in _players)
+        if (_isHost())
         {
-            xPos += player.transform.position.x;
-            yPos += player.transform.position.y;
+            //Calcular punto medio
+            float xPos = 0;
+            float yPos = 0;
+
+            foreach (var player in _players)
+            {
+                xPos += player.transform.position.x;
+                yPos += player.transform.position.y;
+            }
+
+            xPos = xPos / _players.Count;
+            yPos = yPos / _players.Count;
+
+            Vector2 newPos = new Vector2(xPos, yPos);
+
+            //Crear chimera
+
+            GameObject _chimera = _createdChimera();
+            _chimera.transform.position = newPos;
+
+            ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
+
+            //crear cadena de ids
+            string ids = _players[0].GetComponent<FusionTrigger>()._myID.ToString();
+            for (int i = 1; i < _players.Count; i++)
+            {
+                string newId = "#" + _players[i].GetComponent<FusionTrigger>()._myID.ToString();
+                ids += newId;
+            }
+
+            //Se debe llamar en los demás también
+            chimeraController.setPlayersInFusion(ids);//local
+            chimeraController._setPlayersInFusion(ids);//para todas las maquinas
         }
-
-        xPos = xPos / _players.Count;
-        yPos = yPos / _players.Count;
-
-        Vector2 newPos = new Vector2(xPos, yPos);
-
-        //Crear chimera
-
-        GameObject _chimera = Instantiate(_chimeraPrefab);
-        _chimera.transform.position = newPos;
-
-        ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
-
-        //crear cadena de ids
-        string ids = _players[0].GetComponent<FusionTrigger>()._myID.ToString();
-        for (int i = 1; i < _players.Count; i++)
-        {
-            string newId = "#" + _players[i].GetComponent<FusionTrigger>()._myID.ToString();
-            ids += newId;
-        }
-
-        //Se debe llamar en los demás también
-        chimeraController.setPlayersInFusion(ids);
     }
 
     public void addMeToFusion(GameObject player)

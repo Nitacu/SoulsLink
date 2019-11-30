@@ -81,12 +81,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void moveOnFusion()
-    {
-        _fusionTriggerRef.CurrentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);
-    }
-
-
     private void move()
     {        
         if (!isDashing)
@@ -130,9 +124,11 @@ public class PlayerMovement : MonoBehaviour
         InputMovement = input;
 
         //Si tengo que enviar a chimera el movimiento
-        if (moveAsChimera())
+        if (moveAsChimera() && _isMine())
         {
-            _fusionTriggerRef.CurrentChimeraParent.sendMovement(InputMovement, _fusionTriggerRef.OnFusionID);
+            //_fusionTriggerRef.CurrentChimeraParent.sendMovement(InputMovement, _fusionTriggerRef.OnFusionID);
+            //se lo envia solo al host
+            _fusionTriggerRef.CurrentChimeraParent._sendMovement(InputMovement, _fusionTriggerRef.OnFusionID);
         }
 
     }

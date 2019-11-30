@@ -43,6 +43,11 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         addDelegate();
     }
 
+    public string myID()
+    {
+        return _photonView.ViewID.ToString();
+    }
+
     public bool isHost()
     {
         return PhotonNetwork.IsMasterClient;
@@ -75,8 +80,10 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _fusionTrigger._isMine = new FusionTrigger.DelegateMultiplayerController(isMine);
         _fusionTrigger._pushAddMeToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushAddMeToGeneralHost);
         _fusionTrigger._pushGetoutToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushGetoutToGeneralHost);
+        _fusionTrigger._myID = new FusionTrigger.DelegateMultiplayerControllerID(myID);
 
         _fusionManager._isHost = new FusionManager.DelegateMultiplayerController(isHost);
+        _fusionManager._createdChimera = new FusionManager.DelegateMultiplayerControllerCreatedChimera(createdChimeta);
     }
 
 
@@ -209,6 +216,11 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     public void getoutToGeneralHost()
     {
         _fusionTrigger.GetoutToGeneralHost();
+    }
+
+    public GameObject createdChimeta()
+    {
+        return PhotonNetwork.Instantiate("Chimera", Vector3.zero,Quaternion.identity,0);
     }
     #endregion
 

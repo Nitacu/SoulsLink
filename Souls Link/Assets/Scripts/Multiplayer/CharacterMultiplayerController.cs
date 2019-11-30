@@ -11,7 +11,6 @@ public class CharacterMultiplayerController : MonoBehaviour
     [SerializeField] private SyncPropertyAgent _syncPropertyAgent;
     [SerializeField] private GameObject _playerHUD;
 
-
     private PlayerMovement _playerMovement;
     private PlayerSkills _playerSkills;
     private PlayerAiming _playerAiming;
@@ -46,6 +45,11 @@ public class CharacterMultiplayerController : MonoBehaviour
         addDelegate();
     }
 
+    public string myID()
+    {
+        return _networkID.OwnerRemotePlayerId;
+    }
+
     public bool isHost()
     {
         return NetworkClient.Instance.IsHost;
@@ -78,8 +82,10 @@ public class CharacterMultiplayerController : MonoBehaviour
         _fusionTrigger._isMine = new FusionTrigger.DelegateMultiplayerController(isMine);
         _fusionTrigger._pushAddMeToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushAddMeToGeneralHost);
         _fusionTrigger._pushGetoutToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushGetoutToGeneralHost);
+        _fusionTrigger._myID = new FusionTrigger.DelegateMultiplayerControllerID(myID);
 
         _fusionManager._isHost = new FusionManager.DelegateMultiplayerController(isHost);
+        _fusionManager._createdChimera = new FusionManager.DelegateMultiplayerControllerCreatedChimera(createdChimeta);
     }
 
     #region Flip
@@ -152,7 +158,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         {
             destroySelf();
         }
-        else if(_syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
+        else if (_syncPropertyAgent.GetPropertyWithName(HEALTH).version > 1)
         {
             _hPControl.StartCoroutine(_hPControl.changeColor());
 
@@ -193,7 +199,7 @@ public class CharacterMultiplayerController : MonoBehaviour
         SWNetworkMessage message = new SWNetworkMessage();
         message.Push(value);
         message.Push(numberSkill);
-        Debug.Log("valor " + value + " numero de skill "+ numberSkill);
+        Debug.Log("valor " + value + " numero de skill " + numberSkill);
         _remoteEventAgent.Invoke(PLAYER_SKILLS, message);
     }
 
@@ -254,7 +260,6 @@ public class CharacterMultiplayerController : MonoBehaviour
     #endregion
 
     #region Fusion
-
     //Para agregar a la lista del host quimera
     public void pushAddMeToGeneralHost()
     {
@@ -276,6 +281,12 @@ public class CharacterMultiplayerController : MonoBehaviour
     {
         _fusionTrigger.GetoutToGeneralHost();
     }
-    #endregion
 
+    public GameObject createdChimeta()
+    {
+       return NetworkClient.Instance.FindSpawner(3).SpawnForPlayer(0, 0);
+    }
+
+    #endregion
 }
+
