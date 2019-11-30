@@ -686,7 +686,7 @@ MonoBehaviour:
   _shieldDirectionPrefab: {fileID: 7283907965343569989, guid: 1e95c9113a4a19240a6cb3dc87edd049,
     type: 3}
   _reflectingTime: 0.3
-  _coolDown: 2
+  _coolDown: 0.7
   _reflectType: 0
 --- !u!114 &930049935
 MonoBehaviour:
@@ -1214,6 +1214,7 @@ MonoBehaviour:
   - {fileID: 1690128982303549139}
   - {fileID: 9148968347901726082}
   _skills: []
+  _onFusionID: 0
 --- !u!1 &8630043043880022629
 GameObject:
   m_ObjectHideFlags: 0

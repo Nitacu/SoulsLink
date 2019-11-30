@@ -11,11 +11,19 @@ public class MageTurret : MonoBehaviour
     public float _turretRange = 1f;
     public float _fireRate = 0.5f;
     private float _fireCountdown;
+    public float _turretLifeTime = 6;
 
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        StartCoroutine(destroyTurret(_turretLifeTime));
+    }
+
+    IEnumerator destroyTurret(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 
     void UpdateTarget()

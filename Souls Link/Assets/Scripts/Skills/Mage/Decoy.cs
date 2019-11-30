@@ -47,7 +47,7 @@ public class Decoy : MonoBehaviour
     {
         Vector2 currentPos = transform.position;
         Vector2 newPos = (Vector2)transform.position + (_aiming.AimDirection * _distance);
-        transform.position = newPos;
+        //transform.position = newPos;
         if (contClones < 3)
         {
             contClones++;

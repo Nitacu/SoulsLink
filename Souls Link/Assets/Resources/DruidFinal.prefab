@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _vineWhip: {fileID: 7081138357069249965, guid: aa5533f000850c947bc78f94cacd6fbc,
     type: 3}
-  _coolDown: 0
+  _coolDown: 0.4
   _damage: 20
   _rootDuration: 0.35
 --- !u!114 &543879864
@@ -1064,6 +1064,7 @@ MonoBehaviour:
   - {fileID: 6058020209759171419}
   - {fileID: 9008634845870170328}
   _skills: []
+  _onFusionID: 0
 --- !u!1 &6058020209759171419
 GameObject:
   m_ObjectHideFlags: 0
