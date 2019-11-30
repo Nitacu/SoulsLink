@@ -163,8 +163,15 @@ public class FusionManager : MonoBehaviour
 
             //Se debe llamar en los demás también
             chimeraController.setPlayersInFusion(ids);//local
-            chimeraController._setPlayersInFusion(ids);//para todas las maquinas
+            StartCoroutine(waitForSetPlayer(chimeraController, ids));//para todas las maquinas
         }
+    }
+
+    IEnumerator waitForSetPlayer(ChimeraController chimeraController, string ids)
+    {
+        yield return new WaitForEndOfFrame();
+        Debug.Log("Termino el frame de creacion de la quimera");
+        chimeraController._setPlayersInFusion(ids);
     }
 
     public void addMeToFusion(GameObject player)

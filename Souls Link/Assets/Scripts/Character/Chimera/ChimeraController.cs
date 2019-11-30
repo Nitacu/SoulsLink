@@ -11,7 +11,7 @@ public class ChimeraController : MonoBehaviour
         get { return _speed; }
     }
 
-    private List<GameObject> _players = new List<GameObject>();
+    [SerializeField]private List<GameObject> _players = new List<GameObject>();
 
     private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _renderer;

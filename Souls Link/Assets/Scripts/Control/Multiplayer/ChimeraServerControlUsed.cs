@@ -18,8 +18,9 @@ public class ChimeraServerControlUsed : CharacterServerControlUsed
                 break;
 
             case GameManager.MultiplayerServer.SOCKETWEAVER:
-                Destroy(GetComponent<PhotonCharacterMultiplayerController>());
-                GetComponent<CharacterMultiplayerController>().enabled = true;
+                Debug.Log("agrega el delegado");
+                GetComponent<ChimeraMultiplayerController>().enabled = true;
+                GetComponent<ChimeraMultiplayerController>().addDelegate();
                 break;
         }
     }
