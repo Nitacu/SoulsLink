@@ -28,7 +28,6 @@ public class ChimeraController : MonoBehaviour
 
     private void LateUpdate()
     {
-
         calculateNewMovement();
         move();
     }
@@ -55,6 +54,7 @@ public class ChimeraController : MonoBehaviour
 
     public void sendMovement(Vector2 movement, int id)
     {
+        Debug.Log("input received");
         _inputsMovements[id] = movement;
     }
 
@@ -69,7 +69,6 @@ public class ChimeraController : MonoBehaviour
         _movement = newinputMovement;
     }
 
-
     public void setPlayersInFusion(List<GameObject> players)
     {
         _players = players;
@@ -78,7 +77,6 @@ public class ChimeraController : MonoBehaviour
 
     private void setPlayersChild()
     {
-        Debug.Log("Current Players: " + _players.Count);
         _inputsMovements = new Vector2[_players.Count];
 
         _unFusionCheck = new bool[_players.Count];
@@ -88,17 +86,9 @@ public class ChimeraController : MonoBehaviour
 
         foreach (var player in _players)
         {
-            player.GetComponent<FusionTrigger>().IsOnFusion = true;
-            player.GetComponent<FusionTrigger>().CurrentChimeraParent = this;
-            player.GetComponent<FusionTrigger>().OnFusionID = idCount;
-            player.transform.SetParent(gameObject.transform);
-            player.transform.localPosition = Vector3.zero;
-            player.GetComponent<FusionTrigger>().assingSkillsTochimera(gameObject);
-
-            //player.transform.position = gameObject.transform.position;
+            player.GetComponent<FusionTrigger>().setOnFusion(gameObject, idCount);
 
             idCount++;
-            //player.SetActive(false);
         }
     }
 

@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour
         get { return _rb; }
         set { _rb = value; }
     }
-    private Vector2 _inputMovement;
+    private Vector2 _inputMovement = Vector2.zero;    
 
     [SerializeField] private float _speed = 100;
     [SerializeField] private Animator _anim;
@@ -49,17 +49,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*
-        if (_fusionTriggerRef != null)
-        {
-            if (_fusionTriggerRef.IsOnFusion)
-            {
-                moveOnFusion();
-                return;
-            }
-        }
-        */
-
         move();
 
         changeOrientation();
@@ -99,26 +88,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     private void move()
-    {
-        //Saber si se debe enviar a chimera o moverme
-        bool sendMovementToChimera = false;
-        if (_fusionTriggerRef != null)
-        {
-            if (_fusionTriggerRef.IsOnFusion)
-            {
-                sendMovementToChimera = true;
-            }
-        }
-
-
+    {        
         if (!isDashing)
         {
             //movimiento normal
-            if (sendMovementToChimera)
-            {
-                _fusionTriggerRef.CurrentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);
-            }
-            else
+            if (!moveAsChimera())
             {
                 _rb.velocity = InputMovement * _speed * Time.deltaTime;
                 _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.magnitude);
@@ -142,13 +116,10 @@ public class PlayerMovement : MonoBehaviour
         // _inputMovement = context.ReadValue<Vector2>();
         if (_isMine())
         {
-            //para mover el player en esta maquina
-
-            StartCoroutine(multiplayerDelay(context.Get<Vector2>()));
-            //InputMovement = context.Get<Vector2>();
-
-
-            //llama decirle a las otras maquinas que tienen que mover este PJ
+            if (context.Get<Vector2>() != InputMovement)
+            {
+                StartCoroutine(multiplayerDelay(context.Get<Vector2>()));
+            }
         }
     }
 
@@ -158,6 +129,25 @@ public class PlayerMovement : MonoBehaviour
 
         InputMovement = input;
 
+        //Si tengo que enviar a chimera el movimiento
+        if (moveAsChimera())
+        {
+            _fusionTriggerRef.CurrentChimeraParent.sendMovement(InputMovement, _fusionTriggerRef.OnFusionID);
+        }
+
+    }
+
+    public bool moveAsChimera()
+    {
+        bool sendMovementToChimera = false;
+        if (_fusionTriggerRef != null)
+        {
+            if (_fusionTriggerRef.IsOnFusion)
+            {
+                sendMovementToChimera = true;
+            }
+        }
+        return sendMovementToChimera;
     }
 
     //Enable and Disable

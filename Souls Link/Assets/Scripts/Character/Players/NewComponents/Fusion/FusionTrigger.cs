@@ -150,5 +150,19 @@ public class FusionTrigger : MonoBehaviour
             }
         }
     }
+
+    public void setOnFusion(GameObject chimeraController, int fusionID)
+    {
+        //Saber si estoy en fusion y mi id para la chimera
+        _isOnFusion = true;
+        _onFusionID = fusionID;
+
+        //Informaciónd e la chimera en la que estoy
+        _currentChimeraParent = chimeraController.GetComponent<ChimeraController>();
+        transform.SetParent(chimeraController.transform);
+        transform.localPosition = Vector3.zero;
+
+        assingSkillsTochimera(chimeraController);
+    }
 }
 
