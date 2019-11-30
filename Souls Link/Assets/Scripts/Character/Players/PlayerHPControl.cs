@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerHPControl : MonoBehaviour
 {
     [SerializeField] private float _playerHealth;
-    private CharacterMultiplayerController _multiplayerController;
 
     #region PLAYER STATES
     private bool canRecieveDamage = true;
@@ -14,24 +13,28 @@ public class PlayerHPControl : MonoBehaviour
 
     #endregion
 
-    private void Start()
-    {
-        _multiplayerController = GetComponent<CharacterMultiplayerController>();
-    }
+    #region Delegate
+    public delegate bool DelegateMultiplayerController();
+    public DelegateMultiplayerController _isMine;
+    public delegate void DelegateMultiplayerControllerHealth(float health);
+    public DelegateMultiplayerControllerHealth _changeHealth;
+    public delegate void DelegateMultiplayerControllerDestroy();
+    public DelegateMultiplayerControllerDestroy _destroySelf;
+    #endregion
 
     public void recieveDamage(float damage, GameObject attackingEnemy)
     {
-        if (_multiplayerController.isMine())
+        if (_isMine())
         {
             if (canRecieveDamage)
             {
                 PlayerHealth -= damage;
                 //envia la modificacion a todos
-                _multiplayerController.changeHealth(PlayerHealth);
+                _changeHealth(PlayerHealth);
 
-                if (PlayerHealth < 0 && _multiplayerController.isMine())
+                if (PlayerHealth < 0 && _isMine())
                 {
-                    _multiplayerController.destroySelf();
+                    _destroySelf();
                 }
 
                 if (GetComponentInChildren<HUDController>())

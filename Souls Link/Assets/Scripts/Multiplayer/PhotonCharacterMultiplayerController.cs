@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PhotonCharacterMultiplayerController : MonoBehaviourPun
+public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     private PlayerMovement _playerMovement;
     private PlayerSkills _playerSkills;
@@ -56,6 +56,10 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPun
 
         _playerAiming._isMine = new PlayerAiming.DelegateMultiplayerController(isMine);
         _playerAiming._pushVectorAiming = new PlayerAiming.DelegateMultiplayerControllerSendVector(pushVectorAiming);
+
+        _hPControl._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
+        _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
+        _hPControl._changeHealth = new PlayerHPControl.DelegateMultiplayerControllerHealth(changeHealth);
     }
 
 
@@ -132,6 +136,49 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPun
             }
         }
     }
-    #endregion 
+    #endregion
+
+    #region Vida
+    //cuando detecta un cambio de vida en el servidor
+    public void onHealthSyncPropertyChanged(float health)
+    {
+        _hPControl.PlayerHealth = health;
+
+        if (health <= 0)
+        {
+            destroySelf();
+        }
+        else
+        {
+            _hPControl.StartCoroutine(_hPControl.changeColor());
+
+            if (GetComponentInChildren<HUDController>())
+                GetComponentInChildren<HUDController>().setHealthBar(_hPControl.PlayerHealth);
+
+            if (GetComponentInChildren<HUDController>())
+                StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
+        }
+    }
+
+    //envia el cambio de vida al servidor
+    public void changeHealth(float health)
+    {
+
+    }
+
+    #endregion
+
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(_hPControl.PlayerHealth);
+        }
+        else
+        {
+            onHealthSyncPropertyChanged((float)stream.ReceiveNext());
+        }
+    }
 
 }

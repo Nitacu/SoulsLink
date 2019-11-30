@@ -61,6 +61,10 @@ public class CharacterMultiplayerController : MonoBehaviour
 
         _playerAiming._isMine = new PlayerAiming.DelegateMultiplayerController(isMine);
         _playerAiming._pushVectorAiming = new PlayerAiming.DelegateMultiplayerControllerSendVector(pushVectorAiming);
+
+        _hPControl._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
+        _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
+        _hPControl._changeHealth = new PlayerHPControl.DelegateMultiplayerControllerHealth(changeHealth);
     }
 
     #region Flip

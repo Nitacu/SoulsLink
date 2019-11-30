@@ -68,45 +68,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         _enemyController._destroySelf = new SimpleEnemyController.DelegateEnemyMultiplayerControllerDestroy(destroySelf);
         _enemyController._changeHealth = new SimpleEnemyController.DelegateEnemyMultiplayerControllerHealth(changeHealth);
     }
-
-    #region Flip
-    //inicializa la vida
-    public void onFlipSyncPropertyReady()
-    {
-        bool flip = _syncPropertyAgent.GetPropertyWithName(FLIP).GetBoolValue();
-
-        if (isMine())
-        {
-            int version = _syncPropertyAgent.GetPropertyWithName(FLIP).version;
-
-            if (version == 0)
-            {
-                // colocar la vida en el maximo
-                _syncPropertyAgent.Modify(FLIP, _spriteRenderer.flipX);
-                flip = _spriteRenderer.flipX;
-            }
-        }
-
-        // carga la vida
-        _spriteRenderer.flipX = flip;
-    }
-
-    //cuando detecta un cambio de vida en el servidor
-    public void onFlipSyncPropertyChanged()
-    {
-        bool flip = _syncPropertyAgent.GetPropertyWithName(FLIP).GetBoolValue();
-
-        _spriteRenderer.flipX = flip;
-    }
-
-    //envia el cambio de vida al servidor
-    public void changeFlip(bool flip)
-    {
-        _syncPropertyAgent.Modify(FLIP, flip);
-    }
-
-    #endregion
-
+  
     #region Vida
     //inicializa la vida
     public void onHealthSyncPropertyReady()

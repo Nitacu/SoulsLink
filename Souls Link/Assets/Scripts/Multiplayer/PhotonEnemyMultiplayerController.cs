@@ -6,7 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PhotonEnemyMultiplayerController : MonoBehaviour
+public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     private ControlSpawnEnemys _controlSpawnEnemys;
     private SimpleEnemyController _enemyController;
@@ -65,6 +65,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviour
         _enemyController._setAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerAttack(setAttack);
         _enemyController._setRangeAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerRangeAttack(setRangeAttack);
         _enemyController._destroySelf = new SimpleEnemyController.DelegateEnemyMultiplayerControllerDestroy(destroySelf);
+        _enemyController._changeHealth = new SimpleEnemyController.DelegateEnemyMultiplayerControllerHealth(changeHealth);
     }
 
     #region Ataque
@@ -96,5 +97,41 @@ public class PhotonEnemyMultiplayerController : MonoBehaviour
     {
         _enemyController.createdBullet(direction);
     }
-    #endregion 
+    #endregion
+
+    #region Vida
+
+    //cuando detecta un cambio de vida en el servidor
+    public void onHealthSyncPropertyChanged(float health)
+    {
+        _enemyController.health = health;
+
+        if (health <= 0)
+        {
+            _enemyController.StartCoroutine(_enemyController.die());
+        }
+        else
+        {
+            _enemyController.StartCoroutine(_enemyController.changeColor(0.5f));
+        }
+    }
+
+    //envia el cambio de vida al servidor
+    public void changeHealth(float health)
+    {
+    }
+
+    #endregion
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(_enemyController.health);
+        }
+        else
+        {
+            onHealthSyncPropertyChanged((float)stream.ReceiveNext());
+        }
+    }
 }
