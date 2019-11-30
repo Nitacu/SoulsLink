@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerSelectCharPanel : MonoBehaviour
 {
-    private string _playerId;
+    public string _playerId;
     public string PlayerID
     {
         get { return _playerId; }

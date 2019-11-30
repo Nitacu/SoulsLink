@@ -1637,6 +1637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerId: 
   ownCharacterSelection: {fileID: 722157450258774434}
   leftArrow: {fileID: 107299358702000663}
   rightArrow: {fileID: 2467385727714223412}
@@ -1652,6 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerId: 
   ownCharacterSelection: {fileID: 722157449448661207}
   leftArrow: {fileID: 107299359520326498}
   rightArrow: {fileID: 2467385727451610177}
@@ -1667,6 +1669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerId: 
   ownCharacterSelection: {fileID: 722157449339104893}
   leftArrow: {fileID: 107299357784427976}
   rightArrow: {fileID: 2467385728935883499}
@@ -1682,6 +1685,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerId: 
   ownCharacterSelection: {fileID: 722157448741222084}
   leftArrow: {fileID: 107299358340502897}
   rightArrow: {fileID: 2467385728427518546}
@@ -5483,7 +5487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lobbyUI: {fileID: 3241663706050729673}
-  _photonView: {fileID: 0}
+  _photonView: {fileID: 3241663706050729689}
 --- !u!114 &3241663706050729689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6683,6 +6687,7 @@ MonoBehaviour:
   - {fileID: 1233985792999360141}
   _offsetX: 110
   _characterIndexSelected: 0
+  myID: 
 --- !u!222 &3241663706746308762
 CanvasRenderer:
   m_ObjectHideFlags: 0

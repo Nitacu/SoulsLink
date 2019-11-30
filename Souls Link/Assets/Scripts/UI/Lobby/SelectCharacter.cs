@@ -8,7 +8,7 @@ public class SelectCharacter : MonoBehaviour
 {
     [SerializeField] private List<PlayerSelectCharPanel> _imagePlayers = new List<PlayerSelectCharPanel>();
     [SerializeField] private float _offsetX = 215f;
-    
+
     [SerializeField] private int _characterIndexSelected = 0;
     private GameObject _charactersPanel;
     private GameObject _leftArrow;
@@ -17,7 +17,7 @@ public class SelectCharacter : MonoBehaviour
     public delegate void StarGame();
     public StarGame starGame;
 
-    private string myID;
+    public string myID;
 
     public string MyID { get => myID; set => myID = value; }
 
@@ -37,19 +37,22 @@ public class SelectCharacter : MonoBehaviour
             {
                 imagePlayer.DeactivateMySelection();
 
-                string panelID = imagePlayer.PlayerID;
-                if (panelID.Equals(MyID))
+                string panelID = imagePlayer.PlayerID;                
+                if (panelID != null)
                 {
-                    //set seleccionar personaje
-                    Debug.Log("Finded my self: " + MyID);
-                    _charactersPanel = imagePlayer.getCharacterSelection();
-                    _leftArrow = imagePlayer.getLeftArrow();
-                    _rightArrow = imagePlayer.getRightArrow();
-                    break;
+                    if (panelID.Equals(MyID))
+                    {
+                        //set seleccionar personaje
+                        Debug.Log("Finded my self: " + MyID);
+                        _charactersPanel = imagePlayer.getCharacterSelection();
+                        _leftArrow = imagePlayer.getLeftArrow();
+                        _rightArrow = imagePlayer.getRightArrow();
+                        break;
+                    }
                 }
             }
         }
-        
+
         resetCharacterPanelPosition();
         selectCharacter(_characterIndexSelected);
         setArrows();
@@ -73,7 +76,6 @@ public class SelectCharacter : MonoBehaviour
         if (_characterIndexSelected > 0)
         {
             _characterIndexSelected--;
-            Debug.Log("Elegir char izquierda Index: " + _characterIndexSelected);
             //MoverPanelDerecha
             movePanel(false);
         }
