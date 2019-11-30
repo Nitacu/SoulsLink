@@ -56,7 +56,6 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         _controlSpawnEnemys.spawnRandomEnemy();
         NetworkClient.Destroy(gameObject);
-
     }
 
     #region Flip
@@ -96,7 +95,6 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     }
 
     #endregion
-
 
     #region Vida
     //inicializa la vida

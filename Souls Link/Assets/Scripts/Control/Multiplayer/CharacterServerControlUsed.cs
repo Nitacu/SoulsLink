@@ -8,16 +8,16 @@ using Photon.Pun;
 public class CharacterServerControlUsed : MonoBehaviour
 {
     [Header("Socketweaver")]
-    [SerializeField] private NetworkID _networkID;
-    [SerializeField] private RemoteEventAgent _eventAgent;
-    [SerializeField] private RealtimeAgent _realtimeAgent;
-    [SerializeField] private SyncPropertyAgent _propertyAgent;
+    [SerializeField] protected NetworkID _networkID;
+    [SerializeField] protected RemoteEventAgent _eventAgent;
+    [SerializeField] protected RealtimeAgent _realtimeAgent;
+    [SerializeField] protected SyncPropertyAgent _propertyAgent;
     [Header("Photon")]
-    [SerializeField] private PhotonTransformView _transformView;
-    [SerializeField] private PhotonView _photonView;
-    [SerializeField] private PhotonAnimatorView _animatorView;
+    [SerializeField] protected PhotonTransformView _transformView;
+    [SerializeField] protected PhotonView _photonView;
+    [SerializeField] protected PhotonAnimatorView _animatorView;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         switch (GameManager.GetInstace()._multiplayerServer)
         {
@@ -34,7 +34,8 @@ public class CharacterServerControlUsed : MonoBehaviour
                 if (_networkID)
                     Destroy(_networkID);
 
-                GetComponent<PhotonCharacterMultiplayerController>().enabled = true;
+                activeMultiplayerController();
+
                 break;
 
             case GameManager.MultiplayerServer.SOCKETWEAVER:
@@ -47,6 +48,23 @@ public class CharacterServerControlUsed : MonoBehaviour
                 if (_photonView)
                     Destroy(_photonView);
 
+                activeMultiplayerController();
+
+                break;
+        }
+    }
+
+    public virtual void activeMultiplayerController()
+    {
+        switch (GameManager.GetInstace()._multiplayerServer)
+        {
+            case GameManager.MultiplayerServer.PHOTON:
+                Destroy(GetComponent<CharacterMultiplayerController>());
+                GetComponent<PhotonCharacterMultiplayerController>().enabled = true;
+                break;
+
+            case GameManager.MultiplayerServer.SOCKETWEAVER:
+                Destroy(GetComponent<PhotonCharacterMultiplayerController>());
                 GetComponent<CharacterMultiplayerController>().enabled = true;
                 break;
         }

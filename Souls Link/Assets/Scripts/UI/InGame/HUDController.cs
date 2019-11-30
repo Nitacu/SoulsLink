@@ -19,7 +19,6 @@ public class HUDController : MonoBehaviour
 
     private float maxPlayerHealth;
 
-    private NetworkClient networkInfo;
     private bool isHost = false;
 
     private GameManager.MultiplayerServer _server;
@@ -62,9 +61,6 @@ public class HUDController : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToWait);
 
-        if (_server == GameManager.MultiplayerServer.SOCKETWEAVER)
-            networkInfo = FindObjectOfType<NetworkClient>();
-
         if (connet())
         {
             StartCoroutine(findNetworkClientAgain(2));
@@ -103,7 +99,7 @@ public class HUDController : MonoBehaviour
         switch (_server)
         {
             case GameManager.MultiplayerServer.SOCKETWEAVER:
-                _isHostServer = networkInfo.IsHost;
+                _isHostServer = NetworkClient.Instance.IsHost;
                 break;
 
             case GameManager.MultiplayerServer.PHOTON:
@@ -119,16 +115,13 @@ public class HUDController : MonoBehaviour
         switch (_server)
         {
             case GameManager.MultiplayerServer.SOCKETWEAVER:
-                return networkInfo;
-                break;
+                return NetworkClient.Instance.IsHost;
 
             case GameManager.MultiplayerServer.PHOTON:
                 return PhotonNetwork.IsConnected;
-                break;
 
             default:
                 return false;
-                break;
 
         }
     }

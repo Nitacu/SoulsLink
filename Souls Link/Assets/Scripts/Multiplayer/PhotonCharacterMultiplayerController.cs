@@ -27,7 +27,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPun
         if (!isMine())
         {
             Destroy(GetComponent<PlayerInput>());
-            //Destroy(_playerHUD);
+            Destroy(_playerHUD);
         }
 
         _hPControl = GetComponent<PlayerHPControl>();
