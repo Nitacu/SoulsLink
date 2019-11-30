@@ -14,11 +14,13 @@ public class ChimeraServerControlUsed : CharacterServerControlUsed
         switch (GameManager.GetInstace()._multiplayerServer)
         {
             case GameManager.MultiplayerServer.PHOTON:
-
+                //Destroy(GetComponent<ChimeraMultiplayerController>());
+                //GetComponent<PhotonChimeraMultiplayerController>().enabled = true;
+                //GetComponent<PhotonChimeraMultiplayerController>().addDelegate();
                 break;
 
             case GameManager.MultiplayerServer.SOCKETWEAVER:
-                Debug.Log("agrega el delegado");
+                //Destroy(GetComponent<PhotonChimeraMultiplayerController>());
                 GetComponent<ChimeraMultiplayerController>().enabled = true;
                 GetComponent<ChimeraMultiplayerController>().addDelegate();
                 break;
