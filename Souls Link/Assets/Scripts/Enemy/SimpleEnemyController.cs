@@ -12,7 +12,6 @@ public class SimpleEnemyController : MonoBehaviour
     private bool firstTimePressing = true;
     private bool isGettingDamaged = false;
     private Animator _anim;
-    protected EnemyMeleeMultiplayerController _multiplayerController;
     private PolyNavAgent _poly;
     public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
@@ -24,13 +23,26 @@ public class SimpleEnemyController : MonoBehaviour
     public ParticleSystem _poisonParticles;
     private bool isPoisoned = false;
 
+    #region Delegate
+    public delegate bool DelegateEnemyMultiplayerController();
+    public DelegateEnemyMultiplayerController _isMine;
+    public DelegateEnemyMultiplayerController _isHost;
+    public delegate void DelegateEnemyMultiplayerControllerHealth(float health);
+    public DelegateEnemyMultiplayerControllerHealth _changeHealth;
+    public delegate void DelegateEnemyMultiplayerControllerAttack();
+    public DelegateEnemyMultiplayerControllerAttack _setAttack;
+    public delegate void DelegateEnemyMultiplayerControllerRangeAttack(Vector2 direction);
+    public DelegateEnemyMultiplayerControllerRangeAttack _setRangeAttack;
+    public delegate void DelegateEnemyMultiplayerControllerDestroy();
+    public DelegateEnemyMultiplayerControllerDestroy _destroySelf;
+    #endregion
+
     // Start is called before the first frame update
     public void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         Anim = GetComponentInChildren<Animator>();
         _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
-        _multiplayerController = GetComponent<EnemyMeleeMultiplayerController>();
         _poly = GetComponent<PolyNavAgent>();
     }
 
@@ -81,10 +93,10 @@ public class SimpleEnemyController : MonoBehaviour
     public virtual void attack(GameObject player)
     {
         //solo el host hace lo del daño 
-        if (_multiplayerController.isHost())
+        if (_isHost())
         {
             //envia a los demas la informacion para que se vea que ataco
-            _multiplayerController.setAttack();
+            _setAttack();
             exeAttack();
             Anim.Play(Animator.StringToHash("Attack"));
         }
@@ -116,10 +128,10 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void recieveDamage(float damage)
     {
-        if (_multiplayerController.isHost())
+        if (_isHost())
         {
             health -= damage;
-            _multiplayerController.changeHealth(health);
+            _changeHealth(health);
             if (health < 0)
             {
                 StartCoroutine(die());
@@ -159,9 +171,9 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<PolyNavAgent>().enabled = false;
         GetComponent<BehaviorTree>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        if (_multiplayerController.isMine())
+        if (_isMine())
         {
-            _multiplayerController.destroySelf();
+            _destroySelf();
         }
         else
         {
@@ -176,12 +188,12 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void recieveTickDamage(float damage, float tickTime)
     {
-        if (_multiplayerController.isHost())
+        if (_isHost())
         {
             if (isGettingDamaged)
             {
                 health -= damage;
-                _multiplayerController.changeHealth(health);
+                _changeHealth(health);
 
                 if (health < 0)
                 {

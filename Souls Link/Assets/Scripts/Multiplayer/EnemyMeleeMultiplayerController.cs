@@ -25,6 +25,7 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         _syncPropertyAgent = GetComponent<SyncPropertyAgent>();
         _enemyController = GetComponent<SimpleEnemyController>();
         _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
+        addDelegate();
     }
 
     private void Update()
@@ -56,6 +57,16 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
     {
         _controlSpawnEnemys.spawnRandomEnemy();
         NetworkClient.Destroy(gameObject);
+    }
+
+    public void addDelegate()
+    {
+        _enemyController._isHost = new SimpleEnemyController.DelegateEnemyMultiplayerController(isHost);
+        _enemyController._isMine = new SimpleEnemyController.DelegateEnemyMultiplayerController(isMine);
+        _enemyController._setAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerAttack(setAttack);
+        _enemyController._setRangeAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerRangeAttack(setRangeAttack);
+        _enemyController._destroySelf = new SimpleEnemyController.DelegateEnemyMultiplayerControllerDestroy(destroySelf);
+        _enemyController._changeHealth = new SimpleEnemyController.DelegateEnemyMultiplayerControllerHealth(changeHealth);
     }
 
     #region Flip

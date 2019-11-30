@@ -9,11 +9,11 @@ public class ImpController : SimpleEnemyController
 
     public override void attack(GameObject player)
     {
-        if (_multiplayerController.isHost())
+        if (_isHost())
         {
             Vector2 direction = player.transform.position - transform.position;
             direction.Normalize();
-            _multiplayerController.setRangeAttack(direction);
+            _setRangeAttack(direction);
             createdBullet(direction);
         }
     }

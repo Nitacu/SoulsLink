@@ -22,6 +22,8 @@ public class PhotonEnemyMultiplayerController : MonoBehaviour
     {
         _enemyController = GetComponent<SimpleEnemyController>();
         _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
+
+        addDelegate();
     }
 
     private void Update()
@@ -54,6 +56,15 @@ public class PhotonEnemyMultiplayerController : MonoBehaviour
     {
         _controlSpawnEnemys.spawnRandomEnemy();
         PhotonNetwork.Destroy(gameObject);
+    }
+
+    public void addDelegate()
+    {
+        _enemyController._isHost = new SimpleEnemyController.DelegateEnemyMultiplayerController(isHost);
+        _enemyController._isMine = new SimpleEnemyController.DelegateEnemyMultiplayerController(isMine);
+        _enemyController._setAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerAttack(setAttack);
+        _enemyController._setRangeAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerRangeAttack(setRangeAttack);
+        _enemyController._destroySelf = new SimpleEnemyController.DelegateEnemyMultiplayerControllerDestroy(destroySelf);
     }
 
     #region Ataque
