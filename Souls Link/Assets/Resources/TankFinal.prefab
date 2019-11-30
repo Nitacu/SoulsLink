@@ -309,8 +309,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3730457550004149250}
-  - component: {fileID: 3730457550004149251}
   - component: {fileID: 4370920888415622395}
+  - component: {fileID: 3730457550004149251}
   - component: {fileID: 3822002165638600530}
   - component: {fileID: 2043381001436603634}
   - component: {fileID: 7501092959704258013}
@@ -358,6 +358,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4370920888415622395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74b4204cda92de47afc39fcf80615c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 200
+  _anim: {fileID: 4780121682267637132}
+  _renderer: {fileID: 7027780326426422714}
+  isDashing: 0
+  _flip: 0
 --- !u!50 &3730457550004149251
 Rigidbody2D:
   serializedVersion: 4
@@ -379,22 +396,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &4370920888415622395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730457550004149255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b74b4204cda92de47afc39fcf80615c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _speed: 200
-  _anim: {fileID: 4780121682267637132}
-  _renderer: {fileID: 7027780326426422714}
-  isDashing: 0
 --- !u!114 &3822002165638600530
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +882,37 @@ MonoBehaviour:
   m_Script: {fileID: -1480947390, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncedGenerics: []
+  syncedGenerics:
+  - syncTarget: {fileID: 4370920888415622395}
+    enabled: 1
+    foldout: 1
+    bandwidth: 0
+    padding: 0
+    editorName: Flip
+    uncompressedSyncFields: []
+    syncFields:
+    - enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: isDashing
+      isProperty: 0
+    - enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: _flip
+      isProperty: 0
+    syncVector2Fields: []
+    syncVector3Fields: []
+    syncQuaternionFields: []
+    syncVector4Fields: []
   syncedTransform:
     interpolate: 20
     smoothLevel: 2

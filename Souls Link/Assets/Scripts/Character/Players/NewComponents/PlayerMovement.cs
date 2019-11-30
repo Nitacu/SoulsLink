@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector]
     public bool isDashing = false;
-
+    public bool _flip = false;
 
     private FusionTrigger _fusionTriggerRef;
     
@@ -55,9 +55,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         move();
+
+        changeOrientation();
     }
 
 
+    public void changeOrientation()
+    {
+        if (_isMine())
+        {
+            _anim.GetComponent<SpriteRenderer>().flipX = _flip;
+        }
+        else
+        {
+            _flip = _anim.GetComponent<SpriteRenderer>().flipX;
+        }
+    }
 
     private void setAnimation()
     {

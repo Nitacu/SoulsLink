@@ -624,6 +624,7 @@ MonoBehaviour:
   _anim: {fileID: 2879079040181944947}
   _renderer: {fileID: 298746667275250245}
   isDashing: 0
+  _flip: 0
 --- !u!114 &5812061080386293933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1096,14 +1097,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncedGenerics:
-  - syncTarget: {fileID: 0}
-    enabled: 0
-    foldout: 0
-    bandwidth: 0
-    padding: 0
-    editorName: Generic
+  - syncTarget: {fileID: 6416025392263254788}
+    enabled: 1
+    foldout: 1
+    bandwidth: 1
+    padding: 7
+    editorName: Flip
     uncompressedSyncFields: []
-    syncFields: []
+    syncFields:
+    - enabled: 0
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: isDashing
+      isProperty: 0
+    - enabled: 1
+      min: -300
+      max: 300
+      resolution: 3
+      valueType: 2
+      minInt: -300
+      maxInt: 300
+      fieldInfoName: _flip
+      isProperty: 0
     syncVector2Fields: []
     syncVector3Fields: []
     syncQuaternionFields: []
