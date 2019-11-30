@@ -22,7 +22,7 @@ public class SinglePlayerFollowing : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToStart);
 
-        CharacterMultiplayerController[] _players = FindObjectsOfType<CharacterMultiplayerController>();
+        PlayerMovement[] _players = FindObjectsOfType<PlayerMovement>();
 
         if (_players.Length <= 0)
         {
@@ -34,13 +34,13 @@ public class SinglePlayerFollowing : MonoBehaviour
         }
     }
 
-    private void assignTarget(CharacterMultiplayerController[] playerFinded)
+    private void assignTarget(PlayerMovement[] playerFinded)
     {
         bool playerFound = false;
 
         foreach (var player in playerFinded)
         {
-            if (player.isMine())
+            if (player._isMine())
             {
                 target = player.gameObject;
                 playerFound = true;

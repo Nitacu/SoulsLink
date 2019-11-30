@@ -92,7 +92,7 @@ Animator:
   m_GameObject: {fileID: 1259665956790016034}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: f883a30d5415bb845b4893167db2cea0, type: 2}
+  m_Controller: {fileID: 9100000, guid: cb559ceef1c122b46be1ce8d8527aea3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -530,12 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
-  _machineGun: {fileID: 5741372167121810170, guid: e030d90015f8a044c8b3e8ba0df0b7df,
-    type: 3}
-  _dualGuns: {fileID: 6759147795795087079, guid: a12d6476dbd5137458fa20c7009550ce,
-    type: 3}
-  _shotGun: {fileID: 1256071875564584171, guid: 5103d2fdbfc0ad144af1a06d2dd55fb3,
-    type: 3}
+  _turret: {fileID: 0}
   _randomGunPickerPosition: {fileID: 1930448433, guid: ee06c4c547521df4f9e523b0636f57c7,
     type: 3}
   _coolDown: 5
