@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class SinglePlayerFollowing : MonoBehaviour
 {
-    [SerializeField]private GameObject target;
+    [SerializeField] private GameObject target;
+
+    private bool playerDead = false;
+    public bool PlayerDead
+    {
+        get { return playerDead; }
+        set { playerDead = value; }
+    }
 
     private void Start()
     {
-        StartCoroutine(findPlayersAgain(0));       
+        StartCoroutine(findPlayersAgain(0));
     }
 
     IEnumerator findPlayersAgain(float timeToStart)
@@ -37,27 +44,30 @@ public class SinglePlayerFollowing : MonoBehaviour
             {
                 target = player.gameObject;
                 playerFound = true;
-                Debug.Log("Player found: " + target.name);
             }
         }
 
         if (!playerFound)
         {
-            Debug.Log("Player not found - Try Again");
             StartCoroutine(findPlayersAgain(0.2f));
         }
     }
 
     private void Update()
     {
+        if (playerDead)
+        {
+            return;
+        }
+
         //Follow Player
         if (target != null)
         {
-            Debug.Log("Move Camera");
             gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, gameObject.transform.position.z);
         }
         else
         {
+            Debug.Log("Find player");
             StartCoroutine(findPlayersAgain(0));
         }
 

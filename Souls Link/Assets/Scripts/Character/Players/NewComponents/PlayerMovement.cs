@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-        const float DELAY = 0.05f;
+    const float DELAY = 0.05f;
 
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
@@ -29,7 +29,11 @@ public class PlayerMovement : MonoBehaviour
     public bool _flip = false;
 
     private FusionTrigger _fusionTriggerRef;
-    
+    public FusionTrigger FusionTriggerRef
+    {
+        get { return _fusionTriggerRef; }
+    }
+
 
     private void Awake()
     {
@@ -45,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*
         if (_fusionTriggerRef != null)
         {
             if (_fusionTriggerRef.IsOnFusion)
@@ -53,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
                 return;
             }
         }
+        */
 
         move();
 
@@ -88,16 +94,35 @@ public class PlayerMovement : MonoBehaviour
 
     private void moveOnFusion()
     {
-        _fusionTriggerRef.CurrentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);        
+        _fusionTriggerRef.CurrentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);
     }
 
 
     private void move()
     {
+        //Saber si se debe enviar a chimera o moverme
+        bool sendMovementToChimera = false;
+        if (_fusionTriggerRef != null)
+        {
+            if (_fusionTriggerRef.IsOnFusion)
+            {
+                sendMovementToChimera = true;
+            }
+        }
+
+
         if (!isDashing)
         {
-            _rb.velocity = InputMovement * _speed * Time.deltaTime;
-            _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.magnitude);
+            //movimiento normal
+            if (sendMovementToChimera)
+            {
+                _fusionTriggerRef.CurrentChimeraParent.sendMovement(_inputMovement, _fusionTriggerRef.OnFusionID);
+            }
+            else
+            {
+                _rb.velocity = InputMovement * _speed * Time.deltaTime;
+                _anim.SetFloat(VELOCITY_PARAMETER, _rb.velocity.magnitude);
+            }
         }
         else
         {
@@ -121,13 +146,13 @@ public class PlayerMovement : MonoBehaviour
 
             StartCoroutine(multiplayerDelay(context.Get<Vector2>()));
             //InputMovement = context.Get<Vector2>();
-            
-            
+
+
             //llama decirle a las otras maquinas que tienen que mover este PJ
         }
     }
 
-     IEnumerator multiplayerDelay(Vector2 input)
+    IEnumerator multiplayerDelay(Vector2 input)
     {
         yield return new WaitForSeconds(DELAY);
 

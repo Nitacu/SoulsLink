@@ -5,10 +5,15 @@ using UnityEngine;
 public class ChimeraController : MonoBehaviour
 {
     [SerializeField] private float _speed = 100;
+    public float Speed
+    {
+        get { return _speed; }
+    }
 
     private List<GameObject> _players = new List<GameObject>();
 
     private Rigidbody2D _rb;
+    [SerializeField] private SpriteRenderer _renderer;
 
     [SerializeField] private Vector2 _movement;
     [SerializeField] private Vector2[] _inputsMovements;
@@ -23,7 +28,7 @@ public class ChimeraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Debug.Log("Calculate Movements");
+
         calculateNewMovement();
         move();
     }
@@ -31,7 +36,21 @@ public class ChimeraController : MonoBehaviour
     private void move()
     {
         _rb.velocity = _movement * Time.deltaTime * _speed;
-        Debug.Log("Move");
+
+        setAnimation();
+    }
+
+    private void setAnimation()
+    {
+        //RotarSprite
+        if (_movement.x > 0)
+        {
+            _renderer.flipX = false;
+        }
+        else if (_movement.x < 0)
+        {
+            _renderer.flipX = true;
+        }        
     }
 
     public void sendMovement(Vector2 movement, int id)
@@ -39,11 +58,8 @@ public class ChimeraController : MonoBehaviour
         _inputsMovements[id] = movement;
     }
 
-
-
     private void calculateNewMovement()
     {
-        Debug.Log("Sumar inputs - count: " + _inputsMovements.Length);
         Vector2 newinputMovement = Vector2.zero;
         foreach (Vector2 input in _inputsMovements)
         {
@@ -76,6 +92,9 @@ public class ChimeraController : MonoBehaviour
             player.GetComponent<FusionTrigger>().CurrentChimeraParent = this;
             player.GetComponent<FusionTrigger>().OnFusionID = idCount;
             player.transform.SetParent(gameObject.transform);
+            player.transform.localPosition = Vector3.zero;
+            player.GetComponent<FusionTrigger>().assingSkillsTochimera(gameObject);
+
             //player.transform.position = gameObject.transform.position;
 
             idCount++;
@@ -96,6 +115,8 @@ public class ChimeraController : MonoBehaviour
         newPlayer.GetComponent<FusionTrigger>().CurrentChimeraParent = this;
         newPlayer.GetComponent<FusionTrigger>().OnFusionID = _players.Count;
         newPlayer.transform.SetParent(gameObject.transform);
+        newPlayer.GetComponent<FusionTrigger>().assingSkillsTochimera(gameObject);
+
     }
 
     //UnFusion methods

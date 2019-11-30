@@ -31,7 +31,7 @@ public class CometDash : MonoBehaviour
        
         _collider = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
-        _coolDownTracker = _coolDown;
+        _coolDownTracker = 0;
         durationTracker = dashDuration;
         _aiming = GetComponent<PlayerAiming>();
 
@@ -45,7 +45,33 @@ public class CometDash : MonoBehaviour
 
     public void playerDash(Vector2 direction)
     {
-        _rb.velocity = dashDirection * dashSpeed;
+        //Saber si se debe enviar a chimera o moverme
+        bool sendMovementToChimera = false;
+
+        if (GetComponent<FusionTrigger>())
+        {
+            if (GetComponent<FusionTrigger>().IsOnFusion)
+            {
+                sendMovementToChimera = true;
+            }
+        }
+
+        if (sendMovementToChimera)//enviar dash a chimera
+        {
+            ChimeraController chiControl = GetComponent<PlayerMovement>().FusionTriggerRef.CurrentChimeraParent;
+
+            if (chiControl != null)
+            {
+                Debug.Log("Send Dash");
+                float chimeraDashSpeed = dashSpeed;
+                chiControl.sendMovement(dashDirection * (chimeraDashSpeed/(2)), GetComponent<PlayerMovement>().FusionTriggerRef.OnFusionID);
+            }
+        }
+        else
+        {
+            GetComponent<PlayerMovement>().RigidBodyPlayer.velocity = dashDirection * dashSpeed;
+        }
+       
         GetComponent<PlayerMovement>().enabled = true;
         //Debug.Log(direction);
     }
@@ -116,11 +142,6 @@ public class CometDash : MonoBehaviour
                 isDashing = true;
 
             }
-            else
-            {
-
-            }
-
         }
     }
 

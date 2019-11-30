@@ -30,6 +30,8 @@ public class FusionTrigger : MonoBehaviour
     [SerializeField] float _radiusFusionCheck;
     [SerializeField] List<GameObject> _componentsToDeactivate;
 
+    [SerializeField] List<Component> _skills = new List<Component>();
+
     private void Awake()
     {
         _inputControl = new PlayerInputActions();
@@ -50,19 +52,6 @@ public class FusionTrigger : MonoBehaviour
         set { _onFusionID = value; }
     }
 
-    private void Update()
-    {
-
-        if (_checkingFusion)
-        {
-            findPlayerToFusion();
-        }
-        else if (_checkingUnFusion)
-        {
-            sendUnFusion();
-        }
-    }
-
     private void sendUnFusion()
     {
         if (CurrentChimeraParent != null)
@@ -71,66 +60,6 @@ public class FusionTrigger : MonoBehaviour
         }
     }
 
-    private void findPlayerToFusion()
-    {
-        //Circle Raycast para encontrar jugadores
-        Collider2D[] _colliders = Physics2D.OverlapCircleAll(transform.position, _radiusFusionCheck);
-
-        GameObject hostFindedGO = null;
-        GameObject chimeraFindedGO = null;
-
-        if (_colliders.Length > 0)
-        {
-            //Evaluar cada jugador
-            foreach (var hit in _colliders)
-            {
-                GameObject other = hit.gameObject;
-
-                if (other.GetComponent<FusionHost>())
-                {
-                    hostFindedGO = other;
-                }
-                if (other.GetComponent<ChimeraController>())
-                {
-                    chimeraFindedGO = other;
-                }
-            }
-        }
-
-        if (hostFindedGO != null)
-        {
-            //Encontré un host existente
-
-            if (!hostFindedGO.GetComponent<FusionHost>().playerIsAttached(gameObject))//Saber si soy parte del host
-            {
-                //Si no soy parte del host puedo fusionar
-                hostFindedGO.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
-            }
-        }
-        else
-        {
-            //No encontré host pero si una chimera
-            if (chimeraFindedGO != null)
-            {
-                //Unirme a la chimera
-                chimeraFindedGO.GetComponent<ChimeraController>().addNewPlayer(gameObject);
-                DeactivateComponentsOnFusion();
-            }
-            else
-            {
-
-                //No encontré ningún host
-
-
-                //Crear un nuevo host
-                _myFusionHosting = Instantiate(_hostPrefab, gameObject.transform, false);
-                //Añadirme al host
-                _myFusionHosting.GetComponent<FusionHost>().addPlayerToFusion(gameObject);
-            }
-        }
-    }
-
-
     public void DeactivateComponentsOnFusion()
     {
         foreach (var component in _componentsToDeactivate)
@@ -138,7 +67,6 @@ public class FusionTrigger : MonoBehaviour
             component.SetActive(false);
         }
 
-        //gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
     }
@@ -164,35 +92,63 @@ public class FusionTrigger : MonoBehaviour
         float _actionPressed = action.Get<float>();
         if (_actionPressed == 1)//Pressed
         {
-            if (IsOnFusion && !ChekingFusion)
+            if (!IsOnFusion)
             {
-                _checkingUnFusion = true;
+                AddMeToGeneralHost();
             }
             else
             {
-                _checkingFusion = true;
-
-            }
-
+                CurrentChimeraParent.sendUnFusion(true, OnFusionID);
+            }            
         }
         else if (_actionPressed == 0)//Released
         {
-            _checkingFusion = false;
-            _checkingUnFusion = false;
-            if (_myFusionHosting != null) Destroy(_myFusionHosting);
+            if (alreadyInHost && !IsOnFusion)
+                GetoutToGeneralHost();
+
             if (IsOnFusion) CurrentChimeraParent.sendUnFusion(false, OnFusionID);
 
-            //hostingFusion = false;
         }
     }
 
-    private void OnDrawGizmos()
+    bool alreadyInHost = false;
+    private void AddMeToGeneralHost()
     {
-        Color gizmoColor = Color.yellow;
-        gizmoColor.a = 0.3f;
-        Gizmos.color = gizmoColor;
-        Gizmos.DrawSphere(transform.position, _radiusFusionCheck);
+        FusionManager fusionManager = FindObjectOfType<FusionManager>();
+
+        if (fusionManager != null)
+        {
+            Debug.Log("Añadirme al host");
+            fusionManager.addMeToFusion(gameObject);
+            alreadyInHost = true;
+        }
     }
 
+    private void GetoutToGeneralHost()
+    {
+        FusionManager fusionManager = FindObjectOfType<FusionManager>();
 
+        if (fusionManager != null)
+        {
+            Debug.Log("Sacarme del host");
+            fusionManager.getOutToFusion(gameObject);
+            alreadyInHost = false;
+        }
+    }
+
+    public void assingSkillsTochimera(GameObject chimera)
+    {
+        Skill[] skills = GetComponents<Skill>();
+
+        foreach (var skill in skills)
+        {
+            System.Type type = skill.GetType();
+            Skill compo = chimera.GetComponent(type) as Skill;
+            if (compo != null)
+            {
+                compo.enabled = true;
+            }
+        }
+    }
 }
+
