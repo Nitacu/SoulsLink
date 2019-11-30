@@ -38,6 +38,8 @@ public class FusionTrigger : MonoBehaviour
     public delegate void DelegateMultiplayerControllerVoid();
     public DelegateMultiplayerControllerVoid _pushAddMeToGeneralHost;
     public DelegateMultiplayerControllerVoid _pushGetoutToGeneralHost;
+    public delegate string DelegateMultiplayerControllerID();
+    public DelegateMultiplayerControllerID _myID;
     #endregion
 
     private void Awake()
