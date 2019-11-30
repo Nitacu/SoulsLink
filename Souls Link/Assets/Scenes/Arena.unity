@@ -1086,13 +1086,14 @@ GameObject:
   - component: {fileID: 512843057}
   - component: {fileID: 512843056}
   - component: {fileID: 512843055}
+  - component: {fileID: 512843058}
   m_Layer: 0
   m_Name: Spawn Point Enemyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &512843054
 Transform:
   m_ObjectHideFlags: 0
@@ -1125,6 +1126,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberEnemys: 4
   spawner: {fileID: 512843056}
+  _photonView: {fileID: 512843058}
+  _points:
+  - {fileID: 1249499736}
+  - {fileID: 1007194136}
+  - {fileID: 396646532}
+  - {fileID: 180835284}
+  _enemys:
+  - Enemigo
+  - Imp Enemy
 --- !u!114 &512843056
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,6 +1201,28 @@ MonoBehaviour:
   Filterable: 0
   SendRealtimeData: 1
   visibleSize: 1
+--- !u!114 &512843058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 512843053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 2
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &619977086
 GameObject:
   m_ObjectHideFlags: 0

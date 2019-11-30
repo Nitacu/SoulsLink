@@ -36,5 +36,7 @@ MonoBehaviour:
   - RespawnSpaceship
   - playerAiming
   - playerOnSkill
+  - getAttack
+  - getRangeAttack
   DisableAutoOpenWizard: 1
   ShowSettings: 0
