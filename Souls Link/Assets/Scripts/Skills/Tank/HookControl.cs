@@ -19,7 +19,7 @@ public class HookControl : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             _enemyReference = collision.gameObject;
-            if(Vector2.Distance(_playerReference.transform.position,_enemyReference.transform.position) < 1)
+            if(Vector2.Distance(_playerReference.transform.position,_enemyReference.transform.position) < 1.5f)
             {
                 collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damage);
                 GetComponentInParent<Hook>().setBackToNormal();
@@ -48,10 +48,12 @@ public class HookControl : MonoBehaviour
                 if (_enemyReference != null)
                 {
                     _enemyReference.GetComponent<SimpleEnemyController>().keepWalking();
+                    _enemyReference.GetComponent<SimpleEnemyController>().Hypnotize(1f);
                     _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     _enemyReference.gameObject.transform.parent = null;
                 }
                 GetComponentInParent<Hook>().setBackToNormal();
+                GetComponentInParent<Hook>().canBite = true;
                 Destroy(_lineReference);
                 Destroy(gameObject);
             }

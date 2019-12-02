@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerHPControl : MonoBehaviour
 {
     [SerializeField] private float _playerHealth;
+    private float maxPlayerHealth;
 
     #region PLAYER STATES
     private bool canRecieveDamage = true;
@@ -21,6 +22,11 @@ public class PlayerHPControl : MonoBehaviour
     public delegate void DelegateMultiplayerControllerDestroy();
     public DelegateMultiplayerControllerDestroy _destroySelf;
     #endregion
+
+    private void Start()
+    {
+        maxPlayerHealth = _playerHealth;
+    }
 
     public void recieveDamage(float damage, GameObject attackingEnemy)
     {
@@ -53,6 +59,25 @@ public class PlayerHPControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void healHP(float heal)
+    {
+        PlayerHealth += heal;
+        if(PlayerHealth > maxPlayerHealth)
+        {
+            PlayerHealth = maxPlayerHealth;
+        }
+        GetComponentInChildren<SpriteRenderer>().color = Color.green;
+        Invoke("backToWhiteColor", 0.5f);
+        if (GetComponentInChildren<HUDController>())
+            GetComponentInChildren<HUDController>().setHealthBar(PlayerHealth);
+       
+    }
+
+    private void backToWhiteColor()
+    {
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
     }
 
     public void setReflectiveMode()

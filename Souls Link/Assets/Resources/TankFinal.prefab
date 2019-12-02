@@ -242,7 +242,6 @@ GameObject:
   - component: {fileID: 3822002165638600530}
   - component: {fileID: 2043381001436603634}
   - component: {fileID: 7501092959704258013}
-  - component: {fileID: 489523146}
   - component: {fileID: 489523147}
   - component: {fileID: 489523148}
   - component: {fileID: 1046008368}
@@ -260,6 +259,7 @@ GameObject:
   - component: {fileID: -1279554282154300685}
   - component: {fileID: 4479304578083625502}
   - component: {fileID: 1896778109585023796}
+  - component: {fileID: 6884292007245349714}
   m_Layer: 8
   m_Name: TankFinal
   m_TagString: Player
@@ -461,7 +461,7 @@ MonoBehaviour:
   Skill1PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 489523146}
+      - m_Target: {fileID: 6884292007245349714}
         m_MethodName: pressKey
         m_Mode: 1
         m_Arguments:
@@ -569,26 +569,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &489523146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3730457550004149255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8972c83425f4644bb5397993b13d7cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _flameThrowerParticles: {fileID: 256850961190304351, guid: 0b88490a37712bc4e86f812f51351563,
-    type: 3}
-  _colliderFire: {fileID: 1374183763134428994, guid: 1eaf766f67cc391498db7cfdccae0345,
-    type: 3}
-  _coolDown: 5
-  flameDuration: 6
-  _damagePerTick: 10
-  _timeTicks: 0.5
 --- !u!114 &489523147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,12 +583,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _hookPrefab: {fileID: 2808635983260031494, guid: f40ffb99d9e2dca408bf231b4b9280e2,
     type: 3}
+  _bitePrefab: {fileID: 2818809523176965349, guid: 7f90259614692254fb4158e3410f9bb8,
+    type: 3}
   _coolDown: 4
   _hookSpeed: 10
   _damage: 5
   _travelTime: 0.2
   _linePrefab: {fileID: 4208438767150628681, guid: da6a9f74daa528442819130f80812531,
     type: 3}
+  canBite: 0
+  hasBitten: 0
 --- !u!114 &489523148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1173,6 +1157,23 @@ MonoBehaviour:
   - {fileID: 6647910037698648187}
   _skills: []
   _onFusionID: 0
+--- !u!114 &6884292007245349714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1c028b12654594d82a644c41d9fb1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _boomerangPrefab: {fileID: 6679468775385548518, guid: c5103a72fa9b1b443a4ba033121d1e7a,
+    type: 3}
+  _coolDown: 0
+  _speed: 15
+  _damage: 20
 --- !u!1 &6647910037698648187
 GameObject:
   m_ObjectHideFlags: 0

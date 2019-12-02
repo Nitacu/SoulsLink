@@ -73,6 +73,10 @@ public class HUDController : MonoBehaviour
 
     public void setHealthBar(float newPlayerHealth)
     {
+        if(newPlayerHealth > maxPlayerHealth)
+        {
+            newPlayerHealth = maxPlayerHealth;
+        }
         float healthFactor = newPlayerHealth / maxPlayerHealth;
 
         healthFactor = Mathf.Clamp(healthFactor, 0, healthFactor);

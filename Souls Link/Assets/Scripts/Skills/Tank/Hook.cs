@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hook : MonoBehaviour
 {
     [SerializeField] private GameObject _hookPrefab;
+    [SerializeField] private GameObject _bitePrefab;
     [SerializeField] private float _coolDown;
     [SerializeField] private float _hookSpeed;
     [SerializeField] private float _damage;
@@ -14,11 +15,18 @@ public class Hook : MonoBehaviour
     private float _coolDownTracker;
     private GameObject hookObject;
     private PlayerAiming _aiming;
+    [HideInInspector]
+    public bool canBite = false;
+    [HideInInspector]
+    public bool hasBitten = false;
+    private float biteTracker;
+    private float timeToBite = 0.5f;
 
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
         _coolDownTracker = _coolDown;
+        biteTracker = timeToBite;
     }
 
     private void Update()
@@ -29,6 +37,17 @@ public class Hook : MonoBehaviour
             _coolDownTracker -= Time.deltaTime;
         }
 
+        if (canBite)
+        {
+            biteTracker -= Time.deltaTime;
+            if (biteTracker < 0)
+            {
+                canBite = false;
+                biteTracker = timeToBite;
+            }
+        }
+
+       
 
         /*
         if (_skillMaster.SkillTrigger.skill1.pressedDown && _coolDownTracker <= 0)
@@ -41,14 +60,40 @@ public class Hook : MonoBehaviour
 
     public void pressKey()
     {
-        if(_coolDownTracker <= 0)
+        if (!canBite)
         {
-            shootHook();
-            GetComponentInChildren<Animator>().SetBool("isCasting", true);
-            GetComponent<PlayerMovement>().enabled = false;
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            isShooting = true;
+            if (_coolDownTracker <= 0)
+            {
+                shootHook();
+                GetComponentInChildren<Animator>().SetBool("isCasting", true);
+                GetComponent<PlayerMovement>().enabled = false;
+                GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+                isShooting = true;
+            }
         }
+        else
+        {
+            if (!hasBitten)
+            {
+                biteEnemy();
+            }
+        }
+    }
+    
+    private void biteEnemy()
+    {
+        hasBitten = true;
+        Vector2 direction = GetComponent<PlayerAiming>().AimDirection;
+        canBite = false;
+        
+        biteTracker = timeToBite;
+        _coolDownTracker = _coolDown;
+        GameObject bite = Instantiate(_bitePrefab, gameObject.transform);
+        bite.GetComponentInChildren<BiteController>().setBite(gameObject);
+        float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        bite.transform.rotation = Quaternion.Euler(0, 0, rot);
+        bite.transform.localPosition = new Vector2(0, 0);
+        bite.GetComponentInChildren<BiteController>().gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public void setBackToNormal()
