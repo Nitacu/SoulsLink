@@ -1,12 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SWNetwork;
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 
 public class EnemyMeleeMultiplayerController : MonoBehaviour
-{
+{/*
     [SerializeField] private NetworkID _networkID;
     private RemoteEventAgent _remoteEventAgent;
     private SyncPropertyAgent _syncPropertyAgent;
@@ -132,5 +131,5 @@ public class EnemyMeleeMultiplayerController : MonoBehaviour
         Vector2 direction = message.PopVector3();
         _enemyController.createdBullet(direction);
     }
-    #endregion 
+    #endregion */
 }

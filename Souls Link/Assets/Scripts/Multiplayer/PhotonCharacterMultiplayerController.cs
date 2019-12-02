@@ -41,26 +41,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _fusionTrigger = GetComponent<FusionTrigger>();
         _fusionManager = FindObjectOfType<FusionManager>();
         addDelegate();
-    }
-
-    public string myID()
-    {
-        return _photonView.ViewID.ToString();
-    }
-
-    public bool isHost()
-    {
-        return PhotonNetwork.IsMasterClient;
-    }
-
-    public bool isMine()
-    {
-        return _photonView.IsMine;
-    }
-
-    public void destroySelf()
-    {
-        PhotonNetwork.Destroy(gameObject);
+        activeComponets();
     }
 
     public void addDelegate()
@@ -86,6 +67,37 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _fusionManager._createdChimera = new FusionManager.DelegateMultiplayerControllerCreatedChimera(createdChimeta);
     }
 
+    private void activeComponets()
+    {
+        _playerMovement.enabled = true;
+        _playerSkills.enabled = true;
+        _playerAiming.enabled = true;
+        _hPControl.enabled = true;
+        _fusionTrigger.enabled = true;
+        _fusionManager.enabled = true;
+    }
+
+    #region funciones propias
+    public string myID()
+    {
+        return _photonView.ViewID.ToString();
+    }
+
+    public bool isHost()
+    {
+        return PhotonNetwork.IsMasterClient;
+    }
+
+    public bool isMine()
+    {
+        return _photonView.IsMine;
+    }
+
+    public void destroySelf()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+    #endregion 
 
     #region apuntar
     public void pushVectorAiming(Vector3 vector)

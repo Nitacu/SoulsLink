@@ -23,14 +23,6 @@ public class GameManager
     }
     public MultiplayerTypeConnection _multiplayerConnection;
 
-    public enum MultiplayerServer
-    {
-        PHOTON,
-        SOCKETWEAVER
-    }
-
-    public MultiplayerServer _multiplayerServer;
-
     static GameManager _instace;
     public static GameManager GetInstace()
     {

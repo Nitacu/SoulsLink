@@ -62,15 +62,6 @@ public class VineWhip : MonoBehaviour
 
     }
 
-    private void getDirection()
-    {
-        direction = new Vector2(Input.GetAxis(GetComponent<PlayerMove>().AxisX), Input.GetAxis(GetComponent<PlayerMove>().AxisY)).normalized;
-        if (direction == Vector2.zero)
-        {
-            direction = GetComponent<AimCursor>().LastVector;
-        }
-    }
-
     private void determineOffset(Vector2 direction)
     {
         if (direction.x == 0 && direction.y > 0)

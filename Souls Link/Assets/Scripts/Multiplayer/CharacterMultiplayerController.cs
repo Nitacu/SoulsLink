@@ -1,11 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SWNetwork;
 using UnityEngine.InputSystem;
 
 public class CharacterMultiplayerController : MonoBehaviour
-{
+{/*
     [SerializeField] private NetworkID _networkID;
     [SerializeField] private RemoteEventAgent _remoteEventAgent;
     [SerializeField] private SyncPropertyAgent _syncPropertyAgent;
@@ -287,6 +286,6 @@ public class CharacterMultiplayerController : MonoBehaviour
        return NetworkClient.Instance.FindSpawner(3).SpawnForPlayer(0, 0);
     }
 
-    #endregion
+    #endregion*/
 }
 

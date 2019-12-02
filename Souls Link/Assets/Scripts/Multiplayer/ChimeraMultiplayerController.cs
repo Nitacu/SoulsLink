@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using SWNetwork;
 
 public class ChimeraMultiplayerController : MonoBehaviour
-{
+{/*
     private ChimeraController _chimeraController;
     [SerializeField] private RemoteEventAgent _remoteEventAgent;
     [SerializeField] private NetworkID _networkID;
@@ -54,5 +53,5 @@ public class ChimeraMultiplayerController : MonoBehaviour
         Vector2 movement = message.PopVector3();
         int id = message.PopInt32();
         _chimeraController.sendMovement(movement, id);
-    }
+    }*/
 }

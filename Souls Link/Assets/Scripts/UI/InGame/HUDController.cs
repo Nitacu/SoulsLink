@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
-using SWNetwork;
 using Photon.Pun;
 
 public class HUDController : MonoBehaviour
@@ -21,12 +20,10 @@ public class HUDController : MonoBehaviour
 
     private bool isHost = false;
 
-    private GameManager.MultiplayerServer _server;
     private bool _isHostServer = false;
 
     private void OnEnable()
     {
-        _server = GameManager.GetInstace()._multiplayerServer;
         maxPlayerHealth = GetComponentInParent<PlayerHPControl>().PlayerHealth;
         setHealthBar(maxPlayerHealth);
         setMultiplayerConnectionType();
@@ -100,33 +97,13 @@ public class HUDController : MonoBehaviour
 
     private bool defineHost()
     {
-        switch (_server)
-        {
-            case GameManager.MultiplayerServer.SOCKETWEAVER:
-                _isHostServer = NetworkClient.Instance.IsHost;
-                break;
-
-            case GameManager.MultiplayerServer.PHOTON:
-                _isHostServer = PhotonNetwork.IsMasterClient;
-                break;
-        }
+        _isHostServer = PhotonNetwork.IsMasterClient;
 
         return _isHostServer;
     }
 
     private bool connet()
     {
-        switch (_server)
-        {
-            case GameManager.MultiplayerServer.SOCKETWEAVER:
-                return NetworkClient.Instance.IsHost;
-
-            case GameManager.MultiplayerServer.PHOTON:
-                return PhotonNetwork.IsConnected;
-
-            default:
-                return false;
-
-        }
+        return PhotonNetwork.IsConnected;
     }
 }
