@@ -22,7 +22,10 @@ public class SimpleEnemyController : MonoBehaviour
     public bool _flip = false;
     public ParticleSystem _poisonParticles;
     private bool isPoisoned = false;
-    private bool isStunned = false;
+    [HideInInspector]
+    public bool isStunned = false;
+    private Vector2 tempVelocity = Vector2.zero;
+    private float tempMaxSpeed = 0;
 
     #region Delegate
     public delegate bool DelegateEnemyMultiplayerController();
@@ -292,6 +295,7 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = false;
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
+        GetComponent<PolyNavAgent>().isStunned = true;
         Invoke("noMoreStun", duration);
     }
 
@@ -301,8 +305,14 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = false;
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
-        StartCoroutine(stopTheStun(duration));
-        //Invoke("noMoreStun", duration);
+        
+        tempMaxSpeed = GetComponent<PolyNavAgent>().maxSpeed;
+        tempVelocity = GetComponent<PolyNavAgent>().velocity;
+        GetComponent<PolyNavAgent>().maxSpeed = 0;
+        GetComponent<PolyNavAgent>().velocity = Vector2.zero;
+        GetComponent<PolyNavAgent>().isStunned = true;
+        //StartCoroutine(stopTheStun(duration));
+        Invoke("noMoreStun", duration);
     }
 
     IEnumerator stopTheStun(float time)
@@ -313,12 +323,19 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
+        GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
+        GetComponent<PolyNavAgent>().velocity = tempVelocity;
         isStunned = false;
+        GetComponent<PolyNavAgent>().isStunned = false;
     }
 
     public void noMoreStun()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
+        GetComponent<PolyNavAgent>().velocity = tempVelocity;
+        GetComponent<PolyNavAgent>().isStunned = false;
+        
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
         isStunned = false;

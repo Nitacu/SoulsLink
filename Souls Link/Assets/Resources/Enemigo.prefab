@@ -141,6 +141,7 @@ MonoBehaviour:
   closerPointOnInvalid: 0
   debugPath: 1
   velocity: {x: 0, y: 0}
+  isStunned: 0
 --- !u!114 &6948308493364158034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   _positionAttack: {fileID: 1177613919540278496}
   _flip: 0
   _poisonParticles: {fileID: 8046241994398163990}
+  isStunned: 0
 --- !u!58 &6948308493364157914
 CircleCollider2D:
   m_ObjectHideFlags: 0

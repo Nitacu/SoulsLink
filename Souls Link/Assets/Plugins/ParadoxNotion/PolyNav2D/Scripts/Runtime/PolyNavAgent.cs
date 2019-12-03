@@ -66,6 +66,8 @@ public class PolyNavAgent : MonoBehaviour{
 
 	private static List<PolyNavAgent> allAgents = new List<PolyNavAgent>();
     private Animator _anim;
+    [HideInInspector]
+    public bool isStunned = false;
 
     private void Start()
     {
@@ -232,7 +234,10 @@ public class PolyNavAgent : MonoBehaviour{
     
 	//main loop
 	void LateUpdate(){
-
+        if (isStunned)
+        {
+            return;
+        }
 		if (map == null){
 			return;
 		}
