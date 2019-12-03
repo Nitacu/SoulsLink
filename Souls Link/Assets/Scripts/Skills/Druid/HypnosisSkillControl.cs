@@ -22,7 +22,7 @@ public class HypnosisSkillControl : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            collision.GetComponent<SimpleEnemyController>().Hypnotize(_duration);
+            collision.GetComponent<SimpleEnemyController>().Stun(_duration);
         }
     }
 }

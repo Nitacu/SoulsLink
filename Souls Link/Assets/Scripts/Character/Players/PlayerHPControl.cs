@@ -10,7 +10,7 @@ public class PlayerHPControl : MonoBehaviour
     #region PLAYER STATES
     private bool canRecieveDamage = true;
     private bool deflectsDamage = false;
-
+    private bool stunDeflect = false;
 
     #endregion
 
@@ -55,7 +55,18 @@ public class PlayerHPControl : MonoBehaviour
             {
                 if (deflectsDamage)
                 {
-                    attackingEnemy.GetComponent<SimpleEnemyController>().recieveDamage(damage);
+                    if (attackingEnemy.tag != "enemyProjectile")
+                    {
+                        attackingEnemy.GetComponent<SimpleEnemyController>().recieveDamage(damage);
+                    }
+                }
+
+                if (stunDeflect)
+                {
+                    if (attackingEnemy.tag != "enemyProjectile")
+                    {
+                        attackingEnemy.GetComponent<SimpleEnemyController>().Stun(2);
+                    }
                 }
             }
         }
@@ -86,10 +97,18 @@ public class PlayerHPControl : MonoBehaviour
         deflectsDamage = true;
     }
 
+    public void setStunReflectMode()
+    {
+        canRecieveDamage = false;
+        deflectsDamage = true;
+        stunDeflect = true;
+    }
+
     public void setNormalMode()
     {
         canRecieveDamage = true;
         deflectsDamage = false;
+        stunDeflect = false;
     }
 
     public IEnumerator changeColor()

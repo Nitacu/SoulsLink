@@ -22,6 +22,7 @@ public class SimpleEnemyController : MonoBehaviour
     public bool _flip = false;
     public ParticleSystem _poisonParticles;
     private bool isPoisoned = false;
+    private bool isStunned = false;
 
     #region Delegate
     public delegate bool DelegateEnemyMultiplayerController();
@@ -92,13 +93,16 @@ public class SimpleEnemyController : MonoBehaviour
 
     public virtual void attack(GameObject player)
     {
-        //solo el host hace lo del daño 
-        if (_isHost())
+        if (!isStunned)
         {
-            //envia a los demas la informacion para que se vea que ataco
-            _setAttack();
-            exeAttack();
-            Anim.Play(Animator.StringToHash("Attack"));
+            //solo el host hace lo del daño 
+            if (_isHost())
+            {
+                //envia a los demas la informacion para que se vea que ataco
+                _setAttack();
+                exeAttack();
+                Anim.Play(Animator.StringToHash("Attack"));
+            }
         }
     }
 
@@ -259,7 +263,10 @@ public class SimpleEnemyController : MonoBehaviour
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
         yield return new WaitForSeconds(interval);
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        if (!isStunned)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        }
     }
 
 
@@ -283,23 +290,38 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         canWalk = false;
+        isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        Invoke("noMoreHypnotized", duration);
+        Invoke("noMoreStun", duration);
     }
 
-    public void Hypnotize(float duration)
+    public void Stun(float duration)
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         canWalk = false;
-        GetComponentInChildren<SpriteRenderer>().color = Color.yellow;
-        Invoke("noMoreHypnotized", duration);
+        isStunned = true;
+        GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
+        StartCoroutine(stopTheStun(duration));
+        //Invoke("noMoreStun", duration);
     }
 
-    public void noMoreHypnotized()
+    IEnumerator stopTheStun(float time)
+    {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        yield return new WaitForSeconds(time);
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        canWalk = true;
+        isStunned = false;
+    }
+
+    public void noMoreStun()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
+        isStunned = false;
     }
 
     public void getKnocked(float force, float damage, float duration, Vector2 knockBackDirection)

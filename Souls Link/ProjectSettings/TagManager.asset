@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - chargeBar
   - Enemy
+  - enemyProjectile
   layers:
   - Default
   - TransparentFX

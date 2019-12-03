@@ -50,7 +50,14 @@ public class StrongAttack : MonoBehaviour
                 _attackReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
                 
             }
-            _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
+            if (GetComponent<Mist>().IsStealth)
+            {
+                _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage * 2;
+            }
+            else
+            {
+                _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
+            }
             getDirection();
             _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction, GetComponent<Dash>().chargePercent, gameObject);
             StartCoroutine(destroyAttack(_attackReference, _attackTime));

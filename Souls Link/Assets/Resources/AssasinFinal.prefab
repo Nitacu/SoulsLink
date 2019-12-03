@@ -852,8 +852,8 @@ MonoBehaviour:
   dashPressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 919404490327529592}
-        m_MethodName: pressKey
+      - m_Target: {fileID: 1357541210}
+        m_MethodName: dashKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -931,6 +931,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb69af598687e148827e0a0623dcb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeEffect: {fileID: 6983306071274696894, guid: c917fbc5b76169f4baf52b73902e70fa,
+    type: 3}
   _coolDown: 0
   dashDuration: 0.2
   _damage: 15

@@ -192,11 +192,6 @@ PrefabInstance:
       propertyPath: viewIdField
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 9040570397889478732, guid: ee06c4c547521df4f9e523b0636f57c7,
-        type: 3}
-      propertyPath: viewIdField
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 8561484137695708419, guid: ee06c4c547521df4f9e523b0636f57c7,
         type: 3}
       propertyPath: m_textInfo.characterCount
@@ -221,6 +216,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9040570397889478732, guid: ee06c4c547521df4f9e523b0636f57c7,
+        type: 3}
+      propertyPath: viewIdField
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee06c4c547521df4f9e523b0636f57c7, type: 3}

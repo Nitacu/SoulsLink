@@ -8,6 +8,8 @@ public class Dash : MonoBehaviour
     private Vector2 dashDirection;
     private GameObject chargeBar;
     private GameObject dashEffect;
+    [SerializeField]
+    private GameObject chargeEffect;
     private Rigidbody2D _rb;
     [Header("General Settings")]
     private float _coolDownTracker = 0;
@@ -19,6 +21,8 @@ public class Dash : MonoBehaviour
     public GameObject _dashCollider;
     [Header("Simple Dash Settings")]
     public float dashSpeed = 0;
+    private GameObject effectReference;
+    
 
 
     private PlayerAiming _aiming;
@@ -166,7 +170,7 @@ public class Dash : MonoBehaviour
                 dashEffect.SetActive(false);
                 durationTracker = dashDuration;
                 _coolDownTracker = _coolDown;
-                
+
                 GetComponent<PlayerMovement>().isDashing = false;
             }
             else
@@ -180,14 +184,14 @@ public class Dash : MonoBehaviour
     }
 
     private void stopMoving()
-    {     
+    {
         GetComponent<PlayerMovement>().enabled = false;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        GetComponentInChildren<Animator>().SetBool("isCasting", true);       
+        GetComponentInChildren<Animator>().SetBool("isCasting", true);
     }
 
     private void backToNormal()
-    {       
+    {
         GetComponent<PlayerMovement>().enabled = true;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         GetComponentInChildren<Animator>().SetBool("isCasting", false);
@@ -213,49 +217,52 @@ public class Dash : MonoBehaviour
         dashSpeed = ((pressedTimePercent * distanceDifference) / 100) + minDashSpeed;
     }
 
-    public void newPressKey()
+    public void dashKey()
     {
-        if (_coolDownTracker <= 0)
+        if (chargePercent >= electricCost)
         {
-            canDash = true;
-
-            if (!isDashing && !hasCharged) //If hasnt charged and is not dashing, start charging
-            {
-                isCharging = true;
-                stopMoving();
-            }
-
-            if (hasCharged) //if has charge check chargePercent to see if he can dash
-            {
-                if (chargePercent >= electricCost)
-                {
-                    //dash
-                    consumeChargeBar(electricCost);
-                    isCharging = false;
-                    hasCharged = false;
-                    dashEffect.SetActive(true);
-                    captureDirection();
-                    findDashSpeed(chargedTime, dashDuration);
-                    isDashing = true;
-                }
-                else
-                {
-                    isCharging = true;
-                    stopMoving();
-                    hasCharged = false;
-                }
-            }
+            //dash
+            consumeChargeBar(electricCost);
+            isCharging = false;
+            hasCharged = false;
+            dashEffect.SetActive(true);
+            captureDirection();
+            findDashSpeed(chargedTime, dashDuration);
+            isDashing = true;
+        }
+        else
+        {
+            /*isCharging = true;
+            stopMoving();
+            hasCharged = false;*/
         }
     }
 
+    public void newPressKey()
+    {
+        if (chargePercent < 99)
+        {
+            //charge
+            canDash = true;
+            isCharging = true;
+            stopMoving();
+            effectReference = Instantiate(chargeEffect, gameObject.transform);
+            GetComponent<PlayerHPControl>().setStunReflectMode();
+        }
+        
+    }
+
+
     public void newUnpress()
     {
-        if (!hasCharged)
+        if (isCharging)
         {
             isCharging = false;
             backToNormal();
             getChargePercent(chargedTime);
             hasCharged = true;
+            Destroy(effectReference);
+            GetComponent<PlayerHPControl>().setNormalMode();
         }
     }
 

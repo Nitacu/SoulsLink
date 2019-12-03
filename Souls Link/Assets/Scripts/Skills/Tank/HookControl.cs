@@ -48,7 +48,7 @@ public class HookControl : MonoBehaviour
                 if (_enemyReference != null)
                 {
                     _enemyReference.GetComponent<SimpleEnemyController>().keepWalking();
-                    _enemyReference.GetComponent<SimpleEnemyController>().Hypnotize(1f);
+                    _enemyReference.GetComponent<SimpleEnemyController>().Stun(1f);
                     _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     _enemyReference.gameObject.transform.parent = null;
                 }
