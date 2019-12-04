@@ -17,7 +17,7 @@ public class StrongAttackController : MonoBehaviour
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damageToEnemies);
             if (canStun)
             {
-                collision.gameObject.GetComponent<SimpleEnemyController>().GetStunned(stunDuration);
+                collision.gameObject.GetComponent<SimpleEnemyController>().Stun(stunDuration);
             }
         }
     }

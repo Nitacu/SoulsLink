@@ -76,7 +76,7 @@ public class PolyNavAgent : MonoBehaviour{
 
     ///The position of the agent
     public Vector2 position{
-		get {return transform.position + (Vector3)centerOffset;}
+		get {return transform.position + (Vector3)centerOffset;}    
 		set {transform.position = new Vector3(value.x, value.y, transform.position.z) - (Vector3)centerOffset;}
 	}
 

@@ -87,6 +87,15 @@ public class Dash : MonoBehaviour
         if (isCharging)
         {
             chargedTime += Time.deltaTime;
+            if(chargedTime > maxChargedSeconds)
+            {
+                isCharging = false;
+                backToNormal();
+                getChargePercent(chargedTime);
+                hasCharged = true;
+                Destroy(effectReference);
+                GetComponent<PlayerHPControl>().setNormalMode();
+            }
         }
     }
 

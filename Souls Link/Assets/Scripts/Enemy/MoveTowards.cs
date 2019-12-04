@@ -35,7 +35,15 @@ public class MoveTowards : Action
             direction = target.Value.position - transform.position;
             direction.Normalize();
             Debug.Log("Direcion de movimiento " + direction);
-            GetComponent<Rigidbody2D>().velocity = direction * speed;
+            if(GetComponent<SimpleEnemyController>().isStunned == true)
+            {
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = direction * speed;
+            }
+            
             GetComponent<SimpleEnemyController>().changeOrientation(direction.x);
         }
 
