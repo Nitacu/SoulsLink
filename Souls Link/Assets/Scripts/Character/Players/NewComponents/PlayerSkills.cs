@@ -10,6 +10,7 @@ public class PlayerSkills : MonoBehaviour
     const float DELAY = 0.05f;
 
     private PlayerInputActions _inputControl;
+    private FusionTrigger _fusionTriggerRef;
 
     #region delegate
     public delegate bool DelegateMultiplayerController();
@@ -19,21 +20,47 @@ public class PlayerSkills : MonoBehaviour
     public DelegateMultiplayerControllerSendSkill _pushValueSkill;
     #endregion
 
-    public enum InputSkill
+    public enum SkillType
     {
-        Skill1,
-        Skill2,
-        Skill3,
-        Skill4
+        //MAGE
+        ICE_STAKE,
+        REFFLECT,
+        DECOY,
+        RANDOM_GUN,
+        //DRUID
+        ROOT,
+        VINE_WHIP,
+        WALL_SKILL,
+        POSION_DART,
+        //ASSASSIN
+        STRONG_ATTACK,
+        TORNADO_MINE,
+        DASH,
+        MIST,
+        //TANK
+        FLAMETHROWER,
+        HOOK,
+        MAGMA_RING,
+        SMASH_ATTACK
     }
 
     private void Awake()
     {
-        _inputControl = new PlayerInputActions();
+        _inputControl = new PlayerInputActions();        
     }
+    
 
     IEnumerator skillDelay(float value, UnityEvent _eventDown, UnityEvent _eventUp, float index)
     {
+        System.Type type = _eventDown.GetPersistentTarget(0).GetType();
+        Skill _skillType = gameObject.GetComponent(type) as Skill;
+
+
+
+        if (IsOnFusion())
+        {
+           // _fusionTriggerRef.CurrentChimeraParent.GetComponent<ChimeraSkillsController>().sendSkill(_skillType._skillType, value);
+        }
 
         if (_isMine())
         {
@@ -58,7 +85,6 @@ public class PlayerSkills : MonoBehaviour
     private void OnSkill1(InputValue value)
     {
         StartCoroutine(skillDelay(value.Get<float>(), Skill1PressDown, Skill1PressUp, 1));
-
     }
 
     [Header("Skill 2")]
@@ -98,6 +124,7 @@ public class PlayerSkills : MonoBehaviour
     private void OnEnable()
     {
         _inputControl.Enable();
+        _fusionTriggerRef = GetComponent<FusionTrigger>();
     }
 
     private void OnDisable()
@@ -115,4 +142,19 @@ public class PlayerSkills : MonoBehaviour
     public UnityEvent Skill2PressDown1 { get => Skill2PressDown; set => Skill2PressDown = value; }
     public UnityEvent Skill2PressUp1 { get => Skill2PressUp; set => Skill2PressUp = value; }
     public UnityEvent DashPressDown { get => dashPressDown; set => dashPressDown = value; }
+
+    public bool IsOnFusion()
+    {
+        bool sendMovementToChimera = false;
+        if (_fusionTriggerRef != null)
+        {
+            if (_fusionTriggerRef.IsOnFusion)
+            {
+                sendMovementToChimera = true;
+            }
+        }
+
+        return sendMovementToChimera;
+    }
+
 }

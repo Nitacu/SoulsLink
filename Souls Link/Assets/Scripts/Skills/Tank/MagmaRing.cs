@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagmaRing : MonoBehaviour
+public class MagmaRing : Skill
 {
     [SerializeField] private GameObject _ringPrefab;
     [SerializeField] private float _coolDown;

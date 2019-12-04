@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TornadoMine : MonoBehaviour
+public class TornadoMine : Skill
 {
 
     public float _coolDown = 0;

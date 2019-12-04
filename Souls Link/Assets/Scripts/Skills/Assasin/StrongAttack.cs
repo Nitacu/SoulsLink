@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StrongAttack : MonoBehaviour
+public class StrongAttack : Skill
 {
 
     [SerializeField] private GameObject _attackPrefab;

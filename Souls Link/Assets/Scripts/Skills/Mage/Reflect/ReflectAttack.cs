@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReflectAttack : MonoBehaviour
+public class ReflectAttack : Skill
 {
 
     [SerializeField] private float _radiusDetection;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Boomerang : MonoBehaviour
+public class Boomerang : Skill
 {
     [SerializeField] private GameObject _boomerangPrefab;
     [SerializeField] private float _coolDown;

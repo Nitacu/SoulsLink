@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class StakeAttack : MonoBehaviour
+public class StakeAttack : Skill
 {
     [SerializeField] private GameObject _stakePrefab;
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WallSkill : MonoBehaviour
+public class WallSkill : Skill
 {
     [SerializeField] private GameObject _wallPrefab;
     [SerializeField] private float _coolDown;

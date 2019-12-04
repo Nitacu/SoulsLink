@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VineWhip : MonoBehaviour
+public class VineWhip : Skill
 {
     [SerializeField] private GameObject _vineWhip;
     [SerializeField] private float _coolDown;

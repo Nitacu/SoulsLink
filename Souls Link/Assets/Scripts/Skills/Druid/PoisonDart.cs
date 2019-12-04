@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonDart : MonoBehaviour
+public class PoisonDart : Skill
 {
     [SerializeField] private GameObject _poisonDartPrefab;
 

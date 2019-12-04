@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomGun : MonoBehaviour
+public class RandomGun : Skill
 {
     [SerializeField] private GameObject _energyBalls;
     [SerializeField] private GameObject _turret;

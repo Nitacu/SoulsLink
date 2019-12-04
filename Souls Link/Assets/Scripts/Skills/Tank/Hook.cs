@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hook : MonoBehaviour
+public class Hook : Skill
 {
     [SerializeField] private GameObject _hookPrefab;
     [SerializeField] private GameObject _bitePrefab;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Decoy : MonoBehaviour
+public class Decoy : Skill
 {
 
     [SerializeField] private float _distance = 1;

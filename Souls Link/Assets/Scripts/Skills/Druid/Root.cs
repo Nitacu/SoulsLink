@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Root : MonoBehaviour
+public class Root : Skill
 {
     [SerializeField] private GameObject _rootPrefab;
     [SerializeField] private GameObject _rootEffectPrefab;

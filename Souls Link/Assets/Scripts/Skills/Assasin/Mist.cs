@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Mist : MonoBehaviour
+public class Mist : Skill
 {
     public float _coolDown = 0;
     public float _stealthTime = 0;

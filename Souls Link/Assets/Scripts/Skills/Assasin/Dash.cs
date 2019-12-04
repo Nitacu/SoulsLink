@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dash : MonoBehaviour
+public class Dash : Skill
 {
     private Vector2 dashDirection;
     private GameObject chargeBar;
