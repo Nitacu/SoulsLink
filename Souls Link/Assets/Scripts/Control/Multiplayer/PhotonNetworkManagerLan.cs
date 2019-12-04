@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
 
-public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
+public class PhotonNetworkManagerLan : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
     public ControlLobbyUI _lobbyUI;
     public PhotonView _photonView;
@@ -21,7 +21,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Conectando al sevidor...");
-            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.ConnectToMaster("192.168.1.3", 5055, "1");
         }
 
     }
@@ -33,7 +33,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void registerName()
     {
-        PhotonNetwork.NickName =  _lobbyUI.registerUser();
+        PhotonNetwork.NickName = _lobbyUI.registerUser();
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         _lobbyUI.enterLobby();
     }
@@ -66,7 +66,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("Conectado al lobby");
-        
+
     }
 
     public override void OnCreatedRoom()
@@ -106,7 +106,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("entro");
-        _lobbyUI.crearNewItemInPlayerList(newPlayer.NickName,newPlayer.UserId);
+        _lobbyUI.crearNewItemInPlayerList(newPlayer.NickName, newPlayer.UserId);
     }
 
     #endregion

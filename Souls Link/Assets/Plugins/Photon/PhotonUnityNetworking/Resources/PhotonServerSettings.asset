@@ -17,10 +17,10 @@ MonoBehaviour:
     AppIdChat: 
     AppIdVoice: 
     AppVersion: 
-    UseNameServer: 1
+    UseNameServer: 0
     FixedRegion: 
-    Server: 
-    Port: 0
+    Server: 192.168.1.3
+    Port: 5055
     Protocol: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
@@ -41,4 +41,4 @@ MonoBehaviour:
   - addMeToGeneralHost
   - getoutToGeneralHost
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
