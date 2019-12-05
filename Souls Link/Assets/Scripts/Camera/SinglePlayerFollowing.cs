@@ -15,7 +15,12 @@ public class SinglePlayerFollowing : MonoBehaviour
 
     private void Start()
     {
+        //if player in pc == 1
         StartCoroutine(findPlayersAgain(0));
+        //else
+        //Turn player2camera off, Turn player1Camera on, turn screen divider on, set players on split screen script, 
+        //turn split screen script on, disable SinglePlayerFollowingScript
+
     }
 
     IEnumerator findPlayersAgain(float timeToStart)

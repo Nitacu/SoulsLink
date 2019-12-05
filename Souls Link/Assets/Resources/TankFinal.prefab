@@ -575,6 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aeb843c17fa2914fbfa395e9b39c19d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _hookPrefab: {fileID: 2808635983260031494, guid: f40ffb99d9e2dca408bf231b4b9280e2,
     type: 3}
   _bitePrefab: {fileID: 2818809523176965349, guid: 7f90259614692254fb4158e3410f9bb8,
@@ -599,6 +600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87c87428e0057bb498a8224f0ecebbf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _ringPrefab: {fileID: 1349659880750133405, guid: 99b34024b488afc4fa728ae342541cf9,
     type: 3}
   _coolDown: 4
@@ -664,6 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab45334b4ab110c439c1c4b18f077a66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _attackPrefab: {fileID: 3400747292364688728, guid: 8cb01d0255d937c4f845d5906ad268b1,
     type: 3}
   _minForce: 7
@@ -770,6 +773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1c028b12654594d82a644c41d9fb1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _boomerangPrefab: {fileID: 6679468775385548518, guid: c5103a72fa9b1b443a4ba033121d1e7a,
     type: 3}
   _coolDown: 0
