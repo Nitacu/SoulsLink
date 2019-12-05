@@ -1087,7 +1087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &887750877240912452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,7 +1106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &887750877869270306
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,7 +1125,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &887750878678301783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,7 +1144,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &999720792299655176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,13 +1234,13 @@ MonoBehaviour:
   m_margin: {x: -0.1432685, y: 0, z: -0.037618943, w: 0}
   m_textInfo:
     textComponent: {fileID: 999720792299655176}
-    characterCount: 0
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1458,13 +1458,13 @@ MonoBehaviour:
   m_margin: {x: -0.1432685, y: 0, z: -0.037618943, w: 0}
   m_textInfo:
     textComponent: {fileID: 999720793476859419}
-    characterCount: 0
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1570,13 +1570,13 @@ MonoBehaviour:
   m_margin: {x: -0.1432685, y: 0, z: -0.037618943, w: 0}
   m_textInfo:
     textComponent: {fileID: 999720794019831458}
-    characterCount: 0
+    characterCount: 7
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -1638,6 +1638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerId: 
+  _isFilled: 0
   ownCharacterSelection: {fileID: 722157450258774434}
   leftArrow: {fileID: 107299358702000663}
   rightArrow: {fileID: 2467385727714223412}
@@ -1654,6 +1655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerId: 
+  _isFilled: 0
   ownCharacterSelection: {fileID: 722157449448661207}
   leftArrow: {fileID: 107299359520326498}
   rightArrow: {fileID: 2467385727451610177}
@@ -1670,6 +1672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerId: 
+  _isFilled: 0
   ownCharacterSelection: {fileID: 722157449339104893}
   leftArrow: {fileID: 107299357784427976}
   rightArrow: {fileID: 2467385728935883499}
@@ -1686,6 +1689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerId: 
+  _isFilled: 0
   ownCharacterSelection: {fileID: 722157448741222084}
   leftArrow: {fileID: 107299358340502897}
   rightArrow: {fileID: 2467385728427518546}
@@ -2826,13 +2830,13 @@ MonoBehaviour:
   m_margin: {x: 0.02737953, y: 0, z: 0.036368284, w: 0}
   m_textInfo:
     textComponent: {fileID: 2527330294111242780}
-    characterCount: 0
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -2938,13 +2942,13 @@ MonoBehaviour:
   m_margin: {x: 0.02737953, y: 0, z: 0.036368284, w: 0}
   m_textInfo:
     textComponent: {fileID: 2527330294626292389}
-    characterCount: 0
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -3162,13 +3166,13 @@ MonoBehaviour:
   m_margin: {x: 0.02737953, y: 0, z: 0.036368284, w: 0}
   m_textInfo:
     textComponent: {fileID: 2527330295328130230}
-    characterCount: 0
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -6636,38 +6640,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3241663706746308760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3241663706746308837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ae1aeff5adab41c4cbcf5a0425964b9c,
-    type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceLostEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.InputSystem.PlayerInput+DeviceRegainedEvent, Unity.InputSystem,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &3241663706746308761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6680,14 +6652,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a8224cc33eebc47a40332e6747ede4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _selectingCharacterPrefab: {fileID: 7823479143972428872, guid: e1f418e03d23a5640aaf9f8b79725d4a,
+    type: 3}
   _imagePlayers:
   - {fileID: 1233985791547869675}
   - {fileID: 1233985792473701940}
   - {fileID: 1233985791828316318}
   - {fileID: 1233985792999360141}
   _offsetX: 110
-  _characterIndexSelected: 0
-  myID: 
+  _slots:
+  - {fileID: 1233985791547869675}
+  - {fileID: 1233985792473701940}
+  - {fileID: 1233985791828316318}
+  - {fileID: 1233985792999360141}
 --- !u!222 &3241663706746308762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6761,7 +6738,7 @@ GameObject:
   - component: {fileID: 3241663706746308762}
   - component: {fileID: 3241663706746308763}
   - component: {fileID: 3241663706746308761}
-  - component: {fileID: 3241663706746308760}
+  - component: {fileID: 3241663706746308838}
   m_Layer: 5
   m_Name: Panel Players
   m_TagString: Untagged
@@ -6769,6 +6746,79 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &3241663706746308838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241663706746308837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_NotificationBehavior: 0
+  m_MaxPlayerCount: 2
+  m_AllowJoining: 1
+  m_JoinBehavior: 1
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInputManager+PlayerJoinedEvent, Unity.InputSystem,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.InputSystem.PlayerInputManager+PlayerLeftEvent, Unity.InputSystem,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_JoinAction:
+    m_UseReference: 0
+    m_Action:
+      m_Name: Action
+      m_Type: 1
+      m_ExpectedControlType: Button
+      m_Id: 25929422-9895-4b14-8a2c-c693f0c842fe
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings:
+      - m_Name: 
+        m_Id: 423eadb8-8302-4193-9971-9412f8918197
+        m_Path: <Keyboard>/k
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: 22790e4d-7a22-4614-8919-4e3748ffe10f
+        m_Path: <Gamepad>/buttonSouth
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+      - m_Name: 
+        m_Id: bfb36a8e-8543-470f-bd87-66aee2ace76a
+        m_Path: <HID::DragonRise Inc.   Generic   USB  Joystick  >/button3
+        m_Interactions: 
+        m_Processors: 
+        m_Groups: 
+        m_Action: Action
+        m_Flags: 0
+    m_Reference: {fileID: -2703365740406012262, guid: ae1aeff5adab41c4cbcf5a0425964b9c,
+      type: 3}
+  m_PlayerPrefab: {fileID: 7823479143972428872, guid: e1f418e03d23a5640aaf9f8b79725d4a,
+    type: 3}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!222 &3241663706776698801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8296,13 +8346,13 @@ MonoBehaviour:
   m_margin: {x: 0.06687369, y: 0, z: -0.0028333561, w: 0}
   m_textInfo:
     textComponent: {fileID: 5431418881050186888}
-    characterCount: 0
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -8520,13 +8570,13 @@ MonoBehaviour:
   m_margin: {x: 0.06687369, y: 0, z: -0.0028333561, w: 0}
   m_textInfo:
     textComponent: {fileID: 5431418882488124059}
-    characterCount: 0
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -8632,13 +8682,13 @@ MonoBehaviour:
   m_margin: {x: 0.06687369, y: 0, z: -0.0028333561, w: 0}
   m_textInfo:
     textComponent: {fileID: 5431418883054557730}
-    characterCount: 0
+    characterCount: 4
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -9316,13 +9366,13 @@ MonoBehaviour:
   m_margin: {x: 0.09845882, y: 0, z: 0.06452515, w: 0}
   m_textInfo:
     textComponent: {fileID: 6869905627192095002}
-    characterCount: 0
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -9428,13 +9478,13 @@ MonoBehaviour:
   m_margin: {x: 0.09845882, y: 0, z: 0.06452515, w: 0}
   m_textInfo:
     textComponent: {fileID: 6869905627756423587}
-    characterCount: 0
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
@@ -9652,13 +9702,13 @@ MonoBehaviour:
   m_margin: {x: 0.09845882, y: 0, z: 0.06452515, w: 0}
   m_textInfo:
     textComponent: {fileID: 6869905629196435376}
-    characterCount: 0
+    characterCount: 5
     spriteCount: 0
     spaceCount: 0
-    wordCount: 0
+    wordCount: 1
     linkCount: 0
-    lineCount: 0
-    pageCount: 0
+    lineCount: 1
+    pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

@@ -7,7 +7,7 @@ public class SelectingCharacter : MonoBehaviour
     [SerializeField] private float _offsetX = 110f;
 
     private int _characterIndexSelected = 0;
-    private GameObject _charactersPanel;
+    [SerializeField] private GameObject _charactersPanel;
     private GameObject _leftArrow;
     private GameObject _rightArrow;
 
@@ -17,6 +17,7 @@ public class SelectingCharacter : MonoBehaviour
     private string myID;
     public string MyID { get => myID; set => myID = value; }
 
+    GameManager.Characters charSelected;
 
     private void OnEnable()
     {
@@ -27,6 +28,7 @@ public class SelectingCharacter : MonoBehaviour
 
     public void setCharSelection(GameObject charactersPanel, GameObject leftArrow, GameObject rightArrow)
     {
+        Debug.Log("Character Selection setted");
         _charactersPanel = charactersPanel;
         _leftArrow = leftArrow;
         _rightArrow = rightArrow;
@@ -58,6 +60,7 @@ public class SelectingCharacter : MonoBehaviour
     public void movePanel(bool selectRight)
     {
         selectCharacter(_characterIndexSelected);
+        StartCoroutine(setArrows());
         setArrows();
 
         float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
@@ -65,8 +68,12 @@ public class SelectingCharacter : MonoBehaviour
         _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
     }
 
-    public void setArrows()
+    IEnumerator setArrows()
     {
+        yield return new WaitForEndOfFrame();
+
+        Debug.Log("Set Arrows");
+
         //set Right Arrow
         _rightArrow.SetActive(
             (_characterIndexSelected < (System.Enum.GetValues(typeof(GameManager.Characters)).Length - 1)) ? true : false
@@ -101,7 +108,7 @@ public class SelectingCharacter : MonoBehaviour
                 break;
         }
 
-        GameManager.GetInstace()._myCharacter = _characterEnum;
+        charSelected = _characterEnum;
     }
 
     public void resetCharacterPanelPosition()
@@ -112,6 +119,13 @@ public class SelectingCharacter : MonoBehaviour
 
     public void OnStartGame()
     {
-        starGame();
+        SelectCharacter selectCharManager = FindObjectOfType<SelectCharacter>();
+
+        foreach (var player in selectCharManager.CurrentLocalPlayer)
+        {
+            Debug.Log(player.GetComponent<SelectingCharacter>().charSelected);
+        }
+
+        //starGame();
     }
 }

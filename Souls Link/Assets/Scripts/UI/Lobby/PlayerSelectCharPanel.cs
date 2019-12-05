@@ -18,7 +18,7 @@ public class PlayerSelectCharPanel : MonoBehaviour
         set { _newPlayerId = value; }
     }
 
-    private bool _isFilled = false;
+    public bool _isFilled = false;
     public bool IsFilled
     {
         get { return _isFilled; }
@@ -31,6 +31,7 @@ public class PlayerSelectCharPanel : MonoBehaviour
 
     private void Awake()
     {
+
         ownCharacterSelection.SetActive(false);
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);

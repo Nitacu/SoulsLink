@@ -40,6 +40,7 @@ public class ControlLobbyUI : MonoBehaviour
 
         _panelInRoom.SetActive(true);        
 
+        /*
         foreach (GameObject player in _imagenPlayerName)
         {
             if (!player.activeSelf)
@@ -51,6 +52,7 @@ public class ControlLobbyUI : MonoBehaviour
                 break;
             }
         }
+        */
     }    
 
 
@@ -59,7 +61,7 @@ public class ControlLobbyUI : MonoBehaviour
     {
         foreach (GameObject player in _imagenPlayerName)
         {
-            player.SetActive(false);
+            //player.SetActive(false);
         }
 
 
