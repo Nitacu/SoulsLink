@@ -8,12 +8,15 @@ using UnityEngine.SceneManagement;
 
 public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
+
     public ControlLobbyUI _lobbyUI;
     public PhotonView _photonView;
 
     private void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+
+        _lobbyUI.playersNumber = new ControlLobbyUI.PlayersNumberDelegate(returnPlayersInRoom);
     }
 
     void Start()
@@ -23,7 +26,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
             Debug.Log("Conectando al sevidor...");
             PhotonNetwork.ConnectUsingSettings();
         }
-
     }
 
     public void starGame()
@@ -33,7 +35,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public void registerName()
     {
-        PhotonNetwork.NickName =  _lobbyUI.registerUser();
+        PhotonNetwork.NickName = _lobbyUI.registerUser();
         PhotonNetwork.JoinLobby(TypedLobby.Default);
         _lobbyUI.enterLobby();
     }
@@ -48,7 +50,13 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
         PhotonNetwork.CreateRoom(_lobbyUI.nameOfTheNewRoom(), roomOptions: new RoomOptions() { MaxPlayers = 4 }, typedLobby: null);
     }
 
+    public int returnPlayersInRoom()
+    {
+        int numberPlayers = 0;
+        numberPlayers = PhotonNetwork.CurrentRoom.PlayerCount;
 
+        return numberPlayers;
+    }
 
     #region MonoBehaviourPunCallbacks Callbacks
 
@@ -66,7 +74,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("Conectado al lobby");
-        
+
     }
 
     public override void OnCreatedRoom()
@@ -106,8 +114,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("entro");
-        _lobbyUI.crearNewItemInPlayerList(newPlayer.NickName,newPlayer.UserId);
+        _lobbyUI.crearNewItemInPlayerList(newPlayer.NickName, newPlayer.UserId);
     }
-
     #endregion
 }

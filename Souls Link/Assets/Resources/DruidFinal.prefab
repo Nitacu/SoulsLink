@@ -509,6 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dea4db1a2adff647afbc28b5b62f152, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _rootPrefab: {fileID: 7905251995183566779, guid: e6a213a9cc313f84ba3810043a186512,
     type: 3}
   _rootEffectPrefab: {fileID: 7531255531702625296, guid: 66ce5878bd6a9084285bb74cb913cdfd,
@@ -530,6 +531,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c617c3639e0224a8db548c5663ae91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _vineWhip: {fileID: 7081138357069249965, guid: aa5533f000850c947bc78f94cacd6fbc,
     type: 3}
   _coolDown: 0.4
@@ -547,6 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2442adac6e29f0444b23bd3d6611e959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _wallPrefab: {fileID: 7882638779556085853, guid: ebb6cb9e0e337f646bbc10eea366e340,
     type: 3}
   _coolDown: 5
@@ -576,6 +579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2a616dcf2c1cd849bf7b5c213519005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _poisonDartPrefab: {fileID: 2560435101665407758, guid: 2d21b0fcbe41e194ea9fc0b7af2f4cba,
     type: 3}
   _coolDown: 0.5

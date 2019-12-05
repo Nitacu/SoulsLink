@@ -7,8 +7,10 @@ public class SelectCharacter : MonoBehaviour
 {
     [SerializeField] private List<PlayerSelectCharPanel> _imagePlayers = new List<PlayerSelectCharPanel>();
     [SerializeField] private float _offsetX = 215f;
+    [SerializeField] private List<PlayerSelectCharPanel> _slots = new List<PlayerSelectCharPanel>();
+    private int _indexSlotsFilled = 0;
 
-    [SerializeField] private int _characterIndexSelected = 0;
+    private int _characterIndexSelected = 0;
     private GameObject _charactersPanel;
     private GameObject _leftArrow;
     private GameObject _rightArrow;
@@ -16,13 +18,56 @@ public class SelectCharacter : MonoBehaviour
     public delegate void StarGame();
     public StarGame starGame;
 
-    public string myID;
-
+    private string myID;
     public string MyID { get => myID; set => myID = value; }
 
     private void OnEnable()
     {
+        //Si está multiplayer buscar cuantos hay players hay actualmente en este room, con base a esa informacion actualizar el indexSlotsFilled
+
+
+        //Si no es multiplayer simplemente actualizar la información lista de slots
+        //StartCoroutine(FindAndSelectMyPanel());
+
+
+        //Multiplayer old method - cambiar
         StartCoroutine(FindAndSelectMyPanel());
+    }
+
+    IEnumerator SelectMyIndex()
+    {
+        yield return new WaitForEndOfFrame();
+
+        int playersNumber = 0;
+
+        ControlLobbyUI control = FindObjectOfType<ControlLobbyUI>();
+        if (control != null)
+        {
+            playersNumber = control.playersNumber();
+        }
+    }
+
+    IEnumerator SelectPanelByList()
+    {
+        yield return new WaitForEndOfFrame();
+        int count = 0;
+        foreach (var slot in _slots)
+        {
+            if (!slot.IsFilled)//encontrar el primero que tenga espacio
+            {
+                //Añadirme y llenar
+                slot.NewPlayerID = count;
+                _charactersPanel = slot.getCharacterSelection();
+                _leftArrow = slot.getLeftArrow();
+                _rightArrow = slot.getRightArrow();
+                break;
+            }
+            count++;
+        }
+
+        resetCharacterPanelPosition();
+        selectCharacter(_characterIndexSelected);
+        setArrows();
     }
 
     IEnumerator FindAndSelectMyPanel()
@@ -36,7 +81,7 @@ public class SelectCharacter : MonoBehaviour
             {
                 imagePlayer.DeactivateMySelection();
 
-                string panelID = imagePlayer.PlayerID;                
+                string panelID = imagePlayer.PlayerID;
                 if (panelID != null)
                 {
                     if (panelID.Equals(MyID))
@@ -140,3 +185,4 @@ public class SelectCharacter : MonoBehaviour
         starGame();
     }
 }
+

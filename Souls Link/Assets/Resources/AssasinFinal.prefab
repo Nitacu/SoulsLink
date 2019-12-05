@@ -893,6 +893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e39010d5a1242743905a87bc0f93567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _attackPrefab: {fileID: 3400747292364688728, guid: 2b9c90a3946c7f343ada957b1a68774c,
     type: 3}
   _attackTime: 0.2
@@ -911,6 +912,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db6cd95b53da5f4aa7c9de974a37895, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _coolDown: 2
   _bombLifeTime: 20
   _tornadoLifeTime: 2
@@ -931,6 +933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb69af598687e148827e0a0623dcb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   chargeEffect: {fileID: 6983306071274696894, guid: c917fbc5b76169f4baf52b73902e70fa,
     type: 3}
   _coolDown: 0
@@ -960,6 +963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498141c73d6a0324c814ee507a452db0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _coolDown: 1
   _stealthTime: 0
   _mistLifeTime: 6

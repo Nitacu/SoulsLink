@@ -11,6 +11,20 @@ public class PlayerSelectCharPanel : MonoBehaviour
         set { _playerId = value; }
     }
 
+    private int _newPlayerId;
+    public int NewPlayerID
+    {
+        get { return _newPlayerId; }
+        set { _newPlayerId = value; }
+    }
+
+    private bool _isFilled = false;
+    public bool IsFilled
+    {
+        get { return _isFilled; }
+        set { _isFilled = value; }
+    }
+
     [SerializeField] GameObject ownCharacterSelection;
     [SerializeField] GameObject leftArrow;
     [SerializeField] GameObject rightArrow;

@@ -23,6 +23,14 @@ public class GameManager
     }
     public MultiplayerTypeConnection _multiplayerConnection;
 
+    public enum GameMode
+    {
+        OFFLINE,
+        ONLINE
+    }
+    public GameMode _gameMode;
+
+
     static GameManager _instace;
     public static GameManager GetInstace()
     {

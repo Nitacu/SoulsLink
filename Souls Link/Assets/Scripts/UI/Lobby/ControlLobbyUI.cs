@@ -24,6 +24,11 @@ public class ControlLobbyUI : MonoBehaviour
     public GameObject _panelInRoom;
     public GameObject _buttonStarGame;
 
+    #region delegate
+    public delegate int PlayersNumberDelegate();
+    public PlayersNumberDelegate playersNumber;
+    #endregion
+
     public void refreshPlayerList()
     {
 
@@ -46,8 +51,9 @@ public class ControlLobbyUI : MonoBehaviour
                 break;
             }
         }
-
     }    
+
+
 
     public void clearPlayersList()
     {
@@ -119,5 +125,10 @@ public class ControlLobbyUI : MonoBehaviour
         }
 
         _panelCreatedRoom.SetActive(active);
+    }
+
+    public int getPlayersInRoom()
+    {
+        return playersNumber();
     }
 }
