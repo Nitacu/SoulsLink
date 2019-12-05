@@ -34,7 +34,6 @@ public class MoveTowards : Action
             GetComponent<PolyNavAgent>().enabled = false;
             direction = target.Value.position - transform.position;
             direction.Normalize();
-            Debug.Log("Direcion de movimiento " + direction);
             if(GetComponent<SimpleEnemyController>().isStunned == true)
             {
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;

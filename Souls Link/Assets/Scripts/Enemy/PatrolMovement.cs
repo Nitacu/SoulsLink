@@ -24,8 +24,6 @@ public class PatrolMovement : Action
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
 
-        Debug.Log("Enemigo On Start");
-
         if (WPoints.Count > 0)
         {
             MoveRandom();

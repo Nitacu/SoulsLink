@@ -102,13 +102,22 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     #region apuntar
     public void pushVectorAiming(Vector3 vector)
     {
-        _photonView.RPC(PLAYER_AIMING,RpcTarget.Others, vector);
+        _photonView.RPC(PLAYER_AIMING, RpcTarget.Others, vector);
     }
 
     [PunRPC]
     public void playerAiming(Vector3 vector)
     {
         _playerAiming.AimDirection = vector;
+
+        if (vector.x < 0)
+        {
+            _playerMovement._flip = true;
+        }
+        else if (vector.x > 0)
+        {
+            _playerMovement._flip = false;
+        }
     }
     #endregion
 
@@ -116,7 +125,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     //le envia a las otras maquinas los datos para que active las skills
     public void pushValueSkill(float value, float numberSkill)
     {
-        _photonView.RPC(PLAYER_SKILLS,RpcTarget.Others,value,numberSkill);
+        _photonView.RPC(PLAYER_SKILLS, RpcTarget.Others, value, numberSkill);
     }
 
     // carga los datos y activa la skill correspondiente
@@ -209,7 +218,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     //Para agregar a la lista del host quimera
     public void pushAddMeToGeneralHost()
     {
-        _photonView.RPC(ADD_ME_HOST,RpcTarget.Others);
+        _photonView.RPC(ADD_ME_HOST, RpcTarget.Others);
     }
 
     [PunRPC]
@@ -232,7 +241,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
 
     public GameObject createdChimeta()
     {
-        return PhotonNetwork.Instantiate("Chimera", Vector3.zero,Quaternion.identity,0);
+        return PhotonNetwork.Instantiate("Chimera", Vector3.zero, Quaternion.identity, 0);
     }
     #endregion
 

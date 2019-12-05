@@ -57,13 +57,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void changeOrientation()
     {
-        if (_isMine())
+        if (!_isMine())
         {
             _anim.GetComponent<SpriteRenderer>().flipX = _flip;
-        }
-        else
-        {
-            _flip = _anim.GetComponent<SpriteRenderer>().flipX;
         }
     }
 
@@ -73,12 +69,13 @@ public class PlayerMovement : MonoBehaviour
         if (_inputMovement.x > 0)
         {
             Renderer.flipX = false;
+            _flip = false;
         }
         else if (_inputMovement.x < 0)
         {
             Renderer.flipX = true;
-        }
-
+            _flip = true;
+        }  
     }
 
     private void move()
