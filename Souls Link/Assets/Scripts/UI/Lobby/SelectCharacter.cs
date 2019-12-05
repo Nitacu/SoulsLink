@@ -28,17 +28,46 @@ public class SelectCharacter : MonoBehaviour
     private string myID;
     public string MyID { get => myID; set => myID = value; }
 
+    public bool useOldVersion = true;
+
     private void OnEnable()
     {
         //Si está multiplayer buscar cuantos hay players hay actualmente en este room, con base a esa informacion actualizar el indexSlotsFilled
 
 
         //Si no es multiplayer simplemente actualizar la información lista de slots
-        StartCoroutine(SelectPanelByList());
 
+        if (useOldVersion)
+        {
 
+            SetToOldVersion(true);
+            StartCoroutine(FindAndSelectMyPanel());
+
+        }
+        else
+        {
+            SetToOldVersion(false);       
+            StartCoroutine(SelectPanelByList());
+        }
         //Multiplayer old method - cambiar
-        //StartCoroutine(FindAndSelectMyPanel());
+        //
+    }
+
+    private void SetToOldVersion(bool setOldVersion)
+    {
+        PlayerInput playerInput = GetComponent<PlayerInput>();
+        PlayerInputManager playerInputManager = GetComponent<PlayerInputManager>();
+
+        if (playerInput != null)
+        {
+            playerInput.enabled = setOldVersion;
+        }
+
+        if (playerInputManager != null)
+        {
+            playerInputManager.enabled = !setOldVersion;
+        }
+
     }
 
     IEnumerator SelectMyIndex()
@@ -62,124 +91,121 @@ public class SelectCharacter : MonoBehaviour
         //GameObject playerInstace = Instantiate(_selectingCharacterPrefab);
     }
 
-    /*
-
-
-IEnumerator FindAndSelectMyPanel()
-{
-    yield return new WaitForEndOfFrame();
-
-    Debug.Log("Find players ID");
-    foreach (PlayerSelectCharPanel imagePlayer in _imagePlayers)
+    IEnumerator FindAndSelectMyPanel()
     {
-        if (imagePlayer.isActiveAndEnabled)
-        {
-            imagePlayer.DeactivateMySelection();
+        yield return new WaitForEndOfFrame();
 
-            string panelID = imagePlayer.PlayerID;
-            if (panelID != null)
+        Debug.Log("Find players ID");
+        foreach (PlayerSelectCharPanel imagePlayer in _imagePlayers)
+        {
+            if (imagePlayer.isActiveAndEnabled)
             {
-                if (panelID.Equals(MyID))
+                imagePlayer.DeactivateMySelection();
+
+                string panelID = imagePlayer.PlayerID;
+                if (panelID != null)
                 {
-                    //set seleccionar personaje
-                    Debug.Log("Finded my self: " + MyID);
-                    _charactersPanel = imagePlayer.getCharacterSelection();
-                    _leftArrow = imagePlayer.getLeftArrow();
-                    _rightArrow = imagePlayer.getRightArrow();
-                    break;
+                    if (panelID.Equals(MyID))
+                    {
+                        //set seleccionar personaje
+                        Debug.Log("Finded my self: " + MyID);
+                        _charactersPanel = imagePlayer.getCharacterSelection();
+                        _leftArrow = imagePlayer.getLeftArrow();
+                        _rightArrow = imagePlayer.getRightArrow();
+                        break;
+                    }
                 }
             }
         }
+
+        resetCharacterPanelPosition();
+        selectCharacter(_characterIndexSelected);
+        setArrows();
     }
 
-    resetCharacterPanelPosition();
-    selectCharacter(_characterIndexSelected);
-    setArrows();
-}
-
-public void OnSelectRight()
-{
-    //moveSelectionToRight
-    if (_characterIndexSelected < (_imagePlayers.Count - 1))//puede moverse a al derecha
+    public void OnSelectRight()
     {
-        _characterIndexSelected++;
+        //moveSelectionToRight
+        if (_characterIndexSelected < (_imagePlayers.Count - 1))//puede moverse a al derecha
+        {
+            _characterIndexSelected++;
 
-        //MoverPanel HaciaIzquierda
-        movePanel(true);
+            //MoverPanel HaciaIzquierda
+            movePanel(true);
+        }
     }
-}
 
-public void OnSelectLeft()
-{
-    //moveSelectionLeft
-    if (_characterIndexSelected > 0)
+    public void OnSelectLeft()
     {
-        _characterIndexSelected--;
-        //MoverPanelDerecha
-        movePanel(false);
+        //moveSelectionLeft
+        if (_characterIndexSelected > 0)
+        {
+            _characterIndexSelected--;
+            //MoverPanelDerecha
+            movePanel(false);
+        }
     }
-}
 
-public void movePanel(bool selectRight)
-{
-    selectCharacter(_characterIndexSelected);
-    setArrows();
-
-    float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
-    float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
-    _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
-}
-
-public void setArrows()
-{
-    //set Right Arrow
-    _rightArrow.SetActive(
-        (_characterIndexSelected < (_imagePlayers.Count - 1)) ? true : false
-        );
-
-    //set Left Arrow
-    _leftArrow.SetActive(
-        (_characterIndexSelected > 0) ? true : false
-        );
-}
-
-public void selectCharacter(int currentIndex)
-{
-    GameManager.Characters _characterEnum;
-
-    switch (currentIndex)
+    public void movePanel(bool selectRight)
     {
-        case 0:
-            _characterEnum = GameManager.Characters.MAGE;
-            break;
-        case 1:
-            _characterEnum = GameManager.Characters.TANK;
-            break;
-        case 2:
-            _characterEnum = GameManager.Characters.DRUID;
-            break;
-        case 3:
-            _characterEnum = GameManager.Characters.ASSASIN;
-            break;
-        default:
-            _characterEnum = GameManager.Characters.MAGE;
-            break;
+        selectCharacter(_characterIndexSelected);
+        setArrows();
+
+        float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
+        float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
+        _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
     }
 
-    GameManager.GetInstace()._myCharacter = _characterEnum;
-}
+    public void setArrows()
+    {
+        //set Right Arrow
+        _rightArrow.SetActive(
+            (_characterIndexSelected < (_imagePlayers.Count - 1)) ? true : false
+            );
 
-public void resetCharacterPanelPosition()
-{
-    _characterIndexSelected = 0;
-    //_charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
-}
+        //set Left Arrow
+        _leftArrow.SetActive(
+            (_characterIndexSelected > 0) ? true : false
+            );
+    }
 
-public void OnStartGame()
-{
-    starGame();
-}
-*/
+    public void selectCharacter(int currentIndex)
+    {
+        GameManager.Characters _characterEnum;
+
+        switch (currentIndex)
+        {
+            case 0:
+                _characterEnum = GameManager.Characters.MAGE;
+                break;
+            case 1:
+                _characterEnum = GameManager.Characters.TANK;
+                break;
+            case 2:
+                _characterEnum = GameManager.Characters.DRUID;
+                break;
+            case 3:
+                _characterEnum = GameManager.Characters.ASSASIN;
+                break;
+            default:
+                _characterEnum = GameManager.Characters.MAGE;
+                break;
+        }
+
+        GameManager.GetInstace()._myCharacter = _characterEnum;
+    }
+
+    public void resetCharacterPanelPosition()
+    {
+        _characterIndexSelected = 0;
+        //_charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
+    }
+
+    public void OnStartGame()
+    {
+        starGame();
+    }
+
 
     public void OnJoinGame()
     {
