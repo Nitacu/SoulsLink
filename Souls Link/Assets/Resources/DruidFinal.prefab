@@ -534,7 +534,7 @@ MonoBehaviour:
   _skillType: 0
   _vineWhip: {fileID: 7081138357069249965, guid: aa5533f000850c947bc78f94cacd6fbc,
     type: 3}
-  _coolDown: 0.4
+  _coolDown: 0.6
   _damage: 20
   _rootDuration: 0.35
 --- !u!114 &543879864

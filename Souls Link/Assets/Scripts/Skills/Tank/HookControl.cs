@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class HookControl : MonoBehaviour
 {
@@ -23,10 +24,11 @@ public class HookControl : MonoBehaviour
             {
                 collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(damage);
                 GetComponentInParent<Hook>().setBackToNormal();
+                _enemyReference.GetComponent<SimpleEnemyController>().Stun(1f);
                 Destroy(_lineReference);
                 Destroy(gameObject);
             }
-            else
+            else if(PhotonNetwork.IsMasterClient)
             {
                 _enemyReference.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 collidedWithEnemy = true;
@@ -35,6 +37,12 @@ public class HookControl : MonoBehaviour
                 collision.gameObject.transform.parent = gameObject.transform;
                 isTraveling = false;
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+
+            }
+            else if(!PhotonNetwork.IsMasterClient)
+            {
+                collidedWithEnemy = true;
+                isTraveling = false;
             }
            
         }

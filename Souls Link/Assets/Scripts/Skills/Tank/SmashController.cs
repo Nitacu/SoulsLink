@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SmashController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class SmashController : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            if(PhotonNetwork.IsMasterClient)
             collision.GetComponent<SimpleEnemyController>().getKnocked(_force,_damage, _duration, _direction);
         }
     }
