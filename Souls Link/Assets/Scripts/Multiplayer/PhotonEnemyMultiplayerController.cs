@@ -126,13 +126,11 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
     #endregion
 
     #region flip
-    //llama a las demas maquinas lo de atacar
     public void setFlip(Vector3 vector)
     {
         _photonView.RPC(FLIP, RpcTarget.Others, vector);
     }
 
-    //recibe la informacion de que esta atacando
     [PunRPC]
     public void getFlip(Vector3 vector)
     {

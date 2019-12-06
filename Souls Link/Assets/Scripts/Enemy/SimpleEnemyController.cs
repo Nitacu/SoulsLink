@@ -78,6 +78,7 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void changeOrientation(float value)
     {
+        bool aux = _flip;
         if (value > 0)
         {
             _flip = false;
@@ -86,7 +87,8 @@ public class SimpleEnemyController : MonoBehaviour
         {
             _flip = true;
         }
-        if(_isHost())
+
+        if(_isHost() && aux != _flip)
         GetComponent<PhotonEnemyMultiplayerController>().setFlip(_anim.transform.localScale);
     }
 
