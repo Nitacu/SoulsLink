@@ -6,7 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunObservable
+public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
 {
     private ControlSpawnEnemys _controlSpawnEnemys;
     private SimpleEnemyController _enemyController;
@@ -15,7 +15,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
 
     private const string ATTACK = "getAttack";
     private const string RANGE_ATTACK = "getRangeAttack";
-    private const string HEALTH = "Health";
+    private const string HEALTH = "onHealthSyncPropertyChanged";
     private const string FLIP = "getFlip";
 
     private void Start()
@@ -32,13 +32,11 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
         {
             GetComponent<PolyNavAgent>().enabled = true;
             GetComponent<BehaviorTree>().enabled = true;
-            GetComponent<SimpleEnemyController>().enabled = true;
         }
         else
         {
             GetComponent<PolyNavAgent>().enabled = false;
             GetComponent<BehaviorTree>().enabled = false;
-            GetComponent<SimpleEnemyController>().enabled = false;
             //changeFlip(_spriteRenderer.flipX);
         }
     }
@@ -104,6 +102,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     #region Vida
 
     //cuando detecta un cambio de vida en el servidor
+    [PunRPC]
     public void onHealthSyncPropertyChanged(float health)
     {
         _enemyController.health = health;
@@ -121,6 +120,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     //envia el cambio de vida al servidor
     public void changeHealth(float health)
     {
+        _photonView.RPC(HEALTH, RpcTarget.Others, health);
     }
 
     #endregion
@@ -129,7 +129,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     //llama a las demas maquinas lo de atacar
     public void setFlip(Vector3 vector)
     {
-        _photonView.RPC(FLIP, RpcTarget.Others , vector);
+        _photonView.RPC(FLIP, RpcTarget.Others, vector);
     }
 
     //recibe la informacion de que esta atacando
@@ -140,16 +140,4 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     }
     #endregion
 
-
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(_enemyController.health);
-        }
-        else
-        {
-            onHealthSyncPropertyChanged((float)stream.ReceiveNext());
-        }
-    }
 }

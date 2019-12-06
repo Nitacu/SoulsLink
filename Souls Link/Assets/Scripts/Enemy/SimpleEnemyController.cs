@@ -86,7 +86,7 @@ public class SimpleEnemyController : MonoBehaviour
         {
             _flip = true;
         }
-
+        if(_isHost())
         GetComponent<PhotonEnemyMultiplayerController>().setFlip(_anim.transform.localScale);
     }
 
@@ -115,11 +115,14 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void checkIfDamages()
     {
-        if(Vector2.Distance(transform.position, tempPlayer.transform.position) <= 1)
+        if (_isHost())
         {
-            exeAttack();
+            if (Vector2.Distance(transform.position, tempPlayer.transform.position) <= 1)
+            {
+                exeAttack();
+            }
+            tempPlayer = null;
         }
-        tempPlayer = null;
     }
 
     public void exeAttack()
@@ -191,13 +194,9 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<PolyNavAgent>().enabled = false;
         GetComponent<BehaviorTree>().enabled = false;
         yield return new WaitForSeconds(0.5f);
-        if (_isMine())
+        if (_isHost())
         {
             _destroySelf();
-        }
-        else
-        {
-            Destroy(gameObject);
         }
     }
 
