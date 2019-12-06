@@ -33,39 +33,55 @@ public class WithinSight : Conditional
     // Returns true if targetTransform is within sight of currenttransform
     public bool withinSight()
     {
-        _player = ConeRaycast();
         
-        if (_player != null)
-        {
-            if (!Physics2D.Raycast(_thisCharacter.Value.position, (_player.position - _thisCharacter.Value.position), _radio, _layerWalls))
+         _player = playerInRange();
+
+
+         if (_player != null)
+         {
+            if (!Physics2D.Linecast(_thisCharacter.Value.position, _player.position , _layerWalls))
             {
-                target.Value = _player.transform;
+                target.Value = _player;
                 return true;
             }
-        }
-
-        return false;
+         }
+         return false;
     }
 
     public Transform playerInRange()
     {
         Collider2D[] ray = Physics2D.OverlapCircleAll(_thisCharacter.Value.position, _radio, _layerPlayer);
-        
-        if (target.Value != null)
-        {     
-            foreach (Collider2D player in ray)
-            {
-                if (player.gameObject == _player.gameObject)
-                {
-                    return player.transform;
-                }
-            }
-        }
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestPlayer = null;
 
-        if (ray.Length == 0)
+        //if (target.Value != null)
+        //{     
+            foreach (Collider2D player in ray)
+            {                
+                    float distanceToEnemy = Vector3.Distance(transform.position, player.transform.position);
+                    if (distanceToEnemy < shortestDistance)
+                    {
+                        shortestDistance = distanceToEnemy;
+                        nearestPlayer = player.gameObject;
+                    }
+                    //return player.transform;               
+            }
+
+            //set target to player
+            if (nearestPlayer != null && shortestDistance <= _radio)
+            {
+                return nearestPlayer.transform;
+            }
+            else
+            {
+                return null;
+            }
+        //}
+
+       /* if (ray.Length == 0)
             return null;
         else
-            return ray[0].transform;
+            return ray[0].transform;*/
     }
 
     public Transform ConeRaycast()
