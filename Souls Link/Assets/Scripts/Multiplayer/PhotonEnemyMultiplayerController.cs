@@ -16,7 +16,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     private const string ATTACK = "getAttack";
     private const string RANGE_ATTACK = "getRangeAttack";
     private const string HEALTH = "Health";
-    private const string FLIP = "Flip";
+    private const string FLIP = "getFlip";
 
     private void Start()
     {
@@ -32,11 +32,13 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
         {
             GetComponent<PolyNavAgent>().enabled = true;
             GetComponent<BehaviorTree>().enabled = true;
+            GetComponent<SimpleEnemyController>().enabled = true;
         }
         else
         {
             GetComponent<PolyNavAgent>().enabled = false;
             GetComponent<BehaviorTree>().enabled = false;
+            GetComponent<SimpleEnemyController>().enabled = false;
             //changeFlip(_spriteRenderer.flipX);
         }
     }
@@ -73,7 +75,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     //llama a las demas maquinas lo de atacar
     public void setAttack()
     {
-        _photonView.RPC(ATTACK,RpcTarget.Others);
+        _photonView.RPC(ATTACK, RpcTarget.Others);
     }
 
     //recibe la informacion de que esta atacando
@@ -88,7 +90,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     //llama a las demas maquinas lo de atacar
     public void setRangeAttack(Vector2 direction)
     {
-        _photonView.RPC(RANGE_ATTACK, RpcTarget.Others,direction);
+        _photonView.RPC(RANGE_ATTACK, RpcTarget.Others, direction);
     }
 
     //recibe la informacion de que esta atacando
@@ -122,6 +124,22 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks, IPunO
     }
 
     #endregion
+
+    #region flip
+    //llama a las demas maquinas lo de atacar
+    public void setFlip(Vector3 vector)
+    {
+        _photonView.RPC(FLIP, RpcTarget.Others , vector);
+    }
+
+    //recibe la informacion de que esta atacando
+    [PunRPC]
+    public void getFlip(Vector3 vector)
+    {
+        _enemyController.Anim.transform.localScale = vector;
+    }
+    #endregion
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {

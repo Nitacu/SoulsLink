@@ -86,6 +86,8 @@ public class SimpleEnemyController : MonoBehaviour
         {
             _flip = true;
         }
+
+        GetComponent<PhotonEnemyMultiplayerController>().setFlip(_anim.transform.localScale);
     }
 
 
