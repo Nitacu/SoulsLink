@@ -40,6 +40,8 @@ public class SimpleEnemyController : MonoBehaviour
     public DelegateEnemyMultiplayerControllerRangeAttack _setRangeAttack;
     public delegate void DelegateEnemyMultiplayerControllerDestroy();
     public DelegateEnemyMultiplayerControllerDestroy _destroySelf;
+    public delegate void DelegateEnemyMultiplayerControllerDestroyFlip(bool flip);
+    public DelegateEnemyMultiplayerControllerDestroyFlip _setFlip;
     #endregion
 
     // Start is called before the first frame update
@@ -88,8 +90,8 @@ public class SimpleEnemyController : MonoBehaviour
             _flip = true;
         }
 
-        if(_isHost() && aux != _flip)
-        GetComponent<PhotonEnemyMultiplayerController>().setFlip(_anim.transform.localScale);
+        if (_isHost() && aux != _flip)
+            _setFlip(_flip);
     }
 
 
@@ -109,7 +111,7 @@ public class SimpleEnemyController : MonoBehaviour
             {
                 //envia a los demas la informacion para que se vea que ataco
                 _setAttack();
-               
+
                 Anim.Play(Animator.StringToHash("Attack"));
             }
         }
@@ -184,7 +186,7 @@ public class SimpleEnemyController : MonoBehaviour
         isPoisoned = true;
         _poisonParticles.Play();
         isGettingDamaged = true;
-        
+
         StartCoroutine(stopPoison(time));
     }
 
@@ -319,7 +321,7 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = false;
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
-        
+
         tempMaxSpeed = GetComponent<PolyNavAgent>().maxSpeed;
         tempVelocity = GetComponent<PolyNavAgent>().velocity;
         GetComponent<PolyNavAgent>().maxSpeed = 0;
@@ -349,7 +351,7 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
         GetComponent<PolyNavAgent>().velocity = tempVelocity;
         GetComponent<PolyNavAgent>().isStunned = false;
-        
+
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
         isStunned = false;

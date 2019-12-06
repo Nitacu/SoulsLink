@@ -66,6 +66,7 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
         _enemyController._setRangeAttack = new SimpleEnemyController.DelegateEnemyMultiplayerControllerRangeAttack(setRangeAttack);
         _enemyController._destroySelf = new SimpleEnemyController.DelegateEnemyMultiplayerControllerDestroy(destroySelf);
         _enemyController._changeHealth = new SimpleEnemyController.DelegateEnemyMultiplayerControllerHealth(changeHealth);
+        _enemyController._setFlip = new SimpleEnemyController.DelegateEnemyMultiplayerControllerDestroyFlip(setFlip);
     }
 
     #region Ataque
@@ -126,15 +127,15 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
     #endregion
 
     #region flip
-    public void setFlip(Vector3 vector)
+    public void setFlip(bool flip)
     {
-        _photonView.RPC(FLIP, RpcTarget.Others, vector);
+        _photonView.RPC(FLIP, RpcTarget.OthersBuffered, flip);
     }
 
     [PunRPC]
-    public void getFlip(Vector3 vector)
+    public void getFlip(bool flip)
     {
-        _enemyController.Anim.transform.localScale = vector;
+        _enemyController._flip = flip;
     }
     #endregion
 
