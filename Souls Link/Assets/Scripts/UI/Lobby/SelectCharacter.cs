@@ -231,7 +231,7 @@ public class SelectCharacter : MonoBehaviour
                 slotFinded = true;
 
                 selectCharComp.setCharSelection(_slots[i].getCharacterSelection(),
-                    _slots[i].getLeftArrow(), _slots[i].getRightArrow());
+                    _slots[i].getLeftArrow(), _slots[i].getRightArrow(), currentLocalPlayer.Count - 1);
 
                 break;
             }

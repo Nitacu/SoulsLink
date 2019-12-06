@@ -1091,7 +1091,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
             ""devices"": [
                 {
                     ""devicePath"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]

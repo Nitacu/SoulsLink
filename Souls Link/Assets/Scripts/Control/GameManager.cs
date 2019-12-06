@@ -8,7 +8,7 @@ public class GameManager
     //enum characters
     public enum Characters
     {
-        TANK, MAGE, DRUID, ASSASIN
+        TANK, MAGE, DRUID, ASSASIN, NONE
     }
     #endregion
 
@@ -30,7 +30,7 @@ public class GameManager
     }
     public GameMode _gameMode;
 
-    public List<Characters> _charactersList = new List<Characters>();
+    public Characters[] _charactersList = new Characters[2] {Characters.NONE, Characters.NONE};
 
     static GameManager _instace;
     public static GameManager GetInstace()

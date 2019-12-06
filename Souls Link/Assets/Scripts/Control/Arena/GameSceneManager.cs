@@ -36,9 +36,12 @@ public class GameSceneManager : MonoBehaviour
 
         foreach (var character in GameManager.GetInstace()._charactersList)
         {
-            int index = setCharacterToSpawn(character);
-            GameObject player = PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
-            _players.Add(player);
+            if (character != GameManager.Characters.NONE)
+            {
+                int index = setCharacterToSpawn(character);
+                GameObject player = PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
+                _players.Add(player);
+            }
         }
 
         _players[0].GetComponent<SetHUDController>().setLeftHUD();
@@ -55,7 +58,17 @@ public class GameSceneManager : MonoBehaviour
 
     public void setCoopCamera(bool active)
     {
-        if (GameManager.GetInstace()._charactersList.Count >= 2)
+        //saber cuantos players hay
+        int count = 0;
+        foreach (var item in GameManager.GetInstace()._charactersList)
+        {
+            if (item != GameManager.Characters.NONE)
+            {
+                count++;
+            }
+        }
+
+        if (count >= 2)
         {
             _splitCamera.enabled = active;
 

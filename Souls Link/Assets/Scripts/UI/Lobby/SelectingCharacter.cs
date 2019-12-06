@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Photon.Pun;
 
 public class SelectingCharacter : MonoBehaviour
 {
+
+
     [SerializeField] private float _offsetX = 110f;
 
     private int _characterIndexSelected = 0;
@@ -15,8 +18,8 @@ public class SelectingCharacter : MonoBehaviour
     public delegate void StarGame();
     public StarGame starGame;
 
-    private string myID;
-    public string MyID { get => myID; set => myID = value; }
+    private int myID;
+    public int MyID { get => myID; set => myID = value; }
 
     GameManager.Characters charSelected;
 
@@ -27,12 +30,13 @@ public class SelectingCharacter : MonoBehaviour
         setArrows();
     }
 
-    public void setCharSelection(GameObject charactersPanel, GameObject leftArrow, GameObject rightArrow)
+    public void setCharSelection(GameObject charactersPanel, GameObject leftArrow, GameObject rightArrow, int id)
     {
         Debug.Log("Character Selection setted");
         _charactersPanel = charactersPanel;
         _leftArrow = leftArrow;
         _rightArrow = rightArrow;
+        MyID = id;
     }
 
     public void OnSelectRight()
@@ -109,7 +113,7 @@ public class SelectingCharacter : MonoBehaviour
                 break;
         }
 
-        charSelected = _characterEnum;
+        GameManager.GetInstace()._charactersList[MyID] = _characterEnum;
     }
 
     public void resetCharacterPanelPosition()
@@ -120,18 +124,24 @@ public class SelectingCharacter : MonoBehaviour
 
     public void OnStartGame()
     {
+        /*
         SelectCharacter selectCharManager = FindObjectOfType<SelectCharacter>();
 
         foreach (var player in selectCharManager.CurrentLocalPlayer)
         {
             GameManager.GetInstace()._charactersList.Add(player.GetComponent<SelectingCharacter>().charSelected);
         }
+        */
+
 
         StartGame();
     }
 
     private void StartGame()
     {
-        SceneManager.LoadScene("Arena");
+        if (PhotonNetwork.IsMasterClient)
+        {
+            SceneManager.LoadScene("Arena");
+        }    
     }
 }
