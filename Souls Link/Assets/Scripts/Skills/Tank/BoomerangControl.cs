@@ -52,9 +52,16 @@ public class BoomerangControl : MonoBehaviour
             {
                 if (collision.gameObject == _playerReference)
                 {
+                    _playerReference.GetComponent<Boomerang>().hasBoomerang = true;
                     Destroy(gameObject);
                 }
             }
+        }
+
+        if (collision.CompareTag("Wall"))
+        {
+            isReturning = true;
+            _rb.velocity = Vector2.zero;
         }
 
     }

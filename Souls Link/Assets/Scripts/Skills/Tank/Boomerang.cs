@@ -14,6 +14,8 @@ public class Boomerang : Skill
     private float _coolDownTracker;
     private GameObject flame;
     private PlayerAiming _aiming;
+    [HideInInspector]
+    public bool hasBoomerang = true;
 
     private void Start()
     {
@@ -44,8 +46,11 @@ public class Boomerang : Skill
     {
         if (_coolDownTracker <= 0)
         {
-            spawnFire();
-            isShooting = true;
+            if (hasBoomerang)
+            {
+                spawnFire();
+                isShooting = true;
+            }
         }
     }
 
@@ -64,6 +69,7 @@ public class Boomerang : Skill
     {
         //if (_coolDownTracker <= 0)
         //{
+        hasBoomerang = false;
         Vector2 direction = _aiming.AimDirection;
         _coolDownTracker = _coolDown;
         flame = Instantiate(_boomerangPrefab, gameObject.transform.position, Quaternion.identity);

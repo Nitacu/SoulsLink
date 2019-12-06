@@ -93,9 +93,16 @@ public class PlayerMovement : MonoBehaviour
         {
             if (GetComponent<Dash>() != null)
             {
-                GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection); //Dash asesino (el que dashea bastante como un rayo)
+                if (!GetComponent<Dash>().isSimpleDash)
+                {
+                    GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection); //Dash asesino (el que dashea bastante como un rayo)
+                }
+                else
+                {
+                    GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection);
+                }
             }
-            else
+            else 
             {
                 GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection); //Dash basico
             }

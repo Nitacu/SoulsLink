@@ -598,9 +598,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coolDown: 2
-  dashDuration: 0.2
+  dashDuration: 0.16
   _stunDuration: 2
-  dashSpeed: 25
+  dashSpeed: 15
   isDashing: 0
 --- !u!114 &1857126601193524137
 MonoBehaviour:

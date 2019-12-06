@@ -49,6 +49,8 @@ public class Dash : Skill
     [HideInInspector]
     public float chargePercent = 0;
     private float electricCost = 20;
+    [HideInInspector]
+    public bool isSimpleDash = false;
 
     // Start is called before the first frame update
     void Start()
@@ -61,7 +63,7 @@ public class Dash : Skill
         _coolDownTracker = _coolDown;
         durationTracker = dashDuration;
         _aiming = GetComponent<PlayerAiming>();
-
+        chargePercent = 0;
     }
 
     public void setChargeBar(GameObject _chargeBar)
@@ -230,7 +232,8 @@ public class Dash : Skill
     {
         if (chargePercent >= electricCost)
         {
-            //dash
+            //dash with power and does damage
+            isSimpleDash = false;
             consumeChargeBar(electricCost);
             isCharging = false;
             hasCharged = false;
@@ -241,9 +244,9 @@ public class Dash : Skill
         }
         else
         {
-            /*isCharging = true;
-            stopMoving();
-            hasCharged = false;*/
+            isSimpleDash = true;
+            // dash normally with no damage
+            GetComponent<CometDash>().pressKey();
         }
     }
 
