@@ -12,14 +12,14 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public ControlLobbyUI _lobbyUI;
     public PhotonView _photonView;
 
-    private void Awake()
+    public void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
 
         _lobbyUI.playersNumber = new ControlLobbyUI.PlayersNumberDelegate(returnPlayersInRoom);
     }
 
-    void Start()
+    public virtual void Start()
     {
         if (!PhotonNetwork.IsConnected)
         {
