@@ -42,7 +42,7 @@ public class SelectingCharacter : MonoBehaviour
     public void OnSelectRight()
     {
         //moveSelectionToRight
-        if (_characterIndexSelected < (System.Enum.GetValues(typeof(GameManager.Characters)).Length - 1))//puede moverse a al derecha
+        if (_characterIndexSelected < (System.Enum.GetValues(typeof(GameManager.Characters)).Length - 2))//puede moverse a al derecha
         {
             _characterIndexSelected++;
 
@@ -81,7 +81,7 @@ public class SelectingCharacter : MonoBehaviour
 
         //set Right Arrow
         _rightArrow.SetActive(
-            (_characterIndexSelected < (System.Enum.GetValues(typeof(GameManager.Characters)).Length - 1)) ? true : false
+            (_characterIndexSelected < (System.Enum.GetValues(typeof(GameManager.Characters)).Length - 2)) ? true : false
             );
 
         //set Left Arrow
