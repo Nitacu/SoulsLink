@@ -5,6 +5,13 @@ using Photon.Pun;
 
 public class GameSceneManager : MonoBehaviour
 {
+    #region CAMERAS
+    [SerializeField] private GameObject _camera1;
+    [SerializeField] private GameObject _camera2;
+
+    [SerializeField] private SplitCameraController _splitCamera;
+    #endregion
+
     private int characterSelectedIndex;
     [Header("Cosas del Photon")]
     public PhotonView _photonView;
@@ -19,16 +26,47 @@ public class GameSceneManager : MonoBehaviour
     private void Start()
     {
         onSpawnPlayerWithPhoton();
+
+        setCoopCamera(true);
     }
 
     public void onSpawnPlayerWithPhoton()
     {
+        List<GameObject> _players = new List<GameObject>();
+
         foreach (var character in GameManager.GetInstace()._charactersList)
         {
             int index = setCharacterToSpawn(character);
-            PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
+            GameObject player = PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
+            _players.Add(player);
         }
 
+        _players[0].GetComponent<SetHUDController>().setLeftHUD();
+
+        if (_players.Count >= 2)
+        {
+            _splitCamera.player1 = _players[0].transform;
+            _splitCamera.player2 = _players[1].transform;
+
+            _players[1].GetComponent<SetHUDController>().setRightHUD();
+        }
+
+    }
+
+    public void setCoopCamera(bool active)
+    {
+        if (GameManager.GetInstace()._charactersList.Count >= 2)
+        {
+            _splitCamera.enabled = active;
+
+            _camera1.SetActive(active);
+            _camera2.GetComponent<SinglePlayerFollowing>().enabled = !active;
+
+            if (!active)
+            {
+                _splitCamera.screenDivider.SetActive(false);
+            }
+        }
     }
 
     private int setCharacterToSpawn(GameManager.Characters _charSet)

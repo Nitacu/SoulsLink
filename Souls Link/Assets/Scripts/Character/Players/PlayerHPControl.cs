@@ -40,6 +40,12 @@ public class PlayerHPControl : MonoBehaviour
 
                 if (PlayerHealth < 0 && _isMine())
                 {
+                    GameSceneManager sceneManager = FindObjectOfType<GameSceneManager>();
+                    if (sceneManager != null)
+                    {
+                        sceneManager.setCoopCamera(false);
+                    }
+
                     _destroySelf();
                 }
 

@@ -10,8 +10,6 @@ public class HUDController : MonoBehaviour
 {
     const string DAMAGE_RECEIVE = "DamageReceived";
 
-    [SerializeField] TextMeshProUGUI _multiplayerState;
-
     [SerializeField] private Animator _receivDamageAnim;
 
     [SerializeField] private Image _healthBar;
@@ -25,47 +23,7 @@ public class HUDController : MonoBehaviour
     private void OnEnable()
     {
         maxPlayerHealth = GetComponentInParent<PlayerHPControl>().PlayerHealth;
-        setHealthBar(maxPlayerHealth);
-        setMultiplayerConnectionType();
-
-        StartCoroutine(findNetworkClientAgain(0));
-
-    }
-
-    private void Update()
-    {
-        setMultiplayerConnectionType();
-    }
-
-    public void setMultiplayerConnectionType()
-    {
-        if (connet())
-        {
-            if (isHost != defineHost())
-            {
-                setMultiplayerTextType();
-                isHost = _isHostServer;
-            }
-        }
-    }
-
-    private void setMultiplayerTextType()
-    {
-        _multiplayerState.text = (_isHostServer) ? "Host" : "Invited";
-    }
-
-    IEnumerator findNetworkClientAgain(float timeToWait)
-    {
-        yield return new WaitForSeconds(timeToWait);
-
-        if (connet())
-        {
-            StartCoroutine(findNetworkClientAgain(2));
-        }
-        else
-        {
-            setMultiplayerTextType();
-        }
+        setHealthBar(maxPlayerHealth);       
     }
 
     public void setHealthBar(float newPlayerHealth)
@@ -83,6 +41,9 @@ public class HUDController : MonoBehaviour
 
     public IEnumerator receiveDamageEffect()
     {
+        yield return new WaitForSeconds(0);
+
+        /*
         if (_receivDamageAnim != null)
         {
             Debug.Log("Set Animation on: " + true);
@@ -93,6 +54,7 @@ public class HUDController : MonoBehaviour
             Debug.Log("Set Animation on: " + true);
             _receivDamageAnim.SetBool(DAMAGE_RECEIVE, false);
         }
+        */
     }
 
     private bool defineHost()
@@ -106,4 +68,7 @@ public class HUDController : MonoBehaviour
     {
         return PhotonNetwork.IsConnected;
     }
+
+
+
 }

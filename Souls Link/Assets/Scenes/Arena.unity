@@ -403,6 +403,18 @@ PrefabInstance:
       objectReference: {fileID: 698417102}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0372cf0961b307642935f44e9edd8057, type: 3}
+--- !u!114 &134240179 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8847185284289430615, guid: 0372cf0961b307642935f44e9edd8057,
+    type: 3}
+  m_PrefabInstance: {fileID: 134240178}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1abf8214b163ab14eb8bff17520ed69c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &155817877
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,6 +1671,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2253769971f47c2458558a63c500df6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _camera1: {fileID: 698417103}
+  _camera2: {fileID: 1746354279}
+  _splitCamera: {fileID: 134240179}
   _photonView: {fileID: 662924241}
   _points:
   - {fileID: 997997061}
