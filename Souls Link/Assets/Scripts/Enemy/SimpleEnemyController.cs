@@ -26,6 +26,7 @@ public class SimpleEnemyController : MonoBehaviour
     public bool isStunned = false;
     private Vector2 tempVelocity = Vector2.zero;
     private float tempMaxSpeed = 0;
+    private GameObject tempPlayer;
 
     #region Delegate
     public delegate bool DelegateEnemyMultiplayerController();
@@ -96,6 +97,7 @@ public class SimpleEnemyController : MonoBehaviour
 
     public virtual void attack(GameObject player)
     {
+        tempPlayer = player;
         if (!isStunned)
         {
             //solo el host hace lo del daño 
@@ -103,15 +105,24 @@ public class SimpleEnemyController : MonoBehaviour
             {
                 //envia a los demas la informacion para que se vea que ataco
                 _setAttack();
-                exeAttack();
+               
                 Anim.Play(Animator.StringToHash("Attack"));
             }
         }
     }
 
+    public void checkIfDamages()
+    {
+        if(Vector2.Distance(transform.position, tempPlayer.transform.position) <= 1)
+        {
+            exeAttack();
+        }
+        tempPlayer = null;
+    }
+
     public void exeAttack()
     {
-        Collider2D[] colliders = Physics2D.OverlapBoxAll(_positionAttack.position, new Vector2(0.9785732f, 2.59f), 0);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(_positionAttack.position, new Vector2(1.19f, 2.59f), 0);
 
         if (colliders.Length > 0)
         {
