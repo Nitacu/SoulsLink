@@ -30,6 +30,7 @@ public class GameManager
     }
     public GameMode _gameMode;
 
+    public List<Characters> _charactersList = new List<Characters>();
 
     static GameManager _instace;
     public static GameManager GetInstace()

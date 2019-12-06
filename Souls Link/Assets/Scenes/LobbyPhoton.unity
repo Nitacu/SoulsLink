@@ -1729,6 +1729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 887750877869270307}
   _playerId: 
   _isFilled: 0
   ownCharacterSelection: {fileID: 722157450258774434}
@@ -1746,6 +1747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 887750878678301784}
   _playerId: 
   _isFilled: 0
   ownCharacterSelection: {fileID: 722157449448661207}
@@ -1763,6 +1765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 887750876672914174}
   _playerId: 
   _isFilled: 0
   ownCharacterSelection: {fileID: 722157449339104893}
@@ -1780,6 +1783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 856c5471fb8e5a94fbf82aaeef65c7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 887750877240912453}
   _playerId: 
   _isFilled: 0
   ownCharacterSelection: {fileID: 722157448741222084}
@@ -3362,7 +3366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3014923143835019515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3380,7 +3384,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3014923144766662225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,7 +3402,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3014923145022996260
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,7 +3420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &3151919491995781064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6759,6 +6763,7 @@ MonoBehaviour:
   - {fileID: 1233985792473701940}
   - {fileID: 1233985791828316318}
   - {fileID: 1233985792999360141}
+  _filledSlots: 
 --- !u!222 &3241663706746308762
 CanvasRenderer:
   m_ObjectHideFlags: 0

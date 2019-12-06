@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SelectingCharacter : MonoBehaviour
 {
@@ -65,6 +66,7 @@ public class SelectingCharacter : MonoBehaviour
         float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
         float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
         _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
+        _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("setCharacterPanelPosition", Photon.Pun.RpcTarget.OthersBuffered, new Vector3(newPos, 0));
     }
 
     IEnumerator setArrows()
@@ -122,9 +124,14 @@ public class SelectingCharacter : MonoBehaviour
 
         foreach (var player in selectCharManager.CurrentLocalPlayer)
         {
-            Debug.Log(player.GetComponent<SelectingCharacter>().charSelected);
+            GameManager.GetInstace()._charactersList.Add(player.GetComponent<SelectingCharacter>().charSelected);
         }
 
-        //starGame();
+        StartGame();
+    }
+
+    private void StartGame()
+    {
+        SceneManager.LoadScene("Arena");
     }
 }

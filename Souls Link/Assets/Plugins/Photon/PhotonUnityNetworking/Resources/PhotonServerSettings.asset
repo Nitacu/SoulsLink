@@ -43,5 +43,6 @@ MonoBehaviour:
   - sendFilledSlotList
   - sendFilledSlotListOnline
   - addPlayerUpdate
+  - setCharacterPanelPosition
   DisableAutoOpenWizard: 1
   ShowSettings: 1

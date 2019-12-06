@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class PlayerSelectCharPanel : MonoBehaviour
 {
+    public PhotonView _photonView;
+
     public string _playerId;
     public string PlayerID
     {
@@ -62,5 +65,9 @@ public class PlayerSelectCharPanel : MonoBehaviour
         return rightArrow;
     }
 
-
+    [PunRPC]
+    public void setCharacterPanelPosition(Vector3 newPos)
+    {
+        ownCharacterSelection.GetComponent<RectTransform>().localPosition = newPos;
+    }
 }

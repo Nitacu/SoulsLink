@@ -13,7 +13,7 @@ public class GameSceneManager : MonoBehaviour
 
     private void Awake()
     {
-        characterSelectedIndex = setCharacterToSpawn();
+        //characterSelectedIndex = setCharacterToSpawn();
     }
 
     private void Start()
@@ -23,14 +23,17 @@ public class GameSceneManager : MonoBehaviour
 
     public void onSpawnPlayerWithPhoton()
     {
-        PhotonNetwork.Instantiate(_characters[characterSelectedIndex], _points[characterSelectedIndex].position, Quaternion.identity, 0);
+        foreach (var character in GameManager.GetInstace()._charactersList)
+        {
+            int index = setCharacterToSpawn(character);
+            PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
+        }
+
     }
 
-    private int setCharacterToSpawn()
+    private int setCharacterToSpawn(GameManager.Characters _charSet)
     {
-        GameManager.Characters characterSelected = GameManager.GetInstace()._myCharacter;
-
-        switch (characterSelected)
+        switch (_charSet)
         {
             case GameManager.Characters.TANK:
                 return 0;
