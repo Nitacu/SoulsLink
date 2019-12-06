@@ -779,6 +779,7 @@ MonoBehaviour:
   _coolDown: 0
   _speed: 15
   _damage: 20
+  hasBoomerang: 1
 --- !u!1 &6647910037698648187
 GameObject:
   m_ObjectHideFlags: 0

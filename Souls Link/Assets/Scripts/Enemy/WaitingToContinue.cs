@@ -6,7 +6,7 @@ using BehaviorDesigner.Runtime.Tasks;
 
 public class WaitingToContinue : Action
 {
-    public SharedFloat waitTime = 1;
+    public SharedFloat waitTime = 0.1f;
     private float startTime;
     private float waitDuration;
 

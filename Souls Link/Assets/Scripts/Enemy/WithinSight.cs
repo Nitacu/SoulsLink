@@ -33,7 +33,7 @@ public class WithinSight : Conditional
     // Returns true if targetTransform is within sight of currenttransform
     public bool withinSight()
     {
-        _player = playerInRange();
+        _player = ConeRaycast();
         
         if (_player != null)
         {
@@ -66,5 +66,38 @@ public class WithinSight : Conditional
             return null;
         else
             return ray[0].transform;
+    }
+
+    public Transform ConeRaycast()
+    {
+        Collider2D[] cols = Physics2D.OverlapCircleAll(_thisCharacter.Value.position, _radio, _layerPlayer);
+        Vector3 characterToCollider;
+        float dot;
+
+        if (target.Value != null)
+        {
+            foreach (Collider2D player in cols)
+            {
+                if (player.gameObject == _player.gameObject)
+                {
+                    characterToCollider = (player.transform.position - _thisCharacter.Value.position).normalized;
+                    dot = Vector3.Dot(characterToCollider, _thisCharacter.Value.forward);
+                    if (dot >= Mathf.Cos(55))
+                    {
+                        //objectSpotted = true;
+                        return player.transform;
+                    }
+                    else
+                    {
+                        //objectSpotted = false;
+                    }
+                }
+            }
+        }
+
+        if (cols.Length == 0)
+            return null;
+        else
+            return cols[0].transform;
     }
 }
