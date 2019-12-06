@@ -25,7 +25,7 @@ public class PlayerSelectCharPanel : MonoBehaviour
         set { _isFilled = value; }
     }
 
-    [SerializeField] GameObject ownCharacterSelection;
+    [SerializeField] public GameObject ownCharacterSelection;
     [SerializeField] GameObject leftArrow;
     [SerializeField] GameObject rightArrow;
 
@@ -61,5 +61,6 @@ public class PlayerSelectCharPanel : MonoBehaviour
         rightArrow.SetActive(true);
         return rightArrow;
     }
+
 
 }

@@ -29,41 +29,53 @@ public class ControlLobbyUI : MonoBehaviour
     public PlayersNumberDelegate playersNumber;
     #endregion
 
+    public bool useOldVersion = true;
+
     public void refreshPlayerList()
     {
 
+    }
+
+    public void addNewPlayerToRoom()
+    {
+        if (!useOldVersion)
+        {
+            _panelInRoom.GetComponent<SelectCharacter>().addPlayerUpdate();
+        }
     }
 
     public void crearNewItemInPlayerList(string name, string id)
     {
         _panelRooms.SetActive(false);
 
-        _panelInRoom.SetActive(true);        
+        _panelInRoom.SetActive(true);
 
-        
-        foreach (GameObject player in _imagenPlayerName)
+        if (useOldVersion)
         {
-            if (!player.activeSelf)
+            foreach (GameObject player in _imagenPlayerName)
             {
-                player.SetActive(true);
-                player.GetComponentInChildren<TMP_Text>().text = name; //show name
-                player.GetComponent<PlayerSelectCharPanel>().PlayerID = id;//assign id
-                Debug.Log("Player ID setted");
-                break;
+                if (!player.activeSelf)
+                {
+                    player.SetActive(true);
+                    player.GetComponentInChildren<TMP_Text>().text = name; //show name
+                    player.GetComponent<PlayerSelectCharPanel>().PlayerID = id;//assign id
+                    Debug.Log("Player ID setted");
+                    break;
+                }
             }
         }
-        
-    }    
-
+    }
 
 
     public void clearPlayersList()
     {
-        foreach (GameObject player in _imagenPlayerName)
+        if (useOldVersion)
         {
-            player.SetActive(false);
+            foreach (GameObject player in _imagenPlayerName)
+            {
+                player.SetActive(false);
+            }
         }
-
 
         /*
         List<Image> listNames = _fatherPlayerNames.GetComponentsInChildren<Image>().ToList();
@@ -133,4 +145,5 @@ public class ControlLobbyUI : MonoBehaviour
     {
         return playersNumber();
     }
+
 }

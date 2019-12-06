@@ -61,7 +61,6 @@ public class SelectingCharacter : MonoBehaviour
     {
         selectCharacter(_characterIndexSelected);
         StartCoroutine(setArrows());
-        setArrows();
 
         float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
         float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;

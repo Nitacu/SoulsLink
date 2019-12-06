@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Photon.Pun;
 
 public class SelectCharacter : MonoBehaviour
 {
+    public PhotonView _photonView;
+
     [SerializeField] private GameObject _selectingCharacterPrefab;
     [SerializeField] private List<PlayerSelectCharPanel> _imagePlayers = new List<PlayerSelectCharPanel>();
     [SerializeField] private float _offsetX = 215f;
     [SerializeField] private List<PlayerSelectCharPanel> _slots = new List<PlayerSelectCharPanel>();
+    public List<bool> _filledSlots = new List<bool>();
     private int _indexSlotsFilled = 0;
 
     private List<GameObject> currentLocalPlayer = new List<GameObject>();
@@ -28,29 +32,117 @@ public class SelectCharacter : MonoBehaviour
     private string myID;
     public string MyID { get => myID; set => myID = value; }
 
-    public bool useOldVersion = true;
 
     private void OnEnable()
     {
-        //Si está multiplayer buscar cuantos hay players hay actualmente en este room, con base a esa informacion actualizar el indexSlotsFilled
-
-
         //Si no es multiplayer simplemente actualizar la información lista de slots
+        ControlLobbyUI control = FindObjectOfType<ControlLobbyUI>();
 
-        if (useOldVersion)
+        if (control.useOldVersion)
         {
-
             SetToOldVersion(true);
             StartCoroutine(FindAndSelectMyPanel());
-
         }
         else
         {
-            SetToOldVersion(false);       
-            StartCoroutine(SelectPanelByList());
+            foreach (var slot in _slots)
+            {
+                slot.gameObject.SetActive(true);
+            }
+            SetToOldVersion(false);
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                setFilledSlots();
+
+                StartCoroutine(SelectPanelByList());
+
+            }
+            else
+            {
+                //colocar algo mientras espera respuesta
+
+                //activar panel de espera
+
+                _photonView.RPC("sendFilledSlotList", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer);
+                Debug.Log("Pedir lista a master");
+            }
         }
-        //Multiplayer old method - cambiar
-        //
+
+    }
+
+    #region RPC's
+    [PunRPC]
+    public void sendFilledSlotList(Photon.Realtime.Player player)
+    {
+        //convertir list a string de 1 y 0
+        string binaryChain = "";
+
+        int index = 0;
+        List<bool> auxList = new List<bool>();
+        for (int i = 0; i < _filledSlots.Count; i++)
+        {
+            if (_filledSlots[i])
+            {
+                index = i;
+            }
+
+            auxList.Add(_filledSlots[i]);
+        }
+        auxList[index] = false;
+        
+        foreach (var slot in auxList)
+        {
+            binaryChain += (slot) ? "1" : "0";
+        }
+        
+
+        _photonView.RPC("sendFilledSlotListOnline", player, binaryChain);
+        foreach (var item in _filledSlots)
+        {
+            Debug.Log(item);
+        }        
+    }
+
+    [PunRPC]
+    public void sendFilledSlotListOnline(string binaryChainList)
+    {
+        List<bool> newBooleanList = new List<bool>();
+        //convertir string a lista
+        foreach (char _char in binaryChainList)
+        {
+            if (_char == '1')
+            {
+                newBooleanList.Add(true);
+            }
+            else if (_char == '0')
+            {
+                newBooleanList.Add(false);
+            }
+        }
+
+        _filledSlots = newBooleanList;
+        StartCoroutine(SelectPanelByList());
+
+
+        foreach (var item in newBooleanList)
+        {
+            Debug.Log(item);
+        }
+
+        //desactivar panel de espera
+    }
+    #endregion
+
+    #region GENERAL_CONTROL
+    private void setFilledSlots()
+    {
+        _filledSlots.Clear();
+
+        foreach (var slot in _slots)
+        {
+            _filledSlots.Add(slot.IsFilled);
+        }
     }
 
     private void SetToOldVersion(bool setOldVersion)
@@ -69,20 +161,9 @@ public class SelectCharacter : MonoBehaviour
         }
 
     }
+    #endregion
 
-    IEnumerator SelectMyIndex()
-    {
-        yield return new WaitForEndOfFrame();
-
-        int playersNumber = 0;
-
-        ControlLobbyUI control = FindObjectOfType<ControlLobbyUI>();
-        if (control != null)
-        {
-            playersNumber = control.playersNumber();
-        }
-    }
-
+    #region PANELS_SELECTION
     IEnumerator SelectPanelByList()
     {
         yield return new WaitForEndOfFrame();
@@ -123,6 +204,88 @@ public class SelectCharacter : MonoBehaviour
         setArrows();
     }
 
+    IEnumerator setUpNewSelectingPlayer(GameObject player)
+    {
+        yield return new WaitForEndOfFrame();
+
+        if (currentLocalPlayer.Count >= 1)//segundo jugador
+        {
+            _photonView.RPC("addPlayerUpdate", RpcTarget.Others);
+        }
+
+        SelectingCharacter selectCharComp = player.GetComponent<SelectingCharacter>();
+        currentLocalPlayer.Add(player);
+
+        bool slotFinded = false;
+
+        for (int i = 0; i < _filledSlots.Count; i++)
+        {
+            if (!_filledSlots[i] && !slotFinded)//encontrar el primero que tenga espacio
+            {
+                Debug.Log("Find slot empty at: " + i);
+                //Añadirme y llenar
+                _slots[i].NewPlayerID = i;
+                _slots[i].IsFilled = true;
+                _filledSlots[i] = true;
+
+                slotFinded = true;
+
+                selectCharComp.setCharSelection(_slots[i].getCharacterSelection(),
+                    _slots[i].getLeftArrow(), _slots[i].getRightArrow());
+
+                break;
+            }
+            else
+            {
+                Debug.Log("Slot filled at " + i);
+                _slots[i].ownCharacterSelection.SetActive(true);
+            }
+        }
+
+
+
+    }
+    
+    [PunRPC]
+    public void addPlayerUpdate()
+    {
+        Debug.Log("añadir player externo");
+
+        for (int i = 0; i < _filledSlots.Count; i++)
+        {
+            if (!_filledSlots[i])//encontrar el primero que tenga espacio
+            {
+                _filledSlots[i] = true;
+                _slots[i].IsFilled = true;
+                _slots[i].ownCharacterSelection.SetActive(true);
+                break;
+            }
+        }
+    }
+    #endregion
+
+    #region PLAYER_MANAGER
+
+    public void OnStartGame()
+    {
+        starGame();
+    }
+
+    public void OnJoinGame()
+    {
+        Debug.Log("create new player");
+
+        StartCoroutine(SelectPanelByList());
+    }
+
+    public void OnPlayerJoined(PlayerInput input)
+    {
+        Debug.Log("On Player Joined: " + input.gameObject);
+        StartCoroutine(setUpNewSelectingPlayer(input.gameObject));
+    }
+    #endregion
+
+    #region HANDLE_SLOT
     public void OnSelectRight()
     {
         //moveSelectionToRight
@@ -200,57 +363,6 @@ public class SelectCharacter : MonoBehaviour
         _characterIndexSelected = 0;
         //_charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(0, 0);
     }
-
-    public void OnStartGame()
-    {
-        starGame();
-    }
-
-
-    public void OnJoinGame()
-    {
-        Debug.Log("create new player");
-
-        StartCoroutine(SelectPanelByList());
-    }
-
-    public void OnPlayerJoined(PlayerInput input)
-    {
-        Debug.Log("On Player Joined: " + input.gameObject);
-        setUpNewSelectingPlayer(input.gameObject);
-    }
-
-    public void setUpNewSelectingPlayer(GameObject player)
-    {
-        SelectingCharacter selectCharComp = player.GetComponent<SelectingCharacter>();
-        currentLocalPlayer.Add(player);
-
-        int count = 0;
-        foreach (var slot in _slots)
-        {
-            if (!slot.IsFilled)//encontrar el primero que tenga espacio
-            {
-                //Añadirme y llenar
-                slot.NewPlayerID = count;
-                slot.IsFilled = true;
-
-                selectCharComp.setCharSelection(slot.getCharacterSelection(),
-                    slot.getLeftArrow(), slot.getRightArrow());
-
-                /*
-                _charactersPanel = slot.getCharacterSelection();
-                _leftArrow = slot.getLeftArrow();
-                _rightArrow = slot.getRightArrow();
-                */
-                break;
-            }
-            count++;
-        }
-
-        if (currentLocalPlayer.Count <= 1)//PONER CONTROL
-        {
-
-        }
-    }
+    #endregion
 }
 

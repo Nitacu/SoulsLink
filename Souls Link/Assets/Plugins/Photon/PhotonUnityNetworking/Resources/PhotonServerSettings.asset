@@ -40,5 +40,8 @@ MonoBehaviour:
   - getRangeAttack
   - addMeToGeneralHost
   - getoutToGeneralHost
+  - sendFilledSlotList
+  - sendFilledSlotListOnline
+  - addPlayerUpdate
   DisableAutoOpenWizard: 1
   ShowSettings: 1

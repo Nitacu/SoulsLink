@@ -103,6 +103,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
+        Debug.Log("Update roomlist: " + roomList.Count + " salas");
+
         _lobbyUI.clearListRooms();
 
         foreach (RoomInfo room in roomList)
@@ -114,7 +116,11 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         Debug.Log("entro");
-        _lobbyUI.crearNewItemInPlayerList(newPlayer.NickName, newPlayer.UserId);
+        if (PhotonNetwork.LocalPlayer != newPlayer)
+        {
+            _lobbyUI.addNewPlayerToRoom();
+        }
+
     }
     #endregion
 }
