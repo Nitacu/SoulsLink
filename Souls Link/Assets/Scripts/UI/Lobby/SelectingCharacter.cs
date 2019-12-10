@@ -26,7 +26,7 @@ public class SelectingCharacter : MonoBehaviour
     private void OnEnable()
     {
         resetCharacterPanelPosition();
-        selectCharacter(_characterIndexSelected);
+        selectCharacter(_characterIndexSelected);        
         setArrows();
     }
 
@@ -70,6 +70,8 @@ public class SelectingCharacter : MonoBehaviour
         float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
         float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
         _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
+
+        //enviar mi selección a otras máquinas
         _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("setCharacterPanelPosition", Photon.Pun.RpcTarget.OthersBuffered, new Vector3(newPos, 0));
     }
 
@@ -109,11 +111,19 @@ public class SelectingCharacter : MonoBehaviour
                 _characterEnum = GameManager.Characters.ASSASIN;
                 break;
             default:
-                _characterEnum = GameManager.Characters.MAGE;
+                _characterEnum = GameManager.Characters.NONE;
                 break;
         }
 
         GameManager.GetInstace()._charactersList[MyID] = _characterEnum;
+        
+        //guardar tipo y bind
+        Debug.Log("Selecting Character . Select character . MyId; " + MyID);
+        GameManager.GetInstace()._charactersSetupList[MyID].characterType = _characterEnum;
+
+        string device = gameObject.GetComponent<UnityEngine.InputSystem.PlayerInput>().devices[0].name;
+        GameManager.GetInstace()._charactersSetupList[MyID].device = device;
+        
     }
 
     public void resetCharacterPanelPosition()
@@ -123,17 +133,7 @@ public class SelectingCharacter : MonoBehaviour
     }
 
     public void OnStartGame()
-    {
-        /*
-        SelectCharacter selectCharManager = FindObjectOfType<SelectCharacter>();
-
-        foreach (var player in selectCharManager.CurrentLocalPlayer)
-        {
-            GameManager.GetInstace()._charactersList.Add(player.GetComponent<SelectingCharacter>().charSelected);
-        }
-        */
-
-
+    {       
         StartGame();
     }
 

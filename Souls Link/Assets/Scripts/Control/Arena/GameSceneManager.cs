@@ -34,6 +34,23 @@ public class GameSceneManager : MonoBehaviour
     {
         List<GameObject> _players = new List<GameObject>();
 
+
+        ////NEW
+        var characterSetTup = GameManager.GetInstace()._charactersSetupList;
+
+        foreach (var character in characterSetTup)
+        {
+            if (character.characterType != GameManager.Characters.NONE)
+            {
+                int index = setCharacterToSpawn(character.characterType);
+                GameObject player = PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
+                player.GetComponent<UnityEngine.InputSystem.PlayerInput>().SwitchCurrentControlScheme(character.device);
+                _players.Add(player);
+            }
+        }
+
+        /////OLD  
+        /*
         foreach (var character in GameManager.GetInstace()._charactersList)
         {
             if (character != GameManager.Characters.NONE)
@@ -43,6 +60,7 @@ public class GameSceneManager : MonoBehaviour
                 _players.Add(player);
             }
         }
+        */
 
         _players[0].GetComponent<SetHUDController>().setLeftHUD();
 

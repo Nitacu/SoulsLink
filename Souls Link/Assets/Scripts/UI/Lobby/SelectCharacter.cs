@@ -38,37 +38,28 @@ public class SelectCharacter : MonoBehaviour
         //Si no es multiplayer simplemente actualizar la información lista de slots
         ControlLobbyUI control = FindObjectOfType<ControlLobbyUI>();
 
-        if (control.useOldVersion)
+        foreach (var slot in _slots)
         {
-            SetToOldVersion(true);
-            StartCoroutine(FindAndSelectMyPanel());
+            slot.gameObject.SetActive(true);
+        }
+        SetToOldVersion(false);
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            setFilledSlots();
+
+            StartCoroutine(SelectPanelByList());
+
         }
         else
         {
-            foreach (var slot in _slots)
-            {
-                slot.gameObject.SetActive(true);
-            }
-            SetToOldVersion(false);
+            //colocar algo mientras espera respuesta
 
-            if (PhotonNetwork.IsMasterClient)
-            {
-                setFilledSlots();
+            //activar panel de espera
 
-                StartCoroutine(SelectPanelByList());
-
-            }
-            else
-            {
-                //colocar algo mientras espera respuesta
-
-                //activar panel de espera
-
-                _photonView.RPC("sendFilledSlotList", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer);
-                Debug.Log("Pedir lista a master");
-            }
+            _photonView.RPC("sendFilledSlotList", RpcTarget.MasterClient, PhotonNetwork.LocalPlayer);
+            Debug.Log("Pedir lista a master");
         }
-
     }
 
     #region RPC's
@@ -90,18 +81,13 @@ public class SelectCharacter : MonoBehaviour
             auxList.Add(_filledSlots[i]);
         }
         auxList[index] = false;
-        
+
         foreach (var slot in auxList)
         {
             binaryChain += (slot) ? "1" : "0";
         }
-        
 
         _photonView.RPC("sendFilledSlotListOnline", player, binaryChain);
-        foreach (var item in _filledSlots)
-        {
-            Debug.Log(item);
-        }        
     }
 
     [PunRPC]
@@ -123,12 +109,6 @@ public class SelectCharacter : MonoBehaviour
 
         _filledSlots = newBooleanList;
         StartCoroutine(SelectPanelByList());
-
-
-        foreach (var item in newBooleanList)
-        {
-            Debug.Log(item);
-        }
 
         //desactivar panel de espera
     }
@@ -169,45 +149,10 @@ public class SelectCharacter : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         PlayerInput.Instantiate(_selectingCharacterPrefab);
-        //GameObject playerInstace = Instantiate(_selectingCharacterPrefab);
     }
 
-    IEnumerator FindAndSelectMyPanel()
+    public void setUpNewSelectingPlayer(GameObject player)
     {
-        yield return new WaitForEndOfFrame();
-
-        Debug.Log("Find players ID");
-        foreach (PlayerSelectCharPanel imagePlayer in _imagePlayers)
-        {
-            if (imagePlayer.isActiveAndEnabled)
-            {
-                imagePlayer.DeactivateMySelection();
-
-                string panelID = imagePlayer.PlayerID;
-                if (panelID != null)
-                {
-                    if (panelID.Equals(MyID))
-                    {
-                        //set seleccionar personaje
-                        Debug.Log("Finded my self: " + MyID);
-                        _charactersPanel = imagePlayer.getCharacterSelection();
-                        _leftArrow = imagePlayer.getLeftArrow();
-                        _rightArrow = imagePlayer.getRightArrow();
-                        break;
-                    }
-                }
-            }
-        }
-
-        resetCharacterPanelPosition();
-        selectCharacter(_characterIndexSelected);
-        setArrows();
-    }
-
-    IEnumerator setUpNewSelectingPlayer(GameObject player)
-    {
-        yield return new WaitForEndOfFrame();
-
         if (currentLocalPlayer.Count >= 1)//segundo jugador
         {
             _photonView.RPC("addPlayerUpdate", RpcTarget.Others);
@@ -230,6 +175,7 @@ public class SelectCharacter : MonoBehaviour
 
                 slotFinded = true;
 
+                Debug.Log("SelectCharacter. Set new player selecting" + i);
                 selectCharComp.setCharSelection(_slots[i].getCharacterSelection(),
                     _slots[i].getLeftArrow(), _slots[i].getRightArrow(), currentLocalPlayer.Count - 1);
 
@@ -245,7 +191,7 @@ public class SelectCharacter : MonoBehaviour
 
 
     }
-    
+
     [PunRPC]
     public void addPlayerUpdate()
     {
@@ -280,8 +226,26 @@ public class SelectCharacter : MonoBehaviour
 
     public void OnPlayerJoined(PlayerInput input)
     {
-        Debug.Log("On Player Joined: " + input.gameObject);
-        StartCoroutine(setUpNewSelectingPlayer(input.gameObject));
+        if (currentLocalPlayer.Count == 0)//primer jugador setear a teclado
+        {
+            InputDevice[] devices = new InputDevice[1];
+            var keyboards = InputSystem.FindControls("<Keyboard>");
+            var gamepads = InputSystem.FindControls("<Gamepads>");
+
+            if (gamepads.Count > 0)//hay gamepads
+            {
+                devices[0] = gamepads[0].device;
+
+            }
+            else//no hay gamepads usar teclado
+            {
+                devices[0] = keyboards[0].device;
+            }
+
+            input.SwitchCurrentControlScheme(devices);
+        }
+
+        setUpNewSelectingPlayer(input.gameObject);
     }
     #endregion
 
