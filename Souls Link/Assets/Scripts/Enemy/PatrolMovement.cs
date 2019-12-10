@@ -22,7 +22,7 @@ public class PatrolMovement : Action
         agent.OnDestinationInvalid += MoveRandom;
 
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
 
         if (WPoints.Count > 0)
         {

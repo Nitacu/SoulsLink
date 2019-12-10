@@ -37,6 +37,12 @@ public class BoomerangControl : MonoBehaviour
             Debug.Log("Hola soy un loro");
         }
 
+        if(gameObject.transform.position == _playerReference.transform.position && isReturning)
+        {
+            _playerReference.GetComponent<Boomerang>().hasBoomerang = true;
+            Destroy(gameObject);
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

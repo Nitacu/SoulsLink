@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 20
-  _heal: 20
+  _heal: 40
 --- !u!210 &8632990971775855816
 SortingGroup:
   m_ObjectHideFlags: 0

@@ -21,6 +21,7 @@ public class Hook : Skill
     public bool hasBitten = false;
     private float biteTracker;
     private float timeToBite = 0.5f;
+    Vector2 direction = Vector2.zero;
 
     private void Start()
     {
@@ -83,7 +84,7 @@ public class Hook : Skill
     private void biteEnemy()
     {
         hasBitten = true;
-        Vector2 direction = GetComponent<PlayerAiming>().AimDirection;
+        
         canBite = false;
         
         biteTracker = timeToBite;
@@ -118,7 +119,7 @@ public class Hook : Skill
     {
         //if (_coolDownTracker <= 0)
         //{
-        Vector2 direction = _aiming.AimDirection;
+        direction = _aiming.AimDirection;
         _coolDownTracker = _coolDown;
         hookObject = Instantiate(_hookPrefab, gameObject.transform);
         GameObject line = Instantiate(_linePrefab, gameObject.transform);

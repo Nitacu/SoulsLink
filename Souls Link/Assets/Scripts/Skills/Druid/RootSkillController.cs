@@ -64,8 +64,15 @@ public class RootSkillController : MonoBehaviour
 
         StartCoroutine(destroyRoot(gameObject, _newRootDuration));
 
+        Vector3 position2 = gameObject.transform.position;
+        position2.x += 0.5f;
+        Vector3 position3 = gameObject.transform.position;
+        position3.x -= 0.5f;
+
         //Raycast
         RaycastHit2D[] ray = Physics2D.RaycastAll(gameObject.transform.position, direction, 1.08f);
+        RaycastHit2D[] ray2 = Physics2D.RaycastAll(gameObject.transform.position, direction, 1.08f);
+        RaycastHit2D[] ray3 = Physics2D.RaycastAll(gameObject.transform.position, direction, 1.08f);
 
         Debug.DrawRay(gameObject.transform.position, direction * 1.08f, Color.red);
 

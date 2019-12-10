@@ -25,7 +25,7 @@ public class MoveTowards : Action
         if (inRange())
         {
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             return TaskStatus.Success;
         }
         else

@@ -18,7 +18,7 @@ public class WaitingToContinue : Action
         waitDuration = waitTime.Value;
 
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 
     public override TaskStatus OnUpdate()

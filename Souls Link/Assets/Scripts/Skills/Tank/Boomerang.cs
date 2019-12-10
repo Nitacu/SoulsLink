@@ -16,6 +16,7 @@ public class Boomerang : Skill
     private PlayerAiming _aiming;
     [HideInInspector]
     public bool hasBoomerang = true;
+    private bool hitWall = false;
 
     private void Start()
     {
@@ -69,14 +70,69 @@ public class Boomerang : Skill
     {
         //if (_coolDownTracker <= 0)
         //{
-        hasBoomerang = false;
         Vector2 direction = _aiming.AimDirection;
-        _coolDownTracker = _coolDown;
-        flame = Instantiate(_boomerangPrefab, gameObject.transform.position, Quaternion.identity);
-        flame.GetComponent<BoomerangControl>().setBoomerang(gameObject, _damage, _speed, direction);               
+        //Raycast
+        checkRays(direction);
+
+        if (!hitWall)
+        {
+            hasBoomerang = false;
+            _coolDownTracker = _coolDown;
+            flame = Instantiate(_boomerangPrefab, gameObject.transform.position, Quaternion.identity);
+            flame.GetComponent<BoomerangControl>().setBoomerang(gameObject, _damage, _speed, direction);
+        }
+        else
+        {
+            hitWall = false;
+        }
+
+
+                    
 
         //}
     }
 
+    private void checkRays(Vector2 direction)
+    {
+
+        Vector3 position2 = gameObject.transform.position;
+        position2.x += 0.5f;
+        Vector3 position3 = gameObject.transform.position;
+        position3.x -= 0.5f;
+
+        //Raycast
+        RaycastHit2D[] ray = Physics2D.RaycastAll(gameObject.transform.position, direction, 1.08f);
+        RaycastHit2D[] ray2 = Physics2D.RaycastAll(position2, direction, 1.08f);
+        RaycastHit2D[] ray3 = Physics2D.RaycastAll(position3, direction, 1.08f);
+
+        Debug.DrawRay(gameObject.transform.position, direction * 1.08f, Color.red);
+        Debug.DrawRay(position2, direction * 1.08f, Color.red);
+        Debug.DrawRay(position3, direction * 1.08f, Color.red);
+
+        foreach (RaycastHit2D _ray in ray)
+        {
+            if (_ray.collider.gameObject.CompareTag("Wall"))
+            {
+                hitWall = true;
+                break;
+            }
+        }
+        foreach (RaycastHit2D _ray in ray2)
+        {
+            if (_ray.collider.gameObject.CompareTag("Wall"))
+            {
+                hitWall = true;
+                break;
+            }
+        }
+        foreach (RaycastHit2D _ray in ray3)
+        {
+            if (_ray.collider.gameObject.CompareTag("Wall"))
+            {
+                hitWall = true;
+                break;
+            }
+        }
+    }
    
 }
