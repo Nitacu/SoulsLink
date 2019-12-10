@@ -77,10 +77,13 @@ public class GameSceneManager : MonoBehaviour
     public void setCoopCamera(bool active)
     {
         //saber cuantos players hay
+
+        var characterSetTup = GameManager.GetInstace()._charactersSetupList;
+
         int count = 0;
-        foreach (var item in GameManager.GetInstace()._charactersList)
+        foreach (var item in characterSetTup)
         {
-            if (item != GameManager.Characters.NONE)
+            if (item.characterType != GameManager.Characters.NONE)
             {
                 count++;
             }
