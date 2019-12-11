@@ -6,6 +6,7 @@ using BehaviorDesigner.Runtime;
 public class SimpleEnemyController : MonoBehaviour
 {
     public float health;
+    public ElementsEnumScript.CharacterElement _elementType;
     public bool canWalk = true;
     private bool facingLeft = false;
     private Rigidbody2D _rb;
@@ -375,4 +376,9 @@ public class SimpleEnemyController : MonoBehaviour
         isGettingKnocked = false;
     }
 
+    //This method makes all the operations according to increase or decrease the damage that the object will recieve
+    private float calculateDamageToEffect(float damage, ElementsEnumScript.SkillElements _damageElement)
+    {
+        return damage;
+    }
 }

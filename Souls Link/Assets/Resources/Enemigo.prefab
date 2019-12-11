@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 150
+  _elementType: 0
   canWalk: 1
   _controlSpawnEnemys: {fileID: 0}
   _positionAttack: {fileID: 1177613919540278496}

@@ -305,6 +305,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 60
+  _elementType: 3
   canWalk: 1
   _controlSpawnEnemys: {fileID: 0}
   _positionAttack: {fileID: 0}
