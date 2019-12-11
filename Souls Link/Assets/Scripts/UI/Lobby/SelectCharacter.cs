@@ -15,7 +15,7 @@ public class SelectCharacter : MonoBehaviour
     public List<bool> _filledSlots = new List<bool>();
     private int _indexSlotsFilled = 0;
 
-    private List<GameObject> currentLocalPlayer = new List<GameObject>();
+    [SerializeField]private List<GameObject> currentLocalPlayer = new List<GameObject>();
     public List<GameObject> CurrentLocalPlayer
     {
         get { return currentLocalPlayer; }
@@ -29,9 +29,9 @@ public class SelectCharacter : MonoBehaviour
     public delegate void StarGame();
     public StarGame starGame;
 
+    private int _lastPlayerIndex;
     private string myID;
     public string MyID { get => myID; set => myID = value; }
-
 
     private void OnEnable()
     {
@@ -62,31 +62,33 @@ public class SelectCharacter : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        currentLocalPlayer.Clear();
+    }
+
+
     #region RPC's
     [PunRPC]
     public void sendFilledSlotList(Photon.Realtime.Player player)
     {
         //convertir list a string de 1 y 0
         string binaryChain = "";
-
-        int index = 0;
+        
         List<bool> auxList = new List<bool>();
         for (int i = 0; i < _filledSlots.Count; i++)
         {
-            if (_filledSlots[i])
-            {
-                index = i;
-            }
-
             auxList.Add(_filledSlots[i]);
         }
-        auxList[index] = false;
+
+        // quita el ultimo player que entro a la sala para que se envie la lista sin el player que esta 
+        //pidiendo la lista 
+        auxList[_lastPlayerIndex] = false; 
 
         foreach (var slot in auxList)
         {
             binaryChain += (slot) ? "1" : "0";
         }
-
         _photonView.RPC("sendFilledSlotListOnline", player, binaryChain);
     }
 
@@ -112,6 +114,7 @@ public class SelectCharacter : MonoBehaviour
 
         //desactivar panel de espera
     }
+
     #endregion
 
     #region GENERAL_CONTROL
@@ -140,6 +143,12 @@ public class SelectCharacter : MonoBehaviour
             playerInputManager.enabled = !setOldVersion;
         }
 
+    }
+
+
+    public void unlockASlot(int index)
+    {
+        _filledSlots[index] = false;
     }
     #endregion
 
@@ -201,6 +210,7 @@ public class SelectCharacter : MonoBehaviour
         {
             if (!_filledSlots[i])//encontrar el primero que tenga espacio
             {
+                _lastPlayerIndex = i;
                 _filledSlots[i] = true;
                 _slots[i].IsFilled = true;
                 _slots[i].ownCharacterSelection.SetActive(true);
@@ -222,6 +232,16 @@ public class SelectCharacter : MonoBehaviour
         Debug.Log("create new player");
 
         StartCoroutine(SelectPanelByList());
+    }
+
+    public void onLeaveRoom()
+    {
+        currentLocalPlayer.Clear();
+
+        foreach (PlayerSelectCharPanel panel in _imagePlayers)
+        {
+            panel.IsFilled = false;
+        }
     }
 
     public void OnPlayerJoined(PlayerInput input)

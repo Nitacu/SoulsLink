@@ -13,6 +13,7 @@ public class PhotonNetworkManagerLan : PhotonNetworkManager
 
     public override void Start()
     {
+
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Conectando al sevidor...");

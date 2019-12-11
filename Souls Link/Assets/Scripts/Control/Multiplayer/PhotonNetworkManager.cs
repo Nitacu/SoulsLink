@@ -5,27 +5,46 @@ using System.Linq;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.SceneManagement;
+using ExitGames.Client.Photon;
 
 public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 {
-
+    private bool _nickName;
     public ControlLobbyUI _lobbyUI;
     public PhotonView _photonView;
 
     public void Awake()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
-
         _lobbyUI.playersNumber = new ControlLobbyUI.PlayersNumberDelegate(returnPlayersInRoom);
     }
 
     public virtual void Start()
     {
+
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Conectando al sevidor...");
             PhotonNetwork.ConnectUsingSettings();
         }
+    }
+
+    public void leaveRoom()
+    {
+        List<SelectingCharacter> selecting = FindObjectsOfType<SelectingCharacter>().ToList();
+
+        foreach (var delete in selecting)
+        {
+            delete.CharactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("DeactivateMySelection", RpcTarget.All);
+        }
+
+        FindObjectOfType<SelectCharacter>()._filledSlots.Clear();
+        //las cosas para arrancar la partida
+        _lobbyUI._buttonStarGame.SetActive(true);
+        FindObjectOfType<SelectCharacter>().starGame = null;
+
+        PhotonNetwork.LeaveRoom();
+        _lobbyUI.enterLobby();
     }
 
     public void starGame()
@@ -37,6 +56,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         PhotonNetwork.NickName = _lobbyUI.registerUser();
         PhotonNetwork.JoinLobby(TypedLobby.Default);
+        _nickName = true;
         _lobbyUI.enterLobby();
     }
 
@@ -58,12 +78,32 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
         return numberPlayers;
     }
 
+    public bool existingRoom(RoomInfo room)
+    {
+        ConnectRoom[] connectRooms = FindObjectsOfType<ConnectRoom>();
+
+        if (connectRooms.Length > 0)
+        {
+            foreach (ConnectRoom connect in connectRooms)
+            {
+                Debug.Log(room.Name + "==" + connect._id);
+                if (room.Name == connect._id)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
     #region MonoBehaviourPunCallbacks Callbacks
 
     public override void OnConnectedToMaster()
     {
         Debug.Log("Conectado al Master");
-        _lobbyUI._panelRegistry.SetActive(true);
+        if (!_nickName)
+            _lobbyUI._panelRegistry.SetActive(true);
+        else
+            PhotonNetwork.JoinLobby(TypedLobby.Default);
     }
 
     public override void OnDisconnected(DisconnectCause cause)
@@ -74,7 +114,7 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnJoinedLobby()
     {
         Debug.Log("Conectado al lobby");
-
+        _lobbyUI.clearListRooms();
     }
 
     public override void OnCreatedRoom()
@@ -86,7 +126,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Entro a la sala");
-
         _lobbyUI.clearPlayersList();
         _lobbyUI._panelInRoom.GetComponent<SelectCharacter>().MyID = PhotonNetwork.LocalPlayer.UserId;
         foreach (Player player in PhotonNetwork.PlayerList)
@@ -105,12 +144,24 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     {
         Debug.Log("Update roomlist: " + roomList.Count + " salas");
 
-        _lobbyUI.clearListRooms();
-
         foreach (RoomInfo room in roomList)
         {
-            _lobbyUI.crearNewItemInRoomList(room.Name, room.Name);
+            Debug.Log("La sala " + room.Name + " tiene " + room.PlayerCount + " jugadores");
+
+            if (room.PlayerCount >= 1)
+            {
+                if (!existingRoom(room))
+                    _lobbyUI.crearNewItemInRoomList(room.Name, room.Name);
+            }
+            else if (room.PlayerCount == 0)
+                _lobbyUI.deletedItemRoom(room.Name);
+
         }
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        base.OnPlayerLeftRoom(otherPlayer);
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -121,6 +172,28 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
             _lobbyUI.addNewPlayerToRoom();
         }
 
+    }
+
+    public override void OnLeftRoom()
+    {
+        // llama un metodo en el selecting para eliminarlo
+        List<SelectingCharacter> selecting = FindObjectsOfType<SelectingCharacter>().ToList();
+
+        foreach (var delete in selecting)
+        {
+            Destroy(delete.gameObject);
+        }
+
+        _lobbyUI.clearPlayersList();
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            _lobbyUI._buttonStarGame.SetActive(true);
+            FindObjectOfType<SelectCharacter>().starGame = new SelectCharacter.StarGame(starGame);
+        }
     }
     #endregion
 }

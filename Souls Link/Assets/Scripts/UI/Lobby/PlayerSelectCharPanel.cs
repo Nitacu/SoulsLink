@@ -27,7 +27,7 @@ public class PlayerSelectCharPanel : MonoBehaviour
         get { return _isFilled; }
         set { _isFilled = value; }
     }
-
+    [SerializeField] private int _indexSlot;
     [SerializeField] public GameObject ownCharacterSelection;
     [SerializeField] GameObject leftArrow;
     [SerializeField] GameObject rightArrow;
@@ -40,11 +40,14 @@ public class PlayerSelectCharPanel : MonoBehaviour
         rightArrow.SetActive(false);
     }
 
+    [PunRPC]
     public void DeactivateMySelection()
     {
         ownCharacterSelection.SetActive(false);
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
+        IsFilled = false;
+        GetComponentInParent<SelectCharacter>().unlockASlot(_indexSlot);
     }
 
     public GameObject getCharacterSelection()

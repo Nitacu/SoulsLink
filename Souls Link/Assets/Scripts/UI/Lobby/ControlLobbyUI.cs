@@ -66,7 +66,6 @@ public class ControlLobbyUI : MonoBehaviour
         }
     }
 
-
     public void clearPlayersList()
     {
         if (useOldVersion)
@@ -76,15 +75,11 @@ public class ControlLobbyUI : MonoBehaviour
                 player.SetActive(false);
             }
         }
-
-        /*
-        List<Image> listNames = _fatherPlayerNames.GetComponentsInChildren<Image>().ToList();
-        while (listNames.Count > 0)
+        else
         {
-            Destroy(listNames[0].gameObject);
-            listNames.RemoveAt(0);
+            _panelInRoom.GetComponent<SelectCharacter>().onLeaveRoom();
         }
-        */
+
     }
 
     public void crearNewItemInRoomList(string name, string ID)
@@ -94,6 +89,20 @@ public class ControlLobbyUI : MonoBehaviour
         auxRoom.GetComponentInChildren<TMP_Text>().text = name;
         auxRoom.GetComponent<ConnectRoom>()._id = ID;
 
+    }
+
+    public void deletedItemRoom(string ID)
+    {
+        ConnectRoom[] connectRooms = FindObjectsOfType<ConnectRoom>();
+
+        foreach (ConnectRoom room in connectRooms)
+        {
+            if (room._id == ID)
+            {
+                Destroy(room.gameObject);
+                return;
+            }
+        }
     }
 
     public void clearListRooms()
@@ -124,6 +133,8 @@ public class ControlLobbyUI : MonoBehaviour
     {
         _inputFieldRegister.text = "";
         _panelRooms.SetActive(true);
+        _panelInRoom.SetActive(false);
+        _panelRegistry.SetActive(false);
     }
 
     public void showPanelCreatedRoom(bool active)

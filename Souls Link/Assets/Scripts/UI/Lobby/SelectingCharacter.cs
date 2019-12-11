@@ -20,6 +20,7 @@ public class SelectingCharacter : MonoBehaviour
 
     private int myID;
     public int MyID { get => myID; set => myID = value; }
+    public GameObject CharactersPanel { get => _charactersPanel; set => _charactersPanel = value; }
 
     GameManager.Characters charSelected;
 
@@ -33,7 +34,7 @@ public class SelectingCharacter : MonoBehaviour
     public void setCharSelection(GameObject charactersPanel, GameObject leftArrow, GameObject rightArrow, int id)
     {
         Debug.Log("Character Selection setted");
-        _charactersPanel = charactersPanel;
+        CharactersPanel = charactersPanel;
         _leftArrow = leftArrow;
         _rightArrow = rightArrow;
         MyID = id;
@@ -67,12 +68,12 @@ public class SelectingCharacter : MonoBehaviour
         selectCharacter(_characterIndexSelected);
         StartCoroutine(setArrows());
 
-        float currentXPos = _charactersPanel.GetComponent<RectTransform>().localPosition.x;
+        float currentXPos = CharactersPanel.GetComponent<RectTransform>().localPosition.x;
         float newPos = (selectRight) ? currentXPos - _offsetX : currentXPos + _offsetX;
-        _charactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
+        CharactersPanel.GetComponent<RectTransform>().localPosition = new Vector3(newPos, 0);
 
         //enviar mi selección a otras máquinas
-        _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("setCharacterPanelPosition", Photon.Pun.RpcTarget.OthersBuffered, new Vector3(newPos, 0));
+        CharactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("setCharacterPanelPosition", Photon.Pun.RpcTarget.OthersBuffered, new Vector3(newPos, 0));
     }
 
     IEnumerator setArrows()
