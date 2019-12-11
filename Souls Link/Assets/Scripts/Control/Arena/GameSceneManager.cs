@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.InputSystem;
 
 public class GameSceneManager : MonoBehaviour
 {
@@ -44,7 +45,9 @@ public class GameSceneManager : MonoBehaviour
             {
                 int index = setCharacterToSpawn(character.characterType);
                 GameObject player = PhotonNetwork.Instantiate(_characters[index], _points[index].position, Quaternion.identity, 0);
-                player.GetComponent<UnityEngine.InputSystem.PlayerInput>().SwitchCurrentControlScheme(character.device);
+
+                InputDevice devices = InputSystem.GetDevice(character.device);
+                player.GetComponent<UnityEngine.InputSystem.PlayerInput>().SwitchCurrentControlScheme(character.scheme, devices);
                 _players.Add(player);
             }
         }
@@ -63,6 +66,8 @@ public class GameSceneManager : MonoBehaviour
         */
 
         _players[0].GetComponent<SetHUDController>().setLeftHUD();
+
+        Debug.Log("AAAAAAAAAAAAAAAAAAAAPlayer added: " + _players.Count);
 
         if (_players.Count >= 2)
         {

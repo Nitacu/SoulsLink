@@ -123,7 +123,11 @@ public class SelectingCharacter : MonoBehaviour
 
         string device = gameObject.GetComponent<UnityEngine.InputSystem.PlayerInput>().devices[0].name;
         GameManager.GetInstace()._charactersSetupList[MyID].device = device;
-        
+
+        string scheme = gameObject.GetComponent<UnityEngine.InputSystem.PlayerInput>().currentControlScheme;
+        GameManager.GetInstace()._charactersSetupList[MyID].scheme = scheme;
+
+
     }
 
     public void resetCharacterPanelPosition()

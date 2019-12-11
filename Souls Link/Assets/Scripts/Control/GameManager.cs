@@ -56,7 +56,8 @@ public class GameManager
 public class CharacterSetUp
 {
     public string device = "";
-    public GameManager.Characters characterType = GameManager.Characters.NONE;        
+    public string scheme = "";
+    public GameManager.Characters characterType = GameManager.Characters.NONE;
 }
 
 
