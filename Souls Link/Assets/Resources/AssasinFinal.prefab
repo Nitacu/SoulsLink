@@ -1065,6 +1065,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterType: 3
   _componentsToDeactivate:
   - {fileID: 7651098687956668841}
   - {fileID: 1391171811173228292}
@@ -1388,32 +1389,32 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731067364927715, guid: 1e97f0877a651cc458be0245c870c1eb,
+    - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731067364927715, guid: 1e97f0877a651cc458be0245c870c1eb,
+    - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731067364927715, guid: 1e97f0877a651cc458be0245c870c1eb,
+    - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -60
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
+    - target: {fileID: 5184731067364927715, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
+    - target: {fileID: 5184731067364927715, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
+    - target: {fileID: 5184731067364927715, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -60

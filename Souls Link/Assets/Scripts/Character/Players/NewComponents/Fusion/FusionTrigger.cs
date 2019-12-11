@@ -7,6 +7,7 @@ public class FusionTrigger : MonoBehaviour
 {
     PlayerInputActions _inputControl;
 
+    public GameManager.Characters _characterType;
 
     private bool _checkingFusion = false;
     public bool ChekingFusion
@@ -67,6 +68,18 @@ public class FusionTrigger : MonoBehaviour
 
     public void DeactivateComponentsOnFusion()
     {
+
+        //Desactivar Skills
+        PlayerSkills playerSkills = GetComponent<PlayerSkills>();
+        playerSkills.enabled = false;
+
+        Skill[] skills = GetComponents<Skill>();
+        foreach (var item in skills)
+        {
+            item.enabled = false;
+        }
+
+        //Desactivar componentes
         foreach (var component in _componentsToDeactivate)
         {
             component.SetActive(false);
@@ -78,6 +91,17 @@ public class FusionTrigger : MonoBehaviour
 
     public void ActiveComponentsOnFusion()
     {
+        //Activar Skills
+        PlayerSkills playerSkills = GetComponent<PlayerSkills>();
+        playerSkills.enabled = false;
+
+        Skill[] skills = GetComponents<Skill>();
+        foreach (var item in skills)
+        {
+            item.enabled = true;
+        }
+
+        //Activar componentes
         foreach (var component in _componentsToDeactivate)
         {
             component.SetActive(true);

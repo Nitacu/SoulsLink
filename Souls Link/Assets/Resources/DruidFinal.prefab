@@ -667,6 +667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45023b7d214ff1147bfe854c38b0b735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _characterType: 2
   _componentsToDeactivate:
   - {fileID: 6058020209759171419}
   - {fileID: 9008634845870170328}
@@ -931,32 +932,32 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4865761526840111181, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    - target: {fileID: 4865761528270760552, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4865761526840111181, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    - target: {fileID: 4865761528270760552, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4865761526840111181, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    - target: {fileID: 4865761528270760552, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -60
       objectReference: {fileID: 0}
-    - target: {fileID: 4865761528270760552, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    - target: {fileID: 4865761526840111181, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4865761528270760552, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    - target: {fileID: 4865761526840111181, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4865761528270760552, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
+    - target: {fileID: 4865761526840111181, guid: 1c3a04d58d8d6cf4ca21079a9696f62e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -60

@@ -67,8 +67,6 @@ public class GameSceneManager : MonoBehaviour
 
         _players[0].GetComponent<SetHUDController>().setLeftHUD();
 
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAPlayer added: " + _players.Count);
-
         if (_players.Count >= 2)
         {
             _splitCamera.player1 = _players[0].transform;

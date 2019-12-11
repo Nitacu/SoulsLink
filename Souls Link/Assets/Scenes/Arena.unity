@@ -1411,6 +1411,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _distanceToFusion: 10
+  _baseTest: {fileID: 1259665957190803052, guid: 0adcb473a5a87894ea785cb25535d4c3,
+    type: 3}
+  _chimeraMageDruid: {fileID: 0}
+  _chimeraMageTank: {fileID: 0}
+  _chimeraMageAssassin: {fileID: 0}
+  _chimeraDruidTank: {fileID: 0}
+  _chimeraDruidAssassin: {fileID: 0}
+  _chimeraTankAssasin: {fileID: 0}
 --- !u!4 &539086740
 Transform:
   m_ObjectHideFlags: 0

@@ -17,10 +17,15 @@ public class ChimeraController : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
 
     [SerializeField] private Vector2 _movement;
+    public Vector2 Movement
+    {
+        get { return _movement; }
+    }
     [SerializeField] private Vector2[] _inputsMovements;
 
     bool[] _unFusionCheck;
 
+    
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
@@ -28,7 +33,7 @@ public class ChimeraController : MonoBehaviour
     public DelegateMultiplayerControllerIDs _setPlayersInFusion;
     public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id);
     public DelegateMultiplayerControllerIMove _sendMovement;
-    #endregion
+    #endregion    
 
     private void Start()
     {

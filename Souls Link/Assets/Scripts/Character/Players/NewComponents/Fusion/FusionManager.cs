@@ -8,6 +8,17 @@ public class FusionManager : MonoBehaviour
 
     private GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
 
+    #region ChimerasPrefabs
+    [SerializeField] private GameObject _baseTest;
+    [SerializeField] private GameObject _chimeraMageDruid;
+    [SerializeField] private GameObject _chimeraMageTank;
+    [SerializeField] private GameObject _chimeraMageAssassin;
+    [SerializeField] private GameObject _chimeraDruidTank;
+    [SerializeField] private GameObject _chimeraDruidAssassin;
+    [SerializeField] private GameObject _chimeraTankAssasin;
+    #endregion
+
+
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isHost;
@@ -96,10 +107,29 @@ public class FusionManager : MonoBehaviour
             }
         }
 
-        //Ver qué jugadores se pueden fusioanar
-        if (_playersCanFusion.Count >= 2)
+        //Sacar players repetidos
+        List<GameManager.Characters> _playersTypes = new List<GameManager.Characters>();
+        List<GameObject> _playersNonRepeated = new List<GameObject>();
+        foreach (var item in _playersCanFusion)
         {
-            FusionarPlayers(_playersCanFusion);
+            if (!_playersTypes.Contains(item.GetComponent<FusionTrigger>()._characterType))
+            {
+                _playersNonRepeated.Add(item);
+                _playersTypes.Add(item.GetComponent<FusionTrigger>()._characterType);
+            }
+        }
+
+        //Ver qué jugadores se pueden fusioanar
+        if (_playersNonRepeated.Count >= 2)
+        {
+            Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
+            FusionarPlayers(_playersNonRepeated);
+        }
+        else
+        {
+            Debug.Log("Players Non Repeated < 2: " + _playersNonRepeated.Count);
+
+
         }
 
     }
@@ -115,7 +145,6 @@ public class FusionManager : MonoBehaviour
             }
         }
 
-
         foreach (var player in _players)
         {
             player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
@@ -127,6 +156,8 @@ public class FusionManager : MonoBehaviour
 
     IEnumerator createChimera(List<GameObject> _players)
     {
+        Debug.Log("Create Chimera");
+
         yield return new WaitForEndOfFrame();
 
         if (_isHost())
@@ -146,9 +177,11 @@ public class FusionManager : MonoBehaviour
 
             Vector2 newPos = new Vector2(xPos, yPos);
 
-            //Crear chimera
+            //Saber qué chimera crear
 
-            GameObject _chimera = _createdChimera();
+
+            //Crear chimera        
+            GameObject _chimera = Instantiate(_baseTest);
             _chimera.transform.position = newPos;
 
             ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
@@ -164,6 +197,8 @@ public class FusionManager : MonoBehaviour
 
             //Se debe llamar en los demás también
             chimeraController.setPlayersInFusion(ids);//local
+
+
             StartCoroutine(waitForSetPlayer(chimeraController, ids));//para todas las maquinas
         }
     }
@@ -172,7 +207,15 @@ public class FusionManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Debug.Log("Termino el frame de creacion de la quimera");
-        chimeraController._setPlayersInFusion(ids);
+        //chimeraController._setPlayersInFusion(ids);
+    }
+
+    public GameObject selectCorrectChimera(List<GameObject> _players)
+    {
+        
+
+
+        return null;
     }
 
     public void addMeToFusion(GameObject player)
