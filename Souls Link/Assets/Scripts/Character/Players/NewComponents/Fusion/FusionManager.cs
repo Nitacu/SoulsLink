@@ -205,7 +205,7 @@ public class FusionManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Debug.Log("Termino el frame de creacion de la quimera");
-        //chimeraController._setPlayersInFusion(ids);
+        chimeraController._setPlayersInFusion(ids);
     }
 
     public GameObject selectCorrectChimera(List<GameObject> players)
