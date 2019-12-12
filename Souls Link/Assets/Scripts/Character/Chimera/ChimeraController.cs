@@ -35,6 +35,11 @@ public class ChimeraController : MonoBehaviour
     public DelegateMultiplayerControllerIMove _sendMovement;
     #endregion    
 
+    private void OnEnable()
+    {
+        GetComponent<PhotonChimeraMultiplayerController>().addDelegate();
+    }
+
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();

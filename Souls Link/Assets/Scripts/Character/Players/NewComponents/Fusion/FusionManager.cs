@@ -206,6 +206,7 @@ public class FusionManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         Debug.Log("Termino el frame de creacion de la quimera");
+        chimeraController.GetComponent<PhotonChimeraMultiplayerController>().addDelegate();
         chimeraController._setPlayersInFusion(ids);
     }
 
