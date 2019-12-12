@@ -126,7 +126,7 @@ public class FusionTrigger : MonoBehaviour
                 if (!IsOnFusion)
                 {
                     AddMeToGeneralHost();//me agrega al host de la quimera
-                    _pushAddMeToGeneralHost(); // se agrega en otras maquinas
+                    _pushAddMeToGeneralHost(); //se agrega en otras maquinas
                 }
                 else
                 {
@@ -142,7 +142,6 @@ public class FusionTrigger : MonoBehaviour
                     _pushGetoutToGeneralHost(); // lo saca en las demas maquinas
                 }
                 if (IsOnFusion) CurrentChimeraParent.sendUnFusion(false, OnFusionID);
-
             }
         }
     }

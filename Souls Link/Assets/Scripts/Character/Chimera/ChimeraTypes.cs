@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class ChimeraTypes : MonoBehaviour
 {
-    public GameManager.Characters[] _types;
+    public List<GameManager.Characters> _types = new List<GameManager.Characters>();
 }

@@ -1338,8 +1338,6 @@ GameObject:
   m_Component:
   - component: {fileID: 539086740}
   - component: {fileID: 539086739}
-  - component: {fileID: 539086738}
-  - component: {fileID: 539086737}
   m_Layer: 0
   m_Name: FusionManager
   m_TagString: Untagged
@@ -1347,57 +1345,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &539086737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539086736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -750624441, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefabs:
-  - {fileID: 1259665957190803052, guid: 15ce1d0c7af14094ebb850c694a09328, type: 3}
-  nonPlayerPrefabs: []
-  spawnPoints:
-  - {fileID: 1148415175}
-  spawnPointsFoldout: 0
-  playerPrefabsFoldout: 0
-  nonPlayerPrefabsFoldout: 1
-  spawnerId: 3
-  AutoInitialization: 1
-  OnReady:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: SWNetwork.SceneSpawnerReadyEvent, SWNetwork, Version=1.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-  OnHostReady:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: SWNetwork.SceneSpawnerReadyEvent, SWNetwork, Version=1.0.0.0, Culture=neutral,
-      PublicKeyToken=null
---- !u!114 &539086738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539086736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1914939488, guid: 6a67afbfe15ab9c4696e982c25d07a84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  dynamicallySpawned: 1
-  fixedNetworkObjectID: 1
-  showVisibleGizmo: 1
-  Filterable: 0
-  SendRealtimeData: 1
-  visibleSize: 1
 --- !u!114 &539086739
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1413,12 +1360,13 @@ MonoBehaviour:
   _distanceToFusion: 10
   _baseTest: {fileID: 1259665957190803052, guid: 0adcb473a5a87894ea785cb25535d4c3,
     type: 3}
-  _chimeraMageDruid: {fileID: 0}
-  _chimeraMageTank: {fileID: 0}
-  _chimeraMageAssassin: {fileID: 0}
-  _chimeraDruidTank: {fileID: 0}
-  _chimeraDruidAssassin: {fileID: 0}
-  _chimeraTankAssasin: {fileID: 0}
+  _chimeras:
+  - {fileID: 1259665957190803052, guid: 189f6193fcf481a40b3fa292c54643d8, type: 3}
+  - {fileID: 1259665957190803052, guid: 0adcb473a5a87894ea785cb25535d4c3, type: 3}
+  - {fileID: 1259665957190803052, guid: 8aac79ab171ac3d42893253a1c5c0ee4, type: 3}
+  - {fileID: 1259665957190803052, guid: eecf335772b910a40a8cd1fede170499, type: 3}
+  - {fileID: 1259665957190803052, guid: b854a7c6468ff344499d68231c21b793, type: 3}
+  - {fileID: 1259665957190803052, guid: 4bc18f637139a4c42bbcc0f8f426680f, type: 3}
 --- !u!4 &539086740
 Transform:
   m_ObjectHideFlags: 0

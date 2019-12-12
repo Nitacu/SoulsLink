@@ -9,13 +9,10 @@ public class FusionManager : MonoBehaviour
     private GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
 
     #region ChimerasPrefabs
-    [SerializeField] private GameObject _baseTest;
-    [SerializeField] private GameObject _chimeraMageDruid;
-    [SerializeField] private GameObject _chimeraMageTank;
-    [SerializeField] private GameObject _chimeraMageAssassin;
-    [SerializeField] private GameObject _chimeraDruidTank;
-    [SerializeField] private GameObject _chimeraDruidAssassin;
-    [SerializeField] private GameObject _chimeraTankAssasin;
+    [SerializeField] private GameObject _chimeraTwoPlayersBase;
+
+    [SerializeField] private List<GameObject> _chimeras = new List<GameObject>();
+
     #endregion
 
 
@@ -178,10 +175,11 @@ public class FusionManager : MonoBehaviour
             Vector2 newPos = new Vector2(xPos, yPos);
 
             //Saber qué chimera crear
-
+            GameObject chimeraTocreate = selectCorrectChimera(_players);
+            string chimeraName = chimeraTocreate.name;
 
             //Crear chimera        
-            GameObject _chimera = Instantiate(_baseTest);
+            GameObject _chimera = Instantiate(chimeraTocreate);
             _chimera.transform.position = newPos;
 
             ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
@@ -210,12 +208,52 @@ public class FusionManager : MonoBehaviour
         //chimeraController._setPlayersInFusion(ids);
     }
 
-    public GameObject selectCorrectChimera(List<GameObject> _players)
+    public GameObject selectCorrectChimera(List<GameObject> players)
     {
-        
+        List<GameManager.Characters> playerCharacterType = new List<GameManager.Characters>();
+        foreach (var player in players)
+        {
+            playerCharacterType.Add(player.GetComponent<FusionTrigger>()._characterType);
+        }
 
+        GameObject chimeraToCreate = null;
 
-        return null;
+        foreach (var chimera in _chimeras)
+        {
+            if (CompareList(chimera.GetComponent<ChimeraTypes>()._types, playerCharacterType))
+            {
+                chimeraToCreate = chimera;
+                return chimeraToCreate;
+            } 
+        }
+
+        return _chimeraTwoPlayersBase;
+    }
+
+    public bool CompareList(List<GameManager.Characters> list1, List<GameManager.Characters> list2)
+    {
+        if (list1.Count != list2.Count)
+        {
+            return false;
+        }
+
+        foreach (var item in list1)
+        {
+            if (!list2.Contains(item))
+            {
+                return false;
+            }
+        }
+
+        foreach (var item in list2)
+        {
+            if (!list1.Contains(item))
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     public void addMeToFusion(GameObject player)
