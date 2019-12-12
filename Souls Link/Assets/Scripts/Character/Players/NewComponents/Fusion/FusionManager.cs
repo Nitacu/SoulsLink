@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class FusionManager : MonoBehaviour
 {
@@ -179,7 +180,7 @@ public class FusionManager : MonoBehaviour
             string chimeraName = chimeraTocreate.name;
 
             //Crear chimera        
-            GameObject _chimera = Instantiate(chimeraTocreate);
+            GameObject _chimera = PhotonNetwork.Instantiate(chimeraName, newPos,Quaternion.identity);
             _chimera.transform.position = newPos;
 
             ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
