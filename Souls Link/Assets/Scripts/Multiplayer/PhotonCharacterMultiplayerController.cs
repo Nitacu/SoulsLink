@@ -52,7 +52,6 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _playerSkills._pushValueSkill = new PlayerSkills.DelegateMultiplayerControllerSendSkill(pushValueSkill);
 
         _playerAiming._isMine = new PlayerAiming.DelegateMultiplayerController(isMine);
-        _playerAiming._pushVectorAiming = new PlayerAiming.DelegateMultiplayerControllerSendVector(pushVectorAiming);
 
         _hPControl._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
         _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
@@ -125,6 +124,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     //le envia a las otras maquinas los datos para que active las skills
     public void pushValueSkill(float value, float numberSkill)
     {
+        pushVectorAiming(_playerAiming.AimDirection);
         _photonView.RPC(PLAYER_SKILLS, RpcTarget.Others, value, numberSkill);
     }
 

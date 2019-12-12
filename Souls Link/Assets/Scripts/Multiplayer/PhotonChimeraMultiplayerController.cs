@@ -7,7 +7,7 @@ using Photon.Realtime;
 public class PhotonChimeraMultiplayerController : MonoBehaviour
 {
     private ChimeraController _chimeraController;
-    private PhotonView _photonView;
+    public PhotonView _photonView;
 
     private const string SET_PLAYERS = "setPlayersInFusion";
     private const string SEND_MOVEMENT = "sendMovement";
@@ -29,23 +29,26 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     public void pushSetPlayersInFusion(string ids)
     {
         Debug.Log("IDS" + ids);
-        _photonView.RPC(SET_PLAYERS,RpcTarget.Others, ids);
+        _photonView.RPC(SET_PLAYERS, RpcTarget.Others, ids);
     }
-
+    [PunRPC]
     public void setPlayersInFusion(string ids)
     {
         _chimeraController.setPlayersInFusion(ids);
     }
     #endregion
 
+    #region movimiento
     public void pushsendMovement(Vector2 movement, int id)
     {
         Debug.Log("id " + id + " movemente " + movement);
         _photonView.RPC(SEND_MOVEMENT, RpcTarget.MasterClient, movement, id);
     }
 
+    [PunRPC]
     public void sendMovement(Vector2 movement, int id)
     {
         _chimeraController.sendMovement(movement, id);
     }
+    #endregion
 }
