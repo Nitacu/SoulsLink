@@ -12,6 +12,8 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
     private bool _nickName;
     public ControlLobbyUI _lobbyUI;
     public PhotonView _photonView;
+    protected LoadBalancingClient _balancingClient;
+    protected ConnectionHandler ch;
 
     public void Awake()
     {
@@ -99,7 +101,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log("Conectado al Master");
         if (!_nickName)
             _lobbyUI._panelRegistry.SetActive(true);
         else
@@ -125,7 +126,6 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
 
     public override void OnJoinedRoom()
     {
-        Debug.Log("Entro a la sala");
         _lobbyUI.clearPlayersList();
         _lobbyUI._panelInRoom.GetComponent<SelectCharacter>().MyID = PhotonNetwork.LocalPlayer.UserId;
         foreach (Player player in PhotonNetwork.PlayerList)

@@ -1732,6 +1732,7 @@ MonoBehaviour:
   _photonView: {fileID: 887750877869270307}
   _playerId: 
   _isFilled: 0
+  _indexSlot: 0
   ownCharacterSelection: {fileID: 722157450258774434}
   leftArrow: {fileID: 107299358702000663}
   rightArrow: {fileID: 2467385727714223412}
@@ -1750,6 +1751,7 @@ MonoBehaviour:
   _photonView: {fileID: 887750878678301784}
   _playerId: 
   _isFilled: 0
+  _indexSlot: 0
   ownCharacterSelection: {fileID: 722157449448661207}
   leftArrow: {fileID: 107299359520326498}
   rightArrow: {fileID: 2467385727451610177}
@@ -1768,6 +1770,7 @@ MonoBehaviour:
   _photonView: {fileID: 887750876672914174}
   _playerId: 
   _isFilled: 0
+  _indexSlot: 0
   ownCharacterSelection: {fileID: 722157449339104893}
   leftArrow: {fileID: 107299357784427976}
   rightArrow: {fileID: 2467385728935883499}
@@ -1786,6 +1789,7 @@ MonoBehaviour:
   _photonView: {fileID: 887750877240912453}
   _playerId: 
   _isFilled: 0
+  _indexSlot: 0
   ownCharacterSelection: {fileID: 722157448741222084}
   leftArrow: {fileID: 107299358340502897}
   rightArrow: {fileID: 2467385728427518546}
@@ -6766,6 +6770,7 @@ MonoBehaviour:
   - {fileID: 1233985791828316318}
   - {fileID: 1233985792999360141}
   _filledSlots: 
+  currentLocalPlayer: []
 --- !u!222 &3241663706746308762
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7037,7 +7042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &3241663706851460052
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7119,8 +7124,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: LeaveRoom
+      - m_Target: {fileID: 3241663706050729688}
+        m_MethodName: leaveRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

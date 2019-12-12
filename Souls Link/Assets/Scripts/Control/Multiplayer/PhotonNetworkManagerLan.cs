@@ -13,6 +13,7 @@ public class PhotonNetworkManagerLan : PhotonNetworkManager
 
     public override void Start()
     {
+        
 
         if (!PhotonNetwork.IsConnected)
         {
@@ -21,5 +22,16 @@ public class PhotonNetworkManagerLan : PhotonNetworkManager
         }
     }
 
-  
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("Conectado al lobby");
+        PhotonNetwork.AuthValues = new AuthenticationValues(PhotonNetwork.NickName);
+        _lobbyUI.clearListRooms();
+    }
+
+    public override void OnJoinRoomFailed(short returnCode, string message)
+    {
+        Debug.Log("NO SE CONECTA " + returnCode + message);
+    }
+
 }

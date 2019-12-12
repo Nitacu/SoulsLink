@@ -6,11 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LobbyPhoton.unity
-    guid: 175af9ddeb8018143a315dbb0c1400f9
-  - enabled: 1
     path: Assets/Scenes/LobbyPhotonLan.unity
     guid: d98f84723cff05749944382af52875fd
+  - enabled: 1
+    path: Assets/Scenes/LobbyPhoton.unity
+    guid: 175af9ddeb8018143a315dbb0c1400f9
   - enabled: 1
     path: Assets/Scenes/Test_Kevin.unity
     guid: 2cda990e2423bbf4892e6590ba056729
