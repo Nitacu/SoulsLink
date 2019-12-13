@@ -637,6 +637,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: -8751755090289655173}
+  - {fileID: 1857126601193524137}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

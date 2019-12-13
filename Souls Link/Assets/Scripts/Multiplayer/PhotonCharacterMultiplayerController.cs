@@ -124,16 +124,17 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     //le envia a las otras maquinas los datos para que active las skills
     public void pushValueSkill(float value, float numberSkill)
     {
-        pushVectorAiming(_playerAiming.AimDirection);
-        _photonView.RPC(PLAYER_SKILLS, RpcTarget.Others, value, numberSkill);
+        _photonView.RPC(PLAYER_SKILLS, RpcTarget.Others, value, numberSkill, _playerAiming.AimDirection);
     }
 
     // carga los datos y activa la skill correspondiente
     [PunRPC]
-    public void playerOnSkill(float value, float numberSkill)
+    public void playerOnSkill(float value, float numberSkill, Vector2 vectorAiming)
     {
 
-        Debug.Log("valor " + value + " numero de skill " + numberSkill);
+        Debug.Log("valor " + value + " numero de skill " + numberSkill + "vecto direccion" + vectorAiming);
+
+        playerAiming(vectorAiming);
 
         if (value == 1)
         {
@@ -187,21 +188,24 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     //cuando detecta un cambio de vida en el servidor
     public void onHealthSyncPropertyChanged(float health)
     {
-        _hPControl.PlayerHealth = health;
-
-        if (health <= 0)
+        if (_hPControl)
         {
-            destroySelf();
-        }
-        else
-        {
-            _hPControl.StartCoroutine(_hPControl.changeColor());
+            _hPControl.PlayerHealth = health;
 
-            if (GetComponentInChildren<HUDController>())
-                GetComponentInChildren<HUDController>().setHealthBar(_hPControl.PlayerHealth);
+            if (health <= 0)
+            {
+                destroySelf();
+            }
+            else
+            {
+                _hPControl.StartCoroutine(_hPControl.changeColor());
 
-            if (GetComponentInChildren<HUDController>())
-                StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
+                if (GetComponentInChildren<HUDController>())
+                    GetComponentInChildren<HUDController>().setHealthBar(_hPControl.PlayerHealth);
+
+                if (GetComponentInChildren<HUDController>())
+                    StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
+            }
         }
     }
 
@@ -250,10 +254,12 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         if (stream.IsWriting)
         {
             stream.SendNext(_hPControl.PlayerHealth);
+            stream.SendNext(_playerMovement._flip);
         }
         else
         {
             onHealthSyncPropertyChanged((float)stream.ReceiveNext());
+            _playerMovement._flip = (bool)stream.ReceiveNext();
         }
     }
 
