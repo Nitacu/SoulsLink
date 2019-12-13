@@ -46,7 +46,7 @@ public class ChimeraController : MonoBehaviour
     }
 
 
-    private void LateUpdate()
+    private void Update()
     {
         calculateNewMovement();
         move();

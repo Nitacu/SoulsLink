@@ -21,9 +21,6 @@ public class PlayerAiming : MonoBehaviour
     #region delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
-
-    public delegate void DelegateMultiplayerControllerSendVector(Vector3 vector);
-    public DelegateMultiplayerControllerSendVector _pushVectorAiming;
     #endregion
 
     private void Awake()
@@ -115,8 +112,6 @@ public class PlayerAiming : MonoBehaviour
 
     IEnumerator setDirectionDelay(Vector2 _aim)
     {
-        _pushVectorAiming(_aim);
-
         yield return new WaitForSeconds(DELAY);
 
         AimDirection = _aim;
