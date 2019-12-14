@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 7361195596942490104}
   - component: {fileID: -2708429181944408468}
   - component: {fileID: 5831290756039591329}
+  - component: {fileID: 6768463933244333238}
   m_Layer: 8
   m_Name: ChimeraDruidMage
   m_TagString: Untagged
@@ -721,6 +722,19 @@ MonoBehaviour:
   _coolDown: 0.5
   _damagePerTick: 10
   canShoot: 1
+--- !u!114 &6768463933244333238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df2fc1c4e9552468a31188c0a538dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 500
 --- !u!1 &2566389835331598394
 GameObject:
   m_ObjectHideFlags: 0

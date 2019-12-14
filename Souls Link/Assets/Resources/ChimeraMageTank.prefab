@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 3241294628183017222}
   - component: {fileID: 7726917978536362941}
   - component: {fileID: -2155580789233465389}
+  - component: {fileID: 3814553245790709454}
   m_Layer: 8
   m_Name: ChimeraMageTank
   m_TagString: Untagged
@@ -892,6 +893,19 @@ MonoBehaviour:
   _coolDown: 2
   maxChargedSeconds: 1.5
   attackDuration: 0.1
+--- !u!114 &3814553245790709454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df2fc1c4e9552468a31188c0a538dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 500
 --- !u!1 &3435559208906650959
 GameObject:
   m_ObjectHideFlags: 0

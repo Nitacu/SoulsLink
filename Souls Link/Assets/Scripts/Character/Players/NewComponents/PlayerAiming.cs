@@ -115,7 +115,7 @@ public class PlayerAiming : MonoBehaviour
 
     IEnumerator setDirectionDelay(Vector2 _aim)
     {
-        _pushVectorAiming(_aim);
+        //_pushVectorAiming(_aim);
 
         yield return new WaitForSeconds(DELAY);
 

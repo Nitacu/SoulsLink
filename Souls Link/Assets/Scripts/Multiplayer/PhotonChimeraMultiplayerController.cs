@@ -7,6 +7,7 @@ using Photon.Realtime;
 public class PhotonChimeraMultiplayerController : MonoBehaviour
 {
     private ChimeraController _chimeraController;
+    private ChimeraSkillsController _chimeraSkills;
     public PhotonView _photonView;
 
     private const string SET_PLAYERS = "setPlayersInFusion";
@@ -20,9 +21,13 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     public void addDelegate()
     {
         _chimeraController = GetComponent<ChimeraController>();
+        _chimeraSkills = GetComponent<ChimeraSkillsController>();
+
         _chimeraController._setPlayersInFusion = new ChimeraController.DelegateMultiplayerControllerIDs(pushSetPlayersInFusion);
         _chimeraController._isMine = new ChimeraController.DelegateMultiplayerController(isMine);
         _chimeraController._sendMovement = new ChimeraController.DelegateMultiplayerControllerIMove(pushsendMovement);
+
+        _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
     }
 
     #region players que estan dentro de la quimera

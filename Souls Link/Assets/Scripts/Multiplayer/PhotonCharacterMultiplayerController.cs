@@ -24,6 +24,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     private const string PLAYER_AIMING = "playerAiming";
     private const string HEALTH = "Health";
     private const string FLIP = "Flip";
+    private const string SEND_SKILL = "pullSendSkill";
     #endregion
 
     private void Start()
@@ -50,6 +51,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
 
         _playerSkills._isMine = new PlayerSkills.DelegateMultiplayerController(isMine);
         _playerSkills._pushValueSkill = new PlayerSkills.DelegateMultiplayerControllerSendSkill(pushValueSkill);
+        _playerSkills._pushSendSkillChimera = new PlayerSkills.DelegateMultiplayerControllerSendSkillChimera(pushSendSkill);
 
         _playerAiming._isMine = new PlayerAiming.DelegateMultiplayerController(isMine);
 
@@ -182,6 +184,21 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
             }
         }
     }
+
+    //le envía a la chimera que yo disparé
+    public void pushSendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex)
+    {
+        _photonView.RPC(SEND_SKILL, RpcTarget.Others, typeCharacter, pressValue, skillIndex);
+    }
+
+    //Le envía a las demás máquinas la skill
+    [PunRPC]
+    public void pullSendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex)
+    {
+        FusionTrigger fusiontrigger = GetComponent<FusionTrigger>();
+        fusiontrigger.CurrentChimeraParent.GetComponent<ChimeraSkillsController>().sendSkill(typeCharacter, pressValue, skillIndex);
+    }
+
     #endregion
 
     #region Vida
