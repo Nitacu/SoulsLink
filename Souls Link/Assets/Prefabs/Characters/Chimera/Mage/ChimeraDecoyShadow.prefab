@@ -113,7 +113,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -6367560908665664636, guid: 40de9a8703e2e5a47882b0b86451c741,
+  m_Sprite: {fileID: 3413470617210725155, guid: 3e49a32512a43f24090378068173bd14,
     type: 3}
   m_Color: {r: 0, g: 0.29543877, b: 1, a: 1}
   m_FlipX: 0
@@ -133,9 +133,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 927443616759961216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a96511a42db57af4189671745ce71735, type: 2}
+  m_Controller: {fileID: 9100000, guid: cb559ceef1c122b46be1ce8d8527aea3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 7226069035153324418}
   - component: {fileID: 300130733732348257}
   m_Layer: 8
-  m_Name: DecoyShadow
+  m_Name: ChimeraDecoyShadow
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ Transform:
   m_GameObject: {fileID: 1933650003457465940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children:
   - {fileID: 6129591743823203951}
   m_Father: {fileID: 0}

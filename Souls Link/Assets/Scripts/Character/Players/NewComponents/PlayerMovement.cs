@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         //_anim = GetComponent<Animator>();
     }
+
     private void Update()
     {
         setAnimation();
@@ -132,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         {
             //_fusionTriggerRef.CurrentChimeraParent.sendMovement(InputMovement, _fusionTriggerRef.OnFusionID);
             //se lo envia solo al host
-            _fusionTriggerRef.CurrentChimeraParent._sendMovement(InputMovement, _fusionTriggerRef.OnFusionID);
+            _fusionTriggerRef.CurrentChimeraParent._sendMovement(InputMovement, _fusionTriggerRef.OnFusionID, FusionTriggerRef._characterType);
         }
     }
 

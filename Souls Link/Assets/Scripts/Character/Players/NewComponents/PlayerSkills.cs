@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerSkills : MonoBehaviour
 {
-    const float DELAY = 0.05f;
+    protected const float DELAY = 0.05f;
 
     private PlayerInputActions _inputControl;
     private FusionTrigger _fusionTriggerRef;
@@ -37,29 +37,30 @@ public class PlayerSkills : MonoBehaviour
         TORNADO_MINE,
         DASH,
         MIST,
-        //TANK
+        //TANK        
         FLAMETHROWER,
         HOOK,
         MAGMA_RING,
-        SMASH_ATTACK
+        SMASH_ATTACK,
+        BOOMERANG
     }
 
     private void Awake()
     {
-        _inputControl = new PlayerInputActions();        
+        _inputControl = new PlayerInputActions();
     }
-    
+
 
     IEnumerator skillDelay(float value, UnityEvent _eventDown, UnityEvent _eventUp, float index)
     {
         System.Type type = _eventDown.GetPersistentTarget(0).GetType();
         Skill _skillType = gameObject.GetComponent(type) as Skill;
 
-
-
         if (IsOnFusion())
         {
-           // _fusionTriggerRef.CurrentChimeraParent.GetComponent<ChimeraSkillsController>().sendSkill(_skillType._skillType, value);
+            _fusionTriggerRef.CurrentChimeraParent.GetComponent<ChimeraSkillsController>().sendSkillV2(
+                _fusionTriggerRef._characterType, value, index-1);
+            yield break;
         }
 
         if (_isMine())
@@ -80,32 +81,32 @@ public class PlayerSkills : MonoBehaviour
     }
 
     [Header("Skill 1")]
-    [SerializeField] UnityEvent Skill1PressDown = new UnityEvent();
-    [SerializeField] UnityEvent Skill1PressUp = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill1PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill1PressUp = new UnityEvent();
     private void OnSkill1(InputValue value)
     {
         StartCoroutine(skillDelay(value.Get<float>(), Skill1PressDown, Skill1PressUp, 1));
     }
 
     [Header("Skill 2")]
-    [SerializeField] UnityEvent Skill2PressDown = new UnityEvent();
-    [SerializeField] UnityEvent Skill2PressUp = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill2PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill2PressUp = new UnityEvent();
     private void OnSkill2(InputValue value)
     {
         StartCoroutine(skillDelay(value.Get<float>(), Skill2PressDown, Skill2PressUp, 2));
     }
 
     [Header("Skill 3")]
-    [SerializeField] UnityEvent Skill3PressDown = new UnityEvent();
-    [SerializeField] UnityEvent Skill3PressUp = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill3PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill3PressUp = new UnityEvent();
     private void OnSkill3(InputValue value)
     {
         StartCoroutine(skillDelay(value.Get<float>(), Skill3PressDown, Skill3PressUp, 3));
     }
 
     [Header("Skill 4")]
-    [SerializeField] UnityEvent Skill4PressDown = new UnityEvent();
-    [SerializeField] UnityEvent Skill4PressUp = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill4PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill4PressUp = new UnityEvent();
 
     private void OnSkill4(InputValue value)
     {
@@ -119,6 +120,54 @@ public class PlayerSkills : MonoBehaviour
     {
         StartCoroutine(skillDelay(value.Get<float>(), dashPressDown, null, 5));
     }
+
+    [Header("Skill 5")]
+    [SerializeField] protected UnityEvent Skill5PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill5PressUp = new UnityEvent();
+
+    [Header("Skill 6")]
+    [SerializeField] protected UnityEvent Skill6PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill6PressUp = new UnityEvent();
+
+    [Header("Skill 7")]
+    [SerializeField] protected UnityEvent Skill7PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill7PressUp = new UnityEvent();
+
+    [Header("Skill 8")]
+    [SerializeField] protected UnityEvent Skill8PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill8PressUp = new UnityEvent();
+
+    [Header("Skill 9")]
+    [SerializeField] protected UnityEvent Skill9PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill9PressUp = new UnityEvent();
+
+    [Header("Skill 10")]
+    [SerializeField] protected UnityEvent Skill10PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill10PressUp = new UnityEvent();
+
+    [Header("Skill 11")]
+    [SerializeField] protected UnityEvent Skill11PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill11PressUp = new UnityEvent();
+
+    [Header("Skill 12")]
+    [SerializeField] protected UnityEvent Skill12PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill12PressUp = new UnityEvent();
+
+    [Header("Skill 13")]
+    [SerializeField] protected UnityEvent Skill13PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill13PressUp = new UnityEvent();
+
+    [Header("Skill 14")]
+    [SerializeField] protected UnityEvent Skill14PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill14PressUp = new UnityEvent();
+
+    [Header("Skill 15")]
+    [SerializeField] protected UnityEvent Skill15PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill15PressUp = new UnityEvent();
+
+    [Header("Skill 16")]
+    [SerializeField] protected UnityEvent Skill16PressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent Skill16PressUp = new UnityEvent();
 
     //Enable and Disable
     private void OnEnable()

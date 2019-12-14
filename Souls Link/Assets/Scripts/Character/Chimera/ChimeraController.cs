@@ -11,7 +11,7 @@ public class ChimeraController : MonoBehaviour
         get { return _speed; }
     }
 
-    [SerializeField]private List<GameObject> _players = new List<GameObject>();
+    [SerializeField] private List<GameObject> _players = new List<GameObject>();
 
     private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _renderer;
@@ -25,13 +25,14 @@ public class ChimeraController : MonoBehaviour
 
     bool[] _unFusionCheck;
 
-    
+    [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
+
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
     public delegate void DelegateMultiplayerControllerIDs(string ids);
     public DelegateMultiplayerControllerIDs _setPlayersInFusion;
-    public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id);
+    public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id, GameManager.Characters type);
     public DelegateMultiplayerControllerIMove _sendMovement;
     #endregion    
 
@@ -69,13 +70,14 @@ public class ChimeraController : MonoBehaviour
         else if (_movement.x < 0)
         {
             _renderer.flipX = true;
-        }        
+        }
     }
 
-    public void sendMovement(Vector2 movement, int id)
+    public void sendMovement(Vector2 movement, int id, GameManager.Characters playerType)
     {
         Debug.Log("id " + id + " movemente " + movement);
         _inputsMovements[id] = movement;
+        setArrows(movement, playerType);
     }
 
     private void calculateNewMovement()
@@ -87,6 +89,31 @@ public class ChimeraController : MonoBehaviour
         }
 
         _movement = newinputMovement;
+    }
+
+    private void setArrows(Vector2 direction, GameManager.Characters playerType)
+    {
+        if (_arrows.Count > 0)
+        {
+            foreach (var arrow in _arrows)
+            {
+                ChimeraArrow chimeraArrow = arrow.GetComponent<ChimeraArrow>();
+
+                if (chimeraArrow.CharacterType == playerType)
+                {
+                    if (direction.magnitude > 0)
+                    {
+                        float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+                        arrow.transform.localRotation = Quaternion.Euler(0, 0, rot);
+                        arrow.SetActive(true);
+                    }
+                    else
+                    {
+                        arrow.SetActive(false);
+                    }
+                }
+            }
+        }
     }
 
     public void setPlayersInFusion(string playersIds)
@@ -188,7 +215,7 @@ public class ChimeraController : MonoBehaviour
             player.GetComponent<FusionTrigger>().ActiveComponentsOnFusion();
 
             player.transform.parent = null;
-           
+
         }
 
         Destroy(gameObject);

@@ -39,16 +39,17 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     #endregion
 
     #region movimiento
-    public void pushsendMovement(Vector2 movement, int id)
+    public void pushsendMovement(Vector2 movement, int id, GameManager.Characters type)
     {
         Debug.Log("id " + id + " movemente " + movement);
-        _photonView.RPC(SEND_MOVEMENT, RpcTarget.MasterClient, movement, id);
+        _photonView.RPC(SEND_MOVEMENT, RpcTarget.MasterClient, movement, id, type);
     }
 
     [PunRPC]
-    public void sendMovement(Vector2 movement, int id)
+    public void sendMovement(Vector2 movement, int id, GameManager.Characters type)
     {
-        _chimeraController.sendMovement(movement, id);
+        Debug.Log("LO QUE SEA");
+        _chimeraController.sendMovement(movement, id, type);
     }
     #endregion
 }

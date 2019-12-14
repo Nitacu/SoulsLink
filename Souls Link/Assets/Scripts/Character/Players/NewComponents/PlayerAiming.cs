@@ -16,11 +16,14 @@ public class PlayerAiming : MonoBehaviour
 
     private PlayerInputActions _inputControl;
 
-    private Vector2 _aimDirection = Vector2.right;
+    protected Vector2 _aimDirection = Vector2.right;
 
     #region delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
+
+    public delegate void DelegateMultiplayerControllerSendVector(Vector3 vector);
+    public DelegateMultiplayerControllerSendVector _pushVectorAiming;
     #endregion
 
     private void Awake()
@@ -55,7 +58,7 @@ public class PlayerAiming : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         SetCrossHair();
     }
@@ -112,6 +115,8 @@ public class PlayerAiming : MonoBehaviour
 
     IEnumerator setDirectionDelay(Vector2 _aim)
     {
+        _pushVectorAiming(_aim);
+
         yield return new WaitForSeconds(DELAY);
 
         AimDirection = _aim;
@@ -120,12 +125,12 @@ public class PlayerAiming : MonoBehaviour
     //enables
     private void OnEnable()
     {
-        _inputControl.Enable();
+        //_inputControl.Enable();
     }
 
     private void OnDisable()
     {
-        _inputControl.Enable();
+        //_inputControl.Enable();
     }
 
     ///////////////////////////////GET Y SET ////////////////////////////////
