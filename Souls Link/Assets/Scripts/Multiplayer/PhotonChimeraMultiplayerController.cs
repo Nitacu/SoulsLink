@@ -50,7 +50,8 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
 
     public void sendSetPlayersInChimera()
     {
-        _photonView.RPC(RECIVE_PLAYERS_IN_CHIMERA,RpcTarget.Others,PhotonNetwork.LocalPlayer);
+        Debug.Log("ya todos saben que estoy dentro de la quimera" + PhotonNetwork.LocalPlayer.NickName);
+        _photonView.RPC(RECIVE_PLAYERS_IN_CHIMERA,RpcTarget.OthersBuffered,PhotonNetwork.LocalPlayer);
     }
 
     [PunRPC]
@@ -63,7 +64,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     #region movimiento
     public void pushsendMovement(Vector2 movement, int id, GameManager.Characters type)
     {
-        Debug.Log("id " + id + " movemente " + movement);
+        Debug.Log("id " + id + " movemente " + movement + "tamaño del array de playes " + _playersInChimera.Count);
         _photonView.RPC(SEND_MOVEMENT, RpcTarget.MasterClient, movement, id, type);
         sendMovementArrows(movement, type);
     }

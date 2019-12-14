@@ -58,6 +58,7 @@ public class ChimeraController : PlayerMovement
 
             if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine())
             {
+                Debug.Log("ESTOY DENTRO DE LA QUIMERA");
                 //llamar la funcion para decirle a todos cual maquina esta dentro de esa quimera
                 _sendPlayerInChimera();
             }
@@ -80,8 +81,6 @@ public class ChimeraController : PlayerMovement
         move();
     }
     #endregion
-
-
 
     private void move()
     {
