@@ -30,6 +30,8 @@ public class ChimeraController : PlayerMovement
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
+    public delegate void DelegateMultiplayerControllerSendPlayerInChimera();
+    public DelegateMultiplayerControllerSendPlayerInChimera _sendPlayerInChimera;
     public delegate void DelegateMultiplayerControllerIDs(string ids);
     public DelegateMultiplayerControllerIDs _setPlayersInFusion;
     public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id, GameManager.Characters type);
@@ -46,7 +48,13 @@ public class ChimeraController : PlayerMovement
         _rb = GetComponent<Rigidbody2D>();
         foreach (var player in _players)
         {
-            setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);            
+            setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
+
+            if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine())
+            {
+                //llamar la funcion para decirle a todos cual maquina esta dentro de esa quimera
+                _sendPlayerInChimera();
+            }
         }
     }
 
@@ -93,7 +101,6 @@ public class ChimeraController : PlayerMovement
     {
         Debug.Log("id " + id + " movemente " + movement);
         _inputsMovements[id] = movement;
-        setArrows(movement, playerType);
     }
 
     private void calculateNewMovement()
@@ -107,7 +114,7 @@ public class ChimeraController : PlayerMovement
         _movement = newinputMovement;
     }
 
-    private void setArrows(Vector2 direction, GameManager.Characters playerType)
+    public void setArrows(Vector2 direction, GameManager.Characters playerType)
     {
         if (_arrows.Count > 0)
         {
