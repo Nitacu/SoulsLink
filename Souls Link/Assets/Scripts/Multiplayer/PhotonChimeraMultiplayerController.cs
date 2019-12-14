@@ -22,6 +22,11 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
         return _photonView.IsMine;
     }
 
+    public bool isHost()
+    {
+        return PhotonNetwork.IsMasterClient;
+    }
+
     public void addDelegate()
     {
         _chimeraController = GetComponent<ChimeraController>();
@@ -58,6 +63,12 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     public void reciveSetPlayersInChimera(Player player)
     {
         _playersInChimera.Add(player);
+
+        if (_playersInChimera.Count == 1 && isHost())
+        {
+            Debug.Log("ESTOY DENTRO DE LA QUIMERA");
+            sendSetPlayersInChimera();
+        }
     }
     #endregion
 

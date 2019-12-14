@@ -56,7 +56,8 @@ public class ChimeraController : PlayerMovement
         {
             setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
 
-            if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine())
+            if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine() &&
+                !player.GetComponent<PhotonCharacterMultiplayerController>().isHost())
             {
                 Debug.Log("ESTOY DENTRO DE LA QUIMERA");
                 //llamar la funcion para decirle a todos cual maquina esta dentro de esa quimera
