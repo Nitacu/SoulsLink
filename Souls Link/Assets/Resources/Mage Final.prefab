@@ -835,7 +835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e81c522bf016d945aa110a92dea284a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillType: 0
+  _skillType: 1
   _radiusDetection: 1
   _coneDetectioneDistance: 1
   _shielAroundPrefab: {fileID: 592897995847261921, guid: 687dc33e49fcac349b56f908f189ec32,
@@ -857,7 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b88ec80ae556f03488001d68f449164e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillType: 0
+  _skillType: 2
   _distance: 0.5
   _decoyShadow: {fileID: 1933650003457465940, guid: 246d51984d790e74185cae71c817b726,
     type: 3}
@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6802728a994b5f6498e6c6c2999b12de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skillType: 0
+  _skillType: 3
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
   _turret: {fileID: 465011960163533587, guid: 2a76980f4395c3949bcc7f326c636da6, type: 3}

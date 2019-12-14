@@ -51,5 +51,7 @@ MonoBehaviour:
   - sendMovement
   - setPlayersInFusion
   - pullSendSkill
+  - reciveMovementArrows
+  - reciveSetPlayersInChimera
   DisableAutoOpenWizard: 1
   ShowSettings: 1

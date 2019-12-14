@@ -70,7 +70,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 4ead1ea4e3cd4604a8ff65ecb7b074fa, type: 3}
-  m_Color: {r: 0.06132078, g: 0.5404534, b: 0, a: 1}
+  m_Color: {r: 0.0627451, g: 0.5411765, b: 0, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -262,13 +262,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 100
-  _players: []
+  _anim: {fileID: 0}
   _renderer: {fileID: 1259665956790016033}
-  _movement: {x: 0, y: 0}
-  _inputsMovements: []
+  isDashing: 0
+  _flip: 0
+  _speed: 100
+  _players: []
   _arrows:
   - {fileID: 1603177264109961868}
   - {fileID: 4424315218831008832}
+  _renderer: {fileID: 1259665956790016033}
+  _movement: {x: 0, y: 0}
+  _inputsMovements: []
 --- !u!50 &6373527348820862899
 Rigidbody2D:
   serializedVersion: 4
@@ -694,7 +699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 5
-  _vineWhip: {fileID: 7081138357069249965, guid: aa5533f000850c947bc78f94cacd6fbc,
+  _vineWhip: {fileID: 7081138357069249965, guid: 864eab0e89e5c7043a57c9d0eac26096,
     type: 3}
   _coolDown: 0.6
   _damage: 20
@@ -852,7 +857,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &439759605818957678
 Transform:
   m_ObjectHideFlags: 0
@@ -897,7 +902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5921487204301910070
 Transform:
   m_ObjectHideFlags: 0
@@ -996,7 +1001,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 4ead1ea4e3cd4604a8ff65ecb7b074fa, type: 3}
-  m_Color: {r: 0.9490197, g: 0.7372549, b: 0.49411768, a: 1}
+  m_Color: {r: 0.9490196, g: 0.7372549, b: 0.49411765, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
