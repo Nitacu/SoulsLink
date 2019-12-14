@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 6768463933244333238}
   m_Layer: 8
   m_Name: ChimeraDruidMage
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -182,13 +182,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 100
-  _players: []
+  _anim: {fileID: 0}
   _renderer: {fileID: 1259665956790016033}
-  _movement: {x: 0, y: 0}
-  _inputsMovements: []
+  isDashing: 0
+  _flip: 0
+  _speed: 100
+  _players: []
   _arrows:
   - {fileID: 3488494494920652462}
   - {fileID: 8840288967564160718}
+  _renderer: {fileID: 1259665956790016033}
+  _movement: {x: 0, y: 0}
+  _inputsMovements: []
 --- !u!114 &-6163580622966605015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,7 +625,7 @@ MonoBehaviour:
   _skillType: 1
   _radiusDetection: 1
   _coneDetectioneDistance: 1
-  _shielAroundPrefab: {fileID: 592897995847261921, guid: 687dc33e49fcac349b56f908f189ec32,
+  _shielAroundPrefab: {fileID: 592897995847261921, guid: bf7350dfbd9628648882adc7d292bf86,
     type: 3}
   _shieldDirectionPrefab: {fileID: 7283907965343569989, guid: 1e95c9113a4a19240a6cb3dc87edd049,
     type: 3}

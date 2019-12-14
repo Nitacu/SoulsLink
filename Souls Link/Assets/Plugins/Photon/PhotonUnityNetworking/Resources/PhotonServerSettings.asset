@@ -50,5 +50,6 @@ MonoBehaviour:
   - DeactivateMySelection
   - sendMovement
   - setPlayersInFusion
+  - pullSendSkill
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChimeraController : MonoBehaviour
+public class ChimeraController : PlayerMovement
 {
     [SerializeField] private float _speed = 100;
     public float Speed
@@ -12,6 +12,7 @@ public class ChimeraController : MonoBehaviour
     }
 
     [SerializeField] private List<GameObject> _players = new List<GameObject>();
+    [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
 
     private Rigidbody2D _rb;
     [SerializeField] private SpriteRenderer _renderer;
@@ -25,7 +26,6 @@ public class ChimeraController : MonoBehaviour
 
     bool[] _unFusionCheck;
 
-    [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
 
     #region Delegate
     public delegate bool DelegateMultiplayerController();
@@ -44,14 +44,30 @@ public class ChimeraController : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+        foreach (var player in _players)
+        {
+            setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);            
+        }
     }
 
 
-    private void Update()
+    #region OVERRIDE_METHODS
+    protected override void Awake()
+    {
+    }
+
+    protected override void FixedUpdate()
+    {
+    }
+
+    protected override void Update()
     {
         calculateNewMovement();
         move();
     }
+    #endregion
+
+
 
     private void move()
     {

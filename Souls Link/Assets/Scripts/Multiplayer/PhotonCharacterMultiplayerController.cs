@@ -268,16 +268,19 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        if (!GetComponent<FusionTrigger>().IsOnFusion)
         {
-            stream.SendNext(_hPControl.PlayerHealth);
-            stream.SendNext(_playerMovement._flip);
-        }
-        else
-        {
-            onHealthSyncPropertyChanged((float)stream.ReceiveNext());
-            _playerMovement._flip = (bool)stream.ReceiveNext();
-        }
+            if (stream.IsWriting)
+            {
+                stream.SendNext(_hPControl.PlayerHealth);
+                stream.SendNext(_playerMovement._flip);
+            }
+            else
+            {
+                onHealthSyncPropertyChanged((float)stream.ReceiveNext());
+                _playerMovement._flip = (bool)stream.ReceiveNext();
+            }
+        }           
     }
 
 }

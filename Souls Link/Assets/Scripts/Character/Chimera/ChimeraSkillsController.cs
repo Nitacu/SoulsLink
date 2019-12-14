@@ -7,8 +7,8 @@ public class ChimeraSkillsController : PlayerSkills
 {
     #region Delegate
     public delegate bool DelegateMultiplayerSkillController();
-    public DelegateMultiplayerSkillController _isMine;   
-    #endregion    
+    public DelegateMultiplayerSkillController _isMine;
+    #endregion
 
     [SerializeField] private ChimeraSkillCombo[] combos;
 
@@ -127,22 +127,15 @@ public class ChimeraSkillsController : PlayerSkills
 
     IEnumerator skillDelay(float value, UnityEvent _eventDown, UnityEvent _eventUp, float index)
     {
-        //_pushValueSkill(value, index);
+        yield return new WaitForSeconds(DELAY);
 
-        if (_isMine())
+        if (value == 1)//Pressed
         {
-            //_pushValueSkill(value, index);
-
-            yield return new WaitForSeconds(DELAY);
-
-            if (value == 1)//Pressed
-            {
-                if (_eventDown != null) _eventDown.Invoke();
-            }
-            else if (value == 0)//Released
-            {
-                if (_eventUp != null) _eventUp.Invoke();
-            }
+            if (_eventDown != null) _eventDown.Invoke();
         }
-    }    
+        else if (value == 0)//Released
+        {
+            if (_eventUp != null) _eventUp.Invoke();
+        }
+    }
 }

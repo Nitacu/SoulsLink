@@ -207,9 +207,10 @@ GameObject:
   - component: {fileID: -8344357298788684280}
   - component: {fileID: -7720720643679643473}
   - component: {fileID: -1132522512834403669}
+  - component: {fileID: 2248004853499113603}
   m_Layer: 8
   m_Name: ChimeraMageAssasin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,7 +700,7 @@ MonoBehaviour:
   _skillType: 1
   _radiusDetection: 1
   _coneDetectioneDistance: 1
-  _shielAroundPrefab: {fileID: 592897995847261921, guid: 687dc33e49fcac349b56f908f189ec32,
+  _shielAroundPrefab: {fileID: 592897995847261921, guid: bf7350dfbd9628648882adc7d292bf86,
     type: 3}
   _shieldDirectionPrefab: {fileID: 7283907965343569989, guid: 1e95c9113a4a19240a6cb3dc87edd049,
     type: 3}
@@ -815,6 +816,19 @@ MonoBehaviour:
   _mistLifeTime: 6
   _mist: {fileID: 6691235259582704694, guid: b637f2ee7f5b32d4db4fb813ddeaf651, type: 3}
   offsetY: -0.2
+--- !u!114 &2248004853499113603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df2fc1c4e9552468a31188c0a538dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 500
 --- !u!1 &3759200983748618225
 GameObject:
   m_ObjectHideFlags: 0

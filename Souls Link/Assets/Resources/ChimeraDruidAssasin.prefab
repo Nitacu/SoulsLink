@@ -207,9 +207,10 @@ GameObject:
   - component: {fileID: 4607019318307138895}
   - component: {fileID: 3164645379554838986}
   - component: {fileID: -8204389164058584506}
+  - component: {fileID: -3807658913562486524}
   m_Layer: 8
   m_Name: ChimeraDruidAssasin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -822,6 +823,19 @@ MonoBehaviour:
   _mistLifeTime: 6
   _mist: {fileID: 6691235259582704694, guid: b637f2ee7f5b32d4db4fb813ddeaf651, type: 3}
   offsetY: -0.2
+--- !u!114 &-3807658913562486524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df2fc1c4e9552468a31188c0a538dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 500
 --- !u!1 &1603177264109961868
 GameObject:
   m_ObjectHideFlags: 0

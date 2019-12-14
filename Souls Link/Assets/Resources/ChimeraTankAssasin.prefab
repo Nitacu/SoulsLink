@@ -127,9 +127,10 @@ GameObject:
   - component: {fileID: -3759251766295425453}
   - component: {fileID: 5598518304605715069}
   - component: {fileID: -2578085398839476072}
+  - component: {fileID: -260094089890363836}
   m_Layer: 8
   m_Name: ChimeraTankAssasin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -753,6 +754,19 @@ MonoBehaviour:
   _coolDown: 2
   maxChargedSeconds: 1.5
   attackDuration: 0.1
+--- !u!114 &-260094089890363836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59df2fc1c4e9552468a31188c0a538dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerHealth: 500
 --- !u!1 &2260036029019980799
 GameObject:
   m_ObjectHideFlags: 0

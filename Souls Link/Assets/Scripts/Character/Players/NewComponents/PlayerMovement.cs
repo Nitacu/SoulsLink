@@ -10,7 +10,6 @@ public class PlayerMovement : MonoBehaviour
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
 
-    private PlayerInputActions _inputControl;
     private Rigidbody2D _rb;
     public Rigidbody2D RigidBodyPlayer
     {
@@ -35,20 +34,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void Awake()
+    protected virtual void Awake()
     {
-        _inputControl = new PlayerInputActions();
         _fusionTriggerRef = GetComponent<FusionTrigger>();
         _rb = GetComponent<Rigidbody2D>();
         //_anim = GetComponent<Animator>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         setAnimation();
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         move();
 
@@ -56,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void changeOrientation()
+   private void changeOrientation()
     {
         if (!_isMine())
         {
@@ -149,18 +147,7 @@ public class PlayerMovement : MonoBehaviour
         }
         return sendMovementToChimera;
     }
-
-    //Enable and Disable
-    private void OnEnable()
-    {
-        _inputControl.Enable();
-    }
-
-    private void OnDisable()
-    {
-        _inputControl.Disable();
-    }
-
+   
     /////////////// GET Y SET //////////////////////////////
     public Vector2 InputMovement { get => _inputMovement; set => _inputMovement = value; }
     public SpriteRenderer Renderer { get => _renderer; set => _renderer = value; }
