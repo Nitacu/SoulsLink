@@ -46,6 +46,12 @@ public class ChimeraController : PlayerMovement
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
+
+        foreach (var arrow in _arrows)
+        {
+            arrow.SetActive(false);
+        }
+
         foreach (var player in _players)
         {
             setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
