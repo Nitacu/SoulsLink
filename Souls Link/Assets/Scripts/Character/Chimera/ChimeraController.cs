@@ -11,7 +11,7 @@ public class ChimeraController : PlayerMovement
         get { return _speed; }
     }
 
-    [SerializeField] private List<GameObject> _players = new List<GameObject>();
+    [SerializeField] private List<GameObject> _players = new List<GameObject>(); //cuidado al usar esta lista antes de que el servidor la actualice 
     [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
 
     private Rigidbody2D _rb;
@@ -55,14 +55,6 @@ public class ChimeraController : PlayerMovement
         foreach (var player in _players)
         {
             setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
-
-            if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine() &&
-                !player.GetComponent<PhotonCharacterMultiplayerController>().isHost())
-            {
-                Debug.Log("ESTOY DENTRO DE LA QUIMERA");
-                //llamar la funcion para decirle a todos cual maquina esta dentro de esa quimera
-                _sendPlayerInChimera();
-            }
         }
     }
 
@@ -150,6 +142,22 @@ public class ChimeraController : PlayerMovement
         Debug.Log("PlayersIds " + playersIds);
         _players = getPlayersByID(playersIds);
         setPlayersChild();
+        updatePlayersInChimera();
+    }
+
+    public void updatePlayersInChimera()
+    {
+        foreach (var player in _players)
+        {
+            setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
+            Debug.Log("primera parte " + player.GetComponent<PhotonCharacterMultiplayerController>().isMine() + "segunda parte" + !player.GetComponent<PhotonCharacterMultiplayerController>().isHost());
+            if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine())
+            {
+                Debug.Log("ESTOY DENTRO DE LA QUIMERA");
+                //llamar la funcion para decirle a todos cual maquina esta dentro de esa quimera
+                _sendPlayerInChimera();
+            }
+        }
     }
 
     private List<GameObject> getPlayersByID(string playerIds)

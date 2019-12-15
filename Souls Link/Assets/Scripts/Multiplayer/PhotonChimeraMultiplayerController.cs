@@ -56,19 +56,13 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     public void sendSetPlayersInChimera()
     {
         Debug.Log("ya todos saben que estoy dentro de la quimera" + PhotonNetwork.LocalPlayer.NickName);
-        _photonView.RPC(RECIVE_PLAYERS_IN_CHIMERA,RpcTarget.Others,PhotonNetwork.LocalPlayer);
+        _photonView.RPC(RECIVE_PLAYERS_IN_CHIMERA,RpcTarget.OthersBuffered,PhotonNetwork.LocalPlayer);
     }
 
     [PunRPC]
     public void reciveSetPlayersInChimera(Player player)
     {
         _playersInChimera.Add(player);
-
-        if (isHost())
-        {
-            Debug.Log("ESTOY DENTRO DE LA QUIMERA");
-            sendSetPlayersInChimera();
-        }
     }
     #endregion
 
