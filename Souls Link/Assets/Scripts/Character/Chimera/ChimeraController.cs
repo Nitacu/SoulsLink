@@ -94,8 +94,6 @@ public class ChimeraController : PlayerMovement
                 GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection); //Dash basico
             }
         }
-
-
     }
 
     private void setAnimation()
@@ -104,10 +102,12 @@ public class ChimeraController : PlayerMovement
         if (_movement.x > 0)
         {
             _renderer.flipX = false;
+            _flip = false;
         }
         else if (_movement.x < 0)
         {
             _renderer.flipX = true;
+            _flip = true;
         }
     }
 

@@ -68,6 +68,7 @@ public class PlayerSkills : MonoBehaviour
 
                 if (index == 0 && _isHost())//index 0 is dash
                 {
+                    Debug.Log("Dashing no soy host");
                     yield return new WaitForSeconds(DELAY);
                 }
 
