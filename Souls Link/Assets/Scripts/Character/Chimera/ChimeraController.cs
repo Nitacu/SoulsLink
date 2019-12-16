@@ -62,37 +62,38 @@ public class ChimeraController : PlayerMovement
     {
         calculateNewMovement();
         move();
-
+        setAnimation();
         changeOrientation();
     }
     #endregion
 
     private void move()
     {
-        if (!isDashing)
+        if (_isHost())
         {
-
-            _rb.velocity = Movement1 * Time.deltaTime * _speed;
-
-            setAnimation();
-        }
-        else
-        {
-            if (GetComponent<Dash>() != null)
+            if (!isDashing)
             {
-                if (!GetComponent<Dash>().isSimpleDash)
-                {
-                    GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection); //Dash asesino (el que dashea bastante como un rayo)
-                }
-                else
-                {
-                    GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection);
-                }
+
+                _rb.velocity = Movement1 * Time.deltaTime * _speed;
             }
-            else if (GetComponent<CometDash>() != null)
+            else
             {
+                if (GetComponent<Dash>() != null)
+                {
+                    if (!GetComponent<Dash>().isSimpleDash)
+                    {
+                        GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection); //Dash asesino (el que dashea bastante como un rayo)
+                    }
+                    else
+                    {
+                        GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection);
+                    }
+                }
+                else if (GetComponent<CometDash>() != null)
+                {
 
-                GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection); //Dash basico
+                    GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection); //Dash basico
+                }
             }
         }
     }
