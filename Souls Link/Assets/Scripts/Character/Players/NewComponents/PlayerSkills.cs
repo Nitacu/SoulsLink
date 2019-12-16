@@ -66,9 +66,9 @@ public class PlayerSkills : MonoBehaviour
             {
                 _pushSendSkillChimera(_fusionTriggerRef._characterType, value, index);
 
-                if (index == 0 && !_isHost())//index 0 is Dash
+                if (index == 0 && _isHost())//index 0 is dash
                 {
-                    yield break;
+                    yield return new WaitForSeconds(DELAY);
                 }
 
                 _fusionTriggerRef.CurrentChimeraParent.
