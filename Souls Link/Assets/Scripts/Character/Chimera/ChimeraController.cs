@@ -10,11 +10,6 @@ public class ChimeraController : PlayerMovement
     [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
 
     [SerializeField] private Vector2 _movement;
-    public Vector2 Movement
-    {
-        get { return Movement1; }
-    }
-
     public Vector2 Movement1 { get => _movement; set => _movement = value; }
 
     [SerializeField] private Vector2[] _inputsMovements;
@@ -66,6 +61,8 @@ public class ChimeraController : PlayerMovement
     {
         calculateNewMovement();
         move();
+
+        changeOrientation();
     }
     #endregion
 

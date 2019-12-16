@@ -54,11 +54,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-   private void changeOrientation()
+   protected void changeOrientation()
     {
         if (!_isMine())
         {
-            _anim.GetComponent<SpriteRenderer>().flipX = _flip;
+            Renderer.flipX = _flip;
         }
     }
 
