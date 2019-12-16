@@ -39,7 +39,17 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
             {
                 GetComponent<PolyNavAgent>().enabled = false;
                 GetComponent<BehaviorTree>().enabled = false;
-                //changeFlip(_spriteRenderer.flipX);
+            }
+        }
+        else
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                GetComponent<DummyController>().enabled = true;
+            }
+            else
+            {
+                GetComponent<DummyController>().enabled = false;
             }
         }
     }

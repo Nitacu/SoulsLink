@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class DummyController : MonoBehaviour
 {
@@ -43,6 +45,7 @@ public class DummyController : MonoBehaviour
 
         if (room == roomOfDummy.ROOM4 || room == roomOfDummy.ROOM5)
         {
+            GetComponent<PhotonTransformView>().enabled = false;
             Invoke("changeLocationOfDummy", movePointTime);
         }
     }
