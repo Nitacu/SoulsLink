@@ -146,7 +146,7 @@ public class SelectingCharacter : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            SceneManager.LoadScene("PracticeRange");
+            SceneManager.LoadScene("Arena");
         }    
     }
 }

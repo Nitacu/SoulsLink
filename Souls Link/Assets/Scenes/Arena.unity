@@ -1169,7 +1169,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &512843054
 Transform:
   m_ObjectHideFlags: 0
@@ -53315,6 +53315,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 927727071483504309, guid: 1b990721bf1b18640a1cda9cbab75a01,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 927727071483504297, guid: 1b990721bf1b18640a1cda9cbab75a01,
         type: 3}
       propertyPath: _camera1
@@ -53330,11 +53335,6 @@ PrefabInstance:
       propertyPath: _splitCamera
       value: 
       objectReference: {fileID: 134240179}
-    - target: {fileID: 927727071483504309, guid: 1b990721bf1b18640a1cda9cbab75a01,
-        type: 3}
-      propertyPath: viewIdField
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b990721bf1b18640a1cda9cbab75a01, type: 3}
 --- !u!1001 &2401559828873286900
