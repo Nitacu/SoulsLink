@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-   protected void changeOrientation()
+   protected virtual void changeOrientation()
     {
         if (!_isMine())
         {

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChimeraController : PlayerMovement
-{   
+{
 
     [SerializeField] private List<GameObject> _players = new List<GameObject>(); //cuidado al usar esta lista antes de que el servidor la actualice 
     [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
@@ -19,6 +19,7 @@ public class ChimeraController : PlayerMovement
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
+    public DelegateMultiplayerController _isHost;
     public delegate void DelegateMultiplayerControllerSendPlayerInChimera();
     public DelegateMultiplayerControllerSendPlayerInChimera _sendPlayerInChimera;
     public delegate void DelegateMultiplayerControllerIDs(string ids);
@@ -96,6 +97,14 @@ public class ChimeraController : PlayerMovement
         }
     }
 
+    protected override void changeOrientation()
+    {
+        if (_isHost())
+        {
+            Renderer.flipX = _flip;
+        }
+    }
+
     private void setAnimation()
     {
         //RotarSprite
@@ -119,13 +128,17 @@ public class ChimeraController : PlayerMovement
 
     private void calculateNewMovement()
     {
-        Vector2 newinputMovement = Vector2.zero;
-        foreach (Vector2 input in _inputsMovements)
+        if (_isHost())
         {
-            newinputMovement += input;
+            Vector2 newinputMovement = Vector2.zero;
+            foreach (Vector2 input in _inputsMovements)
+            {
+                newinputMovement += input;
+            }
+
+            Movement1 = newinputMovement;
         }
 
-        Movement1 = newinputMovement;
     }
 
     public void setArrows(Vector2 direction, GameManager.Characters playerType)

@@ -29,10 +29,10 @@ public class ChimeraAiming : PlayerAiming
 
     public void setAim()
     {
-        Vector2 movement = Controller.Movement;
+        Vector2 movement = Controller.Movement1;
         if (movement.magnitude > 0)
         {
-            _aimDirection = Controller.Movement;
+            _aimDirection = Controller.Movement1;
             _aimDirection.Normalize();
         }
     }
