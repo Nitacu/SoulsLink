@@ -61,21 +61,25 @@ public class RoomController : MonoBehaviour
 
         if(targetsRoom1.Count < 1 && !door2Opened)
         {
+            _room2.SetActive(true);
             _doorRoom2.SetActive(false);
             door2Opened = true;
         }
         if (targetsRoom2.Count < 1 && !door3Opened)
         {
+            _room3.SetActive(true);
             _doorRoom3.SetActive(false);
             door3Opened = true;
         }
         if (targetsRoom3.Count < 1 && !door4Opened)
         {
+            _room4.SetActive(true);
             _doorRoom4.SetActive(false);
             door4Opened = true;
         }
         if (targetsRoom4.Count < 1 && !door5Opened)
         {
+            _room5.SetActive(true);
             _doorRoom5.SetActive(false);
             door5Opened = true;
         }
@@ -126,5 +130,10 @@ public class RoomController : MonoBehaviour
             if (child.tag != "EditorOnly")
                 targetsRoom5.Add(child.gameObject);
         }
+
+        _room2.SetActive(false);
+        _room3.SetActive(false);
+        _room4.SetActive(false);
+        _room5.SetActive(false);
     }
 }
