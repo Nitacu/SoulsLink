@@ -4,18 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ChimeraController : PlayerMovement
-{
-    [SerializeField] private float _speed = 100;
-    public float Speed
-    {
-        get { return _speed; }
-    }
+{   
 
     [SerializeField] private List<GameObject> _players = new List<GameObject>(); //cuidado al usar esta lista antes de que el servidor la actualice 
     [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
-
-    private Rigidbody2D _rb;
-    [SerializeField] private SpriteRenderer _renderer;
 
     [SerializeField] private Vector2 _movement;
     public Vector2 Movement
@@ -25,7 +17,6 @@ public class ChimeraController : PlayerMovement
     [SerializeField] private Vector2[] _inputsMovements;
 
     bool[] _unFusionCheck;
-
 
     #region Delegate
     public delegate bool DelegateMultiplayerController();
@@ -77,9 +68,34 @@ public class ChimeraController : PlayerMovement
 
     private void move()
     {
-        _rb.velocity = _movement * Time.deltaTime * _speed;
+        if (!isDashing)
+        {
 
-        setAnimation();
+            _rb.velocity = _movement * Time.deltaTime * _speed;
+
+            setAnimation();
+        }
+        else
+        {
+            if (GetComponent<Dash>() != null)
+            {
+                if (!GetComponent<Dash>().isSimpleDash)
+                {
+                    GetComponent<Dash>().playerDash(GetComponent<Dash>().Aiming.AimDirection); //Dash asesino (el que dashea bastante como un rayo)
+                }
+                else
+                {
+                    GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection);
+                }
+            }
+            else if (GetComponent<CometDash>() != null)
+            {
+
+                GetComponent<CometDash>().playerDash(GetComponent<CometDash>().Aiming.AimDirection); //Dash basico
+            }
+        }
+
+
     }
 
     private void setAnimation()

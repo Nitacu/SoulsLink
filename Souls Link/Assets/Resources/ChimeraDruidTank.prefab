@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 654726989565473540}
   - component: {fileID: -6560431552646105946}
   - component: {fileID: -3266754791423250632}
+  - component: {fileID: 2953317783702745731}
   m_Layer: 8
   m_Name: ChimeraDruidTank
   m_TagString: Player
@@ -416,12 +417,10 @@ MonoBehaviour:
   _renderer: {fileID: 1259665956790016033}
   isDashing: 0
   _flip: 0
-  _speed: 100
   _players: []
   _arrows:
   - {fileID: 8181278081920920933}
   - {fileID: 4575595205535550343}
-  _renderer: {fileID: 1259665956790016033}
   _movement: {x: 0, y: 0}
   _inputsMovements: []
 --- !u!50 &6373527348820862899
@@ -522,7 +521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crossHair: {fileID: 0}
   _distance: 2
-  _offsetY: 0.358
+  _offsetY: 0
   playerPosition: {x: 0, y: 0}
   _chimeraCrosshair: {fileID: 6814018844155613984}
   _chimeraCrosshairDistance: 2
@@ -635,7 +634,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   dashPressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2953317783702745731}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill5PressDown:
@@ -988,6 +998,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerHealth: 500
+--- !u!114 &2953317783702745731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23fcd555b7dec441b40ece3fb2bab3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _coolDown: 2
+  dashDuration: 0.16
+  _stunDuration: 2
+  dashSpeed: 15
+  isDashing: 0
 --- !u!1 &4575595205535550343
 GameObject:
   m_ObjectHideFlags: 0

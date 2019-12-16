@@ -32,24 +32,31 @@ public class ChimeraSkillsController : PlayerSkills
 
     private void indexSkill(int index, float pressValue, float skillIndex)
     {
+        if (skillIndex == 0)//dash
+        {
+            Debug.Log("Dash");
+            StartCoroutine(skillDelay(pressValue, DashPressDown, null, skillIndex));
+            return;
+        }
+
         switch (index)
         {
             case 0://0 a 4                   
                 switch (skillIndex)
                 {
-                    case 0:
+                    case 1:
                         Debug.Log("SKILL 1");
                         StartCoroutine(skillDelay(pressValue, Skill1PressDown, Skill1PressUp, skillIndex));
                         break;
-                    case 1:
+                    case 2:
                         Debug.Log("SKILL 2");
                         StartCoroutine(skillDelay(pressValue, Skill2PressDown, Skill2PressUp, skillIndex));
                         break;
-                    case 2:
+                    case 3:
                         Debug.Log("SKILL 3");
                         StartCoroutine(skillDelay(pressValue, Skill3PressDown, Skill3PressUp, skillIndex));
                         break;
-                    case 3:
+                    case 4:
                         Debug.Log("SKILL 4");
                         StartCoroutine(skillDelay(pressValue, Skill4PressDown, Skill4PressUp, skillIndex));
                         break;
@@ -61,19 +68,19 @@ public class ChimeraSkillsController : PlayerSkills
             case 1://4 a 8
                 switch (skillIndex)
                 {
-                    case 0:
+                    case 1:
                         Debug.Log("SKILL 5");
                         StartCoroutine(skillDelay(pressValue, Skill5PressDown, Skill5PressUp, skillIndex));
                         break;
-                    case 1:
+                    case 2:
                         Debug.Log("SKILL 6");
                         StartCoroutine(skillDelay(pressValue, Skill6PressDown, Skill6PressUp, skillIndex));
                         break;
-                    case 2:
+                    case 3:
                         Debug.Log("SKILL 7");
                         StartCoroutine(skillDelay(pressValue, Skill7PressDown, Skill7PressUp, skillIndex));
                         break;
-                    case 3:
+                    case 4:
                         Debug.Log("SKILL 8");
                         StartCoroutine(skillDelay(pressValue, Skill8PressDown, Skill8PressUp, skillIndex));
                         break;
@@ -84,16 +91,16 @@ public class ChimeraSkillsController : PlayerSkills
             case 2://9 a 12
                 switch (skillIndex)
                 {
-                    case 0:
+                    case 1:
                         StartCoroutine(skillDelay(pressValue, Skill9PressDown, Skill9PressUp, skillIndex));
                         break;
-                    case 1:
+                    case 2:
                         StartCoroutine(skillDelay(pressValue, Skill10PressDown, Skill10PressUp, skillIndex));
                         break;
-                    case 2:
+                    case 3:
                         StartCoroutine(skillDelay(pressValue, Skill11PressDown, Skill11PressUp, skillIndex));
                         break;
-                    case 3:
+                    case 4:
                         StartCoroutine(skillDelay(pressValue, Skill12PressDown, Skill12PressUp, skillIndex));
                         break;
                     default:
@@ -104,16 +111,16 @@ public class ChimeraSkillsController : PlayerSkills
             case 3://13 a 16
                 switch (skillIndex)
                 {
-                    case 0:
+                    case 1:
                         StartCoroutine(skillDelay(pressValue, Skill13PressDown, Skill13PressUp, skillIndex));
                         break;
-                    case 1:
+                    case 2:
                         StartCoroutine(skillDelay(pressValue, Skill14PressDown, Skill14PressUp, skillIndex));
                         break;
-                    case 2:
+                    case 3:
                         StartCoroutine(skillDelay(pressValue, Skill15PressDown, Skill15PressUp, skillIndex));
                         break;
-                    case 3:
+                    case 4:
                         StartCoroutine(skillDelay(pressValue, Skill16PressDown, Skill16PressUp, skillIndex));
                         break;
                     default:
