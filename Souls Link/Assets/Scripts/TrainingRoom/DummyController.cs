@@ -44,7 +44,6 @@ public class DummyController : MonoBehaviour
         if (room == roomOfDummy.ROOM4 || room == roomOfDummy.ROOM5)
         {
             GetComponent<PhotonTransformView>().enabled = false;
-            GetComponent<DummyController>().enabled = false;
             Invoke("changeLocationOfDummy", movePointTime);
         }
     }
@@ -52,21 +51,25 @@ public class DummyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch (room)
+        if (PhotonNetwork.IsMasterClient)
         {
-            case roomOfDummy.ROOM2:
-                room2DummyBehaviour();
-                break;
-            case roomOfDummy.ROOM3:
-                room3DummyBehaviour();
-                break;
-            case roomOfDummy.ROOM4:
-                room4DummyBehaviour();
-                break;
-            case roomOfDummy.ROOM5:
-                room5DummyBehaviour();
-                break;
+            switch (room)
+            {
+                case roomOfDummy.ROOM2:
+                    //room2DummyBehaviour();
+                    break;
+                case roomOfDummy.ROOM3:
+                    //room3DummyBehaviour();
+                    break;
+                case roomOfDummy.ROOM4:
+                    room4DummyBehaviour();
+                    break;
+                case roomOfDummy.ROOM5:
+                    room5DummyBehaviour();
+                    break;
+            }
         }
+           
     }
 
     private void room2DummyBehaviour()
@@ -134,15 +137,25 @@ public class DummyController : MonoBehaviour
     private void changeLocationOfDummy()
     {
         float random = Random.Range(0, spawnPoints.Count-1);
-        if(gameObject.transform.position == spawnPoints[(int)random].position)
+
+        if (PhotonNetwork.IsMasterClient)
         {
-            changeLocationOfDummy();
+            if (gameObject.transform.position == spawnPoints[(int)random].position)
+            {
+                changeLocationOfDummy();
+            }
+            else
+            {
+                GetComponent<PhotonEnemyMultiplayerController>().setNextPosition((int)random);
+                transform.position = spawnPoints[(int)random].position;
+                Invoke("changeLocationOfDummy", movePointTime);
+            }
         }
-        else
-        {
-            transform.position = spawnPoints[(int)random].position;
-            Invoke("changeLocationOfDummy", movePointTime);
-        }
+    }
+
+    public void changeLocation(int index)
+    {
+        transform.position = spawnPoints[index].position;
     }
 
     private void room4DummyBehaviour()

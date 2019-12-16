@@ -152,4 +152,18 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
     }
     #endregion
 
+    #region dummys
+
+    public void setNextPosition(int index)
+    {
+        _photonView.RPC("getNextPosition", RpcTarget.Others,index);
+    }
+
+    [PunRPC]
+    public void getNextPosition(int index)
+    {
+        GetComponent<DummyController>().changeLocation(index);
+    }
+
+    #endregion
 }

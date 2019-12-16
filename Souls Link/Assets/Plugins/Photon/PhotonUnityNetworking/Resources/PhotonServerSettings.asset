@@ -53,5 +53,6 @@ MonoBehaviour:
   - pullSendSkill
   - reciveMovementArrows
   - reciveSetPlayersInChimera
+  - getNextPosition
   DisableAutoOpenWizard: 1
   ShowSettings: 1
