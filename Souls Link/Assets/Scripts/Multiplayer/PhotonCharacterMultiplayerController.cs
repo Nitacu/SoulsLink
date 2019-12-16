@@ -190,13 +190,13 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     public void pushSendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex)
     {
         FusionTrigger fusiontrigger = GetComponent<FusionTrigger>();
-
-        _photonView.RPC(SEND_SKILL, RpcTarget.Others, typeCharacter, pressValue, skillIndex, fusiontrigger.CurrentChimeraParent.GetComponent<ChimeraAiming>().Controller.Movement);
+        Vector2 aux = fusiontrigger.CurrentChimeraParent.GetComponent<ChimeraAiming>().Controller.Movement;
+        _photonView.RPC(SEND_SKILL, RpcTarget.Others, typeCharacter, pressValue, skillIndex, aux);
     }
 
     //Le envía a las demás máquinas la skill
     [PunRPC]
-    public void pullSendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex , Vector3 vectorAiming)
+    public void pullSendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex , Vector2 vectorAiming)
     {
         FusionTrigger fusiontrigger = GetComponent<FusionTrigger>();
 

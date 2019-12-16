@@ -165,5 +165,17 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
         GetComponent<DummyController>().changeLocation(index);
     }
 
+    public void setKill()
+    {
+        _photonView.RPC("getKill", RpcTarget.Others);
+    }
+
+    [PunRPC]
+    public void getKill()
+    {
+        GetComponent<DummyController>().killDummy();
+    }
+
+
     #endregion
 }

@@ -182,6 +182,7 @@ public class SimpleEnemyController : MonoBehaviour
             }
             else
             {
+                GetComponent<PhotonEnemyMultiplayerController>().setKill();
                 GetComponent<DummyController>().killDummy();
             }
         }
