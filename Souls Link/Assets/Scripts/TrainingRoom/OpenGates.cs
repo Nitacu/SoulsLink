@@ -43,6 +43,7 @@ public class OpenGates : MonoBehaviour
             else
             {
                 timeTracker = timeToStart;
+                startTimer.SetActive(false);
             }
         }
     }
