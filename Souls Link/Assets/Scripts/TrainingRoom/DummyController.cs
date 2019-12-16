@@ -56,10 +56,10 @@ public class DummyController : MonoBehaviour
             switch (room)
             {
                 case roomOfDummy.ROOM2:
-                    //room2DummyBehaviour();
+                    room2DummyBehaviour();
                     break;
                 case roomOfDummy.ROOM3:
-                    //room3DummyBehaviour();
+                    room3DummyBehaviour();
                     break;
                 case roomOfDummy.ROOM4:
                     room4DummyBehaviour();
