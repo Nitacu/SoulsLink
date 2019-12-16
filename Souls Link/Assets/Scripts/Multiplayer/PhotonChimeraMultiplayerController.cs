@@ -36,6 +36,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._isMine = new ChimeraController.DelegateMultiplayerController(isMine);
         _chimeraController._sendMovement = new ChimeraController.DelegateMultiplayerControllerIMove(pushsendMovement);
         _chimeraController._sendPlayerInChimera = new ChimeraController.DelegateMultiplayerControllerSendPlayerInChimera(sendSetPlayersInChimera);
+        _chimeraController._isHost = new ChimeraController.DelegateMultiplayerController(isHost);
 
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
     }
@@ -103,12 +104,14 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     {
         if (stream.IsWriting)
         {
+            Debug.Log("ENVIADO");
             stream.SendNext(_chimeraController.Movement1);
             stream.SendNext(_chimeraController._flip);
         }
         else
         {
             _chimeraController.Movement1 = (Vector2)stream.ReceiveNext();
+            Debug.Log("RECIBIDO " + _chimeraController.Movement1);
             _chimeraController._flip = (bool)stream.ReceiveNext();
         }
     }

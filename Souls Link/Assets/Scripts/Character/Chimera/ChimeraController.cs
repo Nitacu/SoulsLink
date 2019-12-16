@@ -99,7 +99,7 @@ public class ChimeraController : PlayerMovement
 
     protected override void changeOrientation()
     {
-        if (_isHost())
+        if (!_isHost())
         {
             Renderer.flipX = _flip;
         }
