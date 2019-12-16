@@ -28,6 +28,7 @@ public class SimpleEnemyController : MonoBehaviour
     private Vector2 tempVelocity = Vector2.zero;
     private float tempMaxSpeed = 0;
     private GameObject tempPlayer;
+    public bool isDummy = false;
 
     #region Delegate
     public delegate bool DelegateEnemyMultiplayerController();
@@ -48,34 +49,42 @@ public class SimpleEnemyController : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        Anim = GetComponentInChildren<Animator>();
-        _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
-        _poly = GetComponent<PolyNavAgent>();
+        if (!isDummy)
+        {
+            _rb = GetComponent<Rigidbody2D>();
+            Anim = GetComponentInChildren<Animator>();
+            _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
+            _poly = GetComponent<PolyNavAgent>();
+        }
     }
 
     // Update is called once per frame
     public void Update()
     {
-        Anim.SetBool("Can_Walk", canWalk);
+        
 
         if (isGettingKnocked)
         {
             _rb.velocity = _knockBackDirection * _force;
         }
 
-        if (_flip)
+        if (!isDummy)
         {
-            _anim.transform.localScale = new Vector3(-1, 1, 1);
-        }
-        else
-        {
-            _anim.transform.localScale = new Vector3(1, 1, 1);
-        }
+            Anim.SetBool("Can_Walk", canWalk);
 
-        if (_poly.enabled)
-        {
-            changeOrientation(_poly.velocity.x);
+            if (_flip)
+            {
+                _anim.transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                _anim.transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            if (_poly.enabled)
+            {
+                changeOrientation(_poly.velocity.x);
+            }
         }
     }
 
@@ -158,15 +167,22 @@ public class SimpleEnemyController : MonoBehaviour
     {
         if (_isHost())
         {
-            health -= damage;
-            _changeHealth(health);
-            if (health < 0)
+            if (!isDummy)
             {
-                StartCoroutine(die());
+                health -= damage;
+                _changeHealth(health);
+                if (health < 0)
+                {
+                    StartCoroutine(die());
+                }
+                else
+                {
+                    StartCoroutine(changeColor(0.5f));
+                }
             }
             else
             {
-                StartCoroutine(changeColor(0.5f));
+                GetComponent<DummyController>().killDummy();
             }
         }
     }
@@ -196,7 +212,10 @@ public class SimpleEnemyController : MonoBehaviour
         Anim.Play(Animator.StringToHash("Death"));
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<PolyNavAgent>().enabled = false;
+        if (GetComponent<PolyNavAgent>() != null)
+        {
+            GetComponent<PolyNavAgent>().enabled = false;
+        }
         GetComponent<BehaviorTree>().enabled = false;
         yield return new WaitForSeconds(0.5f);
         if (_isHost())
@@ -312,7 +331,10 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = false;
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        GetComponent<PolyNavAgent>().isStunned = true;
+        if (GetComponent<PolyNavAgent>() != null)
+        {
+            GetComponent<PolyNavAgent>().isStunned = true;
+        }
         Invoke("noMoreStun", duration);
     }
 
@@ -323,11 +345,14 @@ public class SimpleEnemyController : MonoBehaviour
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
 
-        tempMaxSpeed = GetComponent<PolyNavAgent>().maxSpeed;
-        tempVelocity = GetComponent<PolyNavAgent>().velocity;
-        GetComponent<PolyNavAgent>().maxSpeed = 0;
-        GetComponent<PolyNavAgent>().velocity = Vector2.zero;
-        GetComponent<PolyNavAgent>().isStunned = true;
+        if (GetComponent<PolyNavAgent>() != null)
+        {
+            tempMaxSpeed = GetComponent<PolyNavAgent>().maxSpeed;
+            tempVelocity = GetComponent<PolyNavAgent>().velocity;
+            GetComponent<PolyNavAgent>().maxSpeed = 0;
+            GetComponent<PolyNavAgent>().velocity = Vector2.zero;
+            GetComponent<PolyNavAgent>().isStunned = true;
+        }
         //StartCoroutine(stopTheStun(duration));
         Invoke("noMoreStun", duration);
     }
@@ -340,19 +365,24 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
-        GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
-        GetComponent<PolyNavAgent>().velocity = tempVelocity;
-        isStunned = false;
-        GetComponent<PolyNavAgent>().isStunned = false;
+        if (GetComponent<PolyNavAgent>() != null)
+        {
+            GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
+            GetComponent<PolyNavAgent>().velocity = tempVelocity;
+            isStunned = false;
+            GetComponent<PolyNavAgent>().isStunned = false;
+        }
     }
 
     public void noMoreStun()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
-        GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
-        GetComponent<PolyNavAgent>().velocity = tempVelocity;
-        GetComponent<PolyNavAgent>().isStunned = false;
-
+        if (GetComponent<PolyNavAgent>() != null)
+        {
+            GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
+            GetComponent<PolyNavAgent>().velocity = tempVelocity;
+            GetComponent<PolyNavAgent>().isStunned = false;
+        }
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
         isStunned = false;

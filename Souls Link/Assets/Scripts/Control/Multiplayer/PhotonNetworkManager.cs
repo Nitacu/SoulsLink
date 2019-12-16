@@ -48,10 +48,10 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks, ILobbyCallbacks
         PhotonNetwork.LeaveRoom();
         _lobbyUI.enterLobby();
     }
-
+    
     public void starGame()
     {
-        SceneManager.LoadScene("Arena");
+        SceneManager.LoadScene("PracticeRange");
     }
 
     public void registerName()
