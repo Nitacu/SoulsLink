@@ -54,5 +54,6 @@ MonoBehaviour:
   - reciveMovementArrows
   - reciveSetPlayersInChimera
   - getNextPosition
+  - getKill
   DisableAutoOpenWizard: 1
   ShowSettings: 1

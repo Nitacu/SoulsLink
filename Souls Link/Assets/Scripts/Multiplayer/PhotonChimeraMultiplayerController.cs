@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class PhotonChimeraMultiplayerController : MonoBehaviour
+public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPunObservable
 {
     private ChimeraController _chimeraController;
     private ChimeraSkillsController _chimeraSkills;
@@ -56,7 +56,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     public void sendSetPlayersInChimera()
     {
         Debug.Log("ya todos saben que estoy dentro de la quimera" + PhotonNetwork.LocalPlayer.NickName);
-        _photonView.RPC(RECIVE_PLAYERS_IN_CHIMERA,RpcTarget.OthersBuffered,PhotonNetwork.LocalPlayer);
+        _photonView.RPC(RECIVE_PLAYERS_IN_CHIMERA, RpcTarget.OthersBuffered, PhotonNetwork.LocalPlayer);
     }
 
     [PunRPC]
@@ -87,7 +87,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     {
         foreach (Player player in _playersInChimera)
         {
-            _photonView.RPC(RECIVE_MOVEMENT_ARROW,player, direction, playerType);
+            _photonView.RPC(RECIVE_MOVEMENT_ARROW, player, direction, playerType);
         }
     }
 
@@ -98,4 +98,18 @@ public class PhotonChimeraMultiplayerController : MonoBehaviour
     }
 
     #endregion
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(_chimeraController.Movement1);
+            stream.SendNext(_chimeraController._flip);
+        }
+        else
+        {
+            _chimeraController.Movement1 = (Vector2)stream.ReceiveNext();
+            _chimeraController._flip = (bool)stream.ReceiveNext();
+        }
+    }
 }

@@ -37,16 +37,6 @@ public class ChimeraAiming : PlayerAiming
         }
     }
 
-    public void setAim(Vector2 aim)
-    {
-        Vector2 movement = aim;
-        if (movement.magnitude > 0)
-        {
-            _aimDirection = Controller.Movement;
-            _aimDirection.Normalize();
-        }
-    }
-
     private void setCrossHair()
     {
         if (_chimeraCrosshair != null)

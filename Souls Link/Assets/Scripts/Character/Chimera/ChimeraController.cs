@@ -12,8 +12,11 @@ public class ChimeraController : PlayerMovement
     [SerializeField] private Vector2 _movement;
     public Vector2 Movement
     {
-        get { return _movement; }
+        get { return Movement1; }
     }
+
+    public Vector2 Movement1 { get => _movement; set => _movement = value; }
+
     [SerializeField] private Vector2[] _inputsMovements;
 
     bool[] _unFusionCheck;
@@ -71,7 +74,7 @@ public class ChimeraController : PlayerMovement
         if (!isDashing)
         {
 
-            _rb.velocity = _movement * Time.deltaTime * _speed;
+            _rb.velocity = Movement1 * Time.deltaTime * _speed;
 
             setAnimation();
         }
@@ -99,12 +102,12 @@ public class ChimeraController : PlayerMovement
     private void setAnimation()
     {
         //RotarSprite
-        if (_movement.x > 0)
+        if (Movement1.x > 0)
         {
             _renderer.flipX = false;
             _flip = false;
         }
-        else if (_movement.x < 0)
+        else if (Movement1.x < 0)
         {
             _renderer.flipX = true;
             _flip = true;
@@ -125,7 +128,7 @@ public class ChimeraController : PlayerMovement
             newinputMovement += input;
         }
 
-        _movement = newinputMovement;
+        Movement1 = newinputMovement;
     }
 
     public void setArrows(Vector2 direction, GameManager.Characters playerType)
