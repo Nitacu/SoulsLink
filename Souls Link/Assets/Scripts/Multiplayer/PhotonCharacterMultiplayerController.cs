@@ -51,6 +51,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
 
         _playerSkills._isMine = new PlayerSkills.DelegateMultiplayerController(isMine);
         _playerSkills._pushValueSkill = new PlayerSkills.DelegateMultiplayerControllerSendSkill(pushValueSkill);
+        _playerSkills._isHost = new PlayerSkills.DelegateMultiplayerController(isHost);
         _playerSkills._pushSendSkillChimera = new PlayerSkills.DelegateMultiplayerControllerSendSkillChimera(pushSendSkill);
 
         _playerAiming._isMine = new PlayerAiming.DelegateMultiplayerController(isMine);

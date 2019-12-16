@@ -15,6 +15,7 @@ public class PlayerSkills : MonoBehaviour
     #region delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
+    public DelegateMultiplayerController _isHost;
 
     public delegate void DelegateMultiplayerControllerSendSkill(float value, float index);
     public DelegateMultiplayerControllerSendSkill _pushValueSkill;
@@ -64,6 +65,11 @@ public class PlayerSkills : MonoBehaviour
             if (_isMine())
             {
                 _pushSendSkillChimera(_fusionTriggerRef._characterType, value, index);
+
+                if (index == 0 && !_isHost())//index 0 is Dash
+                {
+                    yield break;
+                }
 
                 _fusionTriggerRef.CurrentChimeraParent.
                     GetComponent<ChimeraSkillsController>().
