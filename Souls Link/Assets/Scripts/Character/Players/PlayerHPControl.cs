@@ -81,7 +81,7 @@ public class PlayerHPControl : MonoBehaviour
     public void healHP(float heal)
     {
         PlayerHealth += heal;
-        if(PlayerHealth > maxPlayerHealth)
+        if (PlayerHealth > maxPlayerHealth)
         {
             PlayerHealth = maxPlayerHealth;
         }
@@ -89,7 +89,7 @@ public class PlayerHPControl : MonoBehaviour
         Invoke("backToWhiteColor", 0.5f);
         if (GetComponentInChildren<HUDController>())
             GetComponentInChildren<HUDController>().setHealthBar(PlayerHealth);
-       
+
     }
 
     private void backToWhiteColor()
@@ -119,12 +119,16 @@ public class PlayerHPControl : MonoBehaviour
 
     public IEnumerator changeColor()
     {
-        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        if (GetComponentInChildren<SpriteRenderer>())
+            GetComponentInChildren<SpriteRenderer>().color = Color.red;
+
         canRecieveDamage = false;
         Debug.Log("canRecieveDamage = false");
 
         yield return new WaitForSeconds(0.5f);
-        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        if (GetComponentInChildren<SpriteRenderer>())
+            GetComponentInChildren<SpriteRenderer>().color = Color.white;
+
         canRecieveDamage = true;
         Debug.Log("canRecieveDamage = true");
     }
