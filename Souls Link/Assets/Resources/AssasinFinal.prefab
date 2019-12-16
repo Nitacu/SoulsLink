@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
-  chargeEffect: {fileID: 6983306071274696894, guid: c917fbc5b76169f4baf52b73902e70fa,
+  chargeEffect: {fileID: 6983306071274696894, guid: 585e925f6d564f04e8e0e6a8f723d18e,
     type: 3}
   _coolDown: 0
   dashDuration: 0.2
@@ -1395,16 +1395,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6226177120453663741}
     m_Modifications:
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerHUDCanvasAssassinRight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5184731068339265406, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1510,6 +1500,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerHUDCanvasAssassinRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -1586,16 +1586,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6226177120453663741}
     m_Modifications:
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerHUDCanvasAssassinLeft
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5184731068339265406, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1699,6 +1689,16 @@ PrefabInstance:
     - target: {fileID: 5184731068339265406, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerHUDCanvasAssassinLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

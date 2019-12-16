@@ -157,7 +157,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
                 case 4:
                     _playerSkills.Skill4PressDown1.Invoke();
                     break;
-                case 5:
+                case 0:
                     _playerSkills.DashPressDown.Invoke();
                     break;
             }

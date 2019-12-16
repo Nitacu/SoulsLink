@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
 
-    private Rigidbody2D _rb;
+    protected Rigidbody2D _rb;
     public Rigidbody2D RigidBodyPlayer
     {
         get { return _rb; }
@@ -18,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
     }
     private Vector2 _inputMovement = Vector2.zero;    
 
-    [SerializeField] private float _speed = 100;
-    [SerializeField] private Animator _anim;
-    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] protected float _speed = 100;
+    [SerializeField] protected Animator _anim;
+    [SerializeField] protected SpriteRenderer _renderer;
     const string VELOCITY_PARAMETER = "Velocity";
 
     [HideInInspector]

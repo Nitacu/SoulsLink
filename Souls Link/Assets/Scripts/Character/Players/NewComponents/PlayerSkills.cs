@@ -63,11 +63,11 @@ public class PlayerSkills : MonoBehaviour
         {
             if (_isMine())
             {
-                _pushSendSkillChimera(_fusionTriggerRef._characterType, value, index - 1);
+                _pushSendSkillChimera(_fusionTriggerRef._characterType, value, index);
 
                 _fusionTriggerRef.CurrentChimeraParent.
                     GetComponent<ChimeraSkillsController>().
-                    sendSkill(_fusionTriggerRef._characterType, value, index - 1);
+                    sendSkill(_fusionTriggerRef._characterType, value, index);
             }
 
             yield break;
@@ -124,11 +124,11 @@ public class PlayerSkills : MonoBehaviour
     }
 
     [Header("Dash")]
-    [SerializeField] UnityEvent dashPressDown = new UnityEvent();
+    [SerializeField] protected UnityEvent dashPressDown = new UnityEvent();
 
     private void OnDash(InputValue value)
     {
-        StartCoroutine(skillDelay(value.Get<float>(), dashPressDown, null, 5));
+        StartCoroutine(skillDelay(value.Get<float>(), dashPressDown, null, 0));
     }
 
     [Header("Skill 5")]
