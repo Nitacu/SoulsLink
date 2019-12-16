@@ -9,9 +9,11 @@ public class ChimeraAiming : PlayerAiming
     [SerializeField] private GameObject _chimeraCrosshair;
     [SerializeField] private float _chimeraCrosshairDistance = 2;
 
+    public ChimeraController Controller { get => _controller; set => _controller = value; }
+
     private void Awake()
     {
-        _controller = GetComponent<ChimeraController>();
+        Controller = GetComponent<ChimeraController>();
     }
 
     private void Start()
@@ -25,12 +27,22 @@ public class ChimeraAiming : PlayerAiming
         setCrossHair();
     }
 
-    private void setAim()
+    public void setAim()
     {
-        Vector2 movement = _controller.Movement;
+        Vector2 movement = Controller.Movement;
         if (movement.magnitude > 0)
         {
-            _aimDirection = _controller.Movement;
+            _aimDirection = Controller.Movement;
+            _aimDirection.Normalize();
+        }
+    }
+
+    public void setAim(Vector2 aim)
+    {
+        Vector2 movement = aim;
+        if (movement.magnitude > 0)
+        {
+            _aimDirection = Controller.Movement;
             _aimDirection.Normalize();
         }
     }

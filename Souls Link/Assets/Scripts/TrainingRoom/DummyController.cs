@@ -28,11 +28,9 @@ public class DummyController : MonoBehaviour
     public List<Transform> spawnPoints = new List<Transform>();
     public float movePointTime = 0.8f;
 
-    
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
-        if(room == roomOfDummy.ROOM2)
+        if (room == roomOfDummy.ROOM2)
         {
             target = movingPoint1;
         }
@@ -46,6 +44,7 @@ public class DummyController : MonoBehaviour
         if (room == roomOfDummy.ROOM4 || room == roomOfDummy.ROOM5)
         {
             GetComponent<PhotonTransformView>().enabled = false;
+            GetComponent<DummyController>().enabled = false;
             Invoke("changeLocationOfDummy", movePointTime);
         }
     }
