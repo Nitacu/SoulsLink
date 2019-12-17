@@ -27,6 +27,7 @@ public class LinealProjectile : Projectile
     }
     public float Damage { get; set; }
 
+    [SerializeField] private bool _destrutable = true;
 
     private void Update()
     {
@@ -83,11 +84,14 @@ public class LinealProjectile : Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("Enemy") && _projetileOwner != ProjectileOwner.ENEMY)
         {
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
-            Destroy(gameObject);
+
+            if (_destrutable)
+            {
+                Destroy(gameObject);
+            }
         }
         if (collision.CompareTag("Wall"))
         {

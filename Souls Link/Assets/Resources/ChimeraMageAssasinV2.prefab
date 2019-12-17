@@ -204,6 +204,7 @@ GameObject:
   - component: {fileID: 3959780191657516059}
   - component: {fileID: -6143667723569113649}
   - component: {fileID: 5513910298095565316}
+  - component: {fileID: -9115492719535823497}
   m_Layer: 8
   m_Name: ChimeraMageAssasinV2
   m_TagString: Player
@@ -247,8 +248,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.81}
-  m_Size: {x: 1.5, y: 0.5}
+  m_Offset: {x: 5.380052e-10, y: -0.41215363}
+  m_Size: {x: 1.5000007, y: 1.2957082}
   m_Direction: 1
 --- !u!114 &-2752827044414379547
 MonoBehaviour:
@@ -435,7 +436,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill4PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -9115492719535823497}
+        m_MethodName: makeStealth
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill4PressUp:
@@ -731,6 +743,24 @@ MonoBehaviour:
   _coolDown: 0.35
   _damage: 50
   canShoot: 1
+--- !u!114 &-9115492719535823497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 498141c73d6a0324c814ee507a452db0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _coolDown: 2
+  _stealthTime: 5
+  _mistLifeTime: 0
+  _mist: {fileID: 0}
+  offsetY: 0
 --- !u!1 &1700325172497557303
 GameObject:
   m_ObjectHideFlags: 0

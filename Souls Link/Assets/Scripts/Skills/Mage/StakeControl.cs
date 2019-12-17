@@ -5,7 +5,9 @@ using UnityEngine;
 public class StakeControl : MonoBehaviour
 {
     private float _damage = 0;
-   
+
+    [SerializeField] private bool _destrutable = true;
+
     public void setStake(float damage)
     {
         _damage = damage;
@@ -16,7 +18,11 @@ public class StakeControl : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
-            Destroy(gameObject);
+
+            if (_destrutable)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
