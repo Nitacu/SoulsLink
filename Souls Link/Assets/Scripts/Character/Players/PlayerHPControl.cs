@@ -77,8 +77,11 @@ public class PlayerHPControl : MonoBehaviour
     //las funciones del photon llaman a este metodo en las otras maquinas
     public void updateMultiplayerHealth(float playerHealth)
     {
-        _playerHealth = playerHealth;
-        StartCoroutine(changeColor());
+        if (playerHealth != _playerHealth)
+        {
+            _playerHealth = playerHealth;
+            StartCoroutine(changeColor());
+        }
     }
 
     public void healHP(float heal)
