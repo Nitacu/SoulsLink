@@ -143,10 +143,12 @@ public class FusionManager : MonoBehaviour
             }
         }
 
+        /*
         foreach (var player in _players)
         {
             player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
         }
+        */
 
         if (_isHost())
             StartCoroutine(createChimera(_players));
