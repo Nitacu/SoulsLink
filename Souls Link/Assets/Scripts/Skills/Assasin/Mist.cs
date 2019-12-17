@@ -104,6 +104,15 @@ public class Mist : Skill
         }
     }
 
+    public void makeStealth()
+    {
+        isStealth = true;
+        Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.1f;
+        gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
+        gameObject.layer = LayerMask.NameToLayer("Invisible");
+    }
+
     public void activateInsideMist()
     {
         insideMist = true;
