@@ -17,8 +17,6 @@ public class PlayerHPControl : MonoBehaviour
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
-    public delegate void DelegateMultiplayerControllerHealth(float health);
-    public DelegateMultiplayerControllerHealth _changeHealth;
     public delegate void DelegateMultiplayerControllerDestroy();
     public DelegateMultiplayerControllerDestroy _destroySelf;
     #endregion
@@ -35,8 +33,6 @@ public class PlayerHPControl : MonoBehaviour
             if (canRecieveDamage)
             {
                 PlayerHealth -= damage;
-                //envia la modificacion a todos
-                _changeHealth(PlayerHealth);
 
                 if (PlayerHealth < 0 && _isMine())
                 {

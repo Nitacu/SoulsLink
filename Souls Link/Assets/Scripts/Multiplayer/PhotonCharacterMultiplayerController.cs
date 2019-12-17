@@ -58,7 +58,6 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
 
         _hPControl._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
         _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
-        _hPControl._changeHealth = new PlayerHPControl.DelegateMultiplayerControllerHealth(changeHealth);
 
         _fusionTrigger._isMine = new FusionTrigger.DelegateMultiplayerController(isMine);
         _fusionTrigger._pushAddMeToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushAddMeToGeneralHost);
@@ -225,12 +224,6 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
                     StartCoroutine(GetComponentInChildren<HUDController>().receiveDamageEffect());
             }
         }
-    }
-
-    //envia el cambio de vida al servidor
-    public void changeHealth(float health)
-    {
-
     }
 
     #endregion
