@@ -250,7 +250,7 @@ public class SelectCharacter : MonoBehaviour
         {
             InputDevice[] devices = new InputDevice[1];
             var keyboards = InputSystem.FindControls("<Keyboard>");
-            var gamepads = InputSystem.FindControls("<Gamepads>");
+            var gamepads = InputSystem.FindControls("<Gamepad>");
 
             if (gamepads.Count > 0)//hay gamepads
             {

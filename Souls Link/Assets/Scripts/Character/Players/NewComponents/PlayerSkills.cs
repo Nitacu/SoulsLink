@@ -20,7 +20,7 @@ public class PlayerSkills : MonoBehaviour
     public delegate void DelegateMultiplayerControllerSendSkill(float value, float index);
     public DelegateMultiplayerControllerSendSkill _pushValueSkill;
 
-    public delegate void DelegateMultiplayerControllerSendSkillChimera(GameManager.Characters typeCharacter, float pressValue, float skillIndex);
+    public delegate void DelegateMultiplayerControllerSendSkillChimera(GameManager.Characters typeCharacter, float pressValue, float skillIndex, int playerID);
     public DelegateMultiplayerControllerSendSkillChimera _pushSendSkillChimera;
     #endregion
 
@@ -64,7 +64,7 @@ public class PlayerSkills : MonoBehaviour
         {
             if (_isMine())
             {
-                _pushSendSkillChimera(_fusionTriggerRef._characterType, value, index);
+                _pushSendSkillChimera(_fusionTriggerRef._characterType, value, index, _fusionTriggerRef.OnFusionID);
 
                 if (index == 0 && _isHost())//index 0 is dash
                 {
@@ -74,7 +74,7 @@ public class PlayerSkills : MonoBehaviour
 
                 _fusionTriggerRef.CurrentChimeraParent.
                     GetComponent<ChimeraSkillsController>().
-                    sendSkill(_fusionTriggerRef._characterType, value, index);
+                    sendSkill(_fusionTriggerRef._characterType, value, index, _fusionTriggerRef.OnFusionID);
             }
 
             yield break;
