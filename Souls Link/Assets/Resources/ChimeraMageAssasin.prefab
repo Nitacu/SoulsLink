@@ -650,7 +650,27 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  combos: []
+  _inputSkill1:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkill2:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkill3:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkill4:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkillReadingTime: 1
 --- !u!114 &4894933940535102675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -765,6 +785,7 @@ MonoBehaviour:
   _attackTime: 0.2
   _coolDown: 0.2
   _attackDamage: 20
+  _alwaysStrong: 0
   stillAttackOption: 0
 --- !u!114 &-8344357298788684280
 MonoBehaviour:

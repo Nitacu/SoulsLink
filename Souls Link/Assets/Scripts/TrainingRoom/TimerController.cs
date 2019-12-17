@@ -25,7 +25,6 @@ public class TimerController : MonoBehaviour
     {
         float t = Time.time - startTime;
         float timeToShow = secondsToEnd - t;
-        Debug.Log(t);
         string minutes = ((int)timeToShow / 60).ToString();
         string seconds = (timeToShow % 60).ToString("0");
 

@@ -1021,6 +1021,7 @@ MonoBehaviour:
   _attackTime: 0.2
   _coolDown: 0.2
   _attackDamage: 20
+  _alwaysStrong: 0
   stillAttackOption: 0
 --- !u!114 &1357541209
 MonoBehaviour:
@@ -1395,6 +1396,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6226177120453663741}
     m_Modifications:
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerHUDCanvasAssassinRight
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5184731068339265406, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1500,16 +1511,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerHUDCanvasAssassinRight
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5184731068090151622, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -1586,6 +1587,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6226177120453663741}
     m_Modifications:
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerHUDCanvasAssassinLeft
+      objectReference: {fileID: 0}
+    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5184731068339265406, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1689,16 +1700,6 @@ PrefabInstance:
     - target: {fileID: 5184731068339265406, guid: 1e97f0877a651cc458be0245c870c1eb,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerHUDCanvasAssassinLeft
-      objectReference: {fileID: 0}
-    - target: {fileID: 5184731068339265407, guid: 1e97f0877a651cc458be0245c870c1eb,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
