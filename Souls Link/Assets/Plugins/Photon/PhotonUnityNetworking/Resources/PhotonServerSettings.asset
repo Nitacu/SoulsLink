@@ -55,5 +55,6 @@ MonoBehaviour:
   - reciveSetPlayersInChimera
   - getNextPosition
   - getKill
+  - loadNickName
   DisableAutoOpenWizard: 1
   ShowSettings: 1

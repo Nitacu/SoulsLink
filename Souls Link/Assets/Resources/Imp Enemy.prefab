@@ -312,6 +312,7 @@ MonoBehaviour:
   _flip: 0
   _poisonParticles: {fileID: 7290071608702393268}
   isStunned: 0
+  isDummy: 0
   _projectile: {fileID: 4752920485378827313, guid: 883d1b47089bb3e4aace5bb6e7dd6412,
     type: 3}
   _damage: 20

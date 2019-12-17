@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
+using TMPro;
 
 public class PlayerSelectCharPanel : MonoBehaviour
 {
@@ -31,6 +33,7 @@ public class PlayerSelectCharPanel : MonoBehaviour
     [SerializeField] public GameObject ownCharacterSelection;
     [SerializeField] GameObject leftArrow;
     [SerializeField] GameObject rightArrow;
+    [SerializeField] TMP_Text _nickName;
 
     private void Awake()
     {
@@ -38,6 +41,12 @@ public class PlayerSelectCharPanel : MonoBehaviour
         ownCharacterSelection.SetActive(false);
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
+    }
+
+    [PunRPC]
+    public void loadNickName(string nickName)
+    {
+        _nickName.text = nickName;
     }
 
     [PunRPC]

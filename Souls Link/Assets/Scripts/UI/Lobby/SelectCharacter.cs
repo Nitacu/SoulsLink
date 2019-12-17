@@ -188,6 +188,7 @@ public class SelectCharacter : MonoBehaviour
                 selectCharComp.setCharSelection(_slots[i].getCharacterSelection(),
                     _slots[i].getLeftArrow(), _slots[i].getRightArrow(), currentLocalPlayer.Count - 1);
 
+                selectCharComp.CharactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("loadNickName", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer.NickName + " Friend");
                 break;
             }
             else

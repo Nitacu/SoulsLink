@@ -6,8 +6,6 @@ using Photon.Pun;
 
 public class SelectingCharacter : MonoBehaviour
 {
-
-
     [SerializeField] private float _offsetX = 110f;
 
     private int _characterIndexSelected = 0;
@@ -17,10 +15,7 @@ public class SelectingCharacter : MonoBehaviour
 
     public delegate void StarGame();
     public StarGame starGame;
-
     private int myID;
-    public int MyID { get => myID; set => myID = value; }
-    public GameObject CharactersPanel { get => _charactersPanel; set => _charactersPanel = value; }
 
     GameManager.Characters charSelected;
 
@@ -29,6 +24,18 @@ public class SelectingCharacter : MonoBehaviour
         resetCharacterPanelPosition();
         selectCharacter(_characterIndexSelected);        
         setArrows();
+    }
+
+    // para cargar mi nick name
+    private void Start()
+    {
+        _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("loadNickName", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer.NickName);
+    }
+
+    //borra el texto
+    private void OnDestroy()
+    {
+        _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("loadNickName", RpcTarget.AllBuffered, "");
     }
 
     public void setCharSelection(GameObject charactersPanel, GameObject leftArrow, GameObject rightArrow, int id)
@@ -149,4 +156,8 @@ public class SelectingCharacter : MonoBehaviour
             SceneManager.LoadScene("Arena");
         }    
     }
+
+    /////////////////////////////GET Y SET ////////////////////////
+    public int MyID { get => myID; set => myID = value; }
+    public GameObject CharactersPanel { get => _charactersPanel; set => _charactersPanel = value; }
 }

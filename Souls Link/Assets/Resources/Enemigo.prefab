@@ -241,6 +241,7 @@ MonoBehaviour:
   _flip: 0
   _poisonParticles: {fileID: 8046241994398163990}
   isStunned: 0
+  isDummy: 0
 --- !u!58 &6948308493364157914
 CircleCollider2D:
   m_ObjectHideFlags: 0
