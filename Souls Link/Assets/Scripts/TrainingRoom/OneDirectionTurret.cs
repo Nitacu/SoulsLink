@@ -10,9 +10,10 @@ public class OneDirectionTurret : MonoBehaviour
     public float _damage = 30;
     public Vector2 direction = Vector2.zero;
     // Start is called before the first frame update
-    void Start()
+
+    void OnEnable()
     {
-        InvokeRepeating("shootBullet", 1, fireRate);
+        Invoke("shootBullet", 1);
     }
 
     // Update is called once per frame
@@ -23,17 +24,22 @@ public class OneDirectionTurret : MonoBehaviour
 
     private void shootBullet()
     {
-        GameObject bullet = Instantiate(_bulletPrefab);
-        bullet.transform.position = gameObject.transform.position;
-
-        //rotation      
-        LinealProjectile projectile = bullet.GetComponent<LinealProjectile>();
-        if (projectile != null)
+        if (gameObject.active)
         {
-            projectile._projetileOwner = Projectile.ProjectileOwner.ENEMY;
-            projectile.Damage = _damage;
-            projectile.setRotation(direction);
-            projectile.Velocity = direction;
+            GameObject bullet = Instantiate(_bulletPrefab);
+            bullet.transform.position = gameObject.transform.position;
+
+            //rotation      
+            LinealProjectile projectile = bullet.GetComponent<LinealProjectile>();
+            if (projectile != null)
+            {
+                projectile._projetileOwner = Projectile.ProjectileOwner.ENEMY;
+                projectile.Damage = _damage;
+                projectile.setRotation(direction);
+                projectile.Velocity = direction;
+            }
+
+            Invoke("shootBullet", fireRate);
         }
     }
 }
