@@ -201,6 +201,9 @@ GameObject:
   - component: {fileID: 4894933940535102675}
   - component: {fileID: 2248004853499113603}
   - component: {fileID: 3041419759371742019}
+  - component: {fileID: 3959780191657516059}
+  - component: {fileID: -6143667723569113649}
+  - component: {fileID: 5513910298095565316}
   m_Layer: 8
   m_Name: ChimeraMageAssasinV2
   m_TagString: Player
@@ -369,7 +372,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Skill1PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3959780191657516059}
+        m_MethodName: pressKey
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill1PressUp:
@@ -379,7 +393,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill2PressDown:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: -6143667723569113649}
+        m_MethodName: attack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill2PressUp:
@@ -390,8 +415,8 @@ MonoBehaviour:
   Skill3PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: newPressKey
+      - m_Target: {fileID: 5513910298095565316}
+        m_MethodName: shotStake
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -405,18 +430,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill3PressUp:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: newUnpress
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill4PressDown:
@@ -587,7 +601,27 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  combos: []
+  _inputSkill1:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkill2:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkill3:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkill4:
+  - _state: 0
+    _currentCooldown: 0
+  - _state: 0
+    _currentCooldown: 0
+  _inputSkillReadingTime: 1
 --- !u!114 &4894933940535102675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -636,6 +670,67 @@ MonoBehaviour:
   _stunDuration: 2
   dashSpeed: 15
   isDashing: 0
+--- !u!114 &3959780191657516059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 658417238fa4b424b88384957d31cc22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _distance: 1
+  _decoyShadow: {fileID: 1933650003457465940, guid: 5b77d1183f51f30418fbeb6e2b4fd34d,
+    type: 3}
+  _coolDown: 1
+  clones: []
+  contClones: 0
+  _tornadoLifeTime: 2
+  _tornadoDamage: 15
+  _tornado: {fileID: 1033696519475029628, guid: c03b1d8ba6bea204cbf016f459be2d5d,
+    type: 3}
+--- !u!114 &-6143667723569113649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e39010d5a1242743905a87bc0f93567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 8
+  _attackPrefab: {fileID: 2428801584997393525, guid: 9a9ebab44366a3f4ba31242f4338f085,
+    type: 3}
+  _attackTime: 0.2
+  _coolDown: 0.2
+  _attackDamage: 20
+  _alwaysStrong: 1
+  stillAttackOption: 0
+--- !u!114 &5513910298095565316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 626d7c45bbbb03342b90563261972782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _stakePrefab: {fileID: 2560435101665407758, guid: 5219a51ef31f8744e922b786afde4cf5,
+    type: 3}
+  _coolDown: 0.35
+  _damage: 50
+  canShoot: 1
 --- !u!1 &1700325172497557303
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,7 +819,7 @@ GameObject:
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2832088175166299083
 Transform:
   m_ObjectHideFlags: 0
@@ -900,7 +995,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6967650742674936338
 Transform:
   m_ObjectHideFlags: 0
@@ -1215,7 +1310,7 @@ GameObject:
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9020450545036606045
 Transform:
   m_ObjectHideFlags: 0
@@ -1266,7 +1361,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &9127764686048007876
 RectTransform:
   m_ObjectHideFlags: 0

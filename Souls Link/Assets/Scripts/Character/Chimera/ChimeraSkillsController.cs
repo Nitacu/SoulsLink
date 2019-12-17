@@ -50,18 +50,26 @@ public class ChimeraSkillsController : PlayerSkills
         if (canLaunchSkill(_inputSkill1))
         {
             Debug.Log("Launch skill 1");
+            StartCoroutine(skillDelay(1, Skill1PressDown, null, 1));
+            resetInputSkillOnLaunch(_inputSkill1);
         }
         if (canLaunchSkill(_inputSkill2))
         {
             Debug.Log("Launch skill 2");
+            StartCoroutine(skillDelay(1, Skill2PressDown, null, 2));
+            resetInputSkillOnLaunch(_inputSkill2);
         }
         if (canLaunchSkill(_inputSkill3))
         {
             Debug.Log("Launch skill 3");
+            StartCoroutine(skillDelay(1, Skill3PressDown, null, 3));
+            resetInputSkillOnLaunch(_inputSkill3);
         }
         if (canLaunchSkill(_inputSkill4))
         {
             Debug.Log("Launch skill 4");
+            StartCoroutine(skillDelay(1, Skill4PressDown, null, 4));
+            resetInputSkillOnLaunch(_inputSkill4);
         }
     }
 
@@ -142,6 +150,7 @@ public class ChimeraSkillsController : PlayerSkills
     {
         Debug.Log("send Skill v2 RECIBIO");
         setInputSkillArrays(pressValue, skillIndex, ID);
+        return;
 
         //Ver chimera type para saber qué orden de la Skill Mandar
         List<GameManager.Characters> chimeraTypes = GetComponent<ChimeraTypes>()._types;

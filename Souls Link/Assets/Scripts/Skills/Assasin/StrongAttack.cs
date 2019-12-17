@@ -11,9 +11,11 @@ public class StrongAttack : Skill
     [SerializeField] private float _coolDown;
     [SerializeField] private float _attackDamage;
 
+    [SerializeField] private bool _alwaysStrong = false;
+
     private float _coolDownTracker;
     private Vector2 direction;
-    
+
 
     public bool stillAttackOption = false;
 
@@ -30,7 +32,7 @@ public class StrongAttack : Skill
         {
             _coolDownTracker -= Time.deltaTime;
         }
-       
+
     }
 
     public void attack()
@@ -38,7 +40,6 @@ public class StrongAttack : Skill
         if (_coolDownTracker <= 0)
         {
             _coolDownTracker = _coolDown;
-            
 
             if (stillAttackOption)
             {
@@ -48,18 +49,24 @@ public class StrongAttack : Skill
             {
                 _attackReference = Instantiate(_attackPrefab, gameObject.transform);
                 _attackReference.transform.localPosition = new Vector2(0, GetComponent<PlayerAiming>().getOffsetY());
-                
+
             }
-            if (GetComponent<Mist>().IsStealth)
+
+            if (GetComponent<Mist>())
             {
-                _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage * 2;
+                if (GetComponent<Mist>().IsStealth)
+                {
+                    _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage * 2;
+                }
+                else
+                {
+                    _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
+                }
             }
-            else
-            {
-                _attackReference.GetComponentInChildren<StrongAttackController>().damageToEnemies = _attackDamage;
-            }
+
             getDirection();
-            _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction, GetComponent<Dash>().chargePercent, gameObject);
+
+            _attackReference.GetComponentInChildren<StrongAttackController>().setDirection(direction, (_alwaysStrong) ? 100 : GetComponent<Dash>().chargePercent, gameObject);
             StartCoroutine(destroyAttack(_attackReference, _attackTime));
         }
     }
@@ -67,8 +74,8 @@ public class StrongAttack : Skill
 
 
     private void getDirection()
-    {       
-        direction = GetComponent<PlayerAiming>().AimDirection.normalized;      
+    {
+        direction = GetComponent<PlayerAiming>().AimDirection.normalized;
     }
 
     IEnumerator destroyAttack(GameObject attack, float attackTime)

@@ -8,6 +8,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
 {
     private ChimeraController _chimeraController;
     private ChimeraSkillsController _chimeraSkills;
+    private PlayerHPControl _chimeraHP;
     public PhotonView _photonView;
     public List<Player> _playersInChimera = new List<Player>();
 
@@ -31,6 +32,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     {
         _chimeraController = GetComponent<ChimeraController>();
         _chimeraSkills = GetComponent<ChimeraSkillsController>();
+        _chimeraHP = GetComponent<PlayerHPControl>();
 
         _chimeraController._setPlayersInFusion = new ChimeraController.DelegateMultiplayerControllerIDs(pushSetPlayersInFusion);
         _chimeraController._isMine = new ChimeraController.DelegateMultiplayerController(isMine);
@@ -39,6 +41,8 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._isHost = new ChimeraController.DelegateMultiplayerController(isHost);
 
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
+
+        _chimeraHP._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
     }
 
     #region players que estan dentro de la quimera

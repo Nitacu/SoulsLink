@@ -11,29 +11,30 @@ public class MineController : MonoBehaviour
     private float offsetY = -0.3f;
     private float electricCost = 45;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
         {
+            applyDamage(collision.gameObject);
+            /*
             Vector3 newTornadoPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
             collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(false);
             GameObject temp = Instantiate(_tornado, newTornadoPosition, Quaternion.identity);
             temp.GetComponent<TornadoController>().destroyTornado(_tornadoLifeTime);           
             Destroy(gameObject);
+            */
         }
+    }
+
+    public void applyDamage(GameObject collision)
+    {
+        Vector3 newTornadoPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
+        collision.gameObject.GetComponent<SimpleEnemyController>().recieveDamage(_damage);
+        collision.gameObject.GetComponent<SimpleEnemyController>().stopWalking(false);
+        GameObject temp = Instantiate(_tornado, newTornadoPosition, Quaternion.identity);
+        temp.GetComponent<TornadoController>().destroyTornado(_tornadoLifeTime);
+        Destroy(gameObject);
     }
 
     public void setBomb(float tornadoLifeTime, float damage, GameObject tornado, float chargePercent, GameObject playerReference)
