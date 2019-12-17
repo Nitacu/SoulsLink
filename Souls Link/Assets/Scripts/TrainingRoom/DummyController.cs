@@ -18,8 +18,8 @@ public class DummyController : MonoBehaviour
     public roomOfDummy room;
 
     [Header("Room 2 and 3 dummy settings")]
-    public Transform movingPoint1;
-    public Transform movingPoint2;
+    public Transform movingPoint1 = null;
+    public Transform movingPoint2 = null;
     public float disappearingRate = 1.5f;
     public float disappearingTime = 0.5f;
     private Transform target;
@@ -27,6 +27,8 @@ public class DummyController : MonoBehaviour
     [Header("Room 4 dummy settings")]
     public List<Transform> spawnPoints = new List<Transform>();
     public float movePointTime = 0.8f;
+
+    private int currentPosition = 0;
 
     private void OnEnable()
     {
@@ -41,7 +43,7 @@ public class DummyController : MonoBehaviour
             Invoke("disappearTargetRoom3", disappearingRate);
         }
 
-        if (room == roomOfDummy.ROOM4 || room == roomOfDummy.ROOM5)
+        if (room == roomOfDummy.ROOM4)
         {
             GetComponent<PhotonTransformView>().enabled = false;
             Invoke("changeLocationOfDummy", movePointTime);
@@ -96,22 +98,25 @@ public class DummyController : MonoBehaviour
 
     private void room3DummyBehaviour()
     {
-        float speed = 6.5f;
-        // Move our position a step closer to the target.
-        float step = speed * Time.deltaTime; // calculate distance to move
-        transform.position = Vector3.MoveTowards(transform.position, target.position, step); // move
-
-        //Checks if it's relatively close to target
-        if (Vector3.Distance(transform.position, target.position) < 0.001f)
+        if (target != null)
         {
-            // Swap target
-            if (target == movingPoint1)
+            float speed = 4f;
+            // Move our position a step closer to the target.
+            float step = speed * Time.deltaTime; // calculate distance to move
+            transform.position = Vector3.MoveTowards(transform.position, target.position, step); // move
+
+            //Checks if it's relatively close to target
+            if (Vector3.Distance(transform.position, target.position) < 0.001f)
             {
-                target = movingPoint2;
-            }
-            else
-            {
-                target = movingPoint1;
+                // Swap target
+                if (target == movingPoint1)
+                {
+                    target = movingPoint2;
+                }
+                else
+                {
+                    target = movingPoint1;
+                }
             }
         }
     }
@@ -136,18 +141,22 @@ public class DummyController : MonoBehaviour
 
     private void changeLocationOfDummy()
     {
-        float random = Random.Range(0, spawnPoints.Count-1);
+        currentPosition++;
+        if(currentPosition > spawnPoints.Count - 1)
+        {
+            currentPosition = 0;
+        }
 
         if (PhotonNetwork.IsMasterClient)
         {
-            if (gameObject.transform.position == spawnPoints[(int)random].position)
+            if (gameObject.transform.position == spawnPoints[currentPosition].position)
             {
                 changeLocationOfDummy();
             }
             else
             {
-                GetComponent<PhotonEnemyMultiplayerController>().setNextPosition((int)random);
-                transform.position = spawnPoints[(int)random].position;
+                GetComponent<PhotonEnemyMultiplayerController>().setNextPosition(currentPosition);
+                transform.position = spawnPoints[currentPosition].position;
                 Invoke("changeLocationOfDummy", movePointTime);
             }
         }
