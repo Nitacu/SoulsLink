@@ -22,14 +22,15 @@ public class SelectingCharacter : MonoBehaviour
     private void OnEnable()
     {
         resetCharacterPanelPosition();
-        selectCharacter(_characterIndexSelected);        
+        selectCharacter(_characterIndexSelected);
         setArrows();
     }
 
     // para cargar mi nick name
     private void Start()
     {
-        _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("loadNickName", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer.NickName);
+        if (FindObjectOfType<SelectCharacter>().CurrentLocalPlayer.Count == 1)
+            _charactersPanel.GetComponentInParent<PlayerSelectCharPanel>()._photonView.RPC("loadNickName", RpcTarget.AllBuffered, PhotonNetwork.LocalPlayer.NickName);
     }
 
     //borra el texto
@@ -124,7 +125,7 @@ public class SelectingCharacter : MonoBehaviour
         }
 
         GameManager.GetInstace()._charactersList[MyID] = _characterEnum;
-        
+
         //guardar tipo y bind
         Debug.Log("Selecting Character . Select character . MyId; " + MyID);
         GameManager.GetInstace()._charactersSetupList[MyID].characterType = _characterEnum;
@@ -145,7 +146,7 @@ public class SelectingCharacter : MonoBehaviour
     }
 
     public void OnStartGame()
-    {       
+    {
         StartGame();
     }
 
@@ -154,7 +155,7 @@ public class SelectingCharacter : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             SceneManager.LoadScene("Arena");
-        }    
+        }
     }
 
     /////////////////////////////GET Y SET ////////////////////////
