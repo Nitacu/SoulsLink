@@ -26,6 +26,16 @@ public class ChimeraSkillsController : PlayerSkills
 
     [SerializeField] private float _inputSkillReadingTime = 1f;
 
+    [SerializeField] private List<GameObject> inputFeedBack = new List<GameObject>();
+
+    private void Start()
+    {
+        foreach (var item in inputFeedBack)
+        {
+            item.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         //cooldown handle
@@ -77,7 +87,7 @@ public class ChimeraSkillsController : PlayerSkills
     {
         foreach (var inputSkill in inputSkills)
         {
-            inputSkill._state = false;            
+            inputSkill._state = false;
         }
     }
 
@@ -110,13 +120,15 @@ public class ChimeraSkillsController : PlayerSkills
         }
     }
 
-    private void setArrayValue(float pressValue, int ID, InputSkill[] inputSkill)
+    private void setArrayValue(float pressValue, int ID, InputSkill[] inputSkill, int skillIndex, GameManager.Characters characterType)
     {
         if (pressValue == 1)//Pressed
         {
             //hacer true al instante
             inputSkill[ID]._state = true;
             inputSkill[ID]._currentCooldown = _inputSkillReadingTime;
+            setSkillFeedback(characterType, skillIndex, true);
+
         }
         else if (pressValue == 0)//Released
         {
@@ -125,31 +137,48 @@ public class ChimeraSkillsController : PlayerSkills
         }
     }
 
-    private void setInputSkillArrays(float pressValue, float skillIndex, int ID)
+    private void setInputSkillArrays(float pressValue, float skillIndex, int ID, GameManager.Characters _characteryType)
     {
         switch (skillIndex)
         {
             case 1:
-                setArrayValue(pressValue, ID, _inputSkill1);
+                setArrayValue(pressValue, ID, _inputSkill1, 1, _characteryType);
                 break;
             case 2:
-                setArrayValue(pressValue, ID, _inputSkill2);
+                setArrayValue(pressValue, ID, _inputSkill2, 2, _characteryType);
                 break;
             case 3:
-                setArrayValue(pressValue, ID, _inputSkill3);
+                setArrayValue(pressValue, ID, _inputSkill3, 3, _characteryType);
                 break;
             case 4:
-                setArrayValue(pressValue, ID, _inputSkill4);
+                setArrayValue(pressValue, ID, _inputSkill4, 4, _characteryType);
                 break;
             default:
                 break;
         }
     }
 
+    public void setSkillFeedback(GameManager.Characters typeCharacter, int skillIndex, bool active)
+    {
+        if (inputFeedBack.Count > 0)
+        {
+            foreach (var arrow in inputFeedBack)
+            {
+                ChimeraSkillFeedBack chimeraSkillFeedBack = arrow.GetComponent<ChimeraSkillFeedBack>();
+
+                if (chimeraSkillFeedBack.CharacterType == typeCharacter)
+                {
+                    chimeraSkillFeedBack.gameObject.SetActive(true);
+                    chimeraSkillFeedBack.setSkill(active, skillIndex, _inputSkillReadingTime);
+                }
+            }
+        }
+    }
+
     public void sendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex, int ID)
     {
         Debug.Log("send Skill v2 RECIBIO");
-        setInputSkillArrays(pressValue, skillIndex, ID);
+        setInputSkillArrays(pressValue, skillIndex, ID, typeCharacter);
         return;
 
         //Ver chimera type para saber qué orden de la Skill Mandar
