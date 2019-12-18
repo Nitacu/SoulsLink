@@ -16,6 +16,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     private const string SET_PLAYERS = "setPlayersInFusion";
     private const string SEND_MOVEMENT = "sendMovement";
     private const string RECIVE_MOVEMENT_ARROW = "reciveMovementArrows";
+    private const string RECIVE_FEEDBACK_SKILL = "reciveFeedBackSkills";
     private const string RECIVE_PLAYERS_IN_CHIMERA = "reciveSetPlayersInChimera";
 
     public bool isMine()
@@ -41,6 +42,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._isHost = new ChimeraController.DelegateMultiplayerController(isHost);
 
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
+        _chimeraSkills._feedbackSkill = new ChimeraSkillsController.DelegateMultiplayerFeedbackSkill(sendFeedBackSkills);
 
         _chimeraHP._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
     }
@@ -103,6 +105,24 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     }
 
     #endregion
+
+    #region FeedBack skills
+    public void sendFeedBackSkills(GameManager.Characters typeCharacter, int skillIndex, bool active)
+    {
+        foreach (Player player in _playersInChimera)
+        {
+            _photonView.RPC(RECIVE_FEEDBACK_SKILL, player, typeCharacter, skillIndex, active);
+        }
+    }
+
+    [PunRPC]
+    public void reciveFeedBackSkills(GameManager.Characters typeCharacter, int skillIndex, bool active)
+    {
+        _chimeraSkills.setSkillFeedback(typeCharacter, skillIndex, active);
+    }
+
+    #endregion
+
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
