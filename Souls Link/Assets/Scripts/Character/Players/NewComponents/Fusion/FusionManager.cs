@@ -28,6 +28,8 @@ public class FusionManager : MonoBehaviour
     {
         int count = 0;
 
+
+        //recorre arreglo players para saber cuántos hay en el frame
         foreach (var player in _playersToFusion)
         {
             if (player != null)
@@ -36,6 +38,7 @@ public class FusionManager : MonoBehaviour
             }
         }
 
+        //si hay dos o más procede a ver si se pueden fusionar
         if (count >= 2)
         {
             checkPlayers();
@@ -52,10 +55,7 @@ public class FusionManager : MonoBehaviour
             if (_playersToFusion[i] != null)
             {
                 List<GameObject> _unMatchedPlayers = new List<GameObject>();
-
                 Vector2 currentPlayerPosition = _playersToFusion[i].transform.position;
-
-                //bool canFusionWithSomeOne = false;
 
                 for (int j = 0; j < _playersToFusion.Length; j++)
                 {
@@ -64,19 +64,17 @@ public class FusionManager : MonoBehaviour
                         Vector2 otherPlayerPosition = _playersToFusion[j].transform.position;
                         float distance = Vector2.Distance(currentPlayerPosition, otherPlayerPosition);
 
-                        if (distance <= _distanceToFusion)
-                        {
-                            //canFusionWithSomeOne = true;
-                        }
-                        else
+                        //Guarda con quienes no se puede fusionar
+
+                        if (distance > _distanceToFusion)
                         {
                             _unMatchedPlayers.Add(_playersToFusion[j]);
                         }
                     }
                 }
 
-
                 //Analizar en lista de player que se pueden fusionar
+
                 if (_unMatchedPlayers.Count == 0)//Matcheo con todos se puede fusionar
                 {
                     _playersCanFusion.Add(_playersToFusion[i]);
@@ -126,10 +124,7 @@ public class FusionManager : MonoBehaviour
         else
         {
             Debug.Log("Players Non Repeated < 2: " + _playersNonRepeated.Count);
-
-
         }
-
     }
 
     private void FusionarPlayers(List<GameObject> _players)
@@ -141,14 +136,7 @@ public class FusionManager : MonoBehaviour
             {
                 _playersToFusion[i] = null;
             }
-        }
-
-        /*
-        foreach (var player in _players)
-        {
-            player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
-        }
-        */
+        }   
 
         if (_isHost())
             StartCoroutine(createChimera(_players));
@@ -181,8 +169,10 @@ public class FusionManager : MonoBehaviour
             GameObject chimeraTocreate = selectCorrectChimera(_players);
             string chimeraName = chimeraTocreate.name;
 
-            //Crear chimera        
-            GameObject _chimera = PhotonNetwork.Instantiate(chimeraName, newPos,Quaternion.identity);
+            //Crear chimera   
+            Debug.Log("SE VAN A FUSIONAR: " + _players.Count + " JUGADORES");
+
+            GameObject _chimera = PhotonNetwork.Instantiate(chimeraName, newPos, Quaternion.identity);
             _chimera.transform.position = newPos;
 
             ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
@@ -198,7 +188,6 @@ public class FusionManager : MonoBehaviour
 
             //Se debe llamar en los demás también
             chimeraController.setPlayersInFusion(ids);//local
-
 
             StartCoroutine(waitForSetPlayer(chimeraController, ids));//para todas las maquinas
         }
@@ -228,7 +217,7 @@ public class FusionManager : MonoBehaviour
             {
                 chimeraToCreate = chimera;
                 return chimeraToCreate;
-            } 
+            }
         }
 
         return _chimeraTwoPlayersBase;
