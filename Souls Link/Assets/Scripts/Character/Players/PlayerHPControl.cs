@@ -109,6 +109,11 @@ public class PlayerHPControl : MonoBehaviour
         deflectsDamage = true;
     }
 
+    public void setInmune(bool wantInmune)
+    {
+        canRecieveDamage = !wantInmune;
+    }
+
     public void setStunReflectMode()
     {
         canRecieveDamage = false;
