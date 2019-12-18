@@ -92,10 +92,7 @@ public class Mist : Skill
                 tmp.a = 1f;
                 gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
                 gameObject.layer = LayerMask.NameToLayer("Player");
-                if (gameObject.GetComponent<PlayerHPControl>())
-                {
-                    gameObject.GetComponent<PlayerHPControl>().setInmune(false);
-                }
+                disolveStealth();
             }
         }
         else
@@ -106,20 +103,11 @@ public class Mist : Skill
             gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
             gameObject.layer = LayerMask.NameToLayer("Invisible");
         }
-    }
+    }    
 
-    public void makeStealth()
+    public virtual void disolveStealth()
     {
-        isStealth = true;
-        Color tmp = GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color;
-        tmp.a = 0.1f;
-        gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
-        gameObject.layer = LayerMask.NameToLayer("Invisible");
 
-        if (gameObject.GetComponent<PlayerHPControl>())
-        {
-            gameObject.GetComponent<PlayerHPControl>().setInmune(true);
-        }
     }
 
     public void activateInsideMist()

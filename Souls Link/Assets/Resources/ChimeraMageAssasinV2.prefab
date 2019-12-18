@@ -80,6 +80,53 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &256365140035286297
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1053627906719031818}
+  - component: {fileID: 4918992582306332765}
+  m_Layer: 13
+  m_Name: WallCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1053627906719031818
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256365140035286297}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1259665957190803043}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &4918992582306332765
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256365140035286297}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 5.380052e-10, y: -0.41215363}
+  m_Size: {x: 1.5000007, y: 1.2957082}
+  m_Direction: 1
 --- !u!1 &599175826948154117
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,7 +411,7 @@ GameObject:
   - component: {fileID: 3959780191657516059}
   - component: {fileID: -6143667723569113649}
   - component: {fileID: 5513910298095565316}
-  - component: {fileID: -9115492719535823497}
+  - component: {fileID: 3900531503755944199}
   m_Layer: 8
   m_Name: ChimeraMageAssasinV2
   m_TagString: Player
@@ -394,6 +441,7 @@ Transform:
   - {fileID: 1700325172497557296}
   - {fileID: 3986107975044176132}
   - {fileID: 615637741693591158}
+  - {fileID: 1053627906719031818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -599,7 +647,7 @@ MonoBehaviour:
   Skill4PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: -9115492719535823497}
+      - m_Target: {fileID: 3900531503755944199}
         m_MethodName: makeStealth
         m_Mode: 1
         m_Arguments:
@@ -908,7 +956,7 @@ MonoBehaviour:
   _coolDown: 0.35
   _damage: 50
   canShoot: 1
---- !u!114 &-9115492719535823497
+--- !u!114 &3900531503755944199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -917,7 +965,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1259665957190803052}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498141c73d6a0324c814ee507a452db0, type: 3}
+  m_Script: {fileID: 11500000, guid: d70af4adf3375e34b8bb7beb531dfed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
@@ -926,6 +974,7 @@ MonoBehaviour:
   _mistLifeTime: 0
   _mist: {fileID: 0}
   offsetY: 0
+  _wallCollider: {fileID: 256365140035286297}
 --- !u!1 &1700325172497557303
 GameObject:
   m_ObjectHideFlags: 0
