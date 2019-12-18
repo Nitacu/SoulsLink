@@ -5,7 +5,7 @@ using Photon.Pun;
 
 public class FusionManager : MonoBehaviour
 {
-    [SerializeField] private float _distanceToFusion = 10;
+    [SerializeField] private float _distanceToFusion = 3;
 
     private GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
 

@@ -53410,6 +53410,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1259665957190803052, guid: 37c52ba94a52c5a4d9322277889b190d,
         type: 3}
+    - target: {fileID: 2401559828338498407, guid: c76c469663f8a624795fb9fa92d994b7,
+        type: 3}
+      propertyPath: _distanceToFusion
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c76c469663f8a624795fb9fa92d994b7, type: 3}
 --- !u!1001 &4892551910825549771
