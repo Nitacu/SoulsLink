@@ -26,9 +26,6 @@ public class ChimeraSkillFeedBack : ChimeraArrow
 
         if (active == 1)//Pressed
             isActive = true;
-        else if (active == 0)//Released
-            isActive = false;
-
 
         skillIndex -= 1;
 

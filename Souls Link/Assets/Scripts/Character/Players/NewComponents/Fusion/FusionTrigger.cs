@@ -68,7 +68,6 @@ public class FusionTrigger : MonoBehaviour
 
     public void DeactivateComponentsOnFusion()
     {
-
         //Desactivar Skills
         PlayerSkills playerSkills = GetComponent<PlayerSkills>();
         playerSkills.enabled = false;
@@ -87,6 +86,8 @@ public class FusionTrigger : MonoBehaviour
 
         Destroy(gameObject.GetComponent<Rigidbody2D>());
         gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        gameObject.GetComponent<PlayerHPControl>().enabled = false;
+
     }
 
     public void ActiveComponentsOnFusion()
@@ -114,6 +115,8 @@ public class FusionTrigger : MonoBehaviour
         GetComponent<PlayerMovement>().RigidBodyPlayer = rb;
 
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
+        gameObject.GetComponent<PlayerHPControl>().enabled = true;
+
     }
 
     private void OnFusion(InputValue action)
