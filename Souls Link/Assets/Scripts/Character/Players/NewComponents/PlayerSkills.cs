@@ -71,10 +71,10 @@ public class PlayerSkills : MonoBehaviour
                     Debug.Log("Dashing no soy host");
                     yield return new WaitForSeconds(DELAY);
                 }
-
+                /*
                 _fusionTriggerRef.CurrentChimeraParent.
                     GetComponent<ChimeraSkillsController>().
-                    sendSkill(_fusionTriggerRef._characterType, value, index, _fusionTriggerRef.OnFusionID);
+                    sendSkill(_fusionTriggerRef._characterType, value, index, _fusionTriggerRef.OnFusionID);*/
             }
 
             yield break;

@@ -56,5 +56,6 @@ MonoBehaviour:
   - getNextPosition
   - getKill
   - loadNickName
+  - reciveFeedBackSkills
   DisableAutoOpenWizard: 1
   ShowSettings: 1

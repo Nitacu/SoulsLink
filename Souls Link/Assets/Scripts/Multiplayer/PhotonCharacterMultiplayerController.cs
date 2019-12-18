@@ -191,7 +191,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         FusionTrigger fusiontrigger = GetComponent<FusionTrigger>();
         fusiontrigger.CurrentChimeraParent.GetComponent<PhotonChimeraMultiplayerController>().sendFeedBackSkills(typeCharacter, (int)skillIndex, pressValue);
 
-        _photonView.RPC(SEND_SKILL, RpcTarget.Others, typeCharacter, pressValue, skillIndex, playerID);
+        _photonView.RPC(SEND_SKILL, RpcTarget.AllViaServer, typeCharacter, pressValue, skillIndex, playerID);
     }
 
     //Le envía a las demás máquinas la skill
