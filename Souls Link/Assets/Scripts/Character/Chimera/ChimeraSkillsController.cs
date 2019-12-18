@@ -15,8 +15,6 @@ public class ChimeraSkillsController : PlayerSkills
     #region Delegate
     public delegate bool DelegateMultiplayerSkillController();
     public DelegateMultiplayerSkillController _isMine;
-    public delegate void DelegateMultiplayerFeedbackSkill(GameManager.Characters typeCharacter, int skillIndex, bool active);
-    public DelegateMultiplayerFeedbackSkill _feedbackSkill;
     #endregion
 
     #region InputPairs
@@ -129,7 +127,6 @@ public class ChimeraSkillsController : PlayerSkills
             //hacer true al instante
             inputSkill[ID]._state = true;
             inputSkill[ID]._currentCooldown = _inputSkillReadingTime;
-            _feedbackSkill(characterType, skillIndex, true);
 
         }
         else if (pressValue == 0)//Released
@@ -160,7 +157,7 @@ public class ChimeraSkillsController : PlayerSkills
         }
     }
 
-    public void setSkillFeedback(GameManager.Characters typeCharacter, int skillIndex, bool active)
+    public void setSkillFeedback(GameManager.Characters typeCharacter, int skillIndex, float active)
     {
         if (inputFeedBack.Count > 0)
         {

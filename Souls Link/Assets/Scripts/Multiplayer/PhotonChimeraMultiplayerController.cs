@@ -42,7 +42,6 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._isHost = new ChimeraController.DelegateMultiplayerController(isHost);
 
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
-        _chimeraSkills._feedbackSkill = new ChimeraSkillsController.DelegateMultiplayerFeedbackSkill(sendFeedBackSkills);
 
         _chimeraHP._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
     }
@@ -107,7 +106,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     #endregion
 
     #region FeedBack skills
-    public void sendFeedBackSkills(GameManager.Characters typeCharacter, int skillIndex, bool active)
+    public void sendFeedBackSkills(GameManager.Characters typeCharacter, int skillIndex, float active)
     {
         foreach (Player player in _playersInChimera)
         {
@@ -116,7 +115,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     }
 
     [PunRPC]
-    public void reciveFeedBackSkills(GameManager.Characters typeCharacter, int skillIndex, bool active)
+    public void reciveFeedBackSkills(GameManager.Characters typeCharacter, int skillIndex, float active)
     {
         _chimeraSkills.setSkillFeedback(typeCharacter, skillIndex, active);
     }

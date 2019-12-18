@@ -197,6 +197,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
     {
         FusionTrigger fusiontrigger = GetComponent<FusionTrigger>();
         fusiontrigger.CurrentChimeraParent.GetComponent<ChimeraSkillsController>().sendSkill(typeCharacter, pressValue, skillIndex, playerID);
+        fusiontrigger.CurrentChimeraParent.GetComponent<PhotonChimeraMultiplayerController>().sendFeedBackSkills(typeCharacter, (int)skillIndex, pressValue);
     }
 
     #endregion

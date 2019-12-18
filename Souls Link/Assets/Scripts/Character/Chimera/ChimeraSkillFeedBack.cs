@@ -6,7 +6,7 @@ public class ChimeraSkillFeedBack : ChimeraArrow
 {
     [SerializeField] GameObject[] skills = new GameObject[4];
     private float activeCooldown = 1;
-    public float currentActiveCooldown = 0; 
+    public float currentActiveCooldown = 0;
 
     private void Update()
     {
@@ -20,13 +20,20 @@ public class ChimeraSkillFeedBack : ChimeraArrow
         }
     }
 
-    public void setSkill(bool active, int skillIndex, float _readingTime)
-    {      
+    public void setSkill(float active, int skillIndex, float _readingTime)
+    {
+        bool isActive = true;
+
+        if (active == 1)//Pressed
+            isActive = true;
+        else if (active == 0)//Released
+            isActive = false;
+
 
         skillIndex -= 1;
 
-        skills[skillIndex].SetActive(active);
-        if (active)
+        skills[skillIndex].SetActive(isActive);
+        if (isActive)
         {
             currentActiveCooldown = activeCooldown;
             StartCoroutine(deactiveSkill(skillIndex, _readingTime));
