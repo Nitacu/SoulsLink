@@ -34,7 +34,7 @@ public class Mist : Skill
         {
             _coolDownTracker -= Time.deltaTime;
         }
-     
+
 
         //Debug.Log("Estoy invisible?: " + isStealth);
     }
@@ -52,7 +52,7 @@ public class Mist : Skill
             Vector3 newMistPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             GameObject temp = Instantiate(_mist, newMistPosition, Quaternion.identity);
             temp.GetComponent<MistAnimations>().setMist(GetComponent<Dash>().chargePercent, gameObject);
-            
+
             StartCoroutine(destroyMist(temp, _mistLifeTime));
         }
     }
@@ -92,6 +92,10 @@ public class Mist : Skill
                 tmp.a = 1f;
                 gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
                 gameObject.layer = LayerMask.NameToLayer("Player");
+                if (gameObject.GetComponent<PlayerHPControl>())
+                {
+                    gameObject.GetComponent<PlayerHPControl>().setInmune(false);
+                }
             }
         }
         else
@@ -111,6 +115,11 @@ public class Mist : Skill
         tmp.a = 0.1f;
         gameObject.GetComponentInChildren<Animator>().gameObject.GetComponent<SpriteRenderer>().color = tmp;
         gameObject.layer = LayerMask.NameToLayer("Invisible");
+
+        if (gameObject.GetComponent<PlayerHPControl>())
+        {
+            gameObject.GetComponent<PlayerHPControl>().setInmune(true);
+        }
     }
 
     public void activateInsideMist()
