@@ -33,14 +33,6 @@ public class RandomGun : Skill
         {
             _coolDownTracker -= Time.deltaTime;
         }
-
-        /*
-        if (_skillMaster.SkillTrigger.skill1.pressedDown && _coolDownTracker <= 0)
-        {
-            shotStake(_aiming.AimVector.normalized);
-            _coolDownTracker = _coolDown;
-        }
-        */
     }
 
     public void pressKey()

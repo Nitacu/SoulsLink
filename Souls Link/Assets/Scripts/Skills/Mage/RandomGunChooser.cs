@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class RandomGunChooser : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class RandomGunChooser : MonoBehaviour
     public GameObject randomPicker;
     public float offsetY = 0;
     private Vector2 posItem = Vector2.zero;
+    public PhotonView _photonView;
+
 
     private void Start()
     {
@@ -21,11 +24,16 @@ public class RandomGunChooser : MonoBehaviour
 
     public void startChoosing()
     {
-        randomPicker = Instantiate(_UIGameObject, Canvas.transform);
-        randomPicker.GetComponent<RandomNumberPicker>().setRandomizer(gameObject);
-        randomPicker.GetComponent<RandomNumberPicker>().randomize();
+        if (GetComponentInParent<PhotonCharacterMultiplayerController>().isMine())
+        {
+            randomPicker = Instantiate(_UIGameObject, Canvas.transform);
+            randomPicker.GetComponent<RandomNumberPicker>().setRandomizer(gameObject);
+            randomPicker.GetComponent<RandomNumberPicker>().NumberWeapon = Random.Range(1, 9);
+            randomPicker.GetComponent<RandomNumberPicker>().randomize();
+        }
     }
 
+    [PunRPC]
     public void recieveGunData(float gunNumber)
     {
         Debug.Log("Picked gun: " + gunNumber);

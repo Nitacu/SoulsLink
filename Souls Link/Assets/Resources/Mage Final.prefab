@@ -213,6 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1930448434}
   - component: {fileID: 1930448435}
+  - component: {fileID: 7353244212399681170}
   m_Layer: 8
   m_Name: RandomPickerSpawner
   m_TagString: Untagged
@@ -252,6 +253,29 @@ MonoBehaviour:
   _camera: {fileID: 0}
   randomPicker: {fileID: 0}
   offsetY: 0
+  _photonView: {fileID: 7353244212399681170}
+--- !u!114 &7353244212399681170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1930448433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 0
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: 0}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1690128982303549139
 GameObject:
   m_ObjectHideFlags: 0

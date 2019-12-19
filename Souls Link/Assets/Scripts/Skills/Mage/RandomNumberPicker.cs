@@ -9,7 +9,7 @@ public class RandomNumberPicker : MonoBehaviour
     private float contRandomizer = 0;
     private float timeBetweenNumbers = 0.2f;
     private float randomNumber = 0;
-
+    private float _numberWeapon;
     private float finalNumberShowTime = 1.3f;
 
     private GameObject _positionWithPlayerReference;
@@ -36,6 +36,8 @@ public class RandomNumberPicker : MonoBehaviour
         }
         else
         {
+            //cuando termina el tiempo de la ruleta coloca el arma que previamente se habia seleccionado 
+            GetComponentInChildren<TextMeshProUGUI>().text = NumberWeapon.ToString();
             StartCoroutine(pickGun(finalNumberShowTime));
         }
 
@@ -45,19 +47,13 @@ public class RandomNumberPicker : MonoBehaviour
     IEnumerator pickGun(float finalTime)
     {
         yield return new WaitForSeconds(finalTime);
-        _positionWithPlayerReference.GetComponent<RandomGunChooser>().recieveGunData(randomNumber);
+        _positionWithPlayerReference.GetComponent<RandomGunChooser>()._photonView.RPC("recieveGunData", Photon.Pun.RpcTarget.Others, NumberWeapon);
+        _positionWithPlayerReference.GetComponent<RandomGunChooser>().recieveGunData(NumberWeapon);
+        NumberWeapon = 0;
         Destroy(gameObject);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// ///////////////////////////GET Y SET /////////////////////////////////////
+    public float NumberWeapon { get => _numberWeapon; set => _numberWeapon = value; }
 }
