@@ -129,13 +129,44 @@ public class FusionManager : MonoBehaviour
         //Ver qué jugadores se pueden fusioanar
         if (_playersAvailableToFusion.Count >= 2)
         {
-            Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
-            FusionarPlayers(_playersAvailableToFusion);
+
+            if (playersWithDifferentParent(_playersAvailableToFusion))
+            {
+                FusionarPlayers(_playersAvailableToFusion);
+            }
         }
-        else
+
+    }
+
+    private bool playersWithDifferentParent(List<GameObject> _players)
+    {
+        //Si alguno que no tiene padre
+        foreach (var player in _players)
         {
-            Debug.Log("Players Non Repeated < 2: " + _playersNonRepeated.Count);
+            if ((!player.GetComponent<FusionTrigger>().IsOnFusion) && player.GetComponent<FusionTrigger>().CurrentChimeraParent == null)
+            {
+                return true;
+            }
         }
+
+        List<GameObject> _parents = new List<GameObject>();
+        //que tengan diferente padre
+        foreach (var player in _players)
+        {
+            FusionTrigger trigger = player.GetComponent<FusionTrigger>();
+
+            if (!_parents.Contains(trigger.CurrentChimeraParent.gameObject))
+            {
+                _parents.Add(trigger.CurrentChimeraParent.gameObject);
+            }
+        }
+
+        if (_parents.Count > 1)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private void FusionarPlayers(List<GameObject> _players)

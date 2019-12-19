@@ -228,6 +228,7 @@ public class FusionTrigger : MonoBehaviour
     {
         if (!IsOnFusion)//si yo no estoy en fusion siempre me puedo fusionar
         {
+            Debug.Log("DISPONIBLE PORQUE NO ESTÁ EN FUSION");
             return true;
         }
         else//sino mirar si todos mis compañeros en al chimera quieren fusionarse
@@ -240,7 +241,7 @@ public class FusionTrigger : MonoBehaviour
 
                 foreach (var item in _currentChimeraParent.Players)
                 {
-                    if (fusionManager._playersToFusion.ToList().Contains(item))
+                    if (!fusionManager._playersToFusion.ToList().Contains(item))
                     {
                         allInHostToFusion = false;
                     }
