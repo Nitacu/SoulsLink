@@ -15,8 +15,6 @@ public class FusionTrigger : MonoBehaviour
         get { return _checkingFusion; }
     }
 
-    private bool _checkingUnFusion = false;
-
     private ChimeraController _currentChimeraParent;
     public ChimeraController CurrentChimeraParent
     {
@@ -223,6 +221,38 @@ public class FusionTrigger : MonoBehaviour
         transform.localPosition = Vector3.zero;
 
         //assingSkillsTochimera(chimeraController);
+    }
+
+    public bool availableToFusion()
+    {
+        if (!IsOnFusion)//si yo no estoy en fusion siempre me puedo fusionar
+        {
+            return true;
+        }
+        else//sino mirar si todos mis compañeros en al chimera quieren fusionarse
+        {
+            if (_currentChimeraParent != null)
+            {
+                //saber si todos los hijos de mi chimera padre estamos en el host para fusionarnos
+                bool allInHostToFusion = true;
+                FusionManager fusionManager = FindObjectOfType<FusionManager>();
+
+                foreach (var item in fusionManager._playersToFusion)
+                {
+                    if (!CurrentChimeraParent.Players.Contains(item))
+                    {
+                        allInHostToFusion = false;
+                    }
+
+                }
+
+                return allInHostToFusion;
+            }
+            else
+            {
+                return true;
+            }
+        }
     }
 }
 

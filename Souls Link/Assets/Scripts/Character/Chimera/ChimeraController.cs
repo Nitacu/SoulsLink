@@ -7,6 +7,10 @@ public class ChimeraController : PlayerMovement
 {
 
     [SerializeField] private List<GameObject> _players = new List<GameObject>(); //cuidado al usar esta lista antes de que el servidor la actualice 
+    public List<GameObject> Players
+    {
+        get { return _players; }
+    }
     [SerializeField] private List<GameObject> _arrows = new List<GameObject>();
 
     [SerializeField] private Vector2 _movement;
@@ -14,7 +18,7 @@ public class ChimeraController : PlayerMovement
 
     [SerializeField] private Vector2[] _inputsMovements;
 
-    bool[] _unFusionCheck;
+    public bool[] _unFusionCheck;
 
     #region Delegate
     public delegate bool DelegateMultiplayerController();
@@ -219,6 +223,7 @@ public class ChimeraController : PlayerMovement
     private void setPlayersChild()
     {
         _inputsMovements = new Vector2[_players.Count];
+        GetComponent<ChimeraSkillsController>().setChimeraSize(_players.Count);
 
         _unFusionCheck = new bool[_players.Count];
         resetChekingUnfusion();
@@ -241,21 +246,24 @@ public class ChimeraController : PlayerMovement
     {
         _unFusionCheck[id] = check;
 
-        //Ver que todos se queiren desfusionar
-        bool allPlayersWantUnfusion = true;
-        foreach (bool checkUnfusion in _unFusionCheck)
-        {
-            if (!checkUnfusion)
-            {
-                allPlayersWantUnfusion = false;
-            }
-        }
-
-        if (allPlayersWantUnfusion)
+        if (allWantUnFusion())
         {
             //desfusionar
             _unFusion();
         }
+    }
+
+    public bool allWantUnFusion()
+    {
+        bool wantUnFusion = true;
+        foreach (var fusion in _unFusionCheck)
+        {
+            if (!fusion)
+            {
+                wantUnFusion = false;
+            }
+        }
+        return wantUnFusion;
     }
 
     public void unFusion()

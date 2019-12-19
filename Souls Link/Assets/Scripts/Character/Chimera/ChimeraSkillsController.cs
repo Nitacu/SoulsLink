@@ -6,8 +6,14 @@ using UnityEngine.Events;
 [System.Serializable]
 public class InputSkill
 {
-    public bool _state = false;
-    public float _currentCooldown = 0;
+    public InputSkill()
+    {
+        _state = false;
+        _currentCooldown = 0;
+    }
+
+    public bool _state;
+    public float _currentCooldown;
 }
 
 public class ChimeraSkillsController : PlayerSkills
@@ -18,10 +24,10 @@ public class ChimeraSkillsController : PlayerSkills
     #endregion
 
     #region InputPairs
-    [HideInInspector] public InputSkill[] _inputSkill1 = new InputSkill[2];
-    [HideInInspector] public InputSkill[] _inputSkill2 = new InputSkill[2];
-    [HideInInspector] public InputSkill[] _inputSkill3 = new InputSkill[2];
-    [HideInInspector] public InputSkill[] _inputSkill4 = new InputSkill[2];
+    public InputSkill[] _inputSkill1;
+    public InputSkill[] _inputSkill2;
+    public InputSkill[] _inputSkill3;
+    public InputSkill[] _inputSkill4;
     #endregion
 
     [SerializeField] private float _inputSkillReadingTime = 1f;
@@ -59,27 +65,48 @@ public class ChimeraSkillsController : PlayerSkills
         //Lanzar habilidades
         if (canLaunchSkill(_inputSkill1))
         {
-            Debug.Log("Launch skill 1");
             StartCoroutine(skillDelay(1, Skill1PressDown, null, 1));
             resetInputSkillOnLaunch(_inputSkill1);
         }
         if (canLaunchSkill(_inputSkill2))
         {
-            Debug.Log("Launch skill 2");
             StartCoroutine(skillDelay(1, Skill2PressDown, null, 2));
             resetInputSkillOnLaunch(_inputSkill2);
         }
         if (canLaunchSkill(_inputSkill3))
         {
-            Debug.Log("Launch skill 3");
             StartCoroutine(skillDelay(1, Skill3PressDown, null, 3));
             resetInputSkillOnLaunch(_inputSkill3);
         }
         if (canLaunchSkill(_inputSkill4))
         {
-            Debug.Log("Launch skill 4");
             StartCoroutine(skillDelay(1, Skill4PressDown, null, 4));
             resetInputSkillOnLaunch(_inputSkill4);
+        }
+    }
+
+    public void setChimeraSize(int chimeraSize)
+    {
+        _inputSkill1 = new InputSkill[chimeraSize];
+        setInputArrayObjects(_inputSkill1);
+
+        _inputSkill2 = new InputSkill[chimeraSize];
+        setInputArrayObjects(_inputSkill2);
+
+
+        _inputSkill3 = new InputSkill[chimeraSize];
+        setInputArrayObjects(_inputSkill3);
+
+        _inputSkill4 = new InputSkill[chimeraSize];
+        setInputArrayObjects(_inputSkill4);
+    }
+
+    private void setInputArrayObjects(InputSkill[] inputSkills)
+    {
+
+        for (int i = 0; i < inputSkills.Length; i++)
+        {
+            inputSkills[i] = new InputSkill();
         }
     }
 
@@ -93,9 +120,16 @@ public class ChimeraSkillsController : PlayerSkills
 
     private bool canLaunchSkill(InputSkill[] inputSkills)
     {
+        Debug.Log("Check canLaunchSkill");
         bool launchSkill = true;
         foreach (var inputSkill in inputSkills)
         {
+            if (inputSkill == null)
+            {
+                launchSkill = false;
+                break;
+            }
+
             if (!inputSkill._state)
             {
                 launchSkill = false;
@@ -125,8 +159,22 @@ public class ChimeraSkillsController : PlayerSkills
         if (pressValue == 1)//Pressed
         {
             //hacer true al instante
-            inputSkill[ID]._state = true;
-            inputSkill[ID]._currentCooldown = _inputSkillReadingTime;
+            Debug.Log("Set array value index: " + skillIndex);
+            if (ID <= inputSkill.Length - 1)
+            {
+                if (inputSkill[ID] != null)
+                {
+                    Debug.Log("INPUT SKILL VACIO: " + false);
+                }
+                else
+                {
+                    Debug.Log("INPUT SKILL VACIO: " + true);
+                }
+
+                inputSkill[ID]._state = true;
+                inputSkill[ID]._currentCooldown = _inputSkillReadingTime;
+            }
+
 
         }
         else if (pressValue == 0)//Released

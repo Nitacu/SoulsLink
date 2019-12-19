@@ -116,27 +116,21 @@ public class FusionManager : MonoBehaviour
             }
         }
 
-        //Ver qué jugadores se pueden fusioanar
-
-
-        if (_playersNonRepeated.Count >= 2)
+        //Sacar players que no se pueden fusionar
+        List<GameObject> _playersAvailableToFusion = new List<GameObject>();
+        foreach (var player in _playersNonRepeated)
         {
-            //Si todos los que se intentan fusionar ya tienen un padre no fusionar
-            bool canFusion = false;
-            foreach (var player in _playersNonRepeated)
+            if (player.GetComponent<FusionTrigger>().availableToFusion())
             {
-                if (!player.GetComponent<FusionTrigger>().IsOnFusion)
-                {
-                    canFusion = true;
-                }
+                _playersAvailableToFusion.Add(player);
             }
+        }
 
-            if (canFusion)
-            {
-                Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
-                FusionarPlayers(_playersNonRepeated);
-            }
-
+        //Ver qué jugadores se pueden fusioanar
+        if (_playersAvailableToFusion.Count >= 2)
+        {
+            Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
+            FusionarPlayers(_playersAvailableToFusion);
         }
         else
         {
