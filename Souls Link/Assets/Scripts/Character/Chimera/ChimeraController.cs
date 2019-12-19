@@ -22,10 +22,13 @@ public class ChimeraController : PlayerMovement
     public DelegateMultiplayerController _isHost;
     public delegate void DelegateMultiplayerControllerSendPlayerInChimera();
     public DelegateMultiplayerControllerSendPlayerInChimera _sendPlayerInChimera;
+    public DelegateMultiplayerControllerSendPlayerInChimera _unFusion;
     public delegate void DelegateMultiplayerControllerIDs(string ids);
     public DelegateMultiplayerControllerIDs _setPlayersInFusion;
     public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id, GameManager.Characters type);
     public DelegateMultiplayerControllerIMove _sendMovement;
+    public delegate void DelegateMultiplayerControllerSendUnFusion(bool state, int id);
+    public DelegateMultiplayerControllerSendUnFusion _sendUnFusion;
     #endregion    
 
     private void OnEnable()
@@ -268,11 +271,11 @@ public class ChimeraController : PlayerMovement
         if (allPlayersWantUnfusion)
         {
             //desfusionar
-            unFusion();
+            _unFusion();
         }
     }
 
-    private void unFusion()
+    public void unFusion()
     {
         Debug.Log("DesFusionar");
 

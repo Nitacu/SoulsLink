@@ -131,10 +131,8 @@ public class FusionTrigger : MonoBehaviour
             }
             else if (_actionPressed == 0)//Released
             {
-
                 GetoutToGeneralHost(); //lo saca del host de la quimera
                 _pushGetoutToGeneralHost(); // lo saca en las demas maquinas
-
             }
         }
     }
@@ -143,21 +141,24 @@ public class FusionTrigger : MonoBehaviour
     {
         Debug.Log("OnUnFusion");
 
-        float _actionPressed = action.Get<float>();
-        if (_actionPressed == 1)//Pressed
+        if (_isMine())
         {
-            //para separarse
-            if (IsOnFusion)
+            float _actionPressed = action.Get<float>();
+            if (_actionPressed == 1)//Pressed
             {
-                sendUnFusionToChimera(true);
-            }
+                //para separarse
+                if (IsOnFusion)
+                {
+                    sendUnFusionToChimera(true);
+                }
 
-        }
-        else if (_actionPressed == 0)//Released
-        {
-            if (IsOnFusion)
+            }
+            else if (_actionPressed == 0)//Released
             {
-                sendUnFusionToChimera(false);
+                if (IsOnFusion)
+                {
+                    sendUnFusionToChimera(false);
+                }
             }
         }
     }
@@ -166,7 +167,7 @@ public class FusionTrigger : MonoBehaviour
     {
         if (CurrentChimeraParent != null)
         {
-            CurrentChimeraParent.sendUnFusion(state, OnFusionID);
+            CurrentChimeraParent._sendUnFusion(state, OnFusionID);
         }
     }
 

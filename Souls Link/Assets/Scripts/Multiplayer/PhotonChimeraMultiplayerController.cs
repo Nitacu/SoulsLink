@@ -18,6 +18,8 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     private const string RECIVE_MOVEMENT_ARROW = "reciveMovementArrows";
     private const string RECIVE_FEEDBACK_SKILL = "reciveFeedBackSkills";
     private const string RECIVE_PLAYERS_IN_CHIMERA = "reciveSetPlayersInChimera";
+    private const string RECEIVE_SENDUNFUSION = "receiveSendUnFusion";
+    private const string RECEIVE_UNFUSION = "receiveUnFusion";
 
     public bool isMine()
     {
@@ -45,6 +47,8 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._sendMovement = new ChimeraController.DelegateMultiplayerControllerIMove(pushsendMovement);
         _chimeraController._sendPlayerInChimera = new ChimeraController.DelegateMultiplayerControllerSendPlayerInChimera(sendSetPlayersInChimera);
         _chimeraController._isHost = new ChimeraController.DelegateMultiplayerController(isHost);
+        _chimeraController._sendUnFusion = new ChimeraController.DelegateMultiplayerControllerSendUnFusion(pushSendUnFusion);
+        _chimeraController._unFusion = new ChimeraController.DelegateMultiplayerControllerSendPlayerInChimera(pushUnFusion);
 
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
 
@@ -128,6 +132,31 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
 
     #endregion
 
+    #region Unfusion
+
+    public void pushSendUnFusion(bool state, int playerID)
+    {
+        _photonView.RPC(RECEIVE_SENDUNFUSION, RpcTarget.MasterClient, state, playerID);
+    }
+
+    [PunRPC]
+    public void receiveSendUnFusion(bool state, int playerID)
+    {
+        _chimeraController.sendUnFusion(state, playerID);
+    }
+
+    public void pushUnFusion()
+    {
+        _photonView.RPC(RECEIVE_UNFUSION, RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void receiveUnFusion()
+    {
+        _chimeraController.unFusion();
+    }
+
+    #endregion
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
