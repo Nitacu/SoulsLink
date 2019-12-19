@@ -131,7 +131,6 @@ public class FusionManager : MonoBehaviour
                 }
             }
 
-
             if (canFusion)
             {
                 Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
@@ -194,6 +193,11 @@ public class FusionManager : MonoBehaviour
 
             GameObject _chimera = PhotonNetwork.Instantiate(chimeraName, newPos, Quaternion.identity);
             _chimera.transform.position = newPos;
+
+            foreach (var player in _players)
+            {
+                player.GetComponent<FusionTrigger>().IsOnFusion = true;
+            }
 
             ChimeraController chimeraController = _chimera.GetComponent<ChimeraController>();
 

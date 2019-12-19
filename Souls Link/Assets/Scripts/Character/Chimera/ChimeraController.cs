@@ -235,23 +235,6 @@ public class ChimeraController : PlayerMovement
         }
     }
 
-    public void addNewPlayer(GameObject newPlayer)
-    {
-        _players.Add(newPlayer);
-
-        _inputsMovements = new Vector2[_players.Count];
-        _unFusionCheck = new bool[_players.Count];
-
-        resetChekingUnfusion();
-
-        newPlayer.GetComponent<FusionTrigger>().IsOnFusion = true;
-        newPlayer.GetComponent<FusionTrigger>().CurrentChimeraParent = this;
-        newPlayer.GetComponent<FusionTrigger>().OnFusionID = _players.Count;
-        newPlayer.transform.SetParent(gameObject.transform);
-        newPlayer.GetComponent<FusionTrigger>().assingSkillsTochimera(gameObject);
-
-    }
-
     //UnFusion methods
 
     public void sendUnFusion(bool check, int id)
