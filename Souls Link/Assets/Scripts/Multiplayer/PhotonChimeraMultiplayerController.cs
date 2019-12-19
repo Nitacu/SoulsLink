@@ -29,6 +29,11 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         return PhotonNetwork.IsMasterClient;
     }
 
+    public void destroySelf()
+    {
+        PhotonNetwork.Destroy(gameObject);
+    }
+
     public void addDelegate()
     {
         _chimeraController = GetComponent<ChimeraController>();
@@ -44,6 +49,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
 
         _chimeraHP._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
+        _chimeraHP._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
     }
 
     #region players que estan dentro de la quimera
