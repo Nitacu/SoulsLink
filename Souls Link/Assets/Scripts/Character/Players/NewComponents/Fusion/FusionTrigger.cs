@@ -143,24 +143,21 @@ public class FusionTrigger : MonoBehaviour
     {
         Debug.Log("OnUnFusion");
 
-        if (_isMine())
+        float _actionPressed = action.Get<float>();
+        if (_actionPressed == 1)//Pressed
         {
-            float _actionPressed = action.Get<float>();
-            if (_actionPressed == 1)//Pressed
+            //para separarse
+            if (IsOnFusion)
             {
-                //para separarse
-                if (IsOnFusion)
-                {
-                    sendUnFusionToChimera(true);
-                }
-
+                sendUnFusionToChimera(true);
             }
-            else if (_actionPressed == 0)//Released
+
+        }
+        else if (_actionPressed == 0)//Released
+        {
+            if (IsOnFusion)
             {
-                if (IsOnFusion)
-                {
-                    sendUnFusionToChimera(false);
-                }
+                sendUnFusionToChimera(false);
             }
         }
     }
