@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class FusionTrigger : MonoBehaviour
 {
@@ -237,13 +238,12 @@ public class FusionTrigger : MonoBehaviour
                 bool allInHostToFusion = true;
                 FusionManager fusionManager = FindObjectOfType<FusionManager>();
 
-                foreach (var item in fusionManager._playersToFusion)
+                foreach (var item in _currentChimeraParent.Players)
                 {
-                    if (!CurrentChimeraParent.Players.Contains(item))
+                    if (fusionManager._playersToFusion.ToList().Contains(item))
                     {
                         allInHostToFusion = false;
                     }
-
                 }
 
                 return allInHostToFusion;
