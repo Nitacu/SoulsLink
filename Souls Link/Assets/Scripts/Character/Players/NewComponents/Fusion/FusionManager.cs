@@ -28,7 +28,6 @@ public class FusionManager : MonoBehaviour
     {
         int count = 0;
 
-
         //recorre arreglo players para saber cuántos hay en el frame
         foreach (var player in _playersToFusion)
         {
@@ -47,6 +46,8 @@ public class FusionManager : MonoBehaviour
 
     private void checkPlayers()
     {
+        Debug.Log("check players");
+
         List<GameObject> _playersCanFusion = new List<GameObject>();
 
         //Evaluar distancia de todos con todos
@@ -121,16 +122,17 @@ public class FusionManager : MonoBehaviour
         if (_playersNonRepeated.Count >= 2)
         {
             //Si todos los que se intentan fusionar ya tienen un padre no fusionar
-            bool arentInFusion = true;
+            bool canFusion = false;
             foreach (var player in _playersNonRepeated)
             {
-                if (player.GetComponent<FusionTrigger>().IsOnFusion)
+                if (!player.GetComponent<FusionTrigger>().IsOnFusion)
                 {
-                    arentInFusion = false;
+                    canFusion = true;
                 }
             }
 
-            if (arentInFusion)
+
+            if (canFusion)
             {
                 Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
                 FusionarPlayers(_playersNonRepeated);
@@ -188,7 +190,7 @@ public class FusionManager : MonoBehaviour
             string chimeraName = chimeraTocreate.name;
 
             //Crear chimera   
-            Debug.Log("SE VAN A FUSIONAR: " + _players.Count + " JUGADORES");
+            Debug.Log("SE VAN A FUSIONAR: " + _players.Count + " JUGADORES. CREAR CHIMERA: " + chimeraName);
 
             GameObject _chimera = PhotonNetwork.Instantiate(chimeraName, newPos, Quaternion.identity);
             _chimera.transform.position = newPos;
