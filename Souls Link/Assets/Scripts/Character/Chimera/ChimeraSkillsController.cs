@@ -18,10 +18,10 @@ public class ChimeraSkillsController : PlayerSkills
     #endregion
 
     #region InputPairs
-    public InputSkill[] _inputSkill1 = new InputSkill[2];
-    public InputSkill[] _inputSkill2 = new InputSkill[2];
-    public InputSkill[] _inputSkill3 = new InputSkill[2];
-    public InputSkill[] _inputSkill4 = new InputSkill[2];
+    InputSkill[] _inputSkill1 = new InputSkill[2];
+    InputSkill[] _inputSkill2 = new InputSkill[2];
+    InputSkill[] _inputSkill3 = new InputSkill[2];
+    InputSkill[] _inputSkill4 = new InputSkill[2];
     #endregion
 
     [SerializeField] private float _inputSkillReadingTime = 1f;

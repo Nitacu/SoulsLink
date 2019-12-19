@@ -103,8 +103,10 @@ public class Dash : Skill
 
     public void playerDash(Vector2 direction)
     {
-        _rb.velocity = dashDirection * dashSpeed;
-        GetComponent<PlayerMovement>().enabled = true;
+        PlayerMovement playerMovementRef = GetComponent<PlayerMovement>();
+
+        playerMovementRef.RigidBodyPlayer.velocity = dashDirection * dashSpeed;
+        playerMovementRef.enabled = true;
         //Debug.Log(direction);
     }
 

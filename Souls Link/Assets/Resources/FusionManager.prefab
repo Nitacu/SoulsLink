@@ -43,12 +43,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfd229407ba8c8c47a15c6b46b383438, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distanceToFusion: 10
-  _chimeraTwoPlayersBase: {fileID: 0}
+  _distanceToFusion: 3
+  _playersToFusion:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _chimeraTwoPlayersBase: {fileID: 1259665957190803052, guid: 37c52ba94a52c5a4d9322277889b190d,
+    type: 3}
   _chimeras:
   - {fileID: 1259665957190803052, guid: 189f6193fcf481a40b3fa292c54643d8, type: 3}
   - {fileID: 1259665957190803052, guid: 0adcb473a5a87894ea785cb25535d4c3, type: 3}
   - {fileID: 1259665957190803052, guid: 8aac79ab171ac3d42893253a1c5c0ee4, type: 3}
-  - {fileID: 1259665957190803052, guid: eecf335772b910a40a8cd1fede170499, type: 3}
+  - {fileID: 1259665957190803052, guid: 37c52ba94a52c5a4d9322277889b190d, type: 3}
   - {fileID: 1259665957190803052, guid: b854a7c6468ff344499d68231c21b793, type: 3}
   - {fileID: 1259665957190803052, guid: 4bc18f637139a4c42bbcc0f8f426680f, type: 3}
+  - {fileID: 1259665957190803052, guid: 1e0ac869faf37da409ab3617d9750f02, type: 3}

@@ -7,7 +7,7 @@ public class FusionManager : MonoBehaviour
 {
     [SerializeField] private float _distanceToFusion = 3;
 
-    private GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
+    public GameObject[] _playersToFusion = new GameObject[4] { null, null, null, null };
 
     #region ChimerasPrefabs
     [SerializeField] private GameObject _chimeraTwoPlayersBase;
@@ -116,10 +116,26 @@ public class FusionManager : MonoBehaviour
         }
 
         //Ver qué jugadores se pueden fusioanar
+
+
         if (_playersNonRepeated.Count >= 2)
         {
-            Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
-            FusionarPlayers(_playersNonRepeated);
+            //Si todos los que se intentan fusionar ya tienen un padre no fusionar
+            bool arentInFusion = true;
+            foreach (var player in _playersNonRepeated)
+            {
+                if (player.GetComponent<FusionTrigger>().IsOnFusion)
+                {
+                    arentInFusion = false;
+                }
+            }
+
+            if (arentInFusion)
+            {
+                Debug.Log("Players Non Repeated >= 2: " + _playersNonRepeated.Count);
+                FusionarPlayers(_playersNonRepeated);
+            }
+
         }
         else
         {
@@ -130,13 +146,15 @@ public class FusionManager : MonoBehaviour
     private void FusionarPlayers(List<GameObject> _players)
     {
         //sacar jugadores del host
+        /*
         for (int i = 0; i < _playersToFusion.Length; i++)
         {
             if (_players.Contains(_playersToFusion[i]))
             {
                 _playersToFusion[i] = null;
             }
-        }   
+        }
+        */
 
         if (_isHost())
             StartCoroutine(createChimera(_players));

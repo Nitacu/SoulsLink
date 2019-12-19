@@ -68,6 +68,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "UnFusion",
+                    "type": "Button",
+                    "id": "9a20ecf3-cc8c-46b3-97d3-5735666b4b43",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -316,7 +324,7 @@
                 {
                     "name": "",
                     "id": "552a267a-a177-4c5e-88be-04049372da8c",
-                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button8",
                     "interactions": "",
                     "processors": "",
                     "groups": "Joystick Generic",
@@ -327,7 +335,7 @@
                 {
                     "name": "",
                     "id": "586fcac0-d3cf-4268-bdf0-b67ffa123420",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -360,7 +368,7 @@
                 {
                     "name": "",
                     "id": "08d1177d-9fe9-49f2-99ae-1dbd30daf95a",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -376,6 +384,39 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b08548ce-a89f-45a6-9646-897c54930387",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button7",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick Generic",
+                    "action": "UnFusion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b722139b-81c4-49ce-86a1-935ff0ce41d5",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "UnFusion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3508a8c1-248d-410e-910c-2f38d3a37725",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "UnFusion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

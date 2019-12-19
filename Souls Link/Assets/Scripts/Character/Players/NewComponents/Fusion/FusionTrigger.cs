@@ -51,7 +51,7 @@ public class FusionTrigger : MonoBehaviour
         set { _isOnFusion = value; }
     }
 
-    [SerializeField]private int _onFusionID;
+    [SerializeField] private int _onFusionID;
     public int OnFusionID
     {
         get { return _onFusionID; }
@@ -108,7 +108,7 @@ public class FusionTrigger : MonoBehaviour
             component.SetActive(true);
         }
 
-        //gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
+        //añadirm rigidbody
         Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
         rb.gravityScale = 0;
         rb.freezeRotation = true;
@@ -126,26 +126,50 @@ public class FusionTrigger : MonoBehaviour
             float _actionPressed = action.Get<float>();
             if (_actionPressed == 1)//Pressed
             {
-                if (!IsOnFusion)
-                {
-                    AddMeToGeneralHost();//me agrega al host de la quimera
-                    _pushAddMeToGeneralHost(); //se agrega en otras maquinas
-                }
-                else
-                {
-                    //para separarse
-                    CurrentChimeraParent.sendUnFusion(true, OnFusionID);
-                }
+                AddMeToGeneralHost();//me agrega al host de la quimera
+                _pushAddMeToGeneralHost(); //se agrega en otras maquinas
             }
             else if (_actionPressed == 0)//Released
             {
-                if (alreadyInHost && !IsOnFusion)
-                {
-                    GetoutToGeneralHost(); //lo saca del host de la quimera
-                    _pushGetoutToGeneralHost(); // lo saca en las demas maquinas
-                }
-                if (IsOnFusion) CurrentChimeraParent.sendUnFusion(false, OnFusionID);
+
+                GetoutToGeneralHost(); //lo saca del host de la quimera
+                _pushGetoutToGeneralHost(); // lo saca en las demas maquinas
+
             }
+        }
+    }
+
+    private void OnUnFusion(InputValue action)
+    {
+        Debug.Log("OnUnFusion");
+
+        if (_isMine())
+        {
+            float _actionPressed = action.Get<float>();
+            if (_actionPressed == 1)//Pressed
+            {
+                //para separarse
+                if (IsOnFusion)
+                {
+                    sendUnFusionToChimera(true);
+                }
+
+            }
+            else if (_actionPressed == 0)//Released
+            {
+                if (IsOnFusion)
+                {
+                    sendUnFusionToChimera(false);
+                }
+            }
+        }
+    }
+
+    public void sendUnFusionToChimera(bool state)
+    {
+        if (CurrentChimeraParent != null)
+        {
+            CurrentChimeraParent.sendUnFusion(state, OnFusionID);
         }
     }
 

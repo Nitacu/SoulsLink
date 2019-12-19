@@ -225,6 +225,7 @@ public class ChimeraController : PlayerMovement
         foreach (var player in _players)
         {
             player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
+            player.GetComponent<FusionTrigger>().sendUnFusionToChimera(true);
             player.GetComponent<FusionTrigger>().setOnFusion(gameObject, idCount);
 
             idCount++;
@@ -286,7 +287,15 @@ public class ChimeraController : PlayerMovement
 
         }
 
+        StartCoroutine(DestroyMySelf());
+    }
+
+    IEnumerator DestroyMySelf()
+    {
+        yield return new WaitForEndOfFrame();
+
         Destroy(gameObject);
+
     }
 
     private void resetChekingUnfusion()
