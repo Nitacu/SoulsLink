@@ -60,6 +60,7 @@ public class PhotonCharacterMultiplayerController : MonoBehaviourPunCallbacks, I
         _hPControl._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
 
         _fusionTrigger._isMine = new FusionTrigger.DelegateMultiplayerController(isMine);
+        _fusionTrigger._isHost = new FusionTrigger.DelegateMultiplayerController(isHost);
         _fusionTrigger._pushAddMeToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushAddMeToGeneralHost);
         _fusionTrigger._pushGetoutToGeneralHost = new FusionTrigger.DelegateMultiplayerControllerVoid(pushGetoutToGeneralHost);
         _fusionTrigger._myID = new FusionTrigger.DelegateMultiplayerControllerID(myID);

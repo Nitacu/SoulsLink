@@ -16,7 +16,7 @@ public class FusionTrigger : MonoBehaviour
         get { return _checkingFusion; }
     }
 
-    private ChimeraController _currentChimeraParent;
+    [SerializeField]private ChimeraController _currentChimeraParent;
     public ChimeraController CurrentChimeraParent
     {
         get { return _currentChimeraParent; }
@@ -30,6 +30,7 @@ public class FusionTrigger : MonoBehaviour
     #region Delegate
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
+    public DelegateMultiplayerController _isHost;
     public delegate void DelegateMultiplayerControllerVoid();
     public DelegateMultiplayerControllerVoid _pushAddMeToGeneralHost;
     public DelegateMultiplayerControllerVoid _pushGetoutToGeneralHost;
@@ -93,7 +94,7 @@ public class FusionTrigger : MonoBehaviour
     {
         //Activar Skills
         PlayerSkills playerSkills = GetComponent<PlayerSkills>();
-        playerSkills.enabled = false;
+        playerSkills.enabled = true;
 
         Skill[] skills = GetComponents<Skill>();
         foreach (var item in skills)
@@ -165,7 +166,11 @@ public class FusionTrigger : MonoBehaviour
     {
         if (CurrentChimeraParent != null)
         {
-            CurrentChimeraParent._sendUnFusion(state, OnFusionID);
+            Debug.Log("NOMBRE DE LA QUIMERA " + CurrentChimeraParent.gameObject.name);
+            if (_isHost())
+                CurrentChimeraParent.sendUnFusion(state, OnFusionID);
+            else
+                CurrentChimeraParent._sendUnFusion(state, OnFusionID);
         }
     }
 

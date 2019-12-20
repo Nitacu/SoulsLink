@@ -227,8 +227,8 @@ public class ChimeraController : PlayerMovement
 
         foreach (var player in _players)
         {
-            player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
             player.GetComponent<FusionTrigger>().sendUnFusionToChimera(true);
+            player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
             player.GetComponent<FusionTrigger>().setOnFusion(gameObject, idCount);
 
             idCount++;
