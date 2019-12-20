@@ -272,13 +272,7 @@ public class ChimeraController : PlayerMovement
 
         foreach (var player in _players)
         {
-            player.GetComponent<FusionTrigger>().IsOnFusion = false;
-            player.GetComponent<FusionTrigger>().CurrentChimeraParent = null;
-            //player.GetComponent<FusionTrigger>().OnFusionID = idCount;
-            player.GetComponent<FusionTrigger>().ActiveComponentsOnFusion();
-
-            player.transform.parent = null;
-
+            player.GetComponent<FusionTrigger>().setOnUnFusion();
         }
 
         StartCoroutine(DestroyMySelf());

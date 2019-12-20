@@ -218,10 +218,22 @@ public class FusionTrigger : MonoBehaviour
 
         //Informaciónd e la chimera en la que estoy
         _currentChimeraParent = chimeraController.GetComponent<ChimeraController>();
+
+        Debug.Log("SET PARENT DE LA CHIMERA: " + chimeraController.name);
         transform.SetParent(chimeraController.transform);
         transform.localPosition = Vector3.zero;
 
         //assingSkillsTochimera(chimeraController);
+    }
+
+    public void setOnUnFusion()
+    {
+        GetComponent<FusionTrigger>().IsOnFusion = false;
+        GetComponent<FusionTrigger>().CurrentChimeraParent = null;
+        ActiveComponentsOnFusion();
+
+        Debug.Log("SET PARENT NULL");
+        transform.parent = null;
     }
 
     public bool availableToFusion()
