@@ -16,7 +16,7 @@ public class FusionTrigger : MonoBehaviour
         get { return _checkingFusion; }
     }
 
-    [SerializeField]private ChimeraController _currentChimeraParent;
+    [SerializeField] private ChimeraController _currentChimeraParent;
     public ChimeraController CurrentChimeraParent
     {
         get { return _currentChimeraParent; }
@@ -108,15 +108,22 @@ public class FusionTrigger : MonoBehaviour
             component.SetActive(true);
         }
 
+        Rigidbody2D rb;
         //añadirm rigidbody
-        Rigidbody2D rb = gameObject.AddComponent<Rigidbody2D>();
+        if (GetComponent<Rigidbody2D>())
+        {
+            rb = GetComponent<Rigidbody2D>();          
+        }
+        else
+        {
+            rb = gameObject.AddComponent<Rigidbody2D>();            
+        }
         rb.gravityScale = 0;
         rb.freezeRotation = true;
         GetComponent<PlayerMovement>().RigidBodyPlayer = rb;
 
         gameObject.GetComponent<CircleCollider2D>().enabled = true;
         gameObject.GetComponent<PlayerHPControl>().enabled = true;
-
     }
 
     private void OnFusion(InputValue action)
