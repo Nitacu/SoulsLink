@@ -24,6 +24,7 @@ public class ChimeraController : PlayerMovement
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
     public DelegateMultiplayerController _isHost;
+    public DelegateMultiplayerController _destroySelf;
     public delegate void DelegateMultiplayerControllerSendPlayerInChimera();
     public DelegateMultiplayerControllerSendPlayerInChimera _sendPlayerInChimera;
     public DelegateMultiplayerControllerSendPlayerInChimera _unFusion;
@@ -286,7 +287,7 @@ public class ChimeraController : PlayerMovement
     {
         yield return new WaitForEndOfFrame();
 
-        Destroy(gameObject);
+        _destroySelf();
 
     }
 

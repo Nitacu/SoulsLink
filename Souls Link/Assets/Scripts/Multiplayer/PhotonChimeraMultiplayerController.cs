@@ -47,6 +47,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._sendMovement = new ChimeraController.DelegateMultiplayerControllerIMove(pushsendMovement);
         _chimeraController._sendPlayerInChimera = new ChimeraController.DelegateMultiplayerControllerSendPlayerInChimera(sendSetPlayersInChimera);
         _chimeraController._isHost = new ChimeraController.DelegateMultiplayerController(isHost);
+        _chimeraController._destroySelf = new ChimeraController.DelegateMultiplayerController(_destroySelf);
         _chimeraController._sendUnFusion = new ChimeraController.DelegateMultiplayerControllerSendUnFusion(pushSendUnFusion);
         _chimeraController._unFusion = new ChimeraController.DelegateMultiplayerControllerSendPlayerInChimera(pushUnFusion);
 
