@@ -26,27 +26,11 @@ public class FusionManager : MonoBehaviour
 
     private void Update()
     {
-        int count = 0;
-
-        //recorre arreglo players para saber cuántos hay en el frame
-        foreach (var player in _playersToFusion)
-        {
-            if (player != null)
-            {
-                count++;
-            }
-        }
-
-        //si hay dos o más procede a ver si se pueden fusionar
-        if (count >= 2)
-        {
-            checkPlayers();
-        }
+       
     }
 
     private void checkPlayers()
     {
-
         List<GameObject> _playersCanFusion = new List<GameObject>();
 
         //Evaluar distancia de todos con todos
@@ -128,7 +112,6 @@ public class FusionManager : MonoBehaviour
         //Ver qué jugadores se pueden fusioanar
         if (_playersAvailableToFusion.Count >= 2)
         {
-
             if (playersWithDifferentParent(_playersAvailableToFusion))
             {
                 FusionarPlayers(_playersAvailableToFusion);
@@ -170,16 +153,7 @@ public class FusionManager : MonoBehaviour
 
     private void FusionarPlayers(List<GameObject> _players)
     {
-        //sacar jugadores del host
-        /*
-        for (int i = 0; i < _playersToFusion.Length; i++)
-        {
-            if (_players.Contains(_playersToFusion[i]))
-            {
-                _playersToFusion[i] = null;
-            }
-        }
-        */
+        Debug.Log("FUSIONAR PLAYER, PREGUNTA SI ES HOST");
 
         if (_isHost())
             StartCoroutine(createChimera(_players));
@@ -191,6 +165,8 @@ public class FusionManager : MonoBehaviour
 
         if (_isHost())
         {
+            Debug.Log("SOY HOST - CREAR CHIMERA");
+
             //Calcular punto medio
             float xPos = 0;
             float yPos = 0;
@@ -301,6 +277,28 @@ public class FusionManager : MonoBehaviour
                 _playersToFusion[i] = player;
                 break;
             }
+        }
+
+        verifyPLayerSizeToFusion();
+    }
+
+    private void verifyPLayerSizeToFusion()
+    {
+        int count = 0;
+
+        //recorre arreglo players para saber cuántos hay en el frame
+        foreach (var player in _playersToFusion)
+        {
+            if (player != null)
+            {
+                count++;
+            }
+        }
+
+        //si hay dos o más procede a ver si se pueden fusionar
+        if (count >= 2)
+        {
+            checkPlayers();
         }
     }
 
