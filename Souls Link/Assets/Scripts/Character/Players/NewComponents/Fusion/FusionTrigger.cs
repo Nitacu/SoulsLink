@@ -58,11 +58,11 @@ public class FusionTrigger : MonoBehaviour
         set { _onFusionID = value; }
     }
 
-    private void sendUnFusion()
+    private void sendUnFusion(bool forced)
     {
         if (CurrentChimeraParent != null)
         {
-            CurrentChimeraParent.sendUnFusion(true, OnFusionID);
+            CurrentChimeraParent.sendUnFusion(true, OnFusionID, forced);
         }
     }
 
@@ -148,7 +148,7 @@ public class FusionTrigger : MonoBehaviour
                 //para separarse
                 if (IsOnFusion)
                 {
-                    sendUnFusionToChimera(true);
+                    sendUnFusionToChimera(true, false);
                 }
 
             }
@@ -156,21 +156,21 @@ public class FusionTrigger : MonoBehaviour
             {
                 if (IsOnFusion)
                 {
-                    sendUnFusionToChimera(false);
+                    sendUnFusionToChimera(false, false);
                 }
             }
         }
     }
 
-    public void sendUnFusionToChimera(bool state)
+    public void sendUnFusionToChimera(bool state, bool forced)
     {
         if (CurrentChimeraParent != null)
         {
             Debug.Log("NOMBRE DE LA QUIMERA " + CurrentChimeraParent.gameObject.name);
             if (_isHost())
-                CurrentChimeraParent.sendUnFusion(state, OnFusionID);
+                CurrentChimeraParent.sendUnFusion(state, OnFusionID, forced);
             else
-                CurrentChimeraParent._sendUnFusion(state, OnFusionID);
+                CurrentChimeraParent._sendUnFusion(state, OnFusionID, forced);
         }
     }
 
@@ -214,6 +214,8 @@ public class FusionTrigger : MonoBehaviour
 
     public void setOnFusion(GameObject chimeraController, int fusionID)
     {
+        Debug.Log("Set On Fusion entre (" + chimeraController.name + " y " + gameObject.name + ")");
+
         //Saber si estoy en fusion y mi id para la chimera
         _isOnFusion = true;
         _onFusionID = fusionID;
@@ -225,15 +227,21 @@ public class FusionTrigger : MonoBehaviour
         transform.localPosition = Vector3.zero;
 
         //assingSkillsTochimera(chimeraController);
+
+        Debug.Log("Set On Fusion SALÍ");
     }
 
     public void setOnUnFusion()
     {
-        GetComponent<FusionTrigger>().IsOnFusion = false;
-        GetComponent<FusionTrigger>().CurrentChimeraParent = null;
+        Debug.Log("Set On UN Fusion" + CurrentChimeraParent.name + " y " + gameObject.name + ")");
+
+        IsOnFusion = false;
+        CurrentChimeraParent = null;
         ActiveComponentsOnFusion();
 
         transform.parent = null;
+
+        Debug.Log("Set On UNFusion SALÍ");
     }
 
     public bool availableToFusion()

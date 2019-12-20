@@ -134,15 +134,15 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
 
     #region Unfusion
 
-    public void pushSendUnFusion(bool state, int playerID)
+    public void pushSendUnFusion(bool state, int playerID, bool forced)
     {
-        _photonView.RPC(RECEIVE_SENDUNFUSION, RpcTarget.MasterClient, state, playerID);
+        _photonView.RPC(RECEIVE_SENDUNFUSION, RpcTarget.MasterClient, state, playerID, forced);
     }
 
     [PunRPC]
-    public void receiveSendUnFusion(bool state, int playerID)
+    public void receiveSendUnFusion(bool state, int playerID, bool forced)
     {
-        _chimeraController.sendUnFusion(state, playerID);
+        _chimeraController.sendUnFusion(state, playerID, forced);
     }
 
     public void pushUnFusion()

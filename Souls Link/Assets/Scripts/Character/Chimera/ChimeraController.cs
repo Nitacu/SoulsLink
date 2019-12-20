@@ -31,7 +31,7 @@ public class ChimeraController : PlayerMovement
     public DelegateMultiplayerControllerIDs _setPlayersInFusion;
     public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id, GameManager.Characters type);
     public DelegateMultiplayerControllerIMove _sendMovement;
-    public delegate void DelegateMultiplayerControllerSendUnFusion(bool state, int id);
+    public delegate void DelegateMultiplayerControllerSendUnFusion(bool state, int id, bool forced);
     public DelegateMultiplayerControllerSendUnFusion _sendUnFusion;
     #endregion    
 
@@ -227,8 +227,11 @@ public class ChimeraController : PlayerMovement
 
         foreach (var player in _players)
         {
-            player.GetComponent<FusionTrigger>().sendUnFusionToChimera(true);
+            Debug.Log("sendUNFusionTochimera TRUE - " + player.name);
+            player.GetComponent<FusionTrigger>().sendUnFusionToChimera(true, true);
+            Debug.Log("DeactivateComponentsOnFusion - " + player.name);
             player.GetComponent<FusionTrigger>().DeactivateComponentsOnFusion();
+            Debug.Log("set On Fusion - " + player.name);
             player.GetComponent<FusionTrigger>().setOnFusion(gameObject, idCount);
 
             idCount++;
@@ -237,9 +240,13 @@ public class ChimeraController : PlayerMovement
 
     //UnFusion methods
 
-    public void sendUnFusion(bool check, int id)
+    public void sendUnFusion(bool check, int id, bool forced)
     {
         _unFusionCheck[id] = check;
+        if (check && forced)
+        {
+            _players[id] = null;
+        }
 
         if (allWantUnFusion())
         {
@@ -266,7 +273,10 @@ public class ChimeraController : PlayerMovement
     {
         foreach (var player in _players)
         {
-            player.GetComponent<FusionTrigger>().setOnUnFusion();
+            if (player != null)
+            {
+                player.GetComponent<FusionTrigger>().setOnUnFusion();
+            }
         }
 
         StartCoroutine(DestroyMySelf());
