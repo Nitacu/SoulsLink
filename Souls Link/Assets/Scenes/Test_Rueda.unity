@@ -1925,11 +1925,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 300
+  _elementType: 0
   canWalk: 0
   _controlSpawnEnemys: {fileID: 0}
   _positionAttack: {fileID: 0}
   _flip: 0
   _poisonParticles: {fileID: 0}
+  isStunned: 0
+  isDummy: 0
 --- !u!61 &823093209
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3344,6 +3347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2442adac6e29f0444b23bd3d6611e959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _wallPrefab: {fileID: 7882638779556085853, guid: ebb6cb9e0e337f646bbc10eea366e340,
     type: 3}
   _coolDown: 5

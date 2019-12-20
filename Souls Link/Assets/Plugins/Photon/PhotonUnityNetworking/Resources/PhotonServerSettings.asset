@@ -57,5 +57,7 @@ MonoBehaviour:
   - getKill
   - loadNickName
   - reciveFeedBackSkills
+  - receiveSendUnFusion
+  - receiveUnFusion
   DisableAutoOpenWizard: 1
   ShowSettings: 1

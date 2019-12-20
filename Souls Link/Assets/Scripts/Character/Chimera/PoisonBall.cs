@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonDart : Skill
+public class PoisonBall : MonoBehaviour
 {
-    [SerializeField] private GameObject _poisonDartPrefab;
-    [SerializeField] private float _coolDown = 0.5f;
+    [SerializeField] private GameObject _poisonBallPrefab;
+    [SerializeField] private float _coolDown = 1.5f;
     [SerializeField] private float _damagePerTick = 20;
+    [SerializeField] private float pitLifetime = 3f;
     private float _coolDownTracker;
 
     [HideInInspector]
@@ -28,7 +29,7 @@ public class PoisonDart : Skill
 
         if (shooting)
         {
-            shootPosionDart();
+            shootPoisonBall();
         }
 
     }
@@ -43,7 +44,7 @@ public class PoisonDart : Skill
         shooting = true;
     }
 
-    public void shootPosionDart()
+    public void shootPoisonBall()
     {
         if (canShoot)
         {
@@ -51,10 +52,11 @@ public class PoisonDart : Skill
             {
                 _coolDownTracker = _coolDown;
 
-                GameObject poisonDart = Instantiate(_poisonDartPrefab);
-                poisonDart.GetComponent<PoisonDartController>().setDart(_damagePerTick);
+                GameObject poisonDart = Instantiate(_poisonBallPrefab);
+                poisonDart.GetComponent<PoisonBallController>().setPoisonBall(_damagePerTick, pitLifetime);
                 poisonDart.transform.position = gameObject.transform.position;
                 LinealProjectile projectile = poisonDart.GetComponent<LinealProjectile>();
+                projectile.Damage = _damagePerTick/2;
                 projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
                 projectile.setRotation(_aiming.AimDirection.normalized);
                 projectile.Velocity = _aiming.AimDirection.normalized;

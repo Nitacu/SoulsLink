@@ -193,6 +193,11 @@ public class SimpleEnemyController : MonoBehaviour
         isGettingDamaged = false;
     }
 
+    public void stopPoisonInstantly()
+    {
+        StartCoroutine(stopPoison(0.1f));
+    }
+
     public void timeDamage(float time)
     {
         isGettingDamaged = true;
