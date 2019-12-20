@@ -24,10 +24,10 @@ public class ChimeraController : PlayerMovement
     public delegate bool DelegateMultiplayerController();
     public DelegateMultiplayerController _isMine;
     public DelegateMultiplayerController _isHost;
-    public DelegateMultiplayerController _destroySelf;
     public delegate void DelegateMultiplayerControllerSendPlayerInChimera();
     public DelegateMultiplayerControllerSendPlayerInChimera _sendPlayerInChimera;
     public DelegateMultiplayerControllerSendPlayerInChimera _unFusion;
+    public DelegateMultiplayerControllerSendPlayerInChimera _destroySelf;
     public delegate void DelegateMultiplayerControllerIDs(string ids);
     public DelegateMultiplayerControllerIDs _setPlayersInFusion;
     public delegate void DelegateMultiplayerControllerIMove(Vector2 movement, int id, GameManager.Characters type);
