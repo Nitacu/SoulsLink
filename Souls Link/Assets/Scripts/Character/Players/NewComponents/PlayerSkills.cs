@@ -82,13 +82,18 @@ public class PlayerSkills : MonoBehaviour
 
         if (_isMine())
         {
-            _pushValueSkill(value, index);
 
             yield return new WaitForSeconds(DELAY);
 
             if (value == 1)//Pressed
             {
-                if (_eventDown != null) _eventDown.Invoke();
+                if (_eventDown != null)
+                {
+                    _eventDown.Invoke();
+
+                    if (_skillType.CoolDownTracker <= 0)
+                        _pushValueSkill(value, index);
+                }
             }
             else if (value == 0)//Released
             {

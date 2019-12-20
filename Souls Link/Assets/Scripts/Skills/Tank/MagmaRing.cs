@@ -17,15 +17,15 @@ public class MagmaRing : Skill
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
     }
 
     private void Update()
     {
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
 
@@ -42,7 +42,7 @@ public class MagmaRing : Skill
 
     public void pressKey()
     {
-        if(_coolDownTracker <= 0)
+        if(CoolDownTracker <= 0)
         {
             spawnRing();            
         }
@@ -69,7 +69,7 @@ public class MagmaRing : Skill
             lastRing = true;
         }
         Vector2 direction = _aiming.AimDirection;
-        _coolDownTracker = _coolDown;        
+        CoolDownTracker = _coolDown;        
         GameObject ring = Instantiate(_ringPrefab, gameObject.transform.position, Quaternion.identity);       
         ring.GetComponent<MagmaRingController>().setMagma(_damage, gameObject, lastRing, _magmaTimeAlive);
         if(ringsSpawned < _numberOfRings)

@@ -31,9 +31,9 @@ public class SmashAttack : Skill
     void Update()
     {
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
         chargeBarControl();
@@ -82,7 +82,7 @@ public class SmashAttack : Skill
 
     public void pressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             if (!attackIsReady)
             {
@@ -100,7 +100,7 @@ public class SmashAttack : Skill
 
     public void unPressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             if (!attackIsReady)
             {
@@ -121,7 +121,7 @@ public class SmashAttack : Skill
         captureDirection();
         chargedTime = 0;
         attackIsReady = false;
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         _attackReference = Instantiate(_attackPrefab, gameObject.transform);
         _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);
         _attackReference.transform.localPosition = new Vector2(0, 0);

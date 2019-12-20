@@ -19,16 +19,16 @@ public class Boomerang : Skill
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
     }
 
     private void Update()
     {
 
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
 
@@ -43,7 +43,7 @@ public class Boomerang : Skill
 
     public void pressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             if (hasBoomerang)
             {
@@ -75,7 +75,7 @@ public class Boomerang : Skill
         if (!hitWall)
         {
             hasBoomerang = false;
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
             flame = Instantiate(_boomerangPrefab, gameObject.transform.position, Quaternion.identity);
             flame.GetComponent<BoomerangControl>().setBoomerang(gameObject, _damage, _speed, direction);
         }

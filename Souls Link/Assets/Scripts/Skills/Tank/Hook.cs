@@ -24,16 +24,16 @@ public class Hook : Skill
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         biteTracker = timeToBite;
     }
 
     private void Update()
     {
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
         if (canBite)
@@ -61,7 +61,7 @@ public class Hook : Skill
     {
         if (!canBite)
         {
-            if (_coolDownTracker <= 0)
+            if (CoolDownTracker <= 0)
             {
                 shootHook();
                 GetComponentInChildren<Animator>().SetBool("isCasting", true);
@@ -86,7 +86,7 @@ public class Hook : Skill
         canBite = false;
         
         biteTracker = timeToBite;
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         GameObject bite = Instantiate(_bitePrefab, gameObject.transform);
         bite.GetComponentInChildren<BiteController>().setBite(gameObject);
         float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -118,7 +118,7 @@ public class Hook : Skill
         //if (_coolDownTracker <= 0)
         //{
         direction = _aiming.AimDirection;
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         hookObject = Instantiate(_hookPrefab, gameObject.transform);
         GameObject line = Instantiate(_linePrefab, gameObject.transform);
         hookObject.GetComponent<HookControl>().setHook(_damage, _hookSpeed, direction, _travelTime, gameObject, line);     

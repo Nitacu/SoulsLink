@@ -21,18 +21,18 @@ public class VineWhip : Skill
 
     private void Update()
     {
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
     }
 
     public void pressKey()
     {
-        if(_coolDownTracker <= 0)
+        if(CoolDownTracker <= 0)
         {
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
             useRoot(_aiming.AimDirection);
         }
     }

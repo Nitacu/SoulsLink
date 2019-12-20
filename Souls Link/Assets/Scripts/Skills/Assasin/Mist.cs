@@ -19,7 +19,7 @@ public class Mist : Skill
     // Start is called before the first frame update
     void Start()
     {
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         _stealthTimeTracker = _stealthTime;
     }
 
@@ -28,9 +28,9 @@ public class Mist : Skill
     {
         checkStealth();
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
 
@@ -44,9 +44,9 @@ public class Mist : Skill
 
     private void spawnMist()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
             Vector3 newMistPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             GameObject temp = Instantiate(_mist, newMistPosition, Quaternion.identity);
             temp.GetComponent<MistAnimations>().setMist(GetComponent<Dash>().chargePercent, gameObject);

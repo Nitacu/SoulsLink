@@ -13,14 +13,14 @@ public class WallSkill : Skill
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
     }
 
     private void Update()
     {
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
 
@@ -32,9 +32,9 @@ public class WallSkill : Skill
 
     public void pressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
             spawnWall();
         }
     }

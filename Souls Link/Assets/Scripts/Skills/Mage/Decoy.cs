@@ -28,18 +28,18 @@ public class Decoy : Skill
     {
 
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
     }
 
     public void pressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             decoyTp();
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
         }
     }
 

@@ -20,25 +20,25 @@ public class RandomGun : Skill
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
-        _coolDownTracker = _coolDown;
-        _coolDownTracker = 0;
+        CoolDownTracker = _coolDown;
+        CoolDownTracker = 0;
     }
 
     private void Update()
     {
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
     }
 
     public void pressKey()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             chooseWeapon();
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
         }
     }
 
@@ -83,7 +83,7 @@ public class RandomGun : Skill
         
 
         Vector2 direction = _aiming.AimDirection;
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         Vector2 newPos = Vector2.zero;
         newPos.y = newPos.y - 0.2f;
 

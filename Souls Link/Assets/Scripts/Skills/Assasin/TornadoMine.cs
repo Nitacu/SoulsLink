@@ -18,24 +18,24 @@ public class TornadoMine : Skill
     // Start is called before the first frame update
     void Start()
     {
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
         
     }
 
     public void spawnBomb()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
             Vector3 newBombPosition = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
             GameObject temp = Instantiate(_bomb, newBombPosition, Quaternion.identity);
             temp.GetComponent<MineController>().setBomb(_tornadoLifeTime, _tornadoDamage, _tornado, GetComponent<Dash>().chargePercent, gameObject);

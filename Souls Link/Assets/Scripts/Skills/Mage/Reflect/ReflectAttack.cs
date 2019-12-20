@@ -34,7 +34,7 @@ public class ReflectAttack : Skill
 
     public void pressKey()
     {
-        if(_coolDownTracker <= 0)
+        if(CoolDownTracker <= 0)
             buttonPressed = true;
     }
 
@@ -58,7 +58,7 @@ public class ReflectAttack : Skill
 
     private void Update()
     {
-        if (buttonPressed && !reflecting && _coolDownTracker <= 0)
+        if (buttonPressed && !reflecting && CoolDownTracker <= 0)
         {
             reflecting = true;
             
@@ -77,7 +77,7 @@ public class ReflectAttack : Skill
                     _shieldReference.GetComponent<RotateAroundByAim>().rotateAround(GetComponent<PlayerAiming>().AimDirection);
                     break;
             }
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
         }
 
         if (reflecting)
@@ -109,9 +109,9 @@ public class ReflectAttack : Skill
 
         }
 
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
     }
 

@@ -58,7 +58,7 @@ public class Dash : Skill
         _dashCollider.SetActive(false);
         _collider = GetComponent<CircleCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
         durationTracker = dashDuration;
         _aiming = GetComponent<PlayerAiming>();
         chargePercent = 0;
@@ -141,11 +141,11 @@ public class Dash : Skill
 
     private void chargeDash()
     {
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             chargedDashCheck();
         }
@@ -153,11 +153,11 @@ public class Dash : Skill
 
     private void simpleDash()
     {
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
 
         }
@@ -180,7 +180,7 @@ public class Dash : Skill
                 canDash = false;
                 dashEffect.SetActive(false);
                 durationTracker = dashDuration;
-                _coolDownTracker = _coolDown;
+                CoolDownTracker = _coolDown;
 
                 GetComponent<PlayerMovement>().isDashing = false;
             }
@@ -281,7 +281,7 @@ public class Dash : Skill
     public void pressKey()
     {
 
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             canDash = true;
             if (chargedDash)
@@ -317,7 +317,7 @@ public class Dash : Skill
     public void unPressKey()
     {
         Debug.Log("UnpressKey");
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
             if (canDash)
             {

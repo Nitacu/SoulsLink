@@ -20,24 +20,24 @@ public class StrongAttack : Skill
     // Start is called before the first frame update
     void Start()
     {
-        _coolDownTracker = _coolDown;
+        CoolDownTracker = _coolDown;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
+        if (CoolDownTracker <= _coolDown && CoolDownTracker > 0)
         {
-            _coolDownTracker -= Time.deltaTime;
+            CoolDownTracker -= Time.deltaTime;
         }
 
     }
 
     public void attack()
     {
-        if (_coolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
-            _coolDownTracker = _coolDown;
+            CoolDownTracker = _coolDown;
 
             if (stillAttackOption)
             {

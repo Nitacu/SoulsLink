@@ -6,5 +6,7 @@ public class Skill : MonoBehaviour
 {
     [SerializeField] public PlayerSkills.SkillType _skillType;
     public float _coolDown;
-    protected float _coolDownTracker;
+    protected float coolDownTracker;
+
+    public float CoolDownTracker { get => coolDownTracker; set => coolDownTracker = value; }
 }
