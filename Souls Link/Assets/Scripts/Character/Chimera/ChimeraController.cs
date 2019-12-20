@@ -245,6 +245,7 @@ public class ChimeraController : PlayerMovement
         {
             //desfusionar
             _unFusion();
+            unFusion();
         }
     }
 

@@ -147,7 +147,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
 
     public void pushUnFusion()
     {
-        _photonView.RPC(RECEIVE_UNFUSION, RpcTarget.All);
+        _photonView.RPC(RECEIVE_UNFUSION, RpcTarget.Others);
     }
 
     [PunRPC]
