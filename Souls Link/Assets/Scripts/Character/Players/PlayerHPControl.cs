@@ -134,14 +134,12 @@ public class PlayerHPControl : MonoBehaviour
             GetComponentInChildren<SpriteRenderer>().color = Color.red;
 
         canRecieveDamage = false;
-        Debug.Log("canRecieveDamage = false");
 
         yield return new WaitForSeconds(0.5f);
         if (GetComponentInChildren<SpriteRenderer>())
             GetComponentInChildren<SpriteRenderer>().color = Color.white;
 
         canRecieveDamage = true;
-        Debug.Log("canRecieveDamage = true");
     }
 
     /// /////////////////////////////////////GET Y SET /////////////////////////////////////

@@ -162,7 +162,7 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     {
         if (stream.IsWriting)
         {
-            Debug.Log("ENVIADO");
+
             stream.SendNext(_chimeraController.Movement1);
             stream.SendNext(_chimeraController._flip);
             stream.SendNext(_chimeraHP.PlayerHealth);
@@ -170,7 +170,6 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         else
         {
             _chimeraController.Movement1 = (Vector2)stream.ReceiveNext();
-            Debug.Log("RECIBIDO " + _chimeraController.Movement1);
             _chimeraController._flip = (bool)stream.ReceiveNext();
             _chimeraHP.updateMultiplayerHealth((float)stream.ReceiveNext());
         }

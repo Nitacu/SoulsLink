@@ -138,7 +138,6 @@ public class FusionTrigger : MonoBehaviour
 
     private void OnUnFusion(InputValue action)
     {
-        Debug.Log("OnUnFusion");
 
         if (_isMine())
         {
@@ -177,7 +176,6 @@ public class FusionTrigger : MonoBehaviour
 
         if (fusionManager != null)
         {
-            Debug.Log("Añadirme al host");
             fusionManager.addMeToFusion(gameObject);
             alreadyInHost = true;
         }
@@ -189,7 +187,6 @@ public class FusionTrigger : MonoBehaviour
 
         if (fusionManager != null)
         {
-            Debug.Log("Sacarme del host");
             fusionManager.getOutToFusion(gameObject);
             alreadyInHost = false;
         }
@@ -219,7 +216,6 @@ public class FusionTrigger : MonoBehaviour
         //Informaciónd e la chimera en la que estoy
         _currentChimeraParent = chimeraController.GetComponent<ChimeraController>();
 
-        Debug.Log("SET PARENT DE LA CHIMERA: " + chimeraController.name);
         transform.SetParent(chimeraController.transform);
         transform.localPosition = Vector3.zero;
 
@@ -232,7 +228,6 @@ public class FusionTrigger : MonoBehaviour
         GetComponent<FusionTrigger>().CurrentChimeraParent = null;
         ActiveComponentsOnFusion();
 
-        Debug.Log("SET PARENT NULL");
         transform.parent = null;
     }
 
@@ -240,7 +235,6 @@ public class FusionTrigger : MonoBehaviour
     {
         if (!IsOnFusion)//si yo no estoy en fusion siempre me puedo fusionar
         {
-            Debug.Log("DISPONIBLE PORQUE NO ESTÁ EN FUSION");
             return true;
         }
         else//sino mirar si todos mis compañeros en al chimera quieren fusionarse

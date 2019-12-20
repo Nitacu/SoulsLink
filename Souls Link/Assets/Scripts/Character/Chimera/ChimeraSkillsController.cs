@@ -120,7 +120,6 @@ public class ChimeraSkillsController : PlayerSkills
 
     private bool canLaunchSkill(InputSkill[] inputSkills)
     {
-        Debug.Log("Check canLaunchSkill");
         bool launchSkill = true;
         foreach (var inputSkill in inputSkills)
         {
@@ -224,7 +223,6 @@ public class ChimeraSkillsController : PlayerSkills
 
     public void sendSkill(GameManager.Characters typeCharacter, float pressValue, float skillIndex, int ID)
     {
-        Debug.Log("send Skill v2 RECIBIO");
         setInputSkillArrays(pressValue, skillIndex, ID, typeCharacter);
         return;
 
@@ -235,7 +233,6 @@ public class ChimeraSkillsController : PlayerSkills
         {
             if (chimeraTypes[i] == typeCharacter)
             {
-                Debug.Log("TIPO ENCONTRADO, LANZAR INDEX SKILL");
                 indexSkill(i, pressValue, skillIndex);
                 break;
             }
@@ -246,7 +243,6 @@ public class ChimeraSkillsController : PlayerSkills
     {
         if (skillIndex == 0)//dash
         {
-            Debug.Log("Dash");
             StartCoroutine(skillDelay(pressValue, DashPressDown, null, skillIndex));
             return;
         }
@@ -257,19 +253,15 @@ public class ChimeraSkillsController : PlayerSkills
                 switch (skillIndex)
                 {
                     case 1:
-                        Debug.Log("SKILL 1");
                         StartCoroutine(skillDelay(pressValue, Skill1PressDown, Skill1PressUp, skillIndex));
                         break;
                     case 2:
-                        Debug.Log("SKILL 2");
                         StartCoroutine(skillDelay(pressValue, Skill2PressDown, Skill2PressUp, skillIndex));
                         break;
                     case 3:
-                        Debug.Log("SKILL 3");
                         StartCoroutine(skillDelay(pressValue, Skill3PressDown, Skill3PressUp, skillIndex));
                         break;
                     case 4:
-                        Debug.Log("SKILL 4");
                         StartCoroutine(skillDelay(pressValue, Skill4PressDown, Skill4PressUp, skillIndex));
                         break;
                     default:
@@ -281,19 +273,15 @@ public class ChimeraSkillsController : PlayerSkills
                 switch (skillIndex)
                 {
                     case 1:
-                        Debug.Log("SKILL 5");
                         StartCoroutine(skillDelay(pressValue, Skill5PressDown, Skill5PressUp, skillIndex));
                         break;
                     case 2:
-                        Debug.Log("SKILL 6");
                         StartCoroutine(skillDelay(pressValue, Skill6PressDown, Skill6PressUp, skillIndex));
                         break;
                     case 3:
-                        Debug.Log("SKILL 7");
                         StartCoroutine(skillDelay(pressValue, Skill7PressDown, Skill7PressUp, skillIndex));
                         break;
                     case 4:
-                        Debug.Log("SKILL 8");
                         StartCoroutine(skillDelay(pressValue, Skill8PressDown, Skill8PressUp, skillIndex));
                         break;
                     default:

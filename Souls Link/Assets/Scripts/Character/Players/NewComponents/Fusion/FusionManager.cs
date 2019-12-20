@@ -46,7 +46,6 @@ public class FusionManager : MonoBehaviour
 
     private void checkPlayers()
     {
-        Debug.Log("check players");
 
         List<GameObject> _playersCanFusion = new List<GameObject>();
 
@@ -188,8 +187,6 @@ public class FusionManager : MonoBehaviour
 
     IEnumerator createChimera(List<GameObject> _players)
     {
-        Debug.Log("Create Chimera");
-
         yield return new WaitForEndOfFrame();
 
         if (_isHost())
@@ -214,8 +211,6 @@ public class FusionManager : MonoBehaviour
             string chimeraName = chimeraTocreate.name;
 
             //Crear chimera   
-            Debug.Log("SE VAN A FUSIONAR: " + _players.Count + " JUGADORES. CREAR CHIMERA: " + chimeraName);
-
             GameObject _chimera = PhotonNetwork.Instantiate(chimeraName, newPos, Quaternion.identity);
             _chimera.transform.position = newPos;
 
@@ -245,7 +240,6 @@ public class FusionManager : MonoBehaviour
     IEnumerator waitForSetPlayer(ChimeraController chimeraController, string ids)
     {
         yield return new WaitForEndOfFrame();
-        Debug.Log("Termino el frame de creacion de la quimera");
         chimeraController.GetComponent<PhotonChimeraMultiplayerController>().addDelegate();
         chimeraController._setPlayersInFusion(ids);
     }

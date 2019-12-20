@@ -130,7 +130,6 @@ public class ChimeraController : PlayerMovement
 
     public void sendMovement(Vector2 movement, int id, GameManager.Characters playerType)
     {
-        Debug.Log("id " + id + " movemente " + movement);
         _inputsMovements[id] = movement;
     }
 
@@ -176,7 +175,6 @@ public class ChimeraController : PlayerMovement
 
     public void setPlayersInFusion(string playersIds)
     {
-        Debug.Log("PlayersIds " + playersIds);
         _players = getPlayersByID(playersIds);
         setPlayersChild();
         updatePlayersInChimera();
@@ -187,10 +185,8 @@ public class ChimeraController : PlayerMovement
         foreach (var player in _players)
         {
             setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
-            Debug.Log("primera parte " + player.GetComponent<PhotonCharacterMultiplayerController>().isMine() + "segunda parte" + !player.GetComponent<PhotonCharacterMultiplayerController>().isHost());
             if (player.GetComponent<PhotonCharacterMultiplayerController>().isMine())
             {
-                Debug.Log("ESTOY DENTRO DE LA QUIMERA");
                 //llamar la funcion para decirle a todos cual maquina esta dentro de esa quimera
                 _sendPlayerInChimera();
             }
@@ -211,7 +207,6 @@ public class ChimeraController : PlayerMovement
                 if (player.GetComponent<FusionTrigger>()._myID().Equals(id))
                 {
                     playersWithIds.Add(player);
-                    Debug.Log("PLayer encontrado " + player.name + " ID " + id);
                     break;
                 }
             }
@@ -268,8 +263,6 @@ public class ChimeraController : PlayerMovement
 
     public void unFusion()
     {
-        Debug.Log("DesFusionar");
-
         foreach (var player in _players)
         {
             player.GetComponent<FusionTrigger>().setOnUnFusion();
