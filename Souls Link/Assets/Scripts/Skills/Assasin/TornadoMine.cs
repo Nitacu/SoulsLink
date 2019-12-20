@@ -5,13 +5,11 @@ using UnityEngine;
 public class TornadoMine : Skill
 {
 
-    public float _coolDown = 0;
     public float _bombLifeTime = 0;
     public float _tornadoLifeTime = 0;
     public float _tornadoDamage = 0;
     public GameObject _bomb;
     public GameObject _tornado;
-    private float _coolDownTracker = 0;
     [Header("Offset Y of bomb spawn")]
     public float offsetY = -0.3f;
 

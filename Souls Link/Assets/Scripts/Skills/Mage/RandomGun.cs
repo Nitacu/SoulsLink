@@ -7,10 +7,8 @@ public class RandomGun : Skill
     [SerializeField] private GameObject _energyBalls;
     [SerializeField] private GameObject _turret;
     [SerializeField] private GameObject _randomGunPickerPosition;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
 
-    private float _coolDownTracker;
     private PlayerAiming _aiming;
 
     private bool pickedWeapon = false;

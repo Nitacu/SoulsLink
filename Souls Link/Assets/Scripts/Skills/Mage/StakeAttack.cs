@@ -7,9 +7,7 @@ public class StakeAttack : Skill
 {
     [SerializeField] private GameObject _stakePrefab;
 
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _damage = 30;
-    private float _coolDownTracker;
 
     [HideInInspector]
     public bool canShoot = true;

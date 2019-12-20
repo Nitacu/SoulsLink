@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class Mist : Skill
 {
-    public float _coolDown = 0;
     public float _stealthTime = 0;
     public float _mistLifeTime = 0;
     public GameObject _mist;
-    private float _coolDownTracker = 0;
     private float _stealthTimeTracker = 0;
     [Header("Offset Y of mist spawn")]
     public float offsetY = 0;

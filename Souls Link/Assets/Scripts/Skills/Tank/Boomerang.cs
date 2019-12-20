@@ -5,13 +5,11 @@ using UnityEngine;
 public class Boomerang : Skill
 {
     [SerializeField] private GameObject _boomerangPrefab;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
 
 
     private bool isShooting = false;
-    private float _coolDownTracker;
     private GameObject flame;
     private PlayerAiming _aiming;
     [HideInInspector]

@@ -16,10 +16,6 @@ public class ReflectAttack : Skill
     private float _reflectingTimeTracker = 0;
     private bool reflecting;
 
-
-    [SerializeField] private float _coolDown;
-    private float _coolDownTracker;
-
     enum ReflectType
     {
         AROUND,

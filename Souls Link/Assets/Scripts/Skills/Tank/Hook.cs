@@ -6,13 +6,11 @@ public class Hook : Skill
 {
     [SerializeField] private GameObject _hookPrefab;
     [SerializeField] private GameObject _bitePrefab;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _hookSpeed;
     [SerializeField] private float _damage;
     [SerializeField] private float _travelTime;
     [SerializeField] private GameObject _linePrefab;
     private bool isShooting = false;
-    private float _coolDownTracker;
     private GameObject hookObject;
     private PlayerAiming _aiming;
     [HideInInspector]

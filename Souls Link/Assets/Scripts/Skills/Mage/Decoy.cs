@@ -8,8 +8,6 @@ public class Decoy : Skill
     [SerializeField] private float _distance = 1;
     [SerializeField] private GameObject _decoyShadow;
 
-    [SerializeField] private float _coolDown;
-    private float _coolDownTracker;
 
     private PlayerAiming _aiming;
     [HideInInspector]

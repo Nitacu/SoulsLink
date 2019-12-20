@@ -5,9 +5,7 @@ using UnityEngine;
 public class PoisonDart : Skill
 {
     [SerializeField] private GameObject _poisonDartPrefab;
-    [SerializeField] private float _coolDown = 0.5f;
     [SerializeField] private float _damagePerTick = 20;
-    private float _coolDownTracker;
 
     [HideInInspector]
     public bool canShoot = true;

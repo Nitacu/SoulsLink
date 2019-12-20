@@ -5,10 +5,8 @@ using UnityEngine;
 public class VineWhip : Skill
 {
     [SerializeField] private GameObject _vineWhip;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
     [SerializeField] private float _rootDuration;
-    private float _coolDownTracker;
     private Vector2 direction;
 
     private PlayerAiming _aiming;

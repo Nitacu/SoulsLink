@@ -8,12 +8,10 @@ public class StrongAttack : Skill
     [SerializeField] private GameObject _attackPrefab;
     private GameObject _attackReference;
     [SerializeField] private float _attackTime;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _attackDamage;
 
     [SerializeField] private bool _alwaysStrong = false;
 
-    private float _coolDownTracker;
     private Vector2 direction;
 
 

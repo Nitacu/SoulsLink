@@ -5,10 +5,8 @@ using UnityEngine;
 public class WallSkill : Skill
 {
     [SerializeField] private GameObject _wallPrefab;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float wallDuration;
 
-    private float _coolDownTracker;
 
     private PlayerAiming _aiming;
 

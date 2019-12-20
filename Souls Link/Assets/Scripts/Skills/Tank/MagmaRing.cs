@@ -5,13 +5,11 @@ using UnityEngine;
 public class MagmaRing : Skill
 {
     [SerializeField] private GameObject _ringPrefab;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
     [SerializeField] private float _numberOfRings;
     [SerializeField] private float _spawnRingRate;
     [SerializeField] private float _magmaTimeAlive;
 
-    private float _coolDownTracker;
     private PlayerAiming _aiming;
     private float ringsSpawned = 0;
     private bool lastRing = false;

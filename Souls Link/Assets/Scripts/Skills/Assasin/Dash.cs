@@ -12,8 +12,6 @@ public class Dash : Skill
     private GameObject chargeEffect;
     private Rigidbody2D _rb;
     [Header("General Settings")]
-    private float _coolDownTracker = 0;
-    public float _coolDown = 0;
     public float dashDuration = 0;
     private float durationTracker = 0;
     public float _damage = 0;

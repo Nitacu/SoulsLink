@@ -15,8 +15,6 @@ public class SmashAttack : Skill
     private GameObject _attackReference;
     private bool isCharging = false;
     private float chargedTime = 0;
-    private float _coolDownTracker = 0;
-    public float _coolDown = 0;
     public float maxChargedSeconds = 3;
     private Vector2 attackDirection;
     public float attackDuration = 0.2f;

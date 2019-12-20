@@ -6,12 +6,10 @@ public class Root : Skill
 {
     [SerializeField] private GameObject _rootPrefab;
     [SerializeField] private GameObject _rootEffectPrefab;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _damage;
     [SerializeField] private float _rootEffectDuration;
     [SerializeField] private float _rootDuration;
     [SerializeField] private float _rootSpawnRate;
-    private float _coolDownTracker;
     private bool keepSpawning = false;
     private float cont = 0;
     private float offsetRoots = 1.08f;
