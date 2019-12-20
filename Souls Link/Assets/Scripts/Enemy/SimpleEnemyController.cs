@@ -344,6 +344,20 @@ public class SimpleEnemyController : MonoBehaviour
         Invoke("noMoreStun", duration);
     }
 
+    public void GetRooted(float duration)
+    {
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        canWalk = false;
+        isStunned = true;
+        GetComponentInChildren<SpriteRenderer>().color = Color.white;
+        if (GetComponent<PolyNavAgent>() != null)
+        {
+            GetComponent<PolyNavAgent>().isStunned = true;
+        }
+        Invoke("noMoreStun", duration);
+    }
+
     public void Stun(float duration)
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;

@@ -409,6 +409,7 @@ GameObject:
   - component: {fileID: 2248004853499113603}
   - component: {fileID: 3041419759371742019}
   - component: {fileID: 3964067206077633431}
+  - component: {fileID: 4762503885336975883}
   m_Layer: 8
   m_Name: ChimeraDruidTankV2
   m_TagString: Player
@@ -604,8 +605,8 @@ MonoBehaviour:
   Skill2PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: attack
+      - m_Target: {fileID: 4762503885336975883}
+        m_MethodName: pressKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -906,12 +907,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbc6e6784ee52a428f0e832238b5593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _skillType: 0
   _poisonBallPrefab: {fileID: 3509482567803272616, guid: 563b45f94063ffc4bbf08aabf0c6c846,
     type: 3}
   _coolDown: 2
   _damagePerTick: 20
   pitLifetime: 3
   canShoot: 1
+--- !u!114 &4762503885336975883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf8f7467051b24f47a5f9c3e8ced6ff5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _boomerangPrefab: {fileID: 4578905545046157649, guid: ca0d880446cec05428b20206290e0d19,
+    type: 3}
+  _coolDown: 0
+  _speed: 15
+  _damage: 20
+  hasBoomerang: 1
 --- !u!1 &1700325172497557303
 GameObject:
   m_ObjectHideFlags: 0
@@ -3704,6 +3725,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   randomPicker: {fileID: 0}
   offsetY: 0
+  _photonView: {fileID: 0}
 --- !u!1 &9127764686048007872
 GameObject:
   m_ObjectHideFlags: 0

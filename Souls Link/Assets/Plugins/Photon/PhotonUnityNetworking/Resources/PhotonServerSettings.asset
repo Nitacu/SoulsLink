@@ -59,5 +59,6 @@ MonoBehaviour:
   - reciveFeedBackSkills
   - receiveSendUnFusion
   - receiveUnFusion
+  - recieveGunData
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PoisonBall : MonoBehaviour
+public class PoisonBall : Skill
 {
     [SerializeField] private GameObject _poisonBallPrefab;
     [SerializeField] private float _coolDown = 1.5f;
