@@ -271,19 +271,17 @@ public class FusionManager : MonoBehaviour
 
     public void addMeToFusion(GameObject player)
     {
-        if (!_playersToFusion.ToList().Contains(player))
+
+        for (int i = 0; i < _playersToFusion.Length; i++)
         {
-
-            for (int i = 0; i < _playersToFusion.Length; i++)
+            if (_playersToFusion[i] == null)
             {
-                if (_playersToFusion[i] == null)
-                {
-                    _playersToFusion[i] = player;
-                    break;
-                }
+                _playersToFusion[i] = player;
+                break;
             }
-
         }
+
+
 
         verifyPLayerSizeToFusion();
 

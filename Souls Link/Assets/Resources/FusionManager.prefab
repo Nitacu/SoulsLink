@@ -49,8 +49,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _chimeraTwoPlayersBase: {fileID: 1259665957190803052, guid: 37c52ba94a52c5a4d9322277889b190d,
-    type: 3}
+  _chimeraTwoPlayersBase: {fileID: 0}
   _chimeras:
   - {fileID: 1259665957190803052, guid: ef13c54056f09fa4fb4da96b31d351ba, type: 3}
   - {fileID: 1259665957190803052, guid: 0198d772571383f45ac99e42d86db759, type: 3}
