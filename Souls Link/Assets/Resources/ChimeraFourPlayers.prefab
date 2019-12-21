@@ -695,6 +695,7 @@ GameObject:
   - component: {fileID: 3041419759371742019}
   - component: {fileID: 4191510836189944975}
   - component: {fileID: 9164794297390318682}
+  - component: {fileID: 2773856585713855818}
   m_Layer: 8
   m_Name: ChimeraFourPlayers
   m_TagString: Player
@@ -875,8 +876,8 @@ MonoBehaviour:
   Skill1PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: pressKey
+      - m_Target: {fileID: 2773856585713855818}
+        m_MethodName: spawnBlood
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1227,6 +1228,25 @@ MonoBehaviour:
   _damage: 200
   _lightUltPrefab: {fileID: 3887214273643146466, guid: 47bada8377827f5469fa91fcdd193ae2,
     type: 3}
+--- !u!114 &2773856585713855818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06dc82bbc2ee23340a55191fadfd4824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _coolDown: 5
+  _damage: 100
+  _lifeSuck: 100
+  _bloodSuckerPrefab: {fileID: 8975862985864314705, guid: fe10e1f15ba6df54b85d8daa5cd2a50a,
+    type: 3}
+  hasDealedDamage: 0
 --- !u!1 &1666507008669538544
 GameObject:
   m_ObjectHideFlags: 0

@@ -583,9 +583,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 0.35
   _stakePrefab: {fileID: 2560435101665407758, guid: c8d166df39326fa41a28b9da00606dfc,
     type: 3}
-  _coolDown: 0.35
   _damage: 30
   canShoot: 1
 --- !u!114 &8133908661185029464
@@ -860,6 +860,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 1
+  _coolDown: 0.7
   _radiusDetection: 1
   _coneDetectioneDistance: 1
   _shielAroundPrefab: {fileID: 592897995847261921, guid: 687dc33e49fcac349b56f908f189ec32,
@@ -867,7 +868,6 @@ MonoBehaviour:
   _shieldDirectionPrefab: {fileID: 7283907965343569989, guid: 1e95c9113a4a19240a6cb3dc87edd049,
     type: 3}
   _reflectingTime: 0.3
-  _coolDown: 0.7
   _reflectType: 0
 --- !u!114 &930049935
 MonoBehaviour:
@@ -882,10 +882,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 2
+  _coolDown: 1
   _distance: 0.5
   _decoyShadow: {fileID: 1933650003457465940, guid: 246d51984d790e74185cae71c817b726,
     type: 3}
-  _coolDown: 1
   clones: []
   contClones: 0
 --- !u!114 &557684480
@@ -901,11 +901,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 3
+  _coolDown: 5
   _energyBalls: {fileID: 2130273142840406538, guid: 8586bcf1517c285419dae4fad94710ad,
     type: 3}
   _turret: {fileID: 465011960163533587, guid: 2a76980f4395c3949bcc7f326c636da6, type: 3}
   _randomGunPickerPosition: {fileID: 1930448433}
-  _coolDown: 5
   _damage: 0
 --- !u!114 &6225481780737515098
 MonoBehaviour:
@@ -1002,6 +1002,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterType: 1
+  _currentChimeraParent: {fileID: 0}
   _componentsToDeactivate:
   - {fileID: 1690128982303549139}
   - {fileID: 9148968347901726082}

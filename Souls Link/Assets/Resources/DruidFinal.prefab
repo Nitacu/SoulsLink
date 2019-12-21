@@ -632,11 +632,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 2
   _rootPrefab: {fileID: 7905251995183566779, guid: e6a213a9cc313f84ba3810043a186512,
     type: 3}
   _rootEffectPrefab: {fileID: 7531255531702625296, guid: 66ce5878bd6a9084285bb74cb913cdfd,
     type: 3}
-  _coolDown: 2
   _damage: 20
   _rootEffectDuration: 3
   _rootDuration: 3.5
@@ -654,9 +654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 0.6
   _vineWhip: {fileID: 7081138357069249965, guid: aa5533f000850c947bc78f94cacd6fbc,
     type: 3}
-  _coolDown: 0.6
   _damage: 20
   _rootDuration: 0.35
 --- !u!114 &543879864
@@ -672,9 +672,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 5
   _wallPrefab: {fileID: 7882638779556085853, guid: ebb6cb9e0e337f646bbc10eea366e340,
     type: 3}
-  _coolDown: 5
   wallDuration: 5
 --- !u!114 &638625345572385673
 MonoBehaviour:
@@ -702,9 +702,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 0.5
   _poisonDartPrefab: {fileID: 2560435101665407758, guid: 2d21b0fcbe41e194ea9fc0b7af2f4cba,
     type: 3}
-  _coolDown: 0.5
   _damagePerTick: 10
   canShoot: 1
 --- !u!114 &1588434853725202651
@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterType: 2
+  _currentChimeraParent: {fileID: 0}
   _componentsToDeactivate:
   - {fileID: 6058020209759171419}
   - {fileID: 9008634845870170328}

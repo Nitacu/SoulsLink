@@ -697,11 +697,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 4
   _hookPrefab: {fileID: 2808635983260031494, guid: f40ffb99d9e2dca408bf231b4b9280e2,
     type: 3}
   _bitePrefab: {fileID: 2818809523176965349, guid: 7f90259614692254fb4158e3410f9bb8,
     type: 3}
-  _coolDown: 4
   _hookSpeed: 10
   _damage: 5
   _travelTime: 0.2
@@ -722,9 +722,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 4
   _ringPrefab: {fileID: 1349659880750133405, guid: 99b34024b488afc4fa728ae342541cf9,
     type: 3}
-  _coolDown: 4
   _damage: 20
   _numberOfRings: 1
   _spawnRingRate: 0.8
@@ -788,13 +788,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 2
   _attackPrefab: {fileID: 3400747292364688728, guid: 8cb01d0255d937c4f845d5906ad268b1,
     type: 3}
   _minForce: 7
   _maxForce: 15
   _damage: 15
   _knockBackDuration: 0.5
-  _coolDown: 2
   maxChargedSeconds: 1.5
   attackDuration: 0.1
 --- !u!114 &-5108196622566580257
@@ -862,6 +862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterType: 0
+  _currentChimeraParent: {fileID: 0}
   _componentsToDeactivate:
   - {fileID: 1120487844959786582}
   - {fileID: 6647910037698648187}
@@ -880,9 +881,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 0
   _boomerangPrefab: {fileID: 6679468775385548518, guid: c5103a72fa9b1b443a4ba033121d1e7a,
     type: 3}
-  _coolDown: 0
   _speed: 15
   _damage: 20
   hasBoomerang: 1
