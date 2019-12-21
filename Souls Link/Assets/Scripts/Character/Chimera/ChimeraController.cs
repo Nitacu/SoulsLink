@@ -202,7 +202,7 @@ public class ChimeraController : PlayerMovement
     public void setPlayersInFusion(string playersIds)
     {
         _players = getPlayersByID(playersIds);
-        setChimeraHUDS();
+        //setChimeraHUDS();
         setPlayersChild();
         updatePlayersInChimera();
     }
