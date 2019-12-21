@@ -28,7 +28,7 @@ public class Flamethrower : Skill
     private void Start()
     {
         _aiming = GetComponent<PlayerAiming>();
-        _coolDownTracker = _coolDown;
+        _coolDownTracker = 0;
     }
 
     private void Update()
@@ -41,10 +41,13 @@ public class Flamethrower : Skill
 
         if (_followingRotation == FollowingRotation.FOLLOWDIRECTION)
         {
-            float rot = Mathf.Atan2(_aiming.AimDirection.x, _aiming.AimDirection.y) * Mathf.Rad2Deg;
-            flame.transform.rotation = Quaternion.Euler(rot - 90, 90, 90);
-            float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
-            colliderFlame.transform.rotation = Quaternion.Euler(0, 0, rot2);
+            if (isShooting)
+            {
+                float rot = Mathf.Atan2(_aiming.AimDirection.x, _aiming.AimDirection.y) * Mathf.Rad2Deg;
+                float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
+                flame.transform.rotation = Quaternion.Euler(0, 0, rot2);
+                colliderFlame.transform.rotation = Quaternion.Euler(0, 0, rot2);
+            }
         }
 
 
@@ -91,8 +94,8 @@ public class Flamethrower : Skill
         StartCoroutine(destroyFire(flame, flameDuration, colliderFlame));
         flame.transform.position = gameObject.transform.position;
 
-        float rot = Mathf.Atan2(_aiming.AimDirection.x, _aiming.AimDirection.y) * Mathf.Rad2Deg;
-        flame.transform.rotation = Quaternion.Euler(rot - 90, 90, 90);
+        float rot = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
+        flame.transform.rotation = Quaternion.Euler(0, 0, rot);
         float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
         colliderFlame.transform.rotation = Quaternion.Euler(0, 0, rot2);
 
