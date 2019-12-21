@@ -17,17 +17,11 @@ public class ParticleReadRotationFromParent : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("INICIO UPDATE startRotation: " + particle.startRotation);
-
-
         float zParentRotation = _parent.transform.eulerAngles.z;
-        Debug.Log("zParentRotation: " + zParentRotation);
 
         zParentRotation *= (positive) ? 1 : -1;
         float newRotParticle = zParentRotation + _zOffset;
-        Debug.Log("newRotParticle: " + newRotParticle);
 
         particle.startRotation = newRotParticle * Mathf.Deg2Rad;
-        Debug.Log("FINAL UPDATE startRotation: " + particle.startRotation);
     }
 }
