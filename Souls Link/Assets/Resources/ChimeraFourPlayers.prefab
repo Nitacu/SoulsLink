@@ -696,6 +696,7 @@ GameObject:
   - component: {fileID: 4191510836189944975}
   - component: {fileID: 9164794297390318682}
   - component: {fileID: 2773856585713855818}
+  - component: {fileID: 1683373488908898069}
   m_Layer: 8
   m_Name: ChimeraFourPlayers
   m_TagString: Player
@@ -897,8 +898,8 @@ MonoBehaviour:
   Skill2PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: attack
+      - m_Target: {fileID: 1683373488908898069}
+        m_MethodName: pressKey
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -974,18 +975,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill6PressDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: pressKey
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill6PressUp:
@@ -1016,18 +1006,7 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   Skill8PressDown:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: pressKey
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   Skill8PressUp:
@@ -1247,6 +1226,28 @@ MonoBehaviour:
   _bloodSuckerPrefab: {fileID: 8975862985864314705, guid: fe10e1f15ba6df54b85d8daa5cd2a50a,
     type: 3}
   hasDealedDamage: 0
+--- !u!114 &1683373488908898069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8972c83425f4644bb5397993b13d7cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _coolDown: 4
+  _followingRotation: 1
+  _flameThrowerParticles: {fileID: 6068902069875755846, guid: 1528fdbe5f2516b4dbaf4f348d565d3a,
+    type: 3}
+  _colliderFire: {fileID: 1374183763134428994, guid: e67ec68910a0442488b5fe9073b929cf,
+    type: 3}
+  flameDuration: 3
+  _damagePerTick: 75
+  _timeTicks: 0.5
 --- !u!1 &1666507008669538544
 GameObject:
   m_ObjectHideFlags: 0

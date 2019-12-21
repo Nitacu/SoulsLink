@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flamethrower : MonoBehaviour
+public class Flamethrower : Skill
 {
+    #region BEHAVIOUR
+    public enum FollowingRotation
+    {
+        LASTDIRECTION,
+        FOLLOWDIRECTION
+    }
+    [SerializeField] private FollowingRotation _followingRotation;
+    #endregion
+
     [SerializeField] private GameObject _flameThrowerParticles;
     [SerializeField] private GameObject _colliderFire;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float flameDuration;
     [SerializeField] private float _damagePerTick;
     [SerializeField] private float _timeTicks;
@@ -25,12 +33,20 @@ public class Flamethrower : MonoBehaviour
 
     private void Update()
     {
-        
 
         if (_coolDownTracker <= _coolDown && _coolDownTracker > 0)
         {
             _coolDownTracker -= Time.deltaTime;
         }
+
+        if (_followingRotation == FollowingRotation.FOLLOWDIRECTION)
+        {
+            float rot = Mathf.Atan2(_aiming.AimDirection.x, _aiming.AimDirection.y) * Mathf.Rad2Deg;
+            flame.transform.rotation = Quaternion.Euler(rot - 90, 90, 90);
+            float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;
+            colliderFlame.transform.rotation = Quaternion.Euler(0, 0, rot2);
+        }
+
 
 
         /*
@@ -40,6 +56,7 @@ public class Flamethrower : MonoBehaviour
             _coolDownTracker = _coolDown;
         }
         */
+
     }
 
     public void pressKey()
@@ -70,9 +87,10 @@ public class Flamethrower : MonoBehaviour
         _coolDownTracker = _coolDown;
         flame = Instantiate(_flameThrowerParticles, gameObject.transform);
         colliderFlame = Instantiate(_colliderFire, gameObject.transform);
-        colliderFlame.GetComponent<FlameControl>().setFlame(_damagePerTick,_timeTicks, flameDuration);
+        colliderFlame.GetComponent<FlameControl>().setFlame(_damagePerTick, _timeTicks, flameDuration);
         StartCoroutine(destroyFire(flame, flameDuration, colliderFlame));
         flame.transform.position = gameObject.transform.position;
+
         float rot = Mathf.Atan2(_aiming.AimDirection.x, _aiming.AimDirection.y) * Mathf.Rad2Deg;
         flame.transform.rotation = Quaternion.Euler(rot - 90, 90, 90);
         float rot2 = Mathf.Atan2(_aiming.AimDirection.y, _aiming.AimDirection.x) * Mathf.Rad2Deg;

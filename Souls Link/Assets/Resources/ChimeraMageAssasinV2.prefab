@@ -485,6 +485,7 @@ MonoBehaviour:
   - {fileID: 6827222766997392185}
   _movement: {x: 0, y: 0}
   _inputsMovements: []
+  _unFusionCheck: 
 --- !u!50 &6373527348820862899
 Rigidbody2D:
   serializedVersion: 4
@@ -909,10 +910,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 1
   _distance: 1
   _decoyShadow: {fileID: 1933650003457465940, guid: 5b77d1183f51f30418fbeb6e2b4fd34d,
     type: 3}
-  _coolDown: 1
   clones: []
   contClones: 0
   _tornadoLifeTime: 2
@@ -932,11 +933,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 8
+  _coolDown: 0.2
   _attackPrefab: {fileID: 2428801584997393525, guid: 9a9ebab44366a3f4ba31242f4338f085,
     type: 3}
   _attackTime: 0.2
-  _coolDown: 0.2
-  _attackDamage: 20
+  _attackDamage: 100
   _alwaysStrong: 1
   stillAttackOption: 0
 --- !u!114 &5513910298095565316
@@ -952,10 +953,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
+  _coolDown: 0.35
   _stakePrefab: {fileID: 2560435101665407758, guid: 5219a51ef31f8744e922b786afde4cf5,
     type: 3}
-  _coolDown: 0.35
-  _damage: 50
+  _damage: 70
   canShoot: 1
 --- !u!114 &3900531503755944199
 MonoBehaviour:
@@ -3768,6 +3769,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   randomPicker: {fileID: 0}
   offsetY: 0
+  _photonView: {fileID: 0}
 --- !u!1 &9127764686048007872
 GameObject:
   m_ObjectHideFlags: 0
