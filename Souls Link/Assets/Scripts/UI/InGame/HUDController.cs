@@ -20,15 +20,18 @@ public class HUDController : MonoBehaviour
 
     private bool _isHostServer = false;
 
-    private void OnEnable()
+    private void Start()
     {
+
+        gameObject.SetActive(false);
+
         maxPlayerHealth = GetComponentInParent<PlayerHPControl>().PlayerHealth;
-        setHealthBar(maxPlayerHealth);       
+        setHealthBar(maxPlayerHealth);
     }
 
     public void setHealthBar(float newPlayerHealth)
     {
-        if(newPlayerHealth > maxPlayerHealth)
+        if (newPlayerHealth > maxPlayerHealth)
         {
             newPlayerHealth = maxPlayerHealth;
         }
