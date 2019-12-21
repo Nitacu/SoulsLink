@@ -1066,9 +1066,9 @@ MonoBehaviour:
   _coolDown: 2
   _poisonBallPrefab: {fileID: 3509482567803272616, guid: 563b45f94063ffc4bbf08aabf0c6c846,
     type: 3}
-  _coolDown: 2
   _damagePerTick: 20
   pitLifetime: 3
+  speed: 8
   canShoot: 1
 --- !u!114 &4762503885336975883
 MonoBehaviour:
@@ -1086,7 +1086,6 @@ MonoBehaviour:
   _coolDown: 0
   _boomerangPrefab: {fileID: 4578905545046157649, guid: ca0d880446cec05428b20206290e0d19,
     type: 3}
-  _coolDown: 0
   _speed: 15
   _damage: 20
   hasBoomerang: 1

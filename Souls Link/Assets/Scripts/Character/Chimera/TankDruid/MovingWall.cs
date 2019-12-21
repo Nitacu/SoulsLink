@@ -33,7 +33,8 @@ public class MovingWall : Skill
             _coolDownTracker = _coolDown;
             GameObject temp = Instantiate(_wallPrefab, transform.position, Quaternion.identity);
             temp.GetComponentInChildren<MovingWallController>().setWall(direction, _speed);
-
+            float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            temp.transform.rotation= Quaternion.Euler(0, 0, rot);
         }
     }
 

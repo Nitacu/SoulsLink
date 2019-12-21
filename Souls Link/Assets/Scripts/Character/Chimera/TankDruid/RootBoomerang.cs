@@ -5,7 +5,6 @@ using UnityEngine;
 public class RootBoomerang : Skill
 {
     [SerializeField] private GameObject _boomerangPrefab;
-    [SerializeField] private float _coolDown;
     [SerializeField] private float _speed;
     [SerializeField] private float _damage;
 

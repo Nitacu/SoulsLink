@@ -41,7 +41,7 @@ public class RootBoomerangControl : MonoBehaviour
 
         if (gameObject.transform.position == _playerReference.transform.position && isReturning)
         {
-            _playerReference.GetComponent<Boomerang>().hasBoomerang = true;
+            _playerReference.GetComponent<RootBoomerang>().hasBoomerang = true;
             Destroy(gameObject);
         }
 
@@ -63,7 +63,7 @@ public class RootBoomerangControl : MonoBehaviour
             {
                 if (collision.gameObject == _playerReference)
                 {
-                    _playerReference.GetComponent<Boomerang>().hasBoomerang = true;
+                    _playerReference.GetComponent<RootBoomerang>().hasBoomerang = true;
                     Destroy(gameObject);
                 }
             }

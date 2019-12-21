@@ -5,9 +5,9 @@ using UnityEngine;
 public class PoisonBall : Skill
 {
     [SerializeField] private GameObject _poisonBallPrefab;
-    [SerializeField] private float _coolDown = 1.5f;
     [SerializeField] private float _damagePerTick = 20;
     [SerializeField] private float pitLifetime = 3f;
+    public float speed = 4f;
     private float _coolDownTracker;
 
     [HideInInspector]
@@ -57,6 +57,7 @@ public class PoisonBall : Skill
                 poisonDart.transform.position = gameObject.transform.position;
                 LinealProjectile projectile = poisonDart.GetComponent<LinealProjectile>();
                 projectile.Damage = _damagePerTick/2;
+                projectile.Speed = speed;
                 projectile._projetileOwner = Projectile.ProjectileOwner.PLAYER;
                 projectile.setRotation(_aiming.AimDirection.normalized);
                 projectile.Velocity = _aiming.AimDirection.normalized;
