@@ -641,7 +641,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PlayerName
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -753,7 +753,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PlayerName
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -865,7 +865,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PlayerName
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -977,7 +977,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: PlayerName
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1736,6 +1736,7 @@ MonoBehaviour:
   ownCharacterSelection: {fileID: 722157450258774434}
   leftArrow: {fileID: 107299358702000663}
   rightArrow: {fileID: 2467385727714223412}
+  _nickName: {fileID: 748808461804411049}
 --- !u!114 &1233985791828316318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,6 +1756,7 @@ MonoBehaviour:
   ownCharacterSelection: {fileID: 722157449448661207}
   leftArrow: {fileID: 107299359520326498}
   rightArrow: {fileID: 2467385727451610177}
+  _nickName: {fileID: 748808461532381660}
 --- !u!114 &1233985792473701940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1774,6 +1776,7 @@ MonoBehaviour:
   ownCharacterSelection: {fileID: 722157449339104893}
   leftArrow: {fileID: 107299357784427976}
   rightArrow: {fileID: 2467385728935883499}
+  _nickName: {fileID: 748808463034453878}
 --- !u!114 &1233985792999360141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1793,6 +1796,7 @@ MonoBehaviour:
   ownCharacterSelection: {fileID: 722157448741222084}
   leftArrow: {fileID: 107299358340502897}
   rightArrow: {fileID: 2467385728427518546}
+  _nickName: {fileID: 748808462433294287}
 --- !u!224 &1248282818108232859
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3370,7 +3374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3014923143835019515
 GameObject:
   m_ObjectHideFlags: 0
@@ -3388,7 +3392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3014923144766662225
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,7 +3410,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &3014923145022996260
 GameObject:
   m_ObjectHideFlags: 0
@@ -3424,7 +3428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &3151919491995781064
 MonoBehaviour:
   m_ObjectHideFlags: 0
