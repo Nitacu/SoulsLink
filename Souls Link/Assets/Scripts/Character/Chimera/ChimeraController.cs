@@ -53,6 +53,12 @@ public class ChimeraController : PlayerMovement
         foreach (var player in _players)
         {
             setArrows(Vector2.zero, player.GetComponent<FusionTrigger>()._characterType);
+
+            //activa la HUD de la chimera
+            if (player.GetComponent<PlayerMovement>()._isMine())
+            {
+                GetComponent<SetHUDController>().setHUDWithParameter(player.GetComponent<SetHUDController>().Orientation);
+            }
         }
     }
 
