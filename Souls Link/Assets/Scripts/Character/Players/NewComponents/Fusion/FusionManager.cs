@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System.Linq;
 
 public class FusionManager : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class FusionManager : MonoBehaviour
 
     private void Update()
     {
-       
+
     }
 
     private void checkPlayers()
@@ -270,16 +271,22 @@ public class FusionManager : MonoBehaviour
 
     public void addMeToFusion(GameObject player)
     {
-        for (int i = 0; i < _playersToFusion.Length; i++)
+        if (!_playersToFusion.ToList().Contains(player))
         {
-            if (_playersToFusion[i] == null)
+
+            for (int i = 0; i < _playersToFusion.Length; i++)
             {
-                _playersToFusion[i] = player;
-                break;
+                if (_playersToFusion[i] == null)
+                {
+                    _playersToFusion[i] = player;
+                    break;
+                }
             }
+
         }
 
         verifyPLayerSizeToFusion();
+
     }
 
     private void verifyPLayerSizeToFusion()
