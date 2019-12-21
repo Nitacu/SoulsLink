@@ -41,11 +41,6 @@ public class ExplosiveShieldManager : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-
-    }
-
     public void destroyMySelf()
     {
         if (_playerReferece != null)
@@ -71,6 +66,8 @@ public class ExplosiveShieldManager : MonoBehaviour
             GameObject explosionArea = Instantiate(_shieldExplosion, gameObject.transform);
             explosionArea.GetComponent<AreaExplosion>().setAreaExplosion(damage, _attackTime);
         }
+
+        destroyMySelf();
     }
 
     public void receiveDamage(float damage)
