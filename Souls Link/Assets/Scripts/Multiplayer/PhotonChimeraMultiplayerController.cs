@@ -172,8 +172,10 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     [PunRPC]
     public void reciveDirectionShoot(Vector2 direction)
     {
+        Debug.Log("JA IA");
         _chimeraSkills.HostAllow = true;
         _chimeraController.Movement1 = direction;
+        _chimeraSkills.launchSkills();
     }
 
     #endregion

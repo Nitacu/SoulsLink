@@ -69,26 +69,32 @@ public class ChimeraSkillsController : PlayerSkills
         if (_isHost() || HostAllow)
         {
             //Lanzar habilidades
-            if (canLaunchSkill(_inputSkill1))
-            {
-                StartCoroutine(skillDelay(1, Skill1PressDown, null, 1));
-                resetInputSkillOnLaunch(_inputSkill1);
-            }
-            if (canLaunchSkill(_inputSkill2))
-            {
-                StartCoroutine(skillDelay(1, Skill2PressDown, null, 2));
-                resetInputSkillOnLaunch(_inputSkill2);
-            }
-            if (canLaunchSkill(_inputSkill3))
-            {
-                StartCoroutine(skillDelay(1, Skill3PressDown, null, 3));
-                resetInputSkillOnLaunch(_inputSkill3);
-            }
-            if (canLaunchSkill(_inputSkill4))
-            {
-                StartCoroutine(skillDelay(1, Skill4PressDown, null, 4));
-                resetInputSkillOnLaunch(_inputSkill4);
-            }
+            launchSkills();
+        }
+    }
+
+
+    public void launchSkills()
+    {
+        if (canLaunchSkill(_inputSkill1))
+        {
+            StartCoroutine(skillDelay(1, Skill1PressDown, null, 1));
+            resetInputSkillOnLaunch(_inputSkill1);
+        }
+        if (canLaunchSkill(_inputSkill2))
+        {
+            StartCoroutine(skillDelay(1, Skill2PressDown, null, 2));
+            resetInputSkillOnLaunch(_inputSkill2);
+        }
+        if (canLaunchSkill(_inputSkill3))
+        {
+            StartCoroutine(skillDelay(1, Skill3PressDown, null, 3));
+            resetInputSkillOnLaunch(_inputSkill3);
+        }
+        if (canLaunchSkill(_inputSkill4))
+        {
+            StartCoroutine(skillDelay(1, Skill4PressDown, null, 4));
+            resetInputSkillOnLaunch(_inputSkill4);
         }
     }
 
@@ -143,7 +149,7 @@ public class ChimeraSkillsController : PlayerSkills
         }
 
         //si es host y va a lanzar la habilidad le diga a todos que pueden lanzarla y actualize la direccion
-        if (_isHost())
+        if (_isHost() && launchSkill)
         {
             _directionShoot(GetComponent<ChimeraController>().Movement1);
         }
