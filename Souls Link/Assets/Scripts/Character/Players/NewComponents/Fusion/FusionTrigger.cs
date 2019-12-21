@@ -134,13 +134,13 @@ public class FusionTrigger : MonoBehaviour
             if (_actionPressed == 1)//Pressed
             {
 
-                Debug.log("AGREGAR AL HOST PRESS");
+                Debug.Log("AGREGAR AL HOST PRESS");
                 AddMeToGeneralHost();//me agrega al host de la quimera
                 _pushAddMeToGeneralHost(); //se agrega en otras maquinas
             }
             else if (_actionPressed == 0)//Released
             {
-                Debug.log("SACAR DEL HOST PRESS");
+                Debug.Log("SACAR DEL HOST PRESS");
                 GetoutToGeneralHost(); //lo saca del host de la quimera
                 _pushGetoutToGeneralHost(); // lo saca en las demas maquinas
             }
