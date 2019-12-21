@@ -28,7 +28,5 @@ public class SmashController : MonoBehaviour
         _damage = damage;
         _duration = duration;
         _direction = direction;
-
-
     }
 }

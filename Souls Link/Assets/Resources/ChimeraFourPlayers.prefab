@@ -694,6 +694,7 @@ GameObject:
   - component: {fileID: 2248004853499113603}
   - component: {fileID: 3041419759371742019}
   - component: {fileID: 4191510836189944975}
+  - component: {fileID: 9164794297390318682}
   m_Layer: 8
   m_Name: ChimeraFourPlayers
   m_TagString: Player
@@ -937,8 +938,8 @@ MonoBehaviour:
   Skill4PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: makeStealth
+      - m_Target: {fileID: 9164794297390318682}
+        m_MethodName: spawnUlt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1200,15 +1201,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skillType: 0
-  _coolDown: 4
+  _coolDown: 6
   _shield: {fileID: 4176490465322045983, guid: 132416ded9cf19a4ca1aac711942f4e0, type: 3}
   _shieldExplosion: {fileID: 8306465018678278791, guid: beb52c12ec7b52241b90da4737a9211d,
     type: 3}
   _minDamage: 50
   _maxDamage: 200
   _shieldLife: 100
-  _shieldLifeTime: 2.5
+  _shieldLifeTime: 3
   _attackTime: 0.3
+--- !u!114 &9164794297390318682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42752b161689dfd45a585d9b7a80cab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _coolDown: 5
+  _damage: 200
+  _lightUltPrefab: {fileID: 3887214273643146466, guid: 47bada8377827f5469fa91fcdd193ae2,
+    type: 3}
 --- !u!1 &1666507008669538544
 GameObject:
   m_ObjectHideFlags: 0
