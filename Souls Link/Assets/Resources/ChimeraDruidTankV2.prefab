@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 4762503885336975883}
   - component: {fileID: 9190557181065561193}
   - component: {fileID: 1210578071957548200}
+  - component: {fileID: 7860614074697861413}
   m_Layer: 8
   m_Name: ChimeraDruidTankV2
   m_TagString: Player
@@ -801,8 +802,8 @@ MonoBehaviour:
   Skill4PressDown:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: makeStealth
+      - m_Target: {fileID: 7860614074697861413}
+        m_MethodName: spawnGroundSmash
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1120,6 +1121,23 @@ MonoBehaviour:
   _damage: 200
   _rockSmashPrefab: {fileID: 1541739949593128567, guid: 2dbb9f200a091c54cb20f444633f44ab,
     type: 3}
+--- !u!114 &7860614074697861413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259665957190803052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a39d45a87ab1604992d5d8a737d7f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _skillType: 0
+  _coolDown: 4
+  _wallPrefab: {fileID: 2863438898655357913, guid: d97bba2eed192ed42aa731baf9cce551,
+    type: 3}
+  _speed: 6
 --- !u!1 &1484661518196833097
 GameObject:
   m_ObjectHideFlags: 0
