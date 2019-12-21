@@ -19,7 +19,6 @@ public class SmashAttack : Skill
     private Vector2 attackDirection;
     public float attackDuration = 0.2f;
     private bool canAttack = false;
-    private bool attackIsReady = false;
 
     // Start is called before the first frame update
     void Start()
@@ -84,7 +83,7 @@ public class SmashAttack : Skill
     {
         if (CoolDownTracker <= 0)
         {
-            if (!attackIsReady)
+            if (!IsCasting)
             {
                 isCharging = true;
                 stopMoving();
@@ -102,11 +101,11 @@ public class SmashAttack : Skill
     {
         if (CoolDownTracker <= 0)
         {
-            if (!attackIsReady)
+            if (!IsCasting)
             {
                 
                 isCharging = false;
-                attackIsReady = true;
+                IsCasting = true;
                 findForce(chargedTime);
                 backToNormal();
 
@@ -120,7 +119,7 @@ public class SmashAttack : Skill
         
         captureDirection();
         chargedTime = 0;
-        attackIsReady = false;
+        IsCasting = false;
         CoolDownTracker = _coolDown;
         _attackReference = Instantiate(_attackPrefab, gameObject.transform);
         _attackReference.GetComponentInChildren<SmashController>().setSmash(attackDirection, forceUsed, _damage, _knockBackDuration);

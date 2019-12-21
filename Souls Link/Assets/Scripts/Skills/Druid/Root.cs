@@ -10,7 +10,7 @@ public class Root : Skill
     [SerializeField] private float _rootEffectDuration;
     [SerializeField] private float _rootDuration;
     [SerializeField] private float _rootSpawnRate;
-    private bool keepSpawning = false;
+
     private float cont = 0;
     private float offsetRoots = 1.08f;
 
@@ -19,7 +19,7 @@ public class Root : Skill
     private float xOffset = 0;
     private float yOffset = -0.3f;
 
-    public bool KeepSpawning { get => keepSpawning; set => keepSpawning = value; }
+
     public float Cont { get => cont; set => cont = value; }
 
     private void Start()
@@ -39,10 +39,9 @@ public class Root : Skill
 
     public void pressKey()
     {
-        if(CoolDownTracker <= 0)
+        if (CoolDownTracker <= 0)
         {
-            CoolDownTracker = _coolDown;
-            KeepSpawning = true;
+            isCasting = true;
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             useRoot(_aiming.AimDirection);
             GetComponentInChildren<Animator>().SetBool("isCasting", true);
@@ -52,10 +51,14 @@ public class Root : Skill
 
     public void unPressKey()
     {
-        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-        GetComponent<PlayerMovement>().enabled = true;
-        GetComponentInChildren<Animator>().SetBool("isCasting", false);
-        KeepSpawning = false;
+        if (isCasting)
+        {
+            CoolDownTracker = _coolDown;
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            GetComponent<PlayerMovement>().enabled = true;
+            GetComponentInChildren<Animator>().SetBool("isCasting", false);
+            isCasting = false;
+        }
     }
 
     IEnumerator destroyRoot(GameObject root, float time)
@@ -74,8 +77,8 @@ public class Root : Skill
     {
         GameObject root = Instantiate(_rootPrefab, gameObject.transform.position, Quaternion.identity);
         root.GetComponent<RootSkillController>().setRoot(_rootEffectPrefab, _damage, _rootEffectDuration, gameObject, direction, _rootPrefab, _rootDuration, _rootSpawnRate);
-        
-        
+
+
     }
 
     private void determineOffset(Vector2 direction)
@@ -84,7 +87,7 @@ public class Root : Skill
         {
             xOffset = 0.5f * Mathf.Sign(direction.x);
         }
-      
+
         if (direction.y != 0)
         {
             yOffset = 0.5f * Mathf.Sign(direction.y) - 0.3f;

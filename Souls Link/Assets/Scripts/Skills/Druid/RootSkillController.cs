@@ -87,7 +87,7 @@ public class RootSkillController : MonoBehaviour
 
         //If Ray
         //If no hits wall
-        if (!hitWall && _player.GetComponent<Root>().KeepSpawning)
+        if (!hitWall && _player.GetComponent<Root>().IsCasting)
         {
             StartCoroutine(spawnRoot(_newSpawnRate));
         }

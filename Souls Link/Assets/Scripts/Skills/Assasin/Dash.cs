@@ -41,7 +41,6 @@ public class Dash : Skill
     public float maxDashes = 0;
     private float currentDashes = 0;
 
-    private bool isCharging = false;
     private bool canDash = false;
     private bool hasCharged = false;
     [HideInInspector]
@@ -84,12 +83,12 @@ public class Dash : Skill
             chargeBarControl();
         }
 
-        if (isCharging)
+        if (isCasting)
         {
             chargedTime += Time.deltaTime;
             if(chargedTime > maxChargedSeconds)
             {
-                isCharging = false;
+                isCasting = false;
                 backToNormal();
                 getChargePercent(chargedTime);
                 hasCharged = true;
@@ -176,7 +175,7 @@ public class Dash : Skill
             {
                 //Dash is over
                 isDashing = false;
-                isCharging = false;
+                isCasting = false;
                 canDash = false;
                 dashEffect.SetActive(false);
                 durationTracker = dashDuration;
@@ -235,7 +234,7 @@ public class Dash : Skill
             //dash with power and does damage
             isSimpleDash = false;
             consumeChargeBar(electricCost);
-            isCharging = false;
+            isCasting = false;
             hasCharged = false;
             dashEffect.SetActive(true);
             captureDirection();
@@ -256,7 +255,7 @@ public class Dash : Skill
         {
             //charge
             canDash = true;
-            isCharging = true;
+            isCasting = true;
             stopMoving();
             effectReference = Instantiate(chargeEffect, gameObject.transform);
             GetComponent<PlayerHPControl>().setStunReflectMode();
@@ -267,9 +266,9 @@ public class Dash : Skill
 
     public void newUnpress()
     {
-        if (isCharging)
+        if (isCasting)
         {
-            isCharging = false;
+            isCasting = false;
             backToNormal();
             getChargePercent(chargedTime);
             hasCharged = true;
@@ -288,7 +287,7 @@ public class Dash : Skill
             {
                 if (!isDashing && hasCharged && chargePercent >= electricCost)
                 {
-                    isCharging = false;
+                    isCasting = false;
                     hasCharged = false;
                     dashEffect.SetActive(true);
                     captureDirection();
@@ -298,7 +297,7 @@ public class Dash : Skill
 
                 if (!isDashing)
                 {
-                    isCharging = true;
+                    isCasting = true;
                 }
                 else
                 {
@@ -326,7 +325,7 @@ public class Dash : Skill
                 {
                     if (!hasCharged)
                     {
-                        isCharging = false;
+                        isCasting = false;
                         getChargePercent(chargedTime);
                         hasCharged = true;
                     }
@@ -347,7 +346,7 @@ public class Dash : Skill
 
     public void resetCharge()
     {
-        isCharging = false;
+        isCasting = false;
         canDash = false;
         hasCharged = false;
         chargedTime = 0;

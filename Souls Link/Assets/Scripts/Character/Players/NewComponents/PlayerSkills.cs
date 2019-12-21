@@ -89,15 +89,22 @@ public class PlayerSkills : MonoBehaviour
             {
                 if (_eventDown != null)
                 {
-                    _eventDown.Invoke();
-
                     if (_skillType.CoolDownTracker <= 0)
                         _pushValueSkill(value, index);
+
+                    _eventDown.Invoke();
+
                 }
             }
             else if (value == 0)//Released
             {
-                if (_eventUp != null) _eventUp.Invoke();
+                if (_eventUp != null)
+                {
+                    if (_skillType.IsCasting || _skillType.CoolDownTracker<=0)
+                        _pushValueSkill(value, index);
+
+                    _eventUp.Invoke();
+                }
             }
         }
     }
