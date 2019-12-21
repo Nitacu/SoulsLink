@@ -182,7 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 10
   _projetileOwner: 0
-  _speed: 15
+  _speed: 10
   _destrutable: 0
 --- !u!210 &4915156337154946165
 SortingGroup:
@@ -236,4 +236,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3630f6ef2a1b31743b9d112f317c8a52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotationSpeed: -20
+  _rotationSpeed: -35
