@@ -60,5 +60,6 @@ MonoBehaviour:
   - receiveSendUnFusion
   - receiveUnFusion
   - recieveGunData
+  - reciveDirectionShoot
   DisableAutoOpenWizard: 1
   ShowSettings: 1
