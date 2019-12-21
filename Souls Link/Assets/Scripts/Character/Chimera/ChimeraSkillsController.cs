@@ -21,6 +21,8 @@ public class ChimeraSkillsController : PlayerSkills
     #region Delegate
     public delegate bool DelegateMultiplayerSkillController();
     public DelegateMultiplayerSkillController _isMine;
+    public delegate void DelegateMultiplayerSkillControllerDirectionShoot(Vector2 direction);
+    public DelegateMultiplayerSkillControllerDirectionShoot _directionShoot;
     #endregion
 
     #region InputPairs
@@ -29,6 +31,8 @@ public class ChimeraSkillsController : PlayerSkills
     public InputSkill[] _inputSkill3;
     public InputSkill[] _inputSkill4;
     #endregion
+
+    private bool _hostAllow = false;
 
     [SerializeField] private float _inputSkillReadingTime = 1f;
 
@@ -62,26 +66,29 @@ public class ChimeraSkillsController : PlayerSkills
             setInput(inputSlot);
         }
 
-        //Lanzar habilidades
-        if (canLaunchSkill(_inputSkill1))
+        if (_isHost() || HostAllow)
         {
-            StartCoroutine(skillDelay(1, Skill1PressDown, null, 1));
-            resetInputSkillOnLaunch(_inputSkill1);
-        }
-        if (canLaunchSkill(_inputSkill2))
-        {
-            StartCoroutine(skillDelay(1, Skill2PressDown, null, 2));
-            resetInputSkillOnLaunch(_inputSkill2);
-        }
-        if (canLaunchSkill(_inputSkill3))
-        {
-            StartCoroutine(skillDelay(1, Skill3PressDown, null, 3));
-            resetInputSkillOnLaunch(_inputSkill3);
-        }
-        if (canLaunchSkill(_inputSkill4))
-        {
-            StartCoroutine(skillDelay(1, Skill4PressDown, null, 4));
-            resetInputSkillOnLaunch(_inputSkill4);
+            //Lanzar habilidades
+            if (canLaunchSkill(_inputSkill1))
+            {
+                StartCoroutine(skillDelay(1, Skill1PressDown, null, 1));
+                resetInputSkillOnLaunch(_inputSkill1);
+            }
+            if (canLaunchSkill(_inputSkill2))
+            {
+                StartCoroutine(skillDelay(1, Skill2PressDown, null, 2));
+                resetInputSkillOnLaunch(_inputSkill2);
+            }
+            if (canLaunchSkill(_inputSkill3))
+            {
+                StartCoroutine(skillDelay(1, Skill3PressDown, null, 3));
+                resetInputSkillOnLaunch(_inputSkill3);
+            }
+            if (canLaunchSkill(_inputSkill4))
+            {
+                StartCoroutine(skillDelay(1, Skill4PressDown, null, 4));
+                resetInputSkillOnLaunch(_inputSkill4);
+            }
         }
     }
 
@@ -133,6 +140,16 @@ public class ChimeraSkillsController : PlayerSkills
             {
                 launchSkill = false;
             }
+        }
+
+        //si es host y va a lanzar la habilidad le diga a todos que pueden lanzarla y actualize la direccion
+        if (_isHost())
+        {
+            _directionShoot(GetComponent<ChimeraController>().Movement1);
+        }
+        else if (launchSkill)
+        {
+            HostAllow = false;
         }
 
         return launchSkill;
@@ -345,4 +362,8 @@ public class ChimeraSkillsController : PlayerSkills
             if (_eventUp != null) _eventUp.Invoke();
         }
     }
+
+
+    ////////////GET Y SET /////////////////////////////
+    public bool HostAllow { get => _hostAllow; set => _hostAllow = value; }
 }

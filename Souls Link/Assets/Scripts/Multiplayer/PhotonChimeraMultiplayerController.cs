@@ -52,6 +52,8 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
         _chimeraController._unFusion = new ChimeraController.DelegateMultiplayerControllerSendPlayerInChimera(pushUnFusion);
 
         _chimeraSkills._isMine = new ChimeraSkillsController.DelegateMultiplayerSkillController(isMine);
+        _chimeraSkills._isHost = new PlayerSkills.DelegateMultiplayerController(isHost);
+        _chimeraSkills._directionShoot = new ChimeraSkillsController.DelegateMultiplayerSkillControllerDirectionShoot(sendDirectionShoot);
 
         _chimeraHP._isMine = new PlayerHPControl.DelegateMultiplayerController(isMine);
         _chimeraHP._destroySelf = new PlayerHPControl.DelegateMultiplayerControllerDestroy(destroySelf);
@@ -155,6 +157,23 @@ public class PhotonChimeraMultiplayerController : MonoBehaviourPunCallbacks, IPu
     public void receiveUnFusion()
     {
         _chimeraController.unFusion();
+    }
+
+    #endregion
+
+    #region direccion de disparo
+
+    //les dice a las otras maquinas en que direcion deben disparar
+    public void sendDirectionShoot(Vector2 direction)
+    {
+        _photonView.RPC("reciveDirectionShoot", RpcTarget.Others, direction);
+    }
+
+    [PunRPC]
+    public void reciveDirectionShoot(Vector2 direction)
+    {
+        _chimeraSkills.HostAllow = true;
+        _chimeraController.Movement1 = direction;
     }
 
     #endregion
