@@ -42,7 +42,8 @@ public class PlayerHPControl : MonoBehaviour
                         sceneManager.setCoopCamera(false);
                     }
 
-                    _destroySelf();
+                    gameObject.SetActive(false);
+                    //_destroySelf();
                 }
 
                 if (GetComponentInChildren<HUDController>())

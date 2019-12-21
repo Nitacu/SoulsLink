@@ -22,9 +22,6 @@ public class HUDController : MonoBehaviour
 
     private void Start()
     {
-
-        gameObject.SetActive(false);
-
         maxPlayerHealth = GetComponentInParent<PlayerHPControl>().PlayerHealth;
         setHealthBar(maxPlayerHealth);
     }
