@@ -11,7 +11,7 @@ public class PlayerHPControl : MonoBehaviour
     private bool canRecieveDamage = true;
     private bool deflectsDamage = false;
     private bool stunDeflect = false;
-
+    private bool withAbsorbShield = false;
     #endregion
 
     #region Delegate
@@ -55,6 +55,14 @@ public class PlayerHPControl : MonoBehaviour
             }
             else
             {
+                if (withAbsorbShield)
+                {
+                    if (GetComponent<ExplosiveShield>())
+                    {
+                        GetComponent<ExplosiveShield>().absorbDamage(damage);
+                    }
+                }
+
                 if (deflectsDamage)
                 {
                     if (attackingEnemy.tag != "enemyProjectile")
@@ -127,6 +135,13 @@ public class PlayerHPControl : MonoBehaviour
         deflectsDamage = false;
         stunDeflect = false;
     }
+
+    public void setAbsorbShield(bool withShield)
+    {
+        canRecieveDamage = !withShield;
+        withAbsorbShield = withShield;
+    }
+
 
     public IEnumerator changeColor()
     {
