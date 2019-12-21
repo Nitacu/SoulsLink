@@ -59,9 +59,9 @@ public class ChimeraController : PlayerMovement
             {
                 Debug.Log("DESACTIVAR HUD PLAYER Y ACTIVAR EL DE LA CHIMERA ");
 
-                player.GetComponent<SetHUDController>().ActivateHUD(false);
+                //player.GetComponent<SetHUDController>().ActivateHUD(false);
 
-                GetComponent<SetHUDController>().setHUDWithParameter(player.GetComponent<SetHUDController>().Orientation);
+                //GetComponent<SetHUDController>().setHUDWithParameter(player.GetComponent<SetHUDController>().Orientation);
             }
         }
     }

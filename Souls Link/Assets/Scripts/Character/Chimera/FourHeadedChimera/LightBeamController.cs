@@ -24,6 +24,6 @@ public class LightBeamController : MonoBehaviour
     private void destoyMyself()
     {
         playerReference.GetComponent<ChimeraLightUlt>().backToNormal();
-        Destroy(gameObject.transform.parent);
+        Destroy(gameObject.transform.parent.gameObject);
     }
 }
