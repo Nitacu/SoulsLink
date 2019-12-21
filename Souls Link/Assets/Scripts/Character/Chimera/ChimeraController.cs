@@ -57,6 +57,8 @@ public class ChimeraController : PlayerMovement
             //activa la HUD de la chimera
             if (player.GetComponent<PlayerMovement>()._isMine())
             {
+                player.GetComponent<SetHUDController>().ActivateHUD(false);
+
                 GetComponent<SetHUDController>().setHUDWithParameter(player.GetComponent<SetHUDController>().Orientation);
             }
         }
