@@ -36,7 +36,7 @@ public class BloodSucker : Skill
             Vector2 direction = GetComponent<PlayerAiming>().AimDirection;
             _coolDownTracker = _coolDown;
             GameObject temp = Instantiate(_bloodSuckerPrefab, transform.position, Quaternion.identity);
-            temp.GetComponentInChildren<LightBeamController>().setLightBeam(_damage, gameObject);
+            temp.GetComponentInChildren<BloodSuckerController>().setBloodSucker(gameObject);
             float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             temp.transform.rotation = Quaternion.Euler(0, 0, rot - 90);
         }
