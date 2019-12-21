@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ChimeraLightUlt : Skill
 {
-
-    public float _coolDown = 0;  
-    public float _tornadoDamage = 0;
-    public GameObject _bomb;
+    
+    public float _damage = 200;
+    public GameObject _lightUltPrefab;
     private float _coolDownTracker = 0;
 
     // Start is called before the first frame update
@@ -26,20 +25,31 @@ public class ChimeraLightUlt : Skill
 
     }
 
-    public void spawnBomb()
+    public void spawnUlt()
     {
         if (_coolDownTracker <= 0)
         {
-            _coolDownTracker = _coolDown;
-            Vector3 newBombPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            GameObject temp = Instantiate(_bomb, newBombPosition, Quaternion.identity);
-           
+            Vector2 direction = GetComponent<PlayerAiming>().AimDirection;
+            _coolDownTracker = _coolDown;          
+            GameObject temp = Instantiate(_lightUltPrefab, transform.position, Quaternion.identity);
+            temp.GetComponentInChildren<LightBeamController>().setLightBeam(_damage, gameObject);
+            float rot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            temp.transform.rotation = Quaternion.Euler(0, 0, rot - 90);
         }
     }
 
-    IEnumerator destroyBomb(GameObject bomb, float time)
+    private void stopMoving()
     {
-        yield return new WaitForSeconds(time);
-        Destroy(bomb);
+        GetComponent<PlayerMovement>().enabled = false;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        GetComponentInChildren<Animator>().SetBool("isCasting", true);
     }
+
+    public void backToNormal()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        GetComponentInChildren<Animator>().SetBool("isCasting", false);
+    }
+
 }
