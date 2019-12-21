@@ -43,5 +43,21 @@ public class SetHUDController : MonoBehaviour
         }
     }
 
+    public void ActivateHUD(bool activate)
+    {
+        switch (Orientation)
+        {
+            case HUDOrientation.LEFT:
+                _leftHUD.SetActive(activate);
+                _rightHUD.SetActive(false);
+                break;
+
+            case HUDOrientation.RIGHT:
+                _leftHUD.SetActive(false);
+                _rightHUD.SetActive(activate);
+                break;
+        }
+    }
+
     public HUDOrientation Orientation { get => _orientation; set => _orientation = value; }
 }
