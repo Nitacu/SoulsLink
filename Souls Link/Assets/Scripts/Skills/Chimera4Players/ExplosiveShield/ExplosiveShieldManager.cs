@@ -12,7 +12,7 @@ public class ExplosiveShieldManager : MonoBehaviour
     private float _maxDamage;
     private float _shieldLife;
     private float _currentShieldLife;
-    private float _lifeTime = 0;
+    private float _lifeTime = 10;
 
     public float _currentDamageAbsorbe;
 
@@ -26,6 +26,7 @@ public class ExplosiveShieldManager : MonoBehaviour
         _shieldExplosion = shieldExplosion;
         _attackTime = attackTime;
         _currentDamageAbsorbe = _minDamage;
+        _lifeTime = lifeTime;
     }
 
     private void Update()
