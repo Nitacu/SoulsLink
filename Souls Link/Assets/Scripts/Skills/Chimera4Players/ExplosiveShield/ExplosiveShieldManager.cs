@@ -63,7 +63,7 @@ public class ExplosiveShieldManager : MonoBehaviour
             damage = Mathf.Clamp(damage, _minDamage, _maxDamage);
 
             //crear area
-            GameObject explosionArea = Instantiate(_shieldExplosion, gameObject.transform);
+            GameObject explosionArea = Instantiate(_shieldExplosion, _playerReferece.transform);
             explosionArea.GetComponent<AreaExplosion>().setAreaExplosion(damage, _attackTime);
         }
 

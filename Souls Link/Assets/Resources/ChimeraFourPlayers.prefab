@@ -1209,7 +1209,7 @@ MonoBehaviour:
   _maxDamage: 200
   _shieldLife: 100
   _shieldLifeTime: 3
-  _attackTime: 0.3
+  _attackTime: 0.25
 --- !u!114 &9164794297390318682
 MonoBehaviour:
   m_ObjectHideFlags: 0
