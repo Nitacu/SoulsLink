@@ -89,8 +89,11 @@ public class PlayerSkills : MonoBehaviour
             {
                 if (_eventDown != null)
                 {
-                    if (_skillType.CoolDownTracker <= 0)
-                        _pushValueSkill(value, index);
+                    if (_skillType)
+                    {
+                        if (_skillType.CoolDownTracker <= 0)
+                            _pushValueSkill(value, index);
+                    }
 
                     _eventDown.Invoke();
 
@@ -100,8 +103,11 @@ public class PlayerSkills : MonoBehaviour
             {
                 if (_eventUp != null)
                 {
-                    if (_skillType.IsCasting || _skillType.CoolDownTracker<=0)
-                        _pushValueSkill(value, index);
+                    if (_skillType)
+                    {
+                        if (_skillType.IsCasting || _skillType.CoolDownTracker <= 0)
+                            _pushValueSkill(value, index);
+                    }
 
                     _eventUp.Invoke();
                 }

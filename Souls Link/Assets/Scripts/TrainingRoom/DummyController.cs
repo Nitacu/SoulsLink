@@ -30,7 +30,7 @@ public class DummyController : MonoBehaviour
 
     private int currentPosition = 0;
 
-    private void OnEnable()
+    private void Start()
     {
         if (room == roomOfDummy.ROOM2)
         {
@@ -162,6 +162,7 @@ public class DummyController : MonoBehaviour
         }
     }
 
+    //lo llama el multiplayer
     public void changeLocation(int index)
     {
         transform.position = spawnPoints[index].position;
