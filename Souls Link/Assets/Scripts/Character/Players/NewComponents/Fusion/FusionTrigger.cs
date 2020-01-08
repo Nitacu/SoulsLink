@@ -253,7 +253,7 @@ public class FusionTrigger : MonoBehaviour
 
         if (_isMine())
         {
-            //GetComponent<SetHUDController>().ActivateHUD(true);
+            GetComponent<SetHUDController>().ActivateHUD(true);
         }
 
         Debug.Log("Set On UNFusion SALÍ");
