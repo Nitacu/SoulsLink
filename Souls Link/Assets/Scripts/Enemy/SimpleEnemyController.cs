@@ -165,6 +165,8 @@ public class SimpleEnemyController : MonoBehaviour
 
     public void recieveDamage(float damage)
     {
+        Debug.Log("RECEIVE DAMAGE SIMPLE ENEMY");
+
         if (_isHost())
         {
             if (!isDummy)
@@ -215,6 +217,7 @@ public class SimpleEnemyController : MonoBehaviour
 
     public IEnumerator die()
     {
+        Debug.Log("CORRUTINA DIE SIMPLE ENEMEY");
         Anim.Play(Animator.StringToHash("Death"));
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
@@ -239,29 +242,37 @@ public class SimpleEnemyController : MonoBehaviour
     {
         if (_isHost())
         {
-            if (isGettingDamaged)
+            if (!isDummy)
             {
-                health -= damage;
-                _changeHealth(health);
+                if (isGettingDamaged)
+                {
+                    health -= damage;
+                    _changeHealth(health);
 
-                if (health < 0)
-                {
-                    StartCoroutine(die());
-                }
-                else
-                {
-                    StartCoroutine(recieveTick(damage, tickTime));
-                    if (!isPoisoned)
+                    if (health < 0)
                     {
-                        changeRedToWhiteColor(0.3f);
+                        StartCoroutine(die());
                     }
                     else
                     {
-                        changePurpleToWhiteColor(0.3f);
+                        StartCoroutine(recieveTick(damage, tickTime));
+                        if (!isPoisoned)
+                        {
+                            changeRedToWhiteColor(0.3f);
+                        }
+                        else
+                        {
+                            changePurpleToWhiteColor(0.3f);
+                        }
                     }
                 }
+                Debug.Log(health);
             }
-            Debug.Log(health);
+            else
+            {
+                GetComponent<PhotonEnemyMultiplayerController>().setKill();
+                GetComponent<DummyController>().killDummy();
+            }
         }
     }
 
