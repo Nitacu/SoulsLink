@@ -37,6 +37,7 @@ public class ChimeraSkillsController : PlayerSkills
     [SerializeField] private float _inputSkillReadingTime = 1f;
 
     [SerializeField] private List<GameObject> inputFeedBack = new List<GameObject>();
+    [SerializeField] private GameObject generalInputFeedBack;
 
     private void Start()
     {
@@ -229,6 +230,15 @@ public class ChimeraSkillsController : PlayerSkills
 
     public void setSkillFeedback(GameManager.Characters typeCharacter, int skillIndex, float active)
     {
+        if (generalInputFeedBack != null)
+        {
+            ChimeraSkillFeedBack chimeraGeneralSkillFeedBack = generalInputFeedBack.GetComponent<ChimeraSkillFeedBack>();
+
+            chimeraGeneralSkillFeedBack.gameObject.SetActive(true);
+            chimeraGeneralSkillFeedBack.setSkill(active, skillIndex, _inputSkillReadingTime);
+
+        }
+
         if (inputFeedBack.Count > 0)
         {
             foreach (var arrow in inputFeedBack)
