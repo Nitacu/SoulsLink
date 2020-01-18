@@ -34,8 +34,8 @@ public class MistAnimations : MonoBehaviour
         {
             if (isCharged)
             {
-                collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed = collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed / 2;
-                collision.gameObject.GetComponent<PolyNavAgent>().velocity = collision.gameObject.GetComponent<PolyNavAgent>().velocity / 2;
+                collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().maxSpeed = collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().maxSpeed / 2;
+                collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().velocity = collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().velocity / 2;
             }
         }
     }
@@ -85,8 +85,8 @@ public class MistAnimations : MonoBehaviour
         {
             if (isCharged)
             {
-                collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed = collision.gameObject.GetComponent<PolyNavAgent>().maxSpeed * 2;
-                collision.gameObject.GetComponent<PolyNavAgent>().velocity = collision.gameObject.GetComponent<PolyNavAgent>().velocity * 2;
+                collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().maxSpeed = collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().maxSpeed * 2;
+                collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().velocity = collision.gameObject.GetComponent<PolyNav.PolyNavAgent>().velocity * 2;
             }
         }
     }

@@ -26,14 +26,14 @@ public class WaitingToContinue : Action
         // The task is done waiting if the time waitDuration has elapsed since the task was started.
         if (startTime + waitDuration < Time.time)
         {
-            GetComponent<PolyNavAgent>().enabled = true;
+            GetComponent<PolyNav.PolyNavAgent>().enabled = true;
             return TaskStatus.Success;
         }
         else
         {
             GetComponent<SimpleEnemyController>().Anim.SetFloat("Velocity",0);
             GetComponent<SimpleEnemyController>().Anim.SetBool("Can_Walk", false);
-            GetComponent<PolyNavAgent>().enabled = false;
+            GetComponent<PolyNav.PolyNavAgent>().enabled = false;
         }
         // Otherwise we are still waiting.
         return TaskStatus.Running;

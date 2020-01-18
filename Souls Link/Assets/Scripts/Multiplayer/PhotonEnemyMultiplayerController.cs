@@ -28,16 +28,16 @@ public class PhotonEnemyMultiplayerController : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (GetComponent<PolyNavAgent>() != null && GetComponent<BehaviorTree>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null && GetComponent<BehaviorTree>() != null)
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                GetComponent<PolyNavAgent>().enabled = true;
+                GetComponent<PolyNav.PolyNavAgent>().enabled = true;
                 GetComponent<BehaviorTree>().enabled = true;
             }
             else
             {
-                GetComponent<PolyNavAgent>().enabled = false;
+                GetComponent<PolyNav.PolyNavAgent>().enabled = false;
                 GetComponent<BehaviorTree>().enabled = false;
             }
         }

@@ -13,7 +13,7 @@ public class SimpleEnemyController : MonoBehaviour
     private bool firstTimePressing = true;
     private bool isGettingDamaged = false;
     private Animator _anim;
-    private PolyNavAgent _poly;
+    private PolyNav.PolyNavAgent _poly;
     public ControlSpawnEnemys _controlSpawnEnemys;
     public Animator Anim { get => _anim; set => _anim = value; }
     private float _force = 0;
@@ -54,7 +54,7 @@ public class SimpleEnemyController : MonoBehaviour
             _rb = GetComponent<Rigidbody2D>();
             Anim = GetComponentInChildren<Animator>();
             _controlSpawnEnemys = FindObjectOfType<ControlSpawnEnemys>();
-            _poly = GetComponent<PolyNavAgent>();
+            _poly = GetComponent<PolyNav.PolyNavAgent>();
         }
     }
 
@@ -221,9 +221,9 @@ public class SimpleEnemyController : MonoBehaviour
         Anim.Play(Animator.StringToHash("Death"));
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         GetComponent<CircleCollider2D>().enabled = false;
-        if (GetComponent<PolyNavAgent>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null)
         {
-            GetComponent<PolyNavAgent>().enabled = false;
+            GetComponent<PolyNav.PolyNavAgent>().enabled = false;
         }
         GetComponent<BehaviorTree>().enabled = false;
         yield return new WaitForSeconds(0.5f);
@@ -348,9 +348,9 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = false;
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        if (GetComponent<PolyNavAgent>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null)
         {
-            GetComponent<PolyNavAgent>().isStunned = true;
+            GetComponent<PolyNav.PolyNavAgent>().isStunned = true;
         }
         Invoke("noMoreStun", duration);
     }
@@ -362,9 +362,9 @@ public class SimpleEnemyController : MonoBehaviour
         canWalk = false;
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
-        if (GetComponent<PolyNavAgent>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null)
         {
-            GetComponent<PolyNavAgent>().isStunned = true;
+            GetComponent<PolyNav.PolyNavAgent>().isStunned = true;
         }
         Invoke("noMoreStun", duration);
     }
@@ -376,13 +376,13 @@ public class SimpleEnemyController : MonoBehaviour
         isStunned = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
 
-        if (GetComponent<PolyNavAgent>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null)
         {
-            tempMaxSpeed = GetComponent<PolyNavAgent>().maxSpeed;
-            tempVelocity = GetComponent<PolyNavAgent>().velocity;
-            GetComponent<PolyNavAgent>().maxSpeed = 0;
-            GetComponent<PolyNavAgent>().velocity = Vector2.zero;
-            GetComponent<PolyNavAgent>().isStunned = true;
+            tempMaxSpeed = GetComponent<PolyNav.PolyNavAgent>().maxSpeed;
+            tempVelocity = GetComponent<PolyNav.PolyNavAgent>().velocity;
+            GetComponent<PolyNav.PolyNavAgent>().maxSpeed = 0;
+            GetComponent<PolyNav.PolyNavAgent>().velocity = Vector2.zero;
+            GetComponent<PolyNav.PolyNavAgent>().isStunned = true;
         }
         //StartCoroutine(stopTheStun(duration));
         Invoke("noMoreStun", duration);
@@ -396,23 +396,23 @@ public class SimpleEnemyController : MonoBehaviour
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;
-        if (GetComponent<PolyNavAgent>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null)
         {
-            GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
-            GetComponent<PolyNavAgent>().velocity = tempVelocity;
+            GetComponent<PolyNav.PolyNavAgent>().maxSpeed = tempMaxSpeed;
+            GetComponent<PolyNav.PolyNavAgent>().velocity = tempVelocity;
             isStunned = false;
-            GetComponent<PolyNavAgent>().isStunned = false;
+            GetComponent<PolyNav.PolyNavAgent>().isStunned = false;
         }
     }
 
     public void noMoreStun()
     {
         GetComponentInChildren<SpriteRenderer>().color = Color.white;
-        if (GetComponent<PolyNavAgent>() != null)
+        if (GetComponent<PolyNav.PolyNavAgent>() != null)
         {
-            GetComponent<PolyNavAgent>().maxSpeed = tempMaxSpeed;
-            GetComponent<PolyNavAgent>().velocity = tempVelocity;
-            GetComponent<PolyNavAgent>().isStunned = false;
+            GetComponent<PolyNav.PolyNavAgent>().maxSpeed = tempMaxSpeed;
+            GetComponent<PolyNav.PolyNavAgent>().velocity = tempVelocity;
+            GetComponent<PolyNav.PolyNavAgent>().isStunned = false;
         }
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
         canWalk = true;

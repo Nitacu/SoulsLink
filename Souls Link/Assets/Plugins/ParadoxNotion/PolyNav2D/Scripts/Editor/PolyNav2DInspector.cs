@@ -2,19 +2,24 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(PolyNav2D))]
-public class PolyNav2DInspector : Editor {
+namespace PolyNav
+{
 
-	private PolyNav2D polyNav{
-		get {return target as PolyNav2D;}
-	}
+    [CustomEditor(typeof(PolyNav2D))]
+    public class PolyNav2DInspector : Editor
+    {
 
-	public override void OnInspectorGUI(){
+        private PolyNav2D polyNav {
+            get { return target as PolyNav2D; }
+        }
 
-		base.OnInspectorGUI();
+        public override void OnInspectorGUI() {
 
-		if (Application.isPlaying){
-			EditorGUILayout.LabelField("Nodes Count", polyNav.nodesCount.ToString());
-		}
-	}
+            base.OnInspectorGUI();
+
+            if ( Application.isPlaying ) {
+                EditorGUILayout.LabelField("Nodes Count", polyNav.nodesCount.ToString());
+            }
+        }
+    }
 }

@@ -10,10 +10,10 @@ public class PatrolMovement : Action
     public List<Vector2> WPoints = new List<Vector2>();
     public float delayBetweenPoints = 0;
     int index = 0;
-    private PolyNavAgent _agent;
-    private PolyNavAgent agent
+    private PolyNav.PolyNavAgent _agent;
+    private PolyNav.PolyNavAgent agent
     {
-        get { return _agent != null ? _agent : _agent = GetComponent<PolyNavAgent>(); }
+        get { return _agent != null ? _agent : _agent = GetComponent<PolyNav.PolyNavAgent>(); }
     }
 
     public override void OnStart()

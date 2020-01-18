@@ -14,7 +14,7 @@ public class MoveTowards : Action
 
     public override void OnStart()
     {
-        GetComponent<PolyNavAgent>().enabled = false;
+        GetComponent<PolyNav.PolyNavAgent>().enabled = false;
     }
 
     public override TaskStatus OnUpdate()
@@ -31,7 +31,7 @@ public class MoveTowards : Action
         else
         {
             // We haven't reached the target yet so keep moving towards it
-            GetComponent<PolyNavAgent>().enabled = false;
+            GetComponent<PolyNav.PolyNavAgent>().enabled = false;
             direction = target.Value.position - transform.position;
             direction.Normalize();
             if(GetComponent<SimpleEnemyController>().isStunned == true)

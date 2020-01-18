@@ -2,34 +2,51 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
-[CustomEditor(typeof(PolyNavObstacle))]
-public class PolyNavObstacleInspector : Editor {
+namespace PolyNav
+{
 
-	private PolyNavObstacle obstacle{
-		get {return target as PolyNavObstacle;}
-	}
+    [CustomEditor(typeof(PolyNavObstacle))]
+    public class PolyNavObstacleInspector : Editor
+    {
 
-	public override void OnInspectorGUI(){
+        private PolyNavObstacle obstacle {
+            get { return target as PolyNavObstacle; }
+        }
 
-		base.OnInspectorGUI();
+        public override void OnInspectorGUI() {
 
-		if (GUI.changed){
-			EditorApplication.delayCall += CheckChangeType;
-		}
-	}
+            base.OnInspectorGUI();
 
-	void CheckChangeType(){
-		var collider = obstacle.GetComponent<Collider2D>();
-		if (obstacle.shapeType == PolyNavObstacle.ShapeType.Polygon && !(collider is PolygonCollider2D) ){
-			UnityEditor.Undo.DestroyObjectImmediate(collider);
-			var col = obstacle.gameObject.AddComponent<PolygonCollider2D>();
-			UnityEditor.Undo.RegisterCreatedObjectUndo(col, "Change Shape Type");
-		}
+            if ( GUI.changed ) {
+                EditorApplication.delayCall += CheckChangeType;
+            }
+        }
 
-		if (obstacle.shapeType == PolyNavObstacle.ShapeType.Box && !(collider is BoxCollider2D) ){
-			UnityEditor.Undo.DestroyObjectImmediate(collider);
-			var col = obstacle.gameObject.AddComponent<BoxCollider2D>();
-			UnityEditor.Undo.RegisterCreatedObjectUndo(col, "Change Shape Type");
-		}			
-	}
+        void CheckChangeType() {
+            var collider = obstacle.GetComponent<Collider2D>();
+            if ( obstacle.shapeType == PolyNavObstacle.ShapeType.Polygon && !( collider is PolygonCollider2D ) ) {
+                if ( collider != null ) { UnityEditor.Undo.DestroyObjectImmediate(collider); }
+                var col = obstacle.gameObject.AddComponent<PolygonCollider2D>();
+                UnityEditor.Undo.RegisterCreatedObjectUndo(col, "Change Shape Type");
+                obstacle.invertPolygon = true;
+            }
+
+            if ( obstacle.shapeType == PolyNavObstacle.ShapeType.Box && !( collider is BoxCollider2D ) ) {
+                if ( collider != null ) { UnityEditor.Undo.DestroyObjectImmediate(collider); }
+                var col = obstacle.gameObject.AddComponent<BoxCollider2D>();
+                UnityEditor.Undo.RegisterCreatedObjectUndo(col, "Change Shape Type");
+                obstacle.invertPolygon = false;
+            }
+
+            if ( obstacle.shapeType == PolyNavObstacle.ShapeType.Composite && !( collider is CompositeCollider2D ) ) {
+                if ( collider != null ) { UnityEditor.Undo.DestroyObjectImmediate(collider); }
+                var col = obstacle.gameObject.AddComponent<CompositeCollider2D>();
+                UnityEditor.Undo.RegisterCreatedObjectUndo(col, "Change Shape Type");
+                var rb = obstacle.GetComponent<Rigidbody2D>();
+                rb.simulated = false;
+                obstacle.invertPolygon = true;
+            }
+        }
+    }
+
 }
