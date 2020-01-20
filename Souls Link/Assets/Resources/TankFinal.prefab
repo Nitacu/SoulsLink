@@ -728,7 +728,7 @@ MonoBehaviour:
   _damage: 20
   _numberOfRings: 1
   _spawnRingRate: 0.8
-  _magmaTimeAlive: 4
+  _magmaTimeAlive: 0.1
 --- !u!114 &1046008368
 MonoBehaviour:
   m_ObjectHideFlags: 0

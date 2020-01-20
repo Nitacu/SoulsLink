@@ -70,7 +70,7 @@ public class MagmaRing : Skill
         }
         Vector2 direction = _aiming.AimDirection;
         CoolDownTracker = _coolDown;        
-        GameObject ring = Instantiate(_ringPrefab, gameObject.transform.position, Quaternion.identity);       
+        GameObject ring = Instantiate(_ringPrefab, gameObject.transform);       
         ring.GetComponent<MagmaRingController>().setMagma(_damage, gameObject, lastRing, _magmaTimeAlive);
         if(ringsSpawned < _numberOfRings)
         {
