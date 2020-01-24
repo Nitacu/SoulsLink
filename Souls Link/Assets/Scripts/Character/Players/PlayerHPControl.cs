@@ -6,6 +6,10 @@ public class PlayerHPControl : MonoBehaviour
 {
     [SerializeField] private float _playerHealth;
     private float maxPlayerHealth;
+    public float MaxPlayerHealth
+    {
+        get { return maxPlayerHealth; }
+    }
 
     #region PLAYER STATES
     private bool canRecieveDamage = true;
@@ -26,6 +30,13 @@ public class PlayerHPControl : MonoBehaviour
         maxPlayerHealth = _playerHealth;
     }
 
+    public void setInitialHealth(float health)
+    {
+        _playerHealth = health;
+        maxPlayerHealth = _playerHealth;
+
+    }
+
     public void recieveDamage(float damage, GameObject attackingEnemy)
     {
         if (_isMine())
@@ -36,13 +47,19 @@ public class PlayerHPControl : MonoBehaviour
 
                 if (PlayerHealth < 0 && _isMine())
                 {
-                    GameSceneManager sceneManager = FindObjectOfType<GameSceneManager>();
-                    if (sceneManager != null)
-                    {
-                        sceneManager.setCoopCamera(false);
-                    }
+                    PlayerHealth = 0;
 
-                    gameObject.SetActive(false);
+                    //Die
+                    if (gameObject.GetComponent<ChimeraController>())//Die as chimera
+                    {
+                        dieAsChimera();
+                    }
+                    else if (gameObject.GetComponent<PlayerMovement>())//Die as player
+                    {
+                        
+
+                        dieAsPlayer();
+                    }
                     //_destroySelf();
                 }
 
@@ -81,6 +98,30 @@ public class PlayerHPControl : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void dieAsPlayer()
+    {
+        if (GetComponent<Resurrection>())
+        {
+            GetComponent<Resurrection>().setResurrection(false);
+        }
+        else
+        {
+            gameObject.SetActive(false);
+
+            GameSceneManager sceneManager = FindObjectOfType<GameSceneManager>();
+
+            if (sceneManager != null)
+            {
+                sceneManager.setCoopCamera(false);
+            }
+        }
+    }
+
+    public void dieAsChimera()
+    {
+        gameObject.GetComponent<ChimeraController>().chimeraDie();
     }
 
     //las funciones del photon llaman a este metodo en las otras maquinas
@@ -160,4 +201,14 @@ public class PlayerHPControl : MonoBehaviour
 
     /// /////////////////////////////////////GET Y SET /////////////////////////////////////
     public float PlayerHealth { get => _playerHealth; set => _playerHealth = value; }
+
+
+    //PARA TESTING --BORRAR--
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            recieveDamage(30f, null);
+        }
+    }
 }

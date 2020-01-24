@@ -69,7 +69,7 @@ public class ChimeraController : PlayerMovement
     public void setChimeraHUDS()
     {
         foreach (var player in _players)
-        {            
+        {
             if (player.GetComponent<PlayerMovement>()._isMine())
             {
                 Debug.Log("DESACTIVAR HUD PLAYER Y ACTIVAR EL DE LA CHIMERA ");
@@ -199,10 +199,32 @@ public class ChimeraController : PlayerMovement
         }
     }
 
+    public void setChimeraHealth()
+    {
+        float chimeraHealth = 0;
+        foreach (var player in _players)
+        {
+            if (player.GetComponent<PlayerHPControl>())
+            {
+                chimeraHealth += player.GetComponent<PlayerHPControl>().PlayerHealth;
+                Debug.Log("Vida chimera: " + chimeraHealth);
+            }
+
+        }
+
+        if (GetComponent<PlayerHPControl>())
+        {
+            GetComponent<PlayerHPControl>().setInitialHealth(chimeraHealth);
+            Debug.Log("Nueva vida: " + GetComponent<PlayerHPControl>().PlayerHealth);
+
+        }
+    }
+
     public void setPlayersInFusion(string playersIds)
     {
         _players = getPlayersByID(playersIds);
         setChimeraHUDS();
+        setChimeraHealth();
         setPlayersChild();
         updatePlayersInChimera();
     }
@@ -309,6 +331,20 @@ public class ChimeraController : PlayerMovement
         StartCoroutine(DestroyMySelf());
     }
 
+    public void chimeraDie()
+    {
+        _unFusion();
+        unFusion();
+
+        foreach (var player in _players)
+        {
+            if (player != null)
+            {
+                player.GetComponent<Resurrection>().setResurrection(false);
+            }
+        }
+    }
+
     IEnumerator DestroyMySelf()
     {
         yield return new WaitForEndOfFrame();
@@ -325,4 +361,7 @@ public class ChimeraController : PlayerMovement
         }
     }
 
+
+    
+    
 }

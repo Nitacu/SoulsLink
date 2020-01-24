@@ -175,6 +175,7 @@ GameObject:
   - component: {fileID: -8751755090289655173}
   - component: {fileID: 1247423873342727483}
   - component: {fileID: -337104035061231417}
+  - component: {fileID: -6794037660441103055}
   m_Layer: 8
   m_Name: DruidFinal
   m_TagString: Player
@@ -809,6 +810,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftHUD: {fileID: 5125799139981186}
   _rightHUD: {fileID: 147314223059984527}
+--- !u!114 &-6794037660441103055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4705385350353087113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f3e455f9d40e2419c2caf03e7c240f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentsToDeactivate:
+  - {fileID: 9008634845870170328}
+  _render: {fileID: 1373154316664478516}
+  _scanPlayersRadius: 1
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _percentageRatioHealing: 20
+  _pressToRessPrefab: {fileID: 4064319475721767862, guid: d8cec968131bddd49bf4a35e9d944231,
+    type: 3}
+  _healingBarPrefab: {fileID: 4064319475721767862, guid: 5b7f8924bcbfa8540828fe5fe10242d7,
+    type: 3}
 --- !u!1 &6058020209759171419
 GameObject:
   m_ObjectHideFlags: 0

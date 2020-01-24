@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 4803317335317458375}
   - component: {fileID: 6682319642306534826}
   - component: {fileID: -8993520282487619420}
+  - component: {fileID: 7428615141378140663}
   m_Layer: 8
   m_Name: AssasinFinal
   m_TagString: Player
@@ -1212,6 +1213,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftHUD: {fileID: 4538093807114933126}
   _rightHUD: {fileID: 663180875726673652}
+--- !u!114 &7428615141378140663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6226177120453663736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f3e455f9d40e2419c2caf03e7c240f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentsToDeactivate:
+  - {fileID: 7651098687956668841}
+  _render: {fileID: 298746667275250245}
+  _scanPlayersRadius: 1
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _percentageRatioHealing: 20
+  _pressToRessPrefab: {fileID: 4064319475721767862, guid: d8cec968131bddd49bf4a35e9d944231,
+    type: 3}
+  _healingBarPrefab: {fileID: 4064319475721767862, guid: 5b7f8924bcbfa8540828fe5fe10242d7,
+    type: 3}
 --- !u!1 &7651098687956668841
 GameObject:
   m_ObjectHideFlags: 0

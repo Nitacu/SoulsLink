@@ -254,6 +254,7 @@ GameObject:
   - component: {fileID: 1896778109585023796}
   - component: {fileID: 6884292007245349714}
   - component: {fileID: -8922267453163390024}
+  - component: {fileID: 448866866784140913}
   m_Layer: 8
   m_Name: TankFinal
   m_TagString: Player
@@ -901,6 +902,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftHUD: {fileID: 2984863536072244907}
   _rightHUD: {fileID: 4049297448495701038}
+--- !u!114 &448866866784140913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3730457550004149255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f3e455f9d40e2419c2caf03e7c240f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentsToDeactivate:
+  - {fileID: 1120487844959786582}
+  _render: {fileID: 7027780326426422714}
+  _scanPlayersRadius: 1
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _lifePerSecond: 50
+  _totalHealing: 0
+  _pressToRessPrefab: {fileID: 4064319475721767862, guid: d8cec968131bddd49bf4a35e9d944231,
+    type: 3}
+  _healingBarPrefab: {fileID: 4064319475721767862, guid: 5b7f8924bcbfa8540828fe5fe10242d7,
+    type: 3}
 --- !u!1 &6647910037698648187
 GameObject:
   m_ObjectHideFlags: 0

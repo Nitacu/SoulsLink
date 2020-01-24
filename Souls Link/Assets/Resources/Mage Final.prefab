@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: -1411355023875539720}
   - component: {fileID: 8568957500818865858}
   - component: {fileID: -5034290278784699404}
+  - component: {fileID: 777583043372602515}
   m_Layer: 8
   m_Name: Mage Final
   m_TagString: Player
@@ -1022,6 +1023,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftHUD: {fileID: 8561484137453478705}
   _rightHUD: {fileID: 9173318535952644330}
+--- !u!114 &777583043372602515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3115771829702683778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99f3e455f9d40e2419c2caf03e7c240f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentsToDeactivate:
+  - {fileID: 1690128982303549139}
+  _render: {fileID: 8754995889825848639}
+  _scanPlayersRadius: 1
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  _lifePerSecond: 50
+  _totalHealing: 0
+  _pressToRessPrefab: {fileID: 4064319475721767862, guid: d8cec968131bddd49bf4a35e9d944231,
+    type: 3}
+  _healingBarPrefab: {fileID: 4064319475721767862, guid: 5b7f8924bcbfa8540828fe5fe10242d7,
+    type: 3}
 --- !u!1 &8630043043880022629
 GameObject:
   m_ObjectHideFlags: 0

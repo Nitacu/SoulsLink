@@ -116,7 +116,7 @@ public class SplitCameraController : MonoBehaviour
             Vector3 newCamera1Position = camera1.transform.position + ((movingPercent/100)*(player1.transform.position - camera1.transform.position + offset));
             camera1.transform.position = new Vector3(newCamera1Position.x, newCamera1Position.y, -10);
 
-            Debug.Log("distance: " + distance);
+            //Debug.Log("distance: " + distance);
             if (movingPercent > 50)
             {
                 if (splitDistance > 4)

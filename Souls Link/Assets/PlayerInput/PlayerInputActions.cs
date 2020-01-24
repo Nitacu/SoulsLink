@@ -89,6 +89,14 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": ""Press(behavior=2)""
+                },
+                {
+                    ""name"": ""Ress"",
+                    ""type"": ""Button"",
+                    ""id"": ""28149eb4-36ad-4930-995b-b6584387012e"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -348,7 +356,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""586fcac0-d3cf-4268-bdf0-b67ffa123420"",
-                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
@@ -430,6 +438,39 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""UnFusion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24fdf834-f637-4cd2-9921-356060dc68d6"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Ress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f57905f-ea2e-4335-ad38-d75a5ad3e931"",
+                    ""path"": ""<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick Generic"",
+                    ""action"": ""Ress"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10547908-7f5f-4313-bd0f-8720527b0e40"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Ress"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1150,6 +1191,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         m_PlayerControls_Fusion = m_PlayerControls.FindAction("Fusion", throwIfNotFound: true);
         m_PlayerControls_Dash = m_PlayerControls.FindAction("Dash", throwIfNotFound: true);
         m_PlayerControls_UnFusion = m_PlayerControls.FindAction("UnFusion", throwIfNotFound: true);
+        m_PlayerControls_Ress = m_PlayerControls.FindAction("Ress", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_SelectRight = m_UI.FindAction("SelectRight", throwIfNotFound: true);
@@ -1225,6 +1267,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Fusion;
     private readonly InputAction m_PlayerControls_Dash;
     private readonly InputAction m_PlayerControls_UnFusion;
+    private readonly InputAction m_PlayerControls_Ress;
     public struct PlayerControlsActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1238,6 +1281,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         public InputAction @Fusion => m_Wrapper.m_PlayerControls_Fusion;
         public InputAction @Dash => m_Wrapper.m_PlayerControls_Dash;
         public InputAction @UnFusion => m_Wrapper.m_PlayerControls_UnFusion;
+        public InputAction @Ress => m_Wrapper.m_PlayerControls_Ress;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1274,6 +1318,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @UnFusion.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnFusion;
                 @UnFusion.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnFusion;
                 @UnFusion.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUnFusion;
+                @Ress.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnRess;
+                @Ress.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnRess;
+                @Ress.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnRess;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1305,6 +1352,9 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
                 @UnFusion.started += instance.OnUnFusion;
                 @UnFusion.performed += instance.OnUnFusion;
                 @UnFusion.canceled += instance.OnUnFusion;
+                @Ress.started += instance.OnRess;
+                @Ress.performed += instance.OnRess;
+                @Ress.canceled += instance.OnRess;
             }
         }
     }
@@ -1492,6 +1542,7 @@ public class @PlayerInputActions : IInputActionCollection, IDisposable
         void OnFusion(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnUnFusion(InputAction.CallbackContext context);
+        void OnRess(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

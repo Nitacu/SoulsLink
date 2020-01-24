@@ -76,6 +76,14 @@
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "Ress",
+                    "type": "Button",
+                    "id": "28149eb4-36ad-4930-995b-b6584387012e",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -335,7 +343,7 @@
                 {
                     "name": "",
                     "id": "586fcac0-d3cf-4268-bdf0-b67ffa123420",
-                    "path": "<Gamepad>/leftShoulder",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -417,6 +425,39 @@
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "UnFusion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "24fdf834-f637-4cd2-9921-356060dc68d6",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Ress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f57905f-ea2e-4335-ad38-d75a5ad3e931",
+                    "path": "<HID::DragonRise Inc.   Generic   USB  Joystick  >/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Joystick Generic",
+                    "action": "Ress",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10547908-7f5f-4313-bd0f-8720527b0e40",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Ress",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

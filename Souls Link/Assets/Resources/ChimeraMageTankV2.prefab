@@ -1037,6 +1037,7 @@ MonoBehaviour:
   inputFeedBack:
   - {fileID: 7722772838403946207}
   - {fileID: 2315585306676696680}
+  generalInputFeedBack: {fileID: 0}
 --- !u!114 &4894933940535102675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1706,6 +1707,7 @@ MonoBehaviour:
   - {fileID: 3053852520672246544}
   - {fileID: 2954683415566989299}
   currentActiveCooldown: 0
+  _feedBacktype: 0
 --- !u!1 &2493613351147264066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4288,6 +4290,7 @@ MonoBehaviour:
   - {fileID: 8815735078230115453}
   - {fileID: 3752752639077631765}
   currentActiveCooldown: 0
+  _feedBacktype: 0
 --- !u!1 &7845245120869849721
 GameObject:
   m_ObjectHideFlags: 0
